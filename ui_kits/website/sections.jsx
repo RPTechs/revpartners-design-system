@@ -5,13 +5,13 @@
 
 Object.assign(window, { TextImageSection, ServiceCard, StatCard, CTABanner, ServiceGrid, DiagramSection });
 
-const ACCENTS = ["#17B452", "#329DFF", "#F7761E", "#FB3131", "#8C32FF"];
-const tint = { "#17B452":"rgba(23,180,82,0.08)", "#329DFF":"rgba(50,157,255,0.08)", "#F7761E":"rgba(247,118,30,0.08)", "#FB3131":"rgba(251,49,49,0.08)", "#8C32FF":"rgba(140,50,255,0.08)" };
+const ACCENTS = ["#17B451", "#329DFF", "#F7761E", "#FB3131", "#8C32FF"];
+const tint = { "#17B451":"rgba(23,180,81,0.08)", "#329DFF":"rgba(50,157,255,0.08)", "#F7761E":"rgba(239,129,27,0.08)", "#FB3131":"rgba(251,49,49,0.08)", "#8C32FF":"rgba(140,50,255,0.08)" };
 
 /* ── Fancy link — Inter, arrow included ── */
-function FancyLink({ children, color = "#17B452" }) {
+function FancyLink({ children, color = "#17B451" }) {
   return (
-    <a href="#" style={{fontFamily:"'Inter',sans-serif", fontWeight:600, fontSize:15, color, textDecoration:"none", display:"inline-flex", alignItems:"center", gap:6}}
+    <a href="#" style={{fontFamily:"'Inter',sans-serif", fontWeight:700, fontSize:15, color, textDecoration:"none", display:"inline-flex", alignItems:"center", gap:6}}
       onMouseEnter={e => { const a=e.currentTarget.querySelector('span'); if(a) a.style.transform="translateX(3px)"; }}
       onMouseLeave={e => { const a=e.currentTarget.querySelector('span'); if(a) a.style.transform="translateX(0)"; }}>
       {children} <span style={{fontFamily:"'Inter',sans-serif", transition:"transform 0.15s ease"}}>&rarr;</span>
@@ -29,8 +29,8 @@ function TextImageSection({ eyebrow, title, body, cta, ctaSecondary, bg = "#FDFD
         <p style={sectionStyles.body}>{body}</p>
         <div style={sectionStyles.actions}>
           {cta && <button style={sectionStyles.btnPrimary}
-            onMouseEnter={e=>Object.assign(e.currentTarget.style,{background:"rgba(23,180,82,0.2)",color:"#17B452"})}
-            onMouseLeave={e=>Object.assign(e.currentTarget.style,{background:"#17B452",color:"#FDFDFD"})}>
+            onMouseEnter={e=>Object.assign(e.currentTarget.style,{background:"rgba(23,180,81,0.2)",color:"#17B451"})}
+            onMouseLeave={e=>Object.assign(e.currentTarget.style,{background:"#17B451",color:"#FDFDFD"})}>
             {cta}
           </button>}
           {ctaSecondary && <FancyLink>{ctaSecondary}</FancyLink>}
@@ -50,30 +50,30 @@ function ImagePlaceholder() {
     <div style={{width:"100%", maxWidth:440, aspectRatio:"4 / 3", borderRadius:12,
       border:"2px dashed rgba(36,39,58,0.2)", background:"#F3F3F4",
       display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center", gap:10}}>
-      <span className="material-symbols-rounded" style={{fontSize:40, color:"#A1A2A7"}}>draw</span>
+      <span className="material-symbols-outlined" style={{fontSize:40, color:"#A1A2A7"}}>draw</span>
       <span style={{fontFamily:"'Inter',sans-serif", fontSize:13, color:"#A1A2A7", fontWeight:600}}>Brand illustration</span>
     </div>
   );
 }
 
 /* ── Service Card — 2px accent border, tinted fill, bare icon ── */
-function ServiceCard({ color = "#17B452", icon, title, body, link, neutral = false }) {
+function ServiceCard({ color = "#17B451", icon, title, body, link, neutral = false }) {
   const borderColor = neutral ? "rgba(36,39,58,0.2)" : color;
-  const bg = neutral ? "#F3F3F4" : (tint[color] || tint["#17B452"]);
+  const bg = neutral ? "#F3F3F4" : (tint[color] || tint["#17B451"]);
   const iconColor = neutral ? "#24273A" : color;
   return (
     <div style={{...sectionStyles.serviceCard, borderColor, background: bg}}>
-      <span className="material-symbols-rounded" style={{fontSize:32, color:iconColor, marginBottom:4}}>{icon}</span>
+      <span className="material-symbols-outlined" style={{fontSize:32, color:iconColor, marginBottom:4}}>{icon}</span>
       <h3 style={sectionStyles.cardTitle}>{title}</h3>
       <p style={sectionStyles.cardBody}>{body}</p>
-      {link && <FancyLink color={neutral ? "#17B452" : color}>{link}</FancyLink>}
+      {link && <FancyLink color={neutral ? "#17B451" : color}>{link}</FancyLink>}
     </div>
   );
 }
 
 /* ── Stat Card — single accent, light tint fill (no dark backgrounds) ── */
-function StatCard({ number, label, accent = "#17B452" }) {
-  const t = tint[accent] || tint["#17B452"];
+function StatCard({ number, label, accent = "#17B451" }) {
+  const t = tint[accent] || tint["#17B451"];
   return (
     <div style={{...sectionStyles.statCard, borderColor: accent, background: t}}>
       <div style={{...sectionStyles.statNum, color: accent}}>{number}</div>
@@ -89,7 +89,7 @@ function CTABanner({ title, body, cta }) {
       <div style={sectionStyles.ctaInner}>
         <h2 style={{...sectionStyles.h2, color:"#FDFDFD", marginBottom:8}}>{title}</h2>
         <p style={{...sectionStyles.body, color:"rgba(253,253,253,0.75)", marginBottom:24}}>{body}</p>
-        <button style={{...sectionStyles.btnPrimary, background:"#FDFDFD", color:"#17B452", borderColor:"#FDFDFD"}}>
+        <button style={{...sectionStyles.btnPrimary, background:"#FDFDFD", color:"#17B451", borderColor:"#FDFDFD"}}>
           {cta}
         </button>
       </div>
@@ -145,11 +145,11 @@ const sectionStyles = {
   section: { width:"100%", display:"flex", flexDirection:"row", gap:80, padding:"80px 120px", boxSizing:"border-box", alignItems:"center" },
   textCol: { flex:"0 0 480px", display:"flex", flexDirection:"column", gap:20 },
   imageCol: { flex:1, display:"flex", alignItems:"center", justifyContent:"center" },
-  eyebrow: { fontFamily:"'Montserrat',sans-serif", fontWeight:700, fontSize:14, letterSpacing:"0.4em", textTransform:"uppercase", color:"#17B452" },
+  eyebrow: { fontFamily:"'Montserrat',sans-serif", fontWeight:700, fontSize:14, letterSpacing:"0.4em", textTransform:"uppercase", color:"#17B451" },
   h2: { fontFamily:"'Montserrat',sans-serif", fontWeight:700, fontSize:40, lineHeight:1.2, color:"#24273A", margin:0 },
   body: { fontFamily:"'Inter',sans-serif", fontWeight:400, fontSize:18, lineHeight:1.7, color:"#434761", margin:0 },
   actions: { display:"flex", gap:24, alignItems:"center", flexWrap:"wrap" },
-  btnPrimary: { borderRadius:120, background:"#17B452", border:"2px solid #17B452", color:"#FDFDFD", fontFamily:"'Inter',sans-serif", fontWeight:600, fontSize:16, padding:"13px 32px", cursor:"pointer", transition:"all 0.15s" },
+  btnPrimary: { borderRadius:120, background:"#17B451", border:"2px solid #17B451", color:"#FDFDFD", fontFamily:"'Inter',sans-serif", fontWeight:700, fontSize:16, padding:"13px 32px", cursor:"pointer", transition:"all 0.15s" },
   serviceSection: { width:"100%", padding:"80px 120px", boxSizing:"border-box", background:"#FDFDFD" },
   sectionInner: { maxWidth:1200, margin:"0 auto" },
   serviceGrid: { display:"grid", gridTemplateColumns:"repeat(3,1fr)", gap:24 },

@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { background: #FDFDFD; font-family: 'Inter', sans-serif; padding: 20px 24px; }
@@ -11,17 +11,17 @@
   .section-label { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #A1A2A7; margin-bottom: 12px; }
   /* Radius */
   .radius-items { display: flex; gap: 16px; align-items: flex-end; }
-  .radius-box { background: #17B452; opacity: 0.85; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; }
-  .radius-label { font-size: 10px; color: #434761; margin-top: 6px; text-align: center; font-family: 'JetBrains Mono', monospace; }
+  .radius-box { background: #17B451; opacity: 0.85; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; }
+  .radius-label { font-size: 10px; color: #434761; margin-top: 6px; text-align: center; font-family: 'Inter', sans-serif; }
   /* Shadow */
   .shadow-items { display: flex; gap: 20px; }
-  .shadow-box { width: 90px; height: 56px; background: #fff; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 10px; color: #A1A2A7; text-align: center; font-family: 'JetBrains Mono', monospace; line-height: 1.4; }
+  .shadow-box { width: 90px; height: 56px; background: #fff; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 10px; color: #A1A2A7; text-align: center; font-family: 'Inter', sans-serif; line-height: 1.4; }
   /* Border */
   .border-items { display: flex; gap: 16px; flex-direction: column; }
   .border-row { display: flex; align-items: center; gap: 12px; }
   .border-sample { width: 80px; height: 28px; border-radius: 4px; }
   .border-desc { font-size: 11px; color: #434761; }
-  .border-token { font-size: 10px; font-family: 'JetBrains Mono', monospace; color: #17B452; }
+  .border-token { font-size: 10px; font-family: 'Inter', sans-serif; color: #17B451; }
 </style>
 </head>
 <body>
@@ -35,11 +35,11 @@
         </div>
         <div>
           <div class="radius-box" style="width:46px;height:46px;border-radius:8px;"></div>
-          <div class="radius-label">8px<br>md</div>
+          <div class="radius-label">8px<br>card</div>
         </div>
         <div>
-          <div class="radius-box" style="width:56px;height:56px;border-radius:12px;"></div>
-          <div class="radius-label">12px<br>lg (card)</div>
+          <div class="radius-box" style="width:56px;height:56px;border-radius:16px;"></div>
+          <div class="radius-label">16px<br>panel</div>
         </div>
         <div>
           <div class="radius-box" style="width:70px;height:34px;border-radius:120px;"></div>
@@ -72,12 +72,12 @@
           <div><div class="border-desc">Structural</div><div class="border-token">1px solid rgba(36,39,58,0.1)</div></div>
         </div>
         <div class="border-row">
-          <div class="border-sample" style="border:2px solid #17B452;"></div>
-          <div><div class="border-desc">Accent card</div><div class="border-token">2px solid #17B452</div></div>
+          <div class="border-sample" style="border:2px solid #17B451;"></div>
+          <div><div class="border-desc">Accent card</div><div class="border-token">2px solid #17B451</div></div>
         </div>
         <div class="border-row">
-          <div class="border-sample" style="border:2px dashed #17B452;"></div>
-          <div><div class="border-desc">Callout / annotation</div><div class="border-token">2px dashed #17B452</div></div>
+          <div class="border-sample" style="border:2px dashed #17B451;"></div>
+          <div><div class="border-desc">Callout / annotation</div><div class="border-token">2px dashed #17B451</div></div>
         </div>
       </div>
     </div>

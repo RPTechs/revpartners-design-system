@@ -55,7 +55,7 @@ function RPFooter() {
     href: "#",
     style: footerStyles.socialLink
   }, /*#__PURE__*/React.createElement("span", {
-    className: "material-symbols-rounded",
+    className: "material-symbols-outlined",
     style: {
       fontSize: 18,
       color: "rgba(253,253,253,0.6)"
@@ -112,7 +112,7 @@ const footerStyles = {
     fontFamily: "'Montserrat',sans-serif",
     fontWeight: 700,
     fontSize: 20,
-    color: "#17B452"
+    color: "#17B451"
   },
   tagline: {
     fontSize: 14,
@@ -229,7 +229,7 @@ function RPFooter() {
     href: "#",
     style: footerStyles.socialLink
   }, /*#__PURE__*/React.createElement("span", {
-    className: "material-symbols-rounded",
+    className: "material-symbols-outlined",
     style: {
       fontSize: 18,
       color: "rgba(253,253,253,0.6)"
@@ -286,7 +286,7 @@ const footerStyles = {
     fontFamily: "'Montserrat',sans-serif",
     fontWeight: 700,
     fontSize: 20,
-    color: "#17B452"
+    color: "#17B451"
   },
   tagline: {
     fontSize: 14,
@@ -418,11 +418,11 @@ function RPHeader({
   }, l.label))), /*#__PURE__*/React.createElement("button", {
     style: headerStyles.cta,
     onMouseEnter: e => Object.assign(e.currentTarget.style, {
-      background: "rgba(23,180,82,0.2)",
-      color: "#17B452"
+      background: "rgba(23,180,81,0.2)",
+      color: "#17B451"
     }),
     onMouseLeave: e => Object.assign(e.currentTarget.style, {
-      background: "#17B452",
+      background: "#17B451",
       color: "#FDFDFD"
     })
   }, "Contact Us")));
@@ -453,7 +453,7 @@ const headerStyles = {
     fontFamily: "'Montserrat',sans-serif",
     fontWeight: 700,
     fontSize: 22,
-    color: "#17B452"
+    color: "#17B451"
   },
   right: {
     display: "flex",
@@ -477,16 +477,16 @@ const headerStyles = {
     transition: "color 0.15s"
   },
   linkActive: {
-    color: "#17B452",
-    borderBottom: "2px solid #17B452"
+    color: "#17B451",
+    borderBottom: "2px solid #17B451"
   },
   cta: {
     borderRadius: 120,
-    background: "#17B452",
-    border: "2px solid #17B452",
+    background: "#17B451",
+    border: "2px solid #17B451",
     color: "#FDFDFD",
     fontFamily: "'Inter',sans-serif",
-    fontWeight: 600,
+    fontWeight: 700,
     fontSize: 16,
     padding: "11px 28px",
     cursor: "pointer",
@@ -557,11 +557,11 @@ function RPHeader({
   }, l.label))), /*#__PURE__*/React.createElement("button", {
     style: headerStyles.cta,
     onMouseEnter: e => Object.assign(e.currentTarget.style, {
-      background: "rgba(23,180,82,0.2)",
-      color: "#17B452"
+      background: "rgba(23,180,81,0.2)",
+      color: "#17B451"
     }),
     onMouseLeave: e => Object.assign(e.currentTarget.style, {
-      background: "#17B452",
+      background: "#17B451",
       color: "#FDFDFD"
     })
   }, "Contact Us")));
@@ -592,7 +592,7 @@ const headerStyles = {
     fontFamily: "'Montserrat',sans-serif",
     fontWeight: 700,
     fontSize: 22,
-    color: "#17B452"
+    color: "#17B451"
   },
   right: {
     display: "flex",
@@ -616,16 +616,16 @@ const headerStyles = {
     transition: "color 0.15s"
   },
   linkActive: {
-    color: "#17B452",
-    borderBottom: "2px solid #17B452"
+    color: "#17B451",
+    borderBottom: "2px solid #17B451"
   },
   cta: {
     borderRadius: 120,
-    background: "#17B452",
-    border: "2px solid #17B452",
+    background: "#17B451",
+    border: "2px solid #17B451",
     color: "#FDFDFD",
     fontFamily: "'Inter',sans-serif",
-    fontWeight: 600,
+    fontWeight: 700,
     fontSize: 16,
     padding: "11px 28px",
     cursor: "pointer",
@@ -654,7 +654,7 @@ function RPHero() {
     "aria-hidden": "true"
   }, /*#__PURE__*/React.createElement("path", {
     d: "M10 20 H150 V150",
-    stroke: "#17B452",
+    stroke: "#17B451",
     strokeWidth: "2",
     strokeDasharray: "6 8",
     opacity: "0.5"
@@ -666,11 +666,11 @@ function RPHero() {
     style: heroStyles.headline
   }, "RevOps + GTM Engineering for Businesses on ", /*#__PURE__*/React.createElement("span", {
     style: {
-      color: "#17B452"
+      color: "#17B451"
     }
   }, "HubSpot"), " and ", /*#__PURE__*/React.createElement("span", {
     style: {
-      color: "#17B452"
+      color: "#17B451"
     }
   }, "Clay")), /*#__PURE__*/React.createElement("p", {
     style: heroStyles.sub
@@ -679,15 +679,15 @@ function RPHero() {
   }, /*#__PURE__*/React.createElement("button", {
     style: heroStyles.cta,
     onMouseEnter: e => Object.assign(e.currentTarget.style, {
-      background: "rgba(23,180,82,0.2)",
-      color: "#17B452"
+      background: "rgba(23,180,81,0.2)",
+      color: "#17B451"
     }),
     onMouseLeave: e => Object.assign(e.currentTarget.style, {
-      background: "#17B452",
+      background: "#17B451",
       color: "#FDFDFD"
     })
   }, /*#__PURE__*/React.createElement("span", {
-    className: "material-symbols-rounded",
+    className: "material-symbols-outlined",
     style: {
       fontSize: 20
     }
@@ -740,7 +740,7 @@ const heroStyles = {
     fontSize: 14,
     letterSpacing: "0.4em",
     textTransform: "uppercase",
-    color: "#17B452"
+    color: "#17B451"
   },
   headline: {
     fontFamily: "'Montserrat',sans-serif",
@@ -769,11 +769,11 @@ const heroStyles = {
   },
   cta: {
     borderRadius: 120,
-    background: "#17B452",
-    border: "2px solid #17B452",
+    background: "#17B451",
+    border: "2px solid #17B451",
     color: "#FDFDFD",
     fontFamily: "'Inter',sans-serif",
-    fontWeight: 600,
+    fontWeight: 700,
     fontSize: 16,
     padding: "13px 30px",
     cursor: "pointer",
@@ -784,7 +784,7 @@ const heroStyles = {
   },
   link: {
     fontFamily: "'Inter',sans-serif",
-    fontWeight: 600,
+    fontWeight: 700,
     fontSize: 16,
     color: "#FDFDFD",
     textDecoration: "none",
@@ -843,11 +843,11 @@ Object.assign(window, {
   ServiceGrid,
   DiagramSection
 });
-const ACCENTS = ["#17B452", "#329DFF", "#F7761E", "#FB3131", "#8C32FF"];
+const ACCENTS = ["#17B451", "#329DFF", "#F7761E", "#FB3131", "#8C32FF"];
 const tint = {
-  "#17B452": "rgba(23,180,82,0.08)",
+  "#17B451": "rgba(23,180,81,0.08)",
   "#329DFF": "rgba(50,157,255,0.08)",
-  "#F7761E": "rgba(247,118,30,0.08)",
+  "#F7761E": "rgba(239,129,27,0.08)",
   "#FB3131": "rgba(251,49,49,0.08)",
   "#8C32FF": "rgba(140,50,255,0.08)"
 };
@@ -855,7 +855,7 @@ const tint = {
 /* ── Fancy link — Inter, arrow included ── */
 function FancyLink({
   children,
-  color = "#17B452"
+  color = "#17B451"
 }) {
   return /*#__PURE__*/React.createElement("a", {
     href: "#",
@@ -914,11 +914,11 @@ function TextImageSection({
   }, cta && /*#__PURE__*/React.createElement("button", {
     style: sectionStyles.btnPrimary,
     onMouseEnter: e => Object.assign(e.currentTarget.style, {
-      background: "rgba(23,180,82,0.2)",
-      color: "#17B452"
+      background: "rgba(23,180,81,0.2)",
+      color: "#17B451"
     }),
     onMouseLeave: e => Object.assign(e.currentTarget.style, {
-      background: "#17B452",
+      background: "#17B451",
       color: "#FDFDFD"
     })
   }, cta), ctaSecondary && /*#__PURE__*/React.createElement(FancyLink, null, ctaSecondary))), /*#__PURE__*/React.createElement("div", {
@@ -944,7 +944,7 @@ function ImagePlaceholder() {
       gap: 10
     }
   }, /*#__PURE__*/React.createElement("span", {
-    className: "material-symbols-rounded",
+    className: "material-symbols-outlined",
     style: {
       fontSize: 40,
       color: "#A1A2A7"
@@ -961,7 +961,7 @@ function ImagePlaceholder() {
 
 /* ── Service Card — 2px accent border, tinted fill, bare icon ── */
 function ServiceCard({
-  color = "#17B452",
+  color = "#17B451",
   icon,
   title,
   body,
@@ -969,7 +969,7 @@ function ServiceCard({
   neutral = false
 }) {
   const borderColor = neutral ? "rgba(36,39,58,0.2)" : color;
-  const bg = neutral ? "#F3F3F4" : tint[color] || tint["#17B452"];
+  const bg = neutral ? "#F3F3F4" : tint[color] || tint["#17B451"];
   const iconColor = neutral ? "#24273A" : color;
   return /*#__PURE__*/React.createElement("div", {
     style: {
@@ -978,7 +978,7 @@ function ServiceCard({
       background: bg
     }
   }, /*#__PURE__*/React.createElement("span", {
-    className: "material-symbols-rounded",
+    className: "material-symbols-outlined",
     style: {
       fontSize: 32,
       color: iconColor,
@@ -989,7 +989,7 @@ function ServiceCard({
   }, title), /*#__PURE__*/React.createElement("p", {
     style: sectionStyles.cardBody
   }, body), link && /*#__PURE__*/React.createElement(FancyLink, {
-    color: neutral ? "#17B452" : color
+    color: neutral ? "#17B451" : color
   }, link));
 }
 
@@ -997,9 +997,9 @@ function ServiceCard({
 function StatCard({
   number,
   label,
-  accent = "#17B452"
+  accent = "#17B451"
 }) {
-  const t = tint[accent] || tint["#17B452"];
+  const t = tint[accent] || tint["#17B451"];
   return /*#__PURE__*/React.createElement("div", {
     style: {
       ...sectionStyles.statCard,
@@ -1042,7 +1042,7 @@ function CTABanner({
     style: {
       ...sectionStyles.btnPrimary,
       background: "#FDFDFD",
-      color: "#17B452",
+      color: "#17B451",
       borderColor: "#FDFDFD"
     }
   }, cta)));
@@ -1172,7 +1172,7 @@ const sectionStyles = {
     fontSize: 14,
     letterSpacing: "0.4em",
     textTransform: "uppercase",
-    color: "#17B452"
+    color: "#17B451"
   },
   h2: {
     fontFamily: "'Montserrat',sans-serif",
@@ -1198,11 +1198,11 @@ const sectionStyles = {
   },
   btnPrimary: {
     borderRadius: 120,
-    background: "#17B452",
-    border: "2px solid #17B452",
+    background: "#17B451",
+    border: "2px solid #17B451",
     color: "#FDFDFD",
     fontFamily: "'Inter',sans-serif",
-    fontWeight: 600,
+    fontWeight: 700,
     fontSize: 16,
     padding: "13px 32px",
     cursor: "pointer",

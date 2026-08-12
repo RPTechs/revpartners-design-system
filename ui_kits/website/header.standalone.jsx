@@ -33,8 +33,8 @@ function RPHeader({ activePage = "services" }) {
           ))}
         </nav>
         <button style={headerStyles.cta}
-          onMouseEnter={e => Object.assign(e.currentTarget.style, {background:"rgba(23,180,82,0.2)",color:"#17B452"})}
-          onMouseLeave={e => Object.assign(e.currentTarget.style, {background:"#17B452",color:"#FDFDFD"})}>
+          onMouseEnter={e => Object.assign(e.currentTarget.style, {background:"rgba(23,180,81,0.2)",color:"#17B451"})}
+          onMouseLeave={e => Object.assign(e.currentTarget.style, {background:"#17B451",color:"#FDFDFD"})}>
           Contact Us
         </button>
       </div>
@@ -53,7 +53,7 @@ const headerStyles = {
   },
   logoWrap: { display: "flex", alignItems: "center" },
   logo: { height: 30, width: "auto" },
-  logoFallback: { fontFamily: "'Montserrat',sans-serif", fontWeight:700, fontSize:22, color:"#17B452" },
+  logoFallback: { fontFamily: "'Montserrat',sans-serif", fontWeight:700, fontSize:22, color:"#17B451" },
   right: { display: "flex", alignItems: "center", gap: 28 },
   links: { display: "flex", gap: 24, alignItems: "center" },
   link: {
@@ -62,11 +62,11 @@ const headerStyles = {
     padding: "4px 0", borderBottom: "2px solid transparent",
     transition: "color 0.15s",
   },
-  linkActive: { color: "#17B452", borderBottom: "2px solid #17B452" },
+  linkActive: { color: "#17B451", borderBottom: "2px solid #17B451" },
   cta: {
-    borderRadius: 120, background: "#17B452",
-    border: "2px solid #17B452", color: "#FDFDFD",
-    fontFamily: "'Inter',sans-serif", fontWeight: 600, fontSize: 16,
+    borderRadius: 120, background: "#17B451",
+    border: "2px solid #17B451", color: "#FDFDFD",
+    fontFamily: "'Inter',sans-serif", fontWeight: 700, fontSize: 16,
     padding: "11px 28px", cursor: "pointer", transition: "all 0.15s",
   },
 };

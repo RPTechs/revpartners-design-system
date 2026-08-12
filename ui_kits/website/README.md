@@ -4,7 +4,7 @@
 High-fidelity recreation of the `revpartners.io` marketing website. Based on Figma source from `/external-shared/Home/`, `/Components/components/HeaderMenu/`, and the full brand guidelines.
 
 ## Design Width
-**1440px** — standard marketing website
+**1200px** — matches HubSpot `--max-width`
 
 ## Pages Included
 | Page | Description |
@@ -25,10 +25,10 @@ High-fidelity recreation of the `revpartners.io` marketing website. Based on Fig
 
 ## Key Design Decisions (from Figma)
 - Header: 95px tall, `#FDFDFD` bg, `1px solid rgba(36,39,58,0.1)` bottom border, `120px` side padding
-- Hero: Mint bg (`rgba(23,180,82,0.08)`), schematic funnel diagram as decoration
+- Hero: Mint bg (`rgba(23,180,81,0.08)`), schematic funnel diagram as decoration
 - Buttons: `border-radius: 120px` pill, Inter Bold 16–18px
 - Section padding: `80px 120px`
-- Cards: `border-radius: 12px`, `border: 2px solid [accent]`, ring decoration at `opacity: 0.1`
+- Cards: `border-radius: 8px`, `border: 2px solid [accent]`, matching fill
 - Service categories: Green=RevOps, Blue=Growth, Orange=HubSpot, Red=Sales, Purple=Tech
 
 ## Usage

@@ -22,7 +22,7 @@ function RPFooter() {
           <div style={footerStyles.social}>
             {["linkedin","youtube","instagram"].map(s=>(
               <a key={s} href="#" style={footerStyles.socialLink}>
-                <span className="material-symbols-rounded"
+                <span className="material-symbols-outlined"
                   style={{fontSize:18,color:"rgba(253,253,253,0.6)"}}>
                   {s==="linkedin"?"person":s==="youtube"?"play_circle":"photo_camera"}
                 </span>
@@ -61,7 +61,7 @@ const footerStyles = {
   top: {display:"flex",gap:60,alignItems:"flex-start"},
   brand: {flex:"0 0 260px",display:"flex",flexDirection:"column",gap:16},
   logo: {height:28,width:"auto"},
-  logoFallback: {fontFamily:"'Montserrat',sans-serif",fontWeight:700,fontSize:20,color:"#17B452"},
+  logoFallback: {fontFamily:"'Montserrat',sans-serif",fontWeight:700,fontSize:20,color:"#17B451"},
   tagline: {fontSize:14,lineHeight:1.6,color:"rgba(253,253,253,0.55)",margin:0},
   social: {display:"flex",gap:12,marginTop:4},
   socialLink: {

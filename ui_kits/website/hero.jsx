@@ -10,22 +10,22 @@ function RPHero() {
     <section style={heroStyles.section}>
       {/* subtle brand dashed-elbow motif, top-right */}
       <svg style={heroStyles.motif} viewBox="0 0 200 160" fill="none" aria-hidden="true">
-        <path d="M10 20 H150 V150" stroke="#17B452" strokeWidth="2" strokeDasharray="6 8" opacity="0.5"/>
+        <path d="M10 20 H150 V150" stroke="#17B451" strokeWidth="2" strokeDasharray="6 8" opacity="0.5"/>
       </svg>
 
       <div style={heroStyles.content}>
         <div style={heroStyles.eyebrow}>Grow with Confidence</div>
         <h1 style={heroStyles.headline}>
-          RevOps + GTM Engineering for Businesses on <span style={{color:"#17B452"}}>HubSpot</span> and <span style={{color:"#17B452"}}>Clay</span>
+          RevOps + GTM Engineering for Businesses on <span style={{color:"#17B451"}}>HubSpot</span> and <span style={{color:"#17B451"}}>Clay</span>
         </h1>
         <p style={heroStyles.sub}>
           When growth stalls, clarity matters. We created the Revenue Performance Model™ to help GTM teams measure and accelerate revenue across the customer journey.
         </p>
         <div style={heroStyles.actions}>
           <button style={heroStyles.cta}
-            onMouseEnter={e => Object.assign(e.currentTarget.style, {background:"rgba(23,180,82,0.2)", color:"#17B452"})}
-            onMouseLeave={e => Object.assign(e.currentTarget.style, {background:"#17B452", color:"#FDFDFD"})}>
-            <span className="material-symbols-rounded" style={{fontSize:20}}>arrow_forward</span>
+            onMouseEnter={e => Object.assign(e.currentTarget.style, {background:"rgba(23,180,81,0.2)", color:"#17B451"})}
+            onMouseLeave={e => Object.assign(e.currentTarget.style, {background:"#17B451", color:"#FDFDFD"})}>
+            <span className="material-symbols-outlined" style={{fontSize:20}}>arrow_forward</span>
             Get a Free Revenue Health Check
           </button>
           <a href="#" style={heroStyles.link}>
@@ -56,7 +56,7 @@ const heroStyles = {
   content: { position:"relative", zIndex:2, maxWidth:860, display:"flex", flexDirection:"column", gap:24 },
   eyebrow: {
     fontFamily:"'Montserrat',sans-serif", fontWeight:700, fontSize:14,
-    letterSpacing:"0.4em", textTransform:"uppercase", color:"#17B452",
+    letterSpacing:"0.4em", textTransform:"uppercase", color:"#17B451",
   },
   headline: {
     fontFamily:"'Montserrat',sans-serif", fontWeight:700, fontSize:52,
@@ -68,13 +68,13 @@ const heroStyles = {
   },
   actions: { display:"flex", gap:28, alignItems:"center", flexWrap:"wrap", marginTop:8 },
   cta: {
-    borderRadius:120, background:"#17B452", border:"2px solid #17B452",
-    color:"#FDFDFD", fontFamily:"'Inter',sans-serif", fontWeight:600, fontSize:16,
+    borderRadius:120, background:"#17B451", border:"2px solid #17B451",
+    color:"#FDFDFD", fontFamily:"'Inter',sans-serif", fontWeight:700, fontSize:16,
     padding:"13px 30px", cursor:"pointer", transition:"all 0.15s",
     display:"inline-flex", alignItems:"center", gap:8,
   },
   link: {
-    fontFamily:"'Inter',sans-serif", fontWeight:600, fontSize:16,
+    fontFamily:"'Inter',sans-serif", fontWeight:700, fontSize:16,
     color:"#FDFDFD", textDecoration:"none", display:"inline-flex", alignItems:"center", gap:8,
   },
   trust: {
