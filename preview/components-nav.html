@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<!-- @dsCard group="Components" name="Navigation" subtitle="Header / nav bar pattern" viewport="700x180" -->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #F3F3F4; font-family: 'Inter', sans-serif; }
+  /* Header */
+  .nav { background: #FDFDFD; border-bottom: 1px solid rgba(36,39,58,0.08); padding: 0 60px; height: 72px; display: flex; align-items: center; justify-content: space-between; }
+  .nav-logo { display: flex; align-items: center; gap: 10px; }
+  .nav-logo img { height: 28px; }
+  .nav-links { display: flex; gap: 32px; align-items: center; }
+  .nav-link { font-size: 15px; font-weight: 600; color: #434761; text-decoration: none; cursor: pointer; }
+  .nav-link:hover { color: #17B452; }
+  .nav-link.active { color: #17B452; }
+  .nav-cta { background: #17B452; color: #FDFDFD; font-weight: 700; font-size: 14px; padding: 10px 24px; border-radius: 120px; border: 2px solid #17B452; cursor: pointer; }
+  /* Slide header */
+  .slide-header { background: #FDFDFD; border-bottom: 3px solid #17B452; padding: 0 48px; height: 56px; display: flex; align-items: center; justify-content: space-between; margin-top: 8px; }
+  .slide-header-label { font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #A1A2A7; }
+  .slide-logo { height: 22px; }
+  .label { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #A1A2A7; padding: 10px 0 4px 0; }
+</style>
+</head>
+<body>
+  <div class="label" style="padding: 12px 16px 4px;">Website Nav</div>
+  <nav class="nav">
+    <div class="nav-logo">
+      <img src="../assets/RevPartners-Logo-Horizontal-Green.svg" alt="RevPartners" onerror="this.style.display='none';this.nextSibling.style.display='block'">
+      <span style="display:none;font-family:'Montserrat',sans-serif;font-weight:700;font-size:18px;color:#17B452;">RevPartners</span>
+    </div>
+    <div class="nav-links">
+      <a class="nav-link active" href="#">Services</a>
+      <a class="nav-link" href="#">HubSpot</a>
+      <a class="nav-link" href="#">Resources</a>
+      <a class="nav-link" href="#">About</a>
+      <a class="nav-link" href="#">Pricing</a>
+    </div>
+    <button class="nav-cta">Get Started</button>
+  </nav>
+  <div class="label" style="padding: 10px 16px 4px;">Slide / PDF Header</div>
+  <div class="slide-header">
+    <div class="slide-header-label">RevPartners Branding Guidelines › Colors</div>
+    <img src="../assets/RevPartners-Logo-Horizontal-Green.svg" class="slide-logo" alt="RP" onerror="this.style.display='none';this.nextSibling.style.display='block'">
+    <span style="display:none;font-family:'Montserrat',sans-serif;font-weight:700;font-size:14px;color:#17B452;">RevPartners</span>
+  </div>
+</body>
+</html>

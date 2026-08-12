@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<!-- @dsCard group="Brand" name="Logo Lockups" subtitle="2024 wordmark + mark, on light / dark / green" viewport="700x260" -->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #FDFDFD; font-family: 'Inter', sans-serif; padding: 20px 24px; }
+  .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  .lockup { border-radius: 12px; padding: 22px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; min-height: 96px; }
+  .lockup-label { font-size: 10px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #A1A2A7; }
+  .lockup-white { background: #FDFDFD; border: 2px solid rgba(36,39,58,0.10); }
+  .lockup-dark  { background: #24273A; }
+  .lockup-green { background: #17B452; }
+  .lockup-mercury { background: #F3F3F4; }
+  img { max-height: 30px; max-width: 190px; object-fit: contain; }
+  .mark img { max-height: 44px; max-width: 44px; }
+</style>
+</head>
+<body>
+  <div class="grid">
+    <div class="lockup lockup-white">
+      <img src="../assets/RevPartners-Logo-2024-Green.svg" alt="RevPartners 2024 logo">
+      <div class="lockup-label">Primary on White</div>
+    </div>
+    <div class="lockup lockup-white mark">
+      <img src="../assets/RP-Mark-2024-Green.svg" alt="RP Mark">
+      <div class="lockup-label">Mark — Green</div>
+    </div>
+    <div class="lockup lockup-mercury">
+      <img src="../assets/RevPartners-Logo-2024-Green.svg" alt="RevPartners logo">
+      <div class="lockup-label">On Mercury</div>
+    </div>
+    <div class="lockup lockup-dark">
+      <img src="../assets/RevPartners-Logo-2024-White.svg" alt="RevPartners logo white">
+      <div class="lockup-label" style="color:rgba(253,253,253,0.5);">Reversed on Dark</div>
+    </div>
+    <div class="lockup lockup-dark mark">
+      <img src="../assets/RP-Mark-2024-White.svg" alt="RP Mark">
+      <div class="lockup-label" style="color:rgba(253,253,253,0.5);">Mark on Dark</div>
+    </div>
+    <div class="lockup lockup-green">
+      <img src="../assets/RevPartners-Logo-2024-White.svg" alt="RevPartners logo white">
+      <div class="lockup-label" style="color:rgba(255,255,255,0.8);">Reversed on Green</div>
+    </div>
+  </div>
+</body>
+</html>

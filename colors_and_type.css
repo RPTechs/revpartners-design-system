@@ -1,0 +1,415 @@
+/* ============================================================
+   RevPartners Design System — CSS Custom Properties
+   Generated from Figma Brand Guidelines + README
+   ============================================================ */
+
+/* ------------------------------------------------------------
+   GOOGLE FONTS IMPORT
+   ------------------------------------------------------------ */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200');
+
+:root {
+
+  /* ----------------------------------------------------------
+     BASE COLORS — Neutrals (light → dark)
+     ---------------------------------------------------------- */
+  --clr-off-white:    #FDFDFD;
+  --clr-platinum:     #F7F7FD;
+  --clr-mercury:      #F3F3F4;
+  --clr-iron:         #DDDEE2;
+  --clr-steel:        #A1A2A7;
+  --clr-carbon:       #555970;
+  --clr-river-bed:    #434761;
+  --clr-ebony-clay:   #24273A;
+
+  /* Neutral tints */
+  --clr-border:       rgba(36, 39, 58, 0.10);
+  --clr-border-mid:   rgba(36, 39, 58, 0.20);
+  --clr-border-dark:  rgba(36, 39, 58, 0.30);
+
+  /* Pure white + neutral aliases */
+  --clr-white:        #FFFFFF;
+  --clr-black:        var(--clr-ebony-clay);
+  --clr-dark:         var(--clr-river-bed);
+
+  /* Card / surface aliases (used by card recipe) */
+  --clr-bg-2:         #F3F3F4;   /* neutral card fill */
+  --clr-stroke:       rgba(36, 39, 58, 0.10);  /* matches HubSpot --clr-stroke */
+
+  /* ----------------------------------------------------------
+     ACCENT COLORS — Functional
+     Green = RevOps | Blue = Growth | Orange = HubSpot
+     Red = Sales    | Purple = Tech
+     ---------------------------------------------------------- */
+  --clr-rally-green:  #17B451;   /* primary — RevOps */
+  --clr-fast-blue:    #329DFF;   /* Growth */
+  --clr-tango:        #F7761E;   /* HubSpot */
+  --clr-racecar-red:  #FB3131;   /* Sales */
+  --clr-ultra-purple: #8C32FF;   /* Tech */
+
+  /* Short aliases */
+  --clr-primary:      var(--clr-rally-green);  /* used by logo SVG + marks */
+  --clr-green:        var(--clr-rally-green);
+  --clr-blue:         var(--clr-fast-blue);
+  --clr-orange:       var(--clr-tango);
+  --clr-red:          var(--clr-racecar-red);
+  --clr-purple:       var(--clr-ultra-purple);
+
+  /* Accent backgrounds — METHOD 1: 20% opacity of the accent (sits on any bg) */
+  --clr-green-bg:     rgba(23, 180, 81, 0.20);
+  --clr-blue-bg:      rgba(50, 157, 255, 0.20);
+  --clr-orange-bg:    rgba(239, 129, 27, 0.20);
+  --clr-red-bg:       rgba(251, 49, 49, 0.20);
+  --clr-purple-bg:    rgba(140, 50, 255, 0.20);
+
+  /* Accent backgrounds — METHOD 2: OPAQUE flatten of the 20% over off-white.
+     Use when transparency is undesirable (overlapping elements, exports). */
+  --clr-mint:         #D1F0DC;   /* green-light */
+  --clr-sky:          #CCE7FF;   /* blue-light  */
+  --clr-peach-vibes:  #FEE4D5;   /* orange-light */
+  --clr-coral:        #FFD9D7;   /* red-light   */
+  --clr-lavender:     #E9D6FF;   /* purple-light */
+  --clr-green-light:  var(--clr-mint);
+  --clr-blue-light:   var(--clr-sky);
+  --clr-orange-light: var(--clr-peach-vibes);
+  --clr-red-light:    var(--clr-coral);
+  --clr-purple-light: var(--clr-lavender);
+
+  /* Accent dark variants (deep, for emphasis / dark surfaces) */
+  --clr-midnight-green: #22433E;   /* green-dark */
+  --clr-indigo:         #0F2F4D;   /* blue-dark  */
+  --clr-burnt-orange:   #7B3200;   /* orange-dark */
+  --clr-burnt-red:      #8C0000;   /* red-dark   */
+  --clr-deep-purple:    #35007A;   /* purple-dark */
+  --clr-green-dark:     var(--clr-midnight-green);
+  --clr-blue-dark:      var(--clr-indigo);
+  --clr-orange-dark:    var(--clr-burnt-orange);
+  --clr-red-dark:       var(--clr-burnt-red);
+  --clr-purple-dark:    var(--clr-deep-purple);
+
+  /* ----------------------------------------------------------
+     SEMANTIC COLOR TOKENS
+     ---------------------------------------------------------- */
+  --color-bg:         var(--clr-off-white);
+  --color-bg-alt:     var(--clr-mercury);
+  --color-bg-dark:    var(--clr-ebony-clay);
+  --color-bg-accent:  var(--clr-mint);
+
+  --color-fg:         var(--clr-river-bed);     /* Headings + body — matches HubSpot --clr-title / --clr-text */
+  --color-fg-2:       var(--clr-river-bed);     /* Secondary text */
+  --color-fg-3:       var(--clr-steel);         /* Muted text */
+  --color-fg-inverted: var(--clr-off-white);    /* Text on dark */
+
+  --color-primary:    var(--clr-green);
+  --color-primary-bg: var(--clr-green-bg);      /* 20% method */
+  --color-primary-hover-bg: var(--clr-green-bg);
+
+  --color-border:     var(--clr-border);
+  --color-border-accent: var(--clr-green);
+
+  --color-link:       var(--clr-green);
+  --color-link-hover: var(--clr-green-dark);
+
+  /* Status / Category */
+  --color-revops:     var(--clr-green);
+  --color-growth:     var(--clr-blue);
+  --color-hubspot:    var(--clr-orange);
+  --color-sales:      var(--clr-red);
+  --color-tech:       var(--clr-purple);
+
+  /* ----------------------------------------------------------
+     TYPOGRAPHY — Font Families
+     ---------------------------------------------------------- */
+  --font-display:     'Montserrat', sans-serif;
+  --font-body:        'Inter', sans-serif;
+  --font-icon:        'Material Symbols Outlined';
+  /* Titles: Montserrat Bold (700). Body: Inter 400. Buttons/strong: 700. */
+
+  /* ----------------------------------------------------------
+     TYPOGRAPHY — Font Sizes (display scale)
+     ---------------------------------------------------------- */
+  --text-hero-xl:   7.5rem;    /* 120px */
+  --text-hero:      4rem;      /* 64px  */
+  --text-h1:        3rem;      /* 48px  */
+  --text-h2:        2rem;      /* 32px  */
+  --text-h3:        1.75rem;   /* 28px  */
+  --text-h4:        1.5rem;    /* 24px  */
+  --text-h5:        1.25rem;   /* 20px  */
+  --text-h6:        1.125rem;  /* 18px  */
+
+  /* Body scale */
+  --text-body-lg:   1.125rem;  /* 18px */
+  --text-body:      1rem;      /* 16px */
+  --text-sm:        0.875rem;  /* 14px */
+  --text-xs:        0.75rem;   /* 12px */
+  --text-2xs:       0.625rem;  /* 10px */
+
+  /* ----------------------------------------------------------
+     TYPOGRAPHY — Font Weights
+     ---------------------------------------------------------- */
+  --font-regular:     400;
+  --font-medium:      500;
+  --font-semibold:    600;   /* rare UI only */
+  --font-bold:        700;   /* headings, buttons, strong */
+
+  /* ----------------------------------------------------------
+     TYPOGRAPHY — Line Heights
+     ---------------------------------------------------------- */
+  --leading-tight:   1.0;
+  --leading-snug:    1.25;
+  --leading-normal:  1.5;
+  --leading-relaxed: 1.75;
+
+  /* ----------------------------------------------------------
+     TYPOGRAPHY — Letter Spacing
+     ---------------------------------------------------------- */
+  --tracking-tight:  -0.01em;
+  --tracking-normal:  0;
+  --tracking-wide:    0.05em;
+  --tracking-wider:   0.1em;
+  --tracking-widest:  0.4em;   /* Used for ALL-CAPS category labels */
+
+  /* ----------------------------------------------------------
+     SPACING SCALE (rem-based, 1rem = 16px)
+     ---------------------------------------------------------- */
+  --space-1:    0.25rem;   /*  4px */
+  --space-2:    0.5rem;    /*  8px  — gap-xs */
+  --space-3:    0.75rem;   /* 12px */
+  --space-4:    1rem;      /* 16px  — gap-s */
+  --space-5:    1.25rem;   /* 20px */
+  --space-6:    1.5rem;    /* 24px  — gap (base) */
+  --space-8:    2rem;      /* 32px */
+  --space-10:   2.5rem;    /* 40px */
+  --space-12:   3rem;      /* 48px  — gap-m */
+  --space-14:   3.5rem;    /* 56px */
+  --space-15:   3.75rem;   /* 60px  — gap-l */
+  --space-20:   5rem;      /* 80px */
+  --space-24:   6rem;      /* 96px */
+  --space-30:   7.5rem;    /* 120px — gap-xl */
+
+  /* Named gap tokens (from Figma brand guide) */
+  --gap-xs:   var(--space-2);   /*  8px */
+  --gap-s:    var(--space-4);   /* 16px */
+  --gap:      var(--space-6);   /* 24px — base gap */
+  --gap-m:    var(--space-12);  /* 48px */
+  --gap-l:    var(--space-15);  /* 60px */
+  --gap-xl:   var(--space-30);  /* 120px */
+
+  /* ----------------------------------------------------------
+     BORDER RADIUS
+     ---------------------------------------------------------- */
+  --radius-sm:    4px;
+  --radius-md:    8px;
+  --radius-lg:    8px;     /* cards — matches HubSpot --corner */
+  --radius-xl:    16px;    /* wrapping panels — --corner-l */
+  --radius-pill:  120px;   /* Buttons */
+  --radius-full:  9999px;  /* Circles / avatars */
+
+  /* ----------------------------------------------------------
+     SHADOWS
+     ---------------------------------------------------------- */
+  --shadow-sm:  0px 2px 4px 0px rgba(0,0,0,0.25);
+  --shadow-md:  0px 4px 4px 0px rgba(0,0,0,0.25);
+  --shadow-lg:  0px 8px 24px 0px rgba(0,0,0,0.12);
+  --shadow-book: 2.612px 2.612px 7.835px 0px rgba(0,0,0,0.1),
+                 10.447px 8.706px 13.929px 0px rgba(0,0,0,0.09);
+
+  /* ----------------------------------------------------------
+     LAYOUT
+     ---------------------------------------------------------- */
+  --page-width:       1200px;
+  --page-width-slide: 1920px;
+  --page-padding:     7.5rem;   /* 120px slides */
+  --page-padding-web: 3.75rem;  /* 60px website */
+
+  /* ----------------------------------------------------------
+     COMPONENT TOKENS — Buttons
+     ---------------------------------------------------------- */
+  --btn-height:        43px;
+  --btn-height-sm:     33px;
+  --btn-padding:       15px 40px;
+  --btn-padding-sm:    10px 18px;
+  --btn-radius:        var(--radius-pill);
+  --btn-font:          var(--font-body);
+  --btn-font-weight:   var(--font-bold);
+  --btn-font-size:     var(--text-body-lg);
+
+  /* ----------------------------------------------------------
+     COMPONENT TOKENS — Cards
+     ---------------------------------------------------------- */
+  /* Cards: 2px border (accent color OR neutral stroke), fill of bg-2 or
+     20% accent. No colored left-border-only, no icon backgrounds. */
+  --card-radius:   var(--radius-lg); /* 8px */
+  --card-border:   2px solid var(--clr-stroke);
+  --card-bg:       var(--clr-bg-2);
+  --card-shadow:   none;
+  --card-padding:  var(--gap);
+}
+
+/* ============================================================
+   SEMANTIC ELEMENT STYLES
+   Apply these directly to HTML elements or use as class base
+   ============================================================ */
+
+/* --- Headings --- */
+.rp-h1, h1 {
+  font-family: var(--font-display);
+  font-weight: var(--font-bold);
+  font-size: var(--text-h1);
+  line-height: var(--leading-snug);
+  color: var(--color-fg);
+  letter-spacing: var(--tracking-tight);
+}
+.rp-h2, h2 {
+  font-family: var(--font-display);
+  font-weight: var(--font-bold);
+  font-size: var(--text-h2);
+  line-height: var(--leading-snug);
+  color: var(--color-fg);
+}
+.rp-h3, h3 {
+  font-family: var(--font-display);
+  font-weight: var(--font-bold);
+  font-size: var(--text-h3);
+  line-height: var(--leading-snug);
+  color: var(--color-fg);
+}
+.rp-h4, h4 {
+  font-family: var(--font-display);
+  font-weight: var(--font-bold);
+  font-size: var(--text-h4);
+  line-height: var(--leading-snug);
+  color: var(--color-fg);
+}
+.rp-h5, h5 {
+  font-family: var(--font-display);
+  font-weight: var(--font-semibold);
+  font-size: var(--text-h5);
+  line-height: var(--leading-normal);
+  color: var(--color-fg-2);
+}
+
+/* --- Category label (ALL CAPS) --- */
+.rp-label {
+  font-family: var(--font-display);
+  font-weight: var(--font-bold);
+  font-size: var(--text-h5);
+  line-height: var(--leading-normal);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--color-primary);
+}
+
+/* --- Icons: Material Symbols Outlined --- */
+.rp-icon {
+  font-family: var(--font-icon);
+  font-weight: normal;
+  font-style: normal;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  direction: ltr;
+  -webkit-font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased;
+  font-variation-settings: 'FILL' 1, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+}
+.rp-icon.is-heavy { font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+
+/* --- Fancy link: Material icon arrow, not an Inter → --- */
+.rp-link {
+  font-family: var(--font-body);
+  font-weight: var(--font-bold);
+  font-size: var(--text-body);
+  color: var(--color-link);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+}
+.rp-link .rp-link-arrow { font-family: var(--font-icon); font-variation-settings: 'FILL' 1, 'wght' 300, 'GRAD' 0, 'opsz' 24; transition: transform 0.15s ease; }
+.rp-link:hover { color: var(--color-link-hover); }
+.rp-link:hover .rp-link-arrow { transform: translateX(3px); }
+
+/* --- Step sequence: filled circles, white numerals, dashed connectors --- */
+.rp-steps { display: flex; align-items: flex-start; gap: 0; }
+.rp-step { display: flex; flex-direction: column; align-items: center; gap: var(--space-3); flex: 1; }
+.rp-step-num {
+  width: 48px; height: 48px; border-radius: var(--radius-full);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-display); font-weight: var(--font-bold);
+  font-size: var(--text-h5); color: #fff; border: none;
+}
+/* Accent cycle: green → blue → orange → red → purple, repeat */
+.rp-step:nth-child(5n+1) .rp-step-num { background: var(--clr-green); }
+.rp-step:nth-child(5n+2) .rp-step-num { background: var(--clr-blue); }
+.rp-step:nth-child(5n+3) .rp-step-num { background: var(--clr-orange); }
+.rp-step:nth-child(5n+4) .rp-step-num { background: var(--clr-red); }
+.rp-step:nth-child(5n+5) .rp-step-num { background: var(--clr-purple); }
+.rp-step-connector { flex: 1; border-top: 2px dashed var(--clr-border-mid); margin-top: 24px; }
+
+/* --- Body --- */
+.rp-body, p {
+  font-family: var(--font-body);
+  font-weight: var(--font-regular);
+  font-size: var(--text-body-lg);
+  line-height: var(--leading-relaxed);
+  color: var(--color-fg-2);
+}
+.rp-body-sm {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  line-height: var(--leading-normal);
+  color: var(--color-fg-2);
+}
+.rp-caption {
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  line-height: var(--leading-normal);
+  color: var(--color-fg-3);
+}
+
+/* --- Card recipe --- */
+.rp-card {
+  background: var(--card-bg);
+  border: var(--card-border);
+  border-radius: var(--card-radius);
+  padding: var(--card-padding);
+  box-shadow: var(--card-shadow);
+}
+.rp-card--accent-green  { border-color: var(--clr-green);  background: var(--clr-green-light); }
+.rp-card--accent-blue   { border-color: var(--clr-blue);   background: var(--clr-blue-light); }
+.rp-card--accent-orange { border-color: var(--clr-orange); background: var(--clr-orange-light); }
+.rp-card--accent-red    { border-color: var(--clr-red);    background: var(--clr-red-light); }
+.rp-card--accent-purple { border-color: var(--clr-purple); background: var(--clr-purple-light); }
+
+
+/* ============================================================
+   UTILITY CLASSES
+   ============================================================ */
+
+/* Backgrounds */
+.bg-white       { background-color: var(--clr-white); }
+.bg-off-white   { background-color: var(--clr-off-white); }
+.bg-mercury     { background-color: var(--clr-mercury); }
+.bg-dark        { background-color: var(--clr-ebony-clay); }
+.bg-green       { background-color: var(--clr-green); }
+.bg-mint        { background-color: var(--clr-mint); }
+
+/* Text colors */
+.text-primary   { color: var(--clr-green); }
+.text-secondary { color: var(--clr-river-bed); }
+.text-muted     { color: var(--clr-steel); }
+.text-dark      { color: var(--clr-ebony-clay); }
+.text-white     { color: var(--clr-white); }
+.text-blue      { color: var(--clr-blue); }
+.text-orange    { color: var(--clr-orange); }
+.text-red       { color: var(--clr-red); }
+.text-purple    { color: var(--clr-purple); }
+
+/* Borders */
+.border-green   { border: 2px solid var(--clr-green); }
+.border-light   { border: 1px solid var(--clr-border); }
+.border-dashed  { border: 2px dashed var(--clr-border-mid); }

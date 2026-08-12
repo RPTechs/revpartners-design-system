@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<!-- @dsCard group="Type" name="Body & Links" subtitle="Inter — body, weights, and fancy link (no mono, no serif)" viewport="700x300" -->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #FDFDFD; padding: 20px 24px; font-family: 'Inter', sans-serif; }
+  .section { margin-bottom: 16px; padding-bottom: 16px; border-bottom: 1px solid rgba(36,39,58,0.06); }
+  .section:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+  .tag { display: inline-block; font-size: 9px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #A1A2A7; margin-bottom: 6px; }
+  .body-lg { font-size: 18px; line-height: 1.7; color: #434761; font-weight: 400; }
+  .body-sm { font-size: 14px; line-height: 1.5; color: #434761; }
+  .caption { font-size: 12px; line-height: 1.5; color: #A1A2A7; }
+  .bold-label { font-size: 18px; font-weight: 600; color: #24273A; }
+  .link { font-size: 16px; font-weight: 600; color: #17B452; text-decoration: none; display: inline-flex; align-items: center; gap: 0.4em; }
+  .row { display: flex; gap: 40px; }
+  .col { flex: 1; }
+</style>
+</head>
+<body>
+  <div class="row">
+    <div class="col">
+      <div class="section">
+        <div class="tag">Inter · Body Large · 18px / 1.7 · 400</div>
+        <div class="body-lg">Revenue engines aren't static. Like products, they need maintenance, optimization, and iteration to scale.</div>
+      </div>
+      <div class="section">
+        <div class="tag">Inter · SemiBold 600 — "bold" = 600</div>
+        <div class="bold-label">Get a Free Revenue Health Check</div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="section">
+        <div class="tag">Inter · Small 14px · Caption 12px</div>
+        <div class="body-sm">HubSpot onboarding, migration, and custom configuration.</div>
+        <div class="caption" style="margin-top:6px;">RevOps · GTM Engineering · HubSpot + Clay</div>
+      </div>
+      <div class="section">
+        <div class="tag">Fancy link — Inter, incl. the arrow</div>
+        <a class="link" href="#">Learn more <span>&rarr;</span></a>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
