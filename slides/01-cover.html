@@ -4,14 +4,16 @@
 <meta charset="UTF-8">
 <link rel="stylesheet" href="frame.css">
 <style>
-  .cover-copy { position: relative; z-index: 1; max-width: 640px; }
-  /* Left-anchored motif: show top-left 2/3 of the SVG, bleed off slide bottom + right */
+  .cover-pad { justify-content: flex-start; gap: 0; }
+  .cover-logo { height: 44px; width: auto; align-self: flex-start; margin-bottom: 64px; position: relative; z-index: 1; }
+  .cover-copy { position: relative; z-index: 1; max-width: 640px; display: flex; flex-direction: column; gap: 16px; }
+  /* Quiet lower-left fragment: top-left 2/3 of the SVG, bleeds off slide bottom + right of the box */
   .motif {
     position: absolute;
-    left: -40px;
-    top: 80px;
-    width: 110%;
-    height: 110%;
+    left: -70px;
+    bottom: -80px;
+    width: 480px;
+    height: 360px;
     overflow: hidden;
     pointer-events: none;
     z-index: 0;
@@ -22,7 +24,7 @@
     max-width: none;
     object-fit: cover;
     object-position: left top;
-    opacity: 0.85;
+    opacity: 0.38;
   }
 </style>
 </head>
@@ -31,9 +33,9 @@
   <div class="motif" aria-hidden="true">
     <img src="../illustrations/Drawings/Infographic - Measure Act Repeat Gray.svg" alt="">
   </div>
-  <div class="pad" style="display:flex;flex-direction:column;justify-content:center;gap:28px">
-    <div class="cover-copy" style="display:flex;flex-direction:column;gap:28px">
-      <img src="../assets/RevPartners-Logo-2024-Green.svg" alt="RevPartners" style="height:44px;width:auto;align-self:flex-start">
+  <div class="pad cover-pad">
+    <img class="cover-logo" src="../assets/RevPartners-Logo-2024-Green-on-Dark.svg" alt="RevPartners">
+    <div class="cover-copy">
       <h1 class="title" style="font-size:56px;line-height:1.08">Master Slide Deck Template</h1>
       <p class="lead" style="font-size:22px">More experience, better value, less risk.</p>
     </div>
