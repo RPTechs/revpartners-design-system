@@ -32,6 +32,8 @@ Silent. No VERSION numbers, no file lists, no palette recap. If you actually pul
 | `README.md` | Slides, illustrations, file index. |
 | `colors_and_type.css` | If you need the full token sheet / preview HTML. |
 | `slides/` | Any deck. Copy a specimen; don't invent chrome. |
+| `docs/` | Google Docs / written docs. Two templates — see DESIGN.md §9. |
+| `fonts/` | Local Montserrat, Inter, Material Symbols. Use `fonts/fonts.css`. |
 | `illustrations/` | Background motifs. One per surface, cropped, quiet. |
 | `uploads/` | Logos. |
 
@@ -50,7 +52,7 @@ Do not use HubSpot variable names (`--clr-title`, `.btn-primary`, `icon-24`) unl
 
 If the human only asked you to clone the repo / follow this file — and did not say what to build — reply with **exactly this energy** (you can tweak wording slightly, not the vibe):
 
-> RevPartners brand locked and loaded. What do you want built? A slide deck, PDF one-pager, social graphic, something else? And roughly what's it about / who's it for?
+> RevPartners brand locked and loaded. What do you want built? A slide deck, PDF one-pager, Google Doc, social graphic, something else? And roughly what's it about / who's it for?
 
 No preamble. No "I cloned the repo." No palette recap. Two sentences, then wait.
 

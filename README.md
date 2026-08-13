@@ -12,7 +12,7 @@ Coworker prompt (paste into Claude / Cowork / Cursor):
 
 Agents: read `AGENTS.md` first (it will check `VERSION` against GitHub and pull if you're stale), then `DESIGN.md`.
 
-This kit is for **slides, PDFs, mocks, and other non-HubSpot work**. The live website (`revpartners.io`) and HubSpot theme CSS are the brand source for web. Tokens in this repo are aligned to that theme. Slide chrome (footer stripe, title+divider) is slide-specific — see **SLIDE DECKS** below. Do not use a slide rule on a web UI or a web card recipe on a 16:9 deck.
+This kit is for **slides, PDFs, Google Docs, mocks, and other non-HubSpot work**. The live website (`revpartners.io`) and HubSpot theme CSS are the brand source for web. Tokens in this repo are aligned to that theme. Slide chrome (footer stripe, title+divider) is slide-specific — see **SLIDE DECKS** below. Document chrome is in **GOOGLE DOCS**. Do not use a slide rule on a web UI or a web card recipe on a 16:9 deck.
 
 ---
 
@@ -61,6 +61,8 @@ colors_and_type.css              ← Full CSS custom properties
 uploads/                         ← Logos
 illustrations/                   ← SVG library (Backgrounds, Cubes, Drawings, …)
 slides/                          ← 16:9 specimens
+docs/                            ← Google Doc specimens (01 branded, 02 working)
+fonts/                           ← Montserrat, Inter, Material Symbols (local)
 preview/                         ← Token/component HTML specimens
 ui_kits/website/                 ← Website UI kit (reference, not HubSpot modules)
 ```
@@ -298,12 +300,25 @@ Empty · Signpost (section divider, giant faint number) · Basic Title · Title 
 
 ---
 
+## GOOGLE DOCS
+
+Two templates. Purpose picks the file:
+
+- `docs/01-branded.html` — general branded doc (title, heading ladder, alert boxes, styled table).
+- `docs/02-working.html` — client/partner deliverable (BLUF, comparison, process, notes).
+
+Chrome (both): green header + white mark, River Bed headings, Inter body, footer `RevPartners / …` + diagonal blue/yellow/red stripe. Colored Heading 2–5 styles exist in the live Google Doc as **optional** — default to dark headings. Yellow highlight = replace this placeholder.
+
+Google's own exports (plus PDF/zip) sit in `docs/[Template] RP Branded Doc/` and `docs/[Template] RP Branded Doc 2/`. Copy the HTML specimens.
+
+---
+
 ## Font Notes / Substitutions
 
-Active typefaces (both on Google Fonts, no local files bundled):
-- **Montserrat** → https://fonts.google.com/specimen/Montserrat (headings, Bold 700)
-- **Inter** → https://fonts.google.com/specimen/Inter (body 400; buttons/strong 700)
+Local files in `fonts/` (variable TTFs). Specimens load `fonts/fonts.css`. Google Fonts CDN is a fallback if the clone is incomplete:
 
-Dropped from the system (do not use): Playfair Display, Source Sans, and JetBrains Mono. No monospace — in practice nobody uses it and it looks shoehorned.
+- **Montserrat** — headings, Bold 700 / Regular 400
+- **Inter** — body 400; buttons/strong 700
+- **Material Symbols Outlined** — `fonts/Material Symbols/Material_Symbols_Outlined/` (not Rounded, not Sharp)
 
-Icons: Google Material Symbols Outlined, matching the live site. Local font files can be added later under `fonts/` — until then, Google Fonts is fine.
+Dropped from the system (do not use): Playfair Display, Source Sans, and JetBrains Mono. No monospace.

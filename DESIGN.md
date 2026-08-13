@@ -181,7 +181,26 @@ Cover is `01-cover` (dark / Ebony Clay, thick BYR stripe, quiet cropped illustra
 
 ---
 
-## 9. Quick checklist
+## 9. Google Docs / written docs
+
+Two templates. Copy a specimen in `docs/` — don't invent letterhead.
+
+| File | Use when |
+|---|---|
+| `docs/01-branded.html` | General branded doc — title + subtitle, heading ladder, alerts, table. Internal notes, style reference. |
+| `docs/02-working.html` | Client / partner deliverable — BLUF callout, comparison table, step-by-step, notes. |
+
+Shared chrome: green header bar with white mark, 1" margins, dashed green title divider (branded), footer `RevPartners / …` + the diagonal blue/yellow/red stripe.
+
+**Headings default to River Bed** (same as web/slides). The live Google Doc still has optional green/blue/orange/red Heading 2–5 styles — use those only as a rare one-hue accent, never a rainbow of section titles. Callout boxes keep their accent (that's the box, not the heading ladder).
+
+Body is Inter. Yellow highlighter on footer placeholders means "replace this."
+
+Original Google exports (with images) live under `docs/[Template] RP Branded Doc/` and `docs/[Template] RP Branded Doc 2/`. Agents copy the HTML specimens, not the Google dump CSS.
+
+---
+
+## 10. Quick checklist
 
 - [ ] Background is off-white; page is neutral-dominant, accents sparse.
 - [ ] Every element uses a single accent hue (no mixing within one component).

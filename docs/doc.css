@@ -1,0 +1,137 @@
+@import url('../fonts/fonts.css');
+
+:root {
+  --green: #17B451;
+  --blue: #329DFF;
+  --orange: #F7761E;
+  --red: #FB3131;
+  --purple: #8C32FF;
+  --yellow: #FBAA31;
+  --river: #434761;
+  --ebony: #24273A;
+  --steel: #A1A2A7;
+  --green-light: #D1F0DC;
+  --blue-light: #CCE7FF;
+  --orange-light: #FEE4D5;
+  --red-light: #FFD9D7;
+  --purple-light: #E9D6FF;
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body { background: #e7e8ec; color: var(--ebony); font-family: Inter, sans-serif; font-size: 11pt; line-height: 1.5; }
+@page { size: letter; margin: 0; }
+
+.page {
+  width: 8.5in;
+  min-height: 11in;
+  margin: 24px auto;
+  background: #fff;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 2px 12px rgba(36,39,58,0.12);
+}
+
+.banner {
+  height: 50px;
+  background: var(--green);
+  display: flex;
+  align-items: center;
+  padding: 0 18px;
+  flex-shrink: 0;
+}
+.banner img { height: 28px; width: auto; filter: brightness(0) invert(1); }
+
+.sheet { flex: 1; padding: 48px 72px 88px; }
+
+.title {
+  font-family: Montserrat, sans-serif;
+  font-weight: 700;
+  font-size: 48px;
+  line-height: 0.95;
+  color: var(--river);
+  margin: 0 0 8px;
+}
+.title .thin { font-weight: 400; }
+.title.compact { font-size: 30px; }
+
+.subtitle {
+  font-family: Montserrat, sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  color: #999;
+  margin: 0 0 18px;
+}
+
+.divider { display: flex; align-items: center; width: 280px; margin: 0 0 32px; }
+.divider .ln { flex: 1; border-top: 3px dashed var(--green); height: 0; }
+.divider .dot { width: 12px; height: 12px; border-radius: 50%; background: var(--green); flex-shrink: 0; }
+
+h1, h2, h3, h4, h5 {
+  font-family: Montserrat, sans-serif;
+  font-weight: 700;
+  color: var(--river);
+  margin: 1.4em 0 0.4em;
+}
+h1 { font-size: 18pt; margin-top: 0.6em; }
+h2 { font-size: 16pt; }
+h3 { font-size: 14pt; }
+h4 { font-size: 14pt; }
+h5 { font-size: 11pt; }
+h6 { font-family: Inter, sans-serif; font-size: 11pt; font-weight: 400; font-style: italic; color: #666; margin: 1.2em 0 0.4em; }
+h1 .thin, h2 .thin { font-weight: 400; }
+
+/* Optional — the Google Doc still has these. Prefer River Bed. */
+.h-green { color: var(--green) !important; }
+.h-blue { color: var(--blue) !important; }
+.h-orange { color: var(--orange) !important; }
+.h-red { color: var(--red) !important; }
+.h-purple { color: var(--purple) !important; }
+
+p { margin: 0 0 10px; }
+ul { margin: 0 0 12px; padding-left: 1.2em; }
+li { margin: 0 0 6px; }
+strong { font-weight: 700; }
+a { color: var(--green); }
+
+.foot {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+}
+.foot .meta { font-family: Montserrat, sans-serif; font-weight: 600; font-size: 11pt; margin: 0; padding: 0 72px 8px; }
+.foot .meta .rp { color: var(--green); }
+.foot .meta .rest { color: var(--river); }
+.foot .meta .fill { background: #ffff00; }
+.foot.right .meta { text-align: right; }
+.stripe { display: block; width: 100%; height: 10px; object-fit: cover; object-position: left center; }
+
+.callout {
+  border: 1.5pt dashed;
+  border-radius: 2px;
+  padding: 16px 18px;
+  margin: 18px 0;
+}
+.callout h3, .callout h2 { margin: 0 0 8px; }
+.callout p:last-child { margin-bottom: 0; }
+.callout.green { border-color: var(--green); background: var(--green-light); }
+.callout.green h3, .callout.green h2 { color: var(--green); }
+.callout.blue { border-color: var(--blue); background: var(--blue-light); }
+.callout.blue h3, .callout.blue h2 { color: var(--blue); }
+.callout.orange { border-color: var(--orange); background: var(--orange-light); }
+.callout.orange h3 { color: var(--orange); }
+.callout.red { border-color: var(--red); background: var(--red-light); }
+.callout.red h3, .callout.red .note { color: var(--red); }
+
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 0; margin: 16px 0 24px; }
+table.styled { width: 100%; border-collapse: collapse; margin: 16px 0 24px; }
+table.styled th, table.styled td { border: 1.5pt solid var(--green); padding: 12px 16px; vertical-align: top; text-align: left; }
+table.styled th { background: var(--green-light); color: var(--green); font-family: Montserrat, sans-serif; font-weight: 700; font-size: 14pt; }
+table.styled td ul { margin: 0; }
+
+.tips li { list-style: none; margin-left: -0.4em; display: flex; gap: 8px; align-items: flex-start; }
+.tips .material-symbols-outlined { color: var(--green); font-size: 20px; margin-top: 1px; }
+
+.muted { color: var(--steel); font-size: 10pt; }
+.swatches { display: flex; gap: 18px; flex-wrap: wrap; margin: 8px 0 24px; font-size: 12px; }
+.swatches span { font-family: Montserrat, sans-serif; font-weight: 700; }
