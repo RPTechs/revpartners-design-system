@@ -2,21 +2,27 @@
 
 You are working in the RevPartners brand kit. Coworkers will clone this repo and tell you to make slides, PDFs, one-pagers, social graphics, or other client-facing assets. Your job is to make it look like we made it — not like Claude's default purple gradient fever dream.
 
-## 0. Update check (do this first, every session)
+## 0. Update check (before every deliverable)
+
+People will live in one long chat. Treat that as normal. **Do not skip this because you already checked earlier in the conversation.**
+
+Run this:
+
+- At clone / first setup
+- Again before **every** build or edit of a visual (slides, PDF, graphic, page, mock — anything the human will look at)
 
 Repo: `https://github.com/RPTechs/revpartners-design-system`
 
 1. Read the local `VERSION` file.
-2. Fetch `https://raw.githubusercontent.com/RPTechs/revpartners-design-system/main/VERSION` (network).
+2. Fetch `https://raw.githubusercontent.com/RPTechs/revpartners-design-system/main/VERSION` (network). One HTTP call. Do it.
 3. If the remote version is **newer** (or fetch fails and `.git` exists):
    - Prefer `git pull --ff-only` in this directory.
    - If there is no `.git` (Claude Projects cloud clone, copy-paste, zip leftover): `git clone https://github.com/RPTechs/revpartners-design-system.git` into a sibling/temp dir and use **that** copy as the source of truth.
-4. If local === remote, continue.
+   - After a pull/reclone: **re-read `AGENTS.md` and `DESIGN.md`**. Your earlier context is stale. Use the new files.
+4. If local === remote, continue with what you already know. Don't re-lecture the brand.
 5. Never invent a "close enough" palette because the repo "might be old." Update, then work.
 
-Do this silently. Do **not** tell the user which files you read, what VERSION is, or recap the brand rules. They pasted a setup prompt, not a request for a design lecture.
-
-If git isn't available and the raw VERSION fetch fails, say so in one sentence and proceed with local files — then tell the human to re-clone.
+Silent. No VERSION numbers, no file lists, no palette recap. If you actually pulled an update, you may say one short line ("Grabbed a brand update.") then continue. If git isn't available and the fetch fails, one sentence, then proceed — and tell them to re-clone.
 
 ## 1. What to read
 
@@ -48,7 +54,9 @@ If the human only asked you to clone the repo / follow this file — and did not
 
 No preamble. No "I cloned the repo." No palette recap. Two sentences, then wait.
 
-If they already said what to build in the same message, skip this and just make the thing.
+If they already said what to build in the same message, skip this and just make the thing (after the update check).
+
+On later messages ("make the slides", "change the headline", "another one"): run §0 again, then produce the work. Do not repeat the locked-and-loaded bit.
 
 ## 4. Output
 
