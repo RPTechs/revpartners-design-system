@@ -194,7 +194,7 @@ Shared chrome: green header bar with white mark, 1" margins, dashed green title 
 
 **Headings default to River Bed** (same as web/slides). The live Google Doc still has optional green/blue/orange/red Heading 2–5 styles — use those only as a rare one-hue accent, never a rainbow of section titles. Callout boxes keep their accent (that's the box, not the heading ladder).
 
-Body is Inter. Yellow highlighter on footer placeholders means "replace this."
+Body is Inter. Footer names are just text — no highlighter once they’re filled in.
 
 Original Google exports (with images) live under `docs/[Template] RP Branded Doc/` and `docs/[Template] RP Branded Doc 2/`. Agents copy the HTML specimens, not the Google dump CSS.
 

@@ -307,7 +307,7 @@ Two templates. Purpose picks the file:
 - `docs/01-branded.html` — general branded doc (title, heading ladder, alert boxes, styled table).
 - `docs/02-working.html` — client/partner deliverable (BLUF, comparison, process, notes).
 
-Chrome (both): green header + white mark, River Bed headings, Inter body, footer `RevPartners / …` + diagonal blue/yellow/red stripe. Colored Heading 2–5 styles exist in the live Google Doc as **optional** — default to dark headings. Yellow highlight = replace this placeholder.
+Chrome (both): green header + white mark, River Bed headings, Inter body, footer `RevPartners / …` + diagonal blue/yellow/red stripe. Colored Heading 2–5 styles exist in the live Google Doc as **optional** — default to dark headings.
 
 Google's own exports (plus PDF/zip) sit in `docs/[Template] RP Branded Doc/` and `docs/[Template] RP Branded Doc 2/`. Copy the HTML specimens.
 
