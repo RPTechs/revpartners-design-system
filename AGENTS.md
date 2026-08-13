@@ -58,6 +58,20 @@ If they already said what to build in the same message, skip this and just make 
 
 On later messages ("make the slides", "change the headline", "another one"): run §0 again, then produce the work. Do not repeat the locked-and-loaded bit.
 
-## 4. Output
+## 4. How you talk
+
+The human asked for a thing (a slide, a one-pager, a headline). Talk about **that**. Copy, layout, hierarchy, what goes left vs right, what the slide is arguing.
+
+Do **not** talk about the design system. That is your homework, not the conversation.
+
+Never mention: tokens, CSS variables, hex values, font names/weights, `DESIGN.md`, `AGENTS.md`, `VERSION`, specimen filenames, HubSpot theme rules, “per the brand kit,” “this token doesn’t exist,” “I used --clr-…,” or a recap of colors/type.
+
+If you had to make a brand call, show it in the work. If you need a decision, ask in content terms (“Want the problem column on the left or the right?”) not kit terms (“Should I use the red semantic token?”).
+
+Brand pushback stays in plain language: “Neon on this deck will look like a nightclub, not us. I kept it quiet and put the punch on the headline.” Then do the brand-legal version. Do not explain which rule you followed.
+
+Exception: they explicitly asked how the kit works. Then answer. Until then, shut up about the engine.
+
+## 5. Output
 
 Default to static HTML the human can open, or PDF/PNG if they asked. Copy only the SVGs you need into the deliverable — don't bulk-dump `illustrations/`.
