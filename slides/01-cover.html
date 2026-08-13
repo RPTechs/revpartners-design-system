@@ -4,23 +4,23 @@
 <meta charset="UTF-8">
 <link rel="stylesheet" href="frame.css">
 <style>
-  .cover-pad { justify-content: flex-start; gap: 0; }
+  .cover-pad { justify-content: center; gap: 0; }
   .cover-logo { height: 44px; width: auto; align-self: flex-start; margin-bottom: 64px; position: relative; z-index: 1; }
   .cover-copy { position: relative; z-index: 1; max-width: 640px; display: flex; flex-direction: column; gap: 16px; }
-  /* Quiet lower-left fragment: top-left 2/3 of the SVG, bleeds off slide bottom + right of the box */
+  /* Quiet lower-right fragment: top-left 2/3 of the SVG, bleeds off the bottom */
   .motif {
     position: absolute;
-    left: -70px;
-    bottom: -80px;
-    width: 480px;
-    height: 360px;
+    right: 0;
+    bottom: -40%;
+    width: 45%;
+    height: auto;
     overflow: hidden;
     pointer-events: none;
     z-index: 0;
   }
   .motif img {
-    width: 150%;
-    height: 150%;
+    width: 200%;
+    height: 200%;
     max-width: none;
     object-fit: cover;
     object-position: left top;
