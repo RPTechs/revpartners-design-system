@@ -17,7 +17,7 @@ function RPHeader({ activePage = "services" }) {
     <header style={headerStyles.nav}>
       {/* Logo */}
       <div style={headerStyles.logoWrap}>
-        <img src="../../assets/RevPartners-Logo-2024-Green.svg" alt="RevPartners"
+        <img src="../../assets/RevPartners-Logo-2026-Green.svg" alt="RevPartners"
           style={headerStyles.logo}
           onError={e => { e.target.style.display="none"; e.target.nextSibling.style.display="block"; }} />
         <span style={{...headerStyles.logoFallback, display:"none"}}>RevPartners</span>

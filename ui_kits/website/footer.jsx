@@ -14,7 +14,7 @@ function RPFooter() {
       <div style={footerStyles.top}>
         {/* Logo + tagline */}
         <div style={footerStyles.brand}>
-          <img src="../../assets/RevPartners-Logo-2024-White.svg"
+          <img src="../../assets/RevPartners-Logo-2026-White.svg"
             alt="RevPartners" style={footerStyles.logo}
             onError={e=>{e.target.style.display="none";e.target.nextSibling.style.display="block";}} />
           <span style={{...footerStyles.logoFallback,display:"none"}}>RevPartners</span>

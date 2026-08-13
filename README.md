@@ -263,8 +263,10 @@ Copy the specific SVGs a design needs into `assets/` (or reference from `Illustr
 - Over-detailed illustrations or abstract blobs
 
 ### Assets
-- `uploads/RevPartners-Logo-Horizontal-Green.svg` — horizontal wordmark
-- `uploads/RP-Mark-Green.svg` — logomark / favicon
+- `assets/RevPartners-Logo-2026-Green.svg` — horizontal wordmark
+- `assets/RP-Mark-2026-Green.svg` — logomark / favicon
+- `assets/RP-Mark-2026-White.svg` — mark on green or dark
+- `assets/RevPartners-Logo-2026-Green-on-Dark.svg` — green wordmark + white Walker Sands line
 
 ---
 
@@ -307,9 +309,7 @@ Two templates. Purpose picks the file:
 - `docs/01-branded.html` — general branded doc (title, heading ladder, alert boxes, styled table).
 - `docs/02-working.html` — client/partner deliverable (BLUF, comparison, process, notes).
 
-Chrome (both): green header + white mark, River Bed headings, Inter body, footer `RevPartners / …` + diagonal blue/yellow/red stripe. Colored Heading 2–5 styles exist in the live Google Doc as **optional** — default to dark headings.
-
-Google's own exports (plus PDF/zip) sit in `docs/[Template] RP Branded Doc/` and `docs/[Template] RP Branded Doc 2/`. Copy the HTML specimens.
+Chrome (both): green header + white 2026 mark, River Bed headings, Inter body, footer `RevPartners / …` + diagonal blue/yellow/red stripe. Colored Heading 2–5 styles exist in the live Google Doc as **optional** — default to dark headings.
 
 ---
 

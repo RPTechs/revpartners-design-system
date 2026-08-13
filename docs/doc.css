@@ -41,7 +41,7 @@ body { background: #e7e8ec; color: var(--ebony); font-family: Inter, sans-serif;
   padding: 0 18px;
   flex-shrink: 0;
 }
-.banner img { height: 28px; width: auto; filter: brightness(0) invert(1); }
+.banner img { height: 28px; width: auto; }
 
 .sheet { flex: 1; padding: 48px 72px 88px; }
 

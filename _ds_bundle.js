@@ -34,7 +34,7 @@ function RPFooter() {
   }, /*#__PURE__*/React.createElement("div", {
     style: footerStyles.brand
   }, /*#__PURE__*/React.createElement("img", {
-    src: "../../assets/RevPartners-Logo-2024-White.svg",
+    src: "../../assets/RevPartners-Logo-2026-White.svg",
     alt: "RevPartners",
     style: footerStyles.logo,
     onError: e => {
@@ -392,7 +392,7 @@ function RPHeader({
   }, /*#__PURE__*/React.createElement("div", {
     style: headerStyles.logoWrap
   }, /*#__PURE__*/React.createElement("img", {
-    src: "../../assets/RevPartners-Logo-2024-Green.svg",
+    src: "../../assets/RevPartners-Logo-2026-Green.svg",
     alt: "RevPartners",
     style: headerStyles.logo,
     onError: e => {

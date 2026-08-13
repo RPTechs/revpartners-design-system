@@ -168,7 +168,7 @@ Paste into a global stylesheet. All values match the HubSpot theme.
 ## 7. Logo
 
 - Primary: horizontal wordmark. Mark-only for tight spaces/favicon. Green on light, white on dark.
-- Files: `uploads/RevPartners-Logo-Horizontal-Green.svg`, `uploads/RP-Mark-Green.svg` (and any `assets/` copies).
+- Files: `assets/RevPartners-Logo-2026-Green.svg`, `assets/RP-Mark-2026-Green.svg` (white variants for dark/green).
 - Keep clear space; never recolor to a non-brand hue, stretch, or add effects.
 
 ---
@@ -177,7 +177,7 @@ Paste into a global stylesheet. All values match the HubSpot theme.
 
 If you're making a deck, also read `README.md` → **SLIDE DECKS** and copy a specimen from `slides/`. Don't freehand a 16:9 from the web card recipe — the footer stripe, title+divider chrome, and centering rules are slide-specific.
 
-Cover is `01-cover` (dark / Ebony Clay, thick BYR stripe, quiet cropped illustration in the leftover space — not over type). Light cover is `01-cover-alt`. Dark covers use the green wordmark with a **white** Walker Sands line (`assets/RevPartners-Logo-2024-Green-on-Dark.svg`), not the navy tagline lockup.
+Cover is `01-cover` (dark / Ebony Clay, thick BYR stripe, quiet cropped illustration in the leftover space — not over type). Light cover is `01-cover-alt`. Dark covers use the green wordmark with a **white** Walker Sands line (`assets/RevPartners-Logo-2026-Green-on-Dark.svg`), not the navy tagline lockup.
 
 ---
 
@@ -196,7 +196,7 @@ Shared chrome: green header bar with white mark, 1" margins, dashed green title 
 
 Body is Inter. Footer names are just text — no highlighter once they’re filled in.
 
-Original Google exports (with images) live under `docs/[Template] RP Branded Doc/` and `docs/[Template] RP Branded Doc 2/`. Agents copy the HTML specimens, not the Google dump CSS.
+Header mark: `assets/RP-Mark-2026-White.svg` on the green bar.
 
 ---
 
