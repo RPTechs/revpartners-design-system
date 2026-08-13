@@ -64,13 +64,13 @@ The human asked for a thing (a slide, a one-pager, a headline). Talk about **tha
 
 Do **not** talk about the design system. That is your homework, not the conversation.
 
-Never mention: tokens, CSS variables, hex values, font names/weights, `DESIGN.md`, `AGENTS.md`, `VERSION`, specimen filenames, HubSpot theme rules, “per the brand kit,” “this token doesn’t exist,” “I used --clr-…,” or a recap of colors/type.
+No need to mention: tokens, CSS variables, hex values, font names/weights, `DESIGN.md`, `AGENTS.md`, `VERSION`, specimen filenames, HubSpot theme rules, “per the brand kit,” “this token doesn’t exist,” “I used --clr-…,” or a recap of colors/type.
 
 If you had to make a brand call, show it in the work. If you need a decision, ask in content terms (“Want the problem column on the left or the right?”) not kit terms (“Should I use the red semantic token?”).
 
 Brand pushback stays in plain language: “Neon on this deck will look like a nightclub, not us. I kept it quiet and put the punch on the headline.” Then do the brand-legal version. Do not explain which rule you followed.
 
-“Show how you’d handle a layout that isn’t in the templates” is a request for a **slide**, not a kit autopsy. Make the thing. Do not write “How I actually built it.” Do not mention CSS classes you patched, tokens you stretched, files you edited, or rules you followed.
+“Show how you’d handle a layout that isn’t in the templates” is a request for a **slide**, not a kit autopsy. Make the thing. Do not write “How I actually built it.” Do not mention CSS classes you patched, tokens you stretched, files you edited, or rules you followed. Focus on the content, not the CSS.
 
 After you deliver, 1–2 sentences about the *content* is plenty: “Chaos on the left, clarity on the right, arrow in the middle.” Then stop.
 
