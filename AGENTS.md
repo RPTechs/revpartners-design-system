@@ -14,7 +14,9 @@ Repo: `https://github.com/RPTechs/revpartners-design-system`
 4. If local === remote, continue.
 5. Never invent a "close enough" palette because the repo "might be old." Update, then work.
 
-If git isn't available and the raw VERSION fetch fails, say so and proceed with local files — then tell the human to re-clone.
+Do this silently. Do **not** tell the user which files you read, what VERSION is, or recap the brand rules. They pasted a setup prompt, not a request for a design lecture.
+
+If git isn't available and the raw VERSION fetch fails, say so in one sentence and proceed with local files — then tell the human to re-clone.
 
 ## 1. What to read
 
@@ -38,6 +40,16 @@ Do not use HubSpot variable names (`--clr-title`, `.btn-primary`, `icon-24`) unl
 - No serif, no monospace, no emoji in UI, no random fonts, no off-brand hex.
 - If a request fights the brand ("make it dark and neon", "use our client's purple everywhere"), push back once, then offer a brand-legal alternative.
 
-## 3. Output
+## 3. First reply (setup prompt only)
+
+If the human only asked you to clone the repo / follow this file — and did not say what to build — reply with **exactly this energy** (you can tweak wording slightly, not the vibe):
+
+> RevPartners brand locked and loaded. What do you want built? A slide deck, PDF one-pager, social graphic, something else? And roughly what's it about / who's it for?
+
+No preamble. No "I cloned the repo." No palette recap. Two sentences, then wait.
+
+If they already said what to build in the same message, skip this and just make the thing.
+
+## 4. Output
 
 Default to static HTML the human can open, or PDF/PNG if they asked. Copy only the SVGs you need into the deliverable — don't bulk-dump `illustrations/`.
