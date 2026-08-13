@@ -271,17 +271,17 @@ Copy the specific SVGs a design needs into `assets/` (or reference from `Illustr
 Slide chrome source: **[MASTER] RP Brand Template Slide Deck – 2026** (Google Slides). Agents can't read that doc reliably — use `slides/` in this repo instead. Slide-specific rules (footer stripe, title+divider, vertical centering) apply to **decks only**. Web/apps follow `DESIGN.md` (aligned to the HubSpot theme).
 
 Specimen recreations live in `slides/` (each a 1280×720 `@dsCard`, group **Slides**), sharing `slides/frame.css`:
-- `01-cover` · `02-section-divider` (Signpost) · `03-agenda` · `04-normal-text` · `05-key-takeaway` · `06-big-statement` · `07-three-cards` · `08-lifecycle-stages` (chevron funnel) · `09-table`.
+- `01-cover` (dark, main) · `01-cover-alt` (light) · `02-section-divider` (Signpost) · `03-agenda` · `04-normal-text` · `05-key-takeaway` · `06-big-statement` · `07-three-cards` · `08-lifecycle-stages` (chevron funnel) · `09-table`.
 
 ### Slide layout system (master layouts)
 Empty · Signpost (section divider, giant faint number) · Basic Title · Title + two columns · Section title & description · 3 Cards. Right-click a slide → *Apply layout*.
 
 ### Shared slide chrome
-- **Canvas:** 1280×720 (16:9), Off-White `#FDFDFD`. Content padding `3rem`.
+- **Canvas:** 1280×720 (16:9). Content slides: Off-White `#FDFDFD`. Cover: Ebony Clay `#24273A`. Content padding `3rem`.
 - **Title:** top-left, Montserrat — **mix Bold + Regular in one line** for emphasis. Either part can carry the bold — put weight on whatever word matters (e.g. Normal Text *Slide*, or *What are* **Lifecycle Stages?**). Dark, never green.
 - **Divider:** directly under the title, a **green dashed line with a filled green circle end cap**.
 - **Content placement:** the title + divider stay pinned at the top; **everything below the divider is vertically centered** in the remaining white space (use the `.stage` wrapper). Exception: a short intro/lead paragraph sits *directly under the divider* (not centered) — only the primary content block (cards, table, funnel, list) centers below it.
-- **Footer:** a thin **3-color stripe (blue · yellow · red)**, flush to the very bottom edge, full-bleed, no gap. **No logo, no page number by default** — keep it clean.
+- **Footer:** **3-color stripe (blue · yellow · red)**, flush to the very bottom edge, full-bleed, no gap. Thin (`6px`) on content slides; **thick (`18px`) on the cover**. **No logo, no page number by default** — keep it clean.
 - **Breathing room over density.** Generous white space; let the centered content float. Don't fill the slide edge-to-edge.
 
 ### Slide type rules

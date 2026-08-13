@@ -25,7 +25,11 @@ body{background:#e7e8ec}
    Logo/pageno are vertically centered; the resulting top/bottom gap (1rem)
    is matched by left/right padding on the bar. */
 /* footer: blue/yellow/red stripe flush to the bottom edge; no logo. */
-.footline{position:absolute;left:0;right:0;bottom:0;height:6px;display:flex}
+.slide.dark{background:#24273A;color:#FDFDFD}
+.slide.dark .title{color:#FDFDFD}
+.slide.dark .lead{color:rgba(253,253,253,0.72)}
+.footline{position:absolute;left:0;right:0;bottom:0;height:6px;display:flex;z-index:2}
+.footline.thick{height:18px}
 .footline i{height:100%}
 .fl-b{background:#329DFF;flex:46}.fl-y{background:#FBAA31;flex:8}.fl-gap{flex:0}.fl-r{background:#FB3131;flex:46}
 .footer{display:none}

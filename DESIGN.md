@@ -177,6 +177,8 @@ Paste into a global stylesheet. All values match the HubSpot theme.
 
 If you're making a deck, also read `README.md` → **SLIDE DECKS** and copy a specimen from `slides/`. Don't freehand a 16:9 from the web card recipe — the footer stripe, title+divider chrome, and centering rules are slide-specific.
 
+Cover is `01-cover` (dark / Ebony Clay, thick BYR stripe, cropped illustration bleed). Light cover is `01-cover-alt`.
+
 ---
 
 ## 9. Quick checklist

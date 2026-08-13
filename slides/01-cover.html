@@ -1,22 +1,43 @@
 <!DOCTYPE html>
-<!-- @dsCard group="Slides" name="Cover / Title" subtitle="Slide 1 — deck opener with logo, title, tagline" viewport="1280x720" -->
-<html lang="en"><head><meta charset="UTF-8"><link rel="stylesheet" href="frame.css"></head>
+<!-- @dsCard group="Slides" name="Cover" subtitle="Main cover — dark, logo, title, Measure/Act/Repeat motif" viewport="1280x720" -->
+<html lang="en"><head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="frame.css">
+<style>
+  .cover-copy { position: relative; z-index: 1; max-width: 640px; }
+  /* Left-anchored motif: show top-left 2/3 of the SVG, bleed off slide bottom + right */
+  .motif {
+    position: absolute;
+    left: -40px;
+    top: 80px;
+    width: 110%;
+    height: 110%;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 0;
+  }
+  .motif img {
+    width: 150%;
+    height: 150%;
+    max-width: none;
+    object-fit: cover;
+    object-position: left top;
+    opacity: 0.85;
+  }
+</style>
+</head>
 <body>
-<div class="slide">
+<div class="slide dark">
+  <div class="motif" aria-hidden="true">
+    <img src="../illustrations/Drawings/Infographic - Measure Act Repeat Gray.svg" alt="">
+  </div>
   <div class="pad" style="display:flex;flex-direction:column;justify-content:center;gap:28px">
-    <img src="../assets/RevPartners-Logo-2024-Green.svg" alt="RevPartners" style="height:44px;width:auto;align-self:flex-start">
-    <div class="eyebrow">Master Slide Deck Template</div>
-    <h1 class="title" style="font-size:72px;line-height:1.05;max-width:900px">Stop hoping.<br>Start growing.</h1>
-    <p class="lead" style="font-size:22px">More experience, better value, less risk.</p>
-    <div style="display:flex;gap:5px;margin-top:8px">
-      <span style="width:40px;height:5px;border-radius:3px;background:#17B451"></span>
-      <span style="width:40px;height:5px;border-radius:3px;background:#329DFF"></span>
-      <span style="width:40px;height:5px;border-radius:3px;background:#F7761E"></span>
-      <span style="width:40px;height:5px;border-radius:3px;background:#FB3131"></span>
-      <span style="width:40px;height:5px;border-radius:3px;background:#8C32FF"></span>
+    <div class="cover-copy" style="display:flex;flex-direction:column;gap:28px">
+      <img src="../assets/RevPartners-Logo-2024-Green.svg" alt="RevPartners" style="height:44px;width:auto;align-self:flex-start">
+      <h1 class="title" style="font-size:56px;line-height:1.08">Master Slide Deck Template</h1>
+      <p class="lead" style="font-size:22px">More experience, better value, less risk.</p>
     </div>
   </div>
-  <div class="footline"><i class="fl-b"></i><i class="fl-y"></i><i class="fl-gap"></i><i class="fl-r"></i></div>
-  <div class="footer"><img class="logo" src="../assets/RevPartners-Logo-2024-Green.svg" alt="RevPartners"><div class="pageno">01</div></div>
+  <div class="footline thick"><i class="fl-b"></i><i class="fl-y"></i><i class="fl-gap"></i><i class="fl-r"></i></div>
 </div>
 </body></html>
