@@ -18,6 +18,7 @@ RevPartners is a **Go-to-Market (GTM) engineering consultancy** delivering **Rev
 4. **Weight, not color, creates hierarchy.** Headings are River Bed (`#434761`), never green. Emphasize by mixing Montserrat Bold + Regular. A single accent *word* inside a heading is fine.
 5. **Buttons and strong = Inter Bold (700).** Body is 400. Don't reach for 600 as a "brand bold" — the site doesn't.
 6. **No serif, no monospace, no emoji** (emoji only in rare conversational micro-copy, never in UI chrome). No gradients on surfaces (the blue-yellow-red stripe on dark heroes/slide footers is the exception). No colored-left-border-only cards, no chips behind icons.
+7. **A "light" accent is 20% opacity of the hue, over whatever is behind it.** `--clr-blue-bg` on white looks sky. The same token on Ebony Clay looks like a dark wash. That is the point. Never paint `--clr-*-light` (`#CCE7FF` etc.) onto a dark band — those hexes are 20% over *off-white*, baked opaque. They are a hack for when a pattern would show through a transparent fill. Default fill is always `--clr-*-bg`. If you need opaque on dark, use `--clr-*-dark`, not the mint/sky chips.
 
 ---
 
@@ -40,21 +41,23 @@ Paste into a global stylesheet. All values match the HubSpot theme.
   --clr-purple: #8C32FF;  /* Ultra Purple — Tech */
   --clr-yellow: #FBAA31;  /* Lightning — slide footer / BYR stripe only */
 
-  /* ---- Accent backgrounds: 20% opacity ---- */
+  /* ---- Tints: 20% of the accent. CANON. Samples whatever sits behind. ---- */
   --clr-green-bg:  rgba(23,180,81,0.20);   --clr-blue-bg:   rgba(50,157,255,0.20);
   --clr-orange-bg: rgba(239,129,27,0.20);  --clr-red-bg:    rgba(251,49,49,0.20);
   --clr-purple-bg: rgba(140,50,255,0.20);
 
-  /* ---- Opaque flatten (20% over off-white) — prefer on overlapping cards ---- */
+  /* ---- Opaque flatten: 20% over off-white ONLY. Hack for patterns showing through. Never on dark. ---- */
   --clr-green-light:  #D1F0DC;  --clr-blue-light:  #CCE7FF;
   --clr-orange-light: #FEE4D5;  --clr-red-light:   #FFD9D7;
   --clr-purple-light: #E9D6FF;
 
-  /* ---- Accent darks ---- */
+  /* ---- Opaque on dark. If you cannot use the 20% tint, use these — not *-light. ---- */
   --clr-green-dark:  #22433E;  --clr-blue-dark:  #0F2F4D;  --clr-orange-dark: #7B3200;
   --clr-red-dark:    #8C0000;  --clr-purple-dark: #35007A;
 
   /* ---- Semantic (portable aliases — HubSpot theme uses --clr-text / --clr-title / --clr-bg) ---- */
+  --clr-text: var(--clr-river-bed); /* Body text */
+  --clr-title: var(--clr-ebony-clay);
   --color-bg: var(--clr-off-white);     --color-bg-alt: var(--clr-mercury);
   --color-bg-dark: var(--clr-ebony-clay);
   --color-fg: var(--clr-river-bed);     --color-fg-2: var(--clr-river-bed);
@@ -125,7 +128,7 @@ Paste into a global stylesheet. All values match the HubSpot theme.
 ### Cards
 - Item radius **8px**, wrapping panel **16px**.
 - **`2px` border** — accent color OR `--clr-stroke` (10% ebony). Stronger: `--clr-stroke-2` (30%).
-- Background: `--clr-bg-2` **or** the opaque accent (`--clr-<hue>-light`). Border and fill share the same hue.
+- Background: `--clr-bg-2` **or** `--clr-<hue>-bg` (20% tint). Border and fill share the same hue. Use `--clr-<hue>-light` only on a light ground when a pattern would show through. On dark, `--clr-<hue>-bg` or `--clr-<hue>-dark` — never `*-light`.
 - Neutral cards: no shadow. Accent cards may use a soft tinted glow. **No** colored-left-border-only, **no** chip behind icons.
 
 ### Icons
@@ -204,8 +207,19 @@ Header mark: `assets/RP-Mark-2026-White.svg` on the green bar.
 
 - [ ] Background is off-white; page is neutral-dominant, accents sparse.
 - [ ] Every element uses a single accent hue (no mixing within one component).
+- [ ] Tinted fills are `--clr-*-bg` (20% over the actual background). No `*-light` chips on dark. Opaque on dark = `*-dark`.
 - [ ] Headings are River Bed Montserrat Bold; no green headings; body is Inter 400; buttons are 700.
 - [ ] Buttons are pills; cards are 2px-border + matching tint; 8px radius.
 - [ ] Icons are Material Symbols **Outlined**, colored by service area.
 - [ ] No serif, no monospace, no gradients on surfaces, no emoji in UI.
 - [ ] Logo present, correct color, with clear space.
+
+
+## ASSETS - SVG Logos
+
+## Logomark
+<svg width="180" height="164" viewBox="0 0 180 164" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0 81.8218C0 127.005 36.6384 163.644 81.8218 163.644V0H0V81.8218Z" fill="var(--clr-primary)"></path><path d="M180 163.644C180 118.46 143.362 81.8218 98.1782 81.8218V163.644H180Z" fill="var(--clr-primary)"></path><path d="M139.099 81.8218C161.701 81.8218 180 63.5026 180 40.9208C180 18.339 161.681 0 139.099 0H98.198V81.8218H139.099Z" fill="var(--clr-primary)"></path></svg>
+
+### Full logo
+<img src="https://revpartners.io/hubfs/RP%20+%20WS%20Logo%20Horizontal%20-%20Green.svg" alt="RevPartners, a Walker Sands company">
+

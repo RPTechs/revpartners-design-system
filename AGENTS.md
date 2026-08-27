@@ -42,6 +42,7 @@ Do not use HubSpot variable names (`--clr-title`, `.btn-primary`, `icon-24`) unl
 ## 2. Hard rules
 
 - Neutral-dominant. One accent per element. Cycle green → blue → orange → red → purple across items.
+- Light fills are `--clr-*-bg` (20% opacity over the actual background). `*-light` hexes are a flatten-over-white hack — never on dark. Opaque on dark = `*-dark`.
 - Headings: Montserrat 700, River Bed, never green.
 - Body: Inter 400. Buttons: Inter 700, pill, press scale 0.98.
 - Icons: Material Symbols **Outlined**.
