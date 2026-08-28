@@ -111,14 +111,14 @@
   --color-link:       var(--clr-green);
   --color-link-hover: var(--clr-green-dark);
 
-  /* Status / Category — service areas. Not chapter themes. */
+  /* Status / Category — department hues. Sibling object chapters may cycle the same sequence. */
   --color-revops:     var(--clr-green);
   --color-growth:     var(--clr-blue);
   --color-hubspot:    var(--clr-orange);
   --color-sales:      var(--clr-red);
   --color-tech:       var(--clr-purple);
 
-  /* Jobs, not objects. Contacts are not blue. */
+  /* Jobs. Chapter hue overrides chrome locally. Semantic may punch through. */
   --role-chrome:      var(--clr-green);
   --role-chrome-bg:   var(--clr-green-bg);
   --role-yes:         var(--clr-green);

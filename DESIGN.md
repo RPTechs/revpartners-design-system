@@ -13,7 +13,7 @@ RevPartners is a **Go-to-Market (GTM) engineering consultancy** delivering **Rev
 ## 1. First principles (read before touching anything)
 
 1. **Neutral-dominant.** 80–90% neutral (off-white bg, dark text), 10–20% accent. Color is a scalpel, not a paint roller.
-2. **One accent hue per element.** Never mix accents inside a single card/button/block. **Chrome is Rally Green** — not a new hue per object/chapter. Cycle green → blue → orange → red → purple only on a **true series** (step 1–4). Never on the same card type repeated across chapters. See **Chrome vs semantic color**.
+2. **One accent hue per element — and per category.** Never mix accents inside a card. Sibling categories: all the same hue, **or** the next accent for the *entire* category (eyebrows, dividers, cards, icons). The sin is a green chapter with blue icons. See **Category color vs semantic color**.
 3. **No dark cards.** Dark (Ebony Clay) is for full-width bands/heroes only. Individual cards stay light.
 4. **Weight, not color, creates hierarchy.** Headings are River Bed (`#434761`), never green. Emphasize by mixing Montserrat Bold + Regular. A single accent *word* inside a heading is fine.
 5. **Buttons and strong = Inter Bold (700).** Body is 400. Don't reach for 600 as a "brand bold" — the site doesn't.
@@ -67,13 +67,13 @@ Paste into a global stylesheet. All values match the HubSpot theme.
   --clr-stroke-2: rgba(36,39,58,0.30);  --clr-bg-2: var(--clr-mercury);
   --color-link: var(--clr-green);
 
-  /* ---- Jobs, not objects. Contacts are not blue. ---- */
-  --role-chrome: var(--clr-green);       /* eyebrows, dashed title dividers, primary pills, repeating meta cards */
+  /* ---- Jobs. Chapter hue is a local override of chrome, not a separate object mascot. ---- */
+  --role-chrome: var(--clr-green);       /* default page/doc chrome. Inside a chapter, use that chapter's hue */
   --role-chrome-bg: var(--clr-green-bg);
-  --role-yes: var(--clr-green);          /* merge, proceed, success */
+  --role-yes: var(--clr-green);          /* merge, proceed, success — may punch through a chapter */
   --role-no: var(--clr-red);             /* stop, skip, block, danger */
   --role-ask: var(--clr-orange);         /* question, decision */
-  --role-info: var(--clr-blue);          /* detect, inspect. Jump chips: object identity only — hue does not leak into the section */
+  --role-info: var(--clr-blue);          /* detect, inspect */
 
   /* ---- Type ---- */
   --font-display: 'Montserrat', sans-serif;
@@ -103,16 +103,20 @@ Paste into a global stylesheet. All values match the HubSpot theme.
 
 ---
 
-## Chrome vs semantic color
+## Category color vs semantic color
 
-Color has **jobs**. Objects do not get a theme. Contacts are not a blue chapter.
+**Pick a scheme. Don’t mix.**
 
-- **Chrome** (`--role-chrome`): eyebrows, dashed title dividers, primary pills, repeating meta cards, icons on those cards. Sibling sections of the same deliverable share chrome. Rally Green.
-- **Nav identity** may use a second hue **once** (Companies jump = green, Contacts jump = blue). That hue does **not** leak into the section.
-- **Semantic outcomes** may break chrome: `--role-yes` merge / `--role-no` stop or task / `--role-ask` question / `--role-info` detect.
-- Cycle hues only on a **true series** (step 1–4). Never on the same card type repeated across chapters.
+Sibling categories of the same thing (Companies vs Contacts, items in a list, departments) get **one** of:
 
-**Accent police:** if you used a second hue, you owe a one-line why. “Contacts exist” is not a why. Write the sentence or delete the hue.
+1. **All the same hue** — every chapter is Rally Green (or one chosen accent).
+2. **One hue per category, all the way through** — cycle **green → blue → orange → red → purple**. Companies chapter = green (eyebrows, dashed dividers, cards, icons). Contacts chapter = blue (*same*, all of it). Never a green chapter with blue icons.
+
+**Canonical department hues** (when the category *is* a department): RevOps green · Marketing/Growth blue · HubSpot admin orange · Sales red · Tech/integrations/migrations purple.
+
+**Semantic outcomes** may punch through a chapter: `--role-yes` go/merge · `--role-no` stop/skip · `--role-ask` question · `--role-info` detect. That’s one element’s job, not a license to retheme the chapter.
+
+Page letterhead, primary CTAs, and slide title-dividers default to Rally Green **until** they sit inside a colored chapter — then they follow that chapter.
 
 ---
 
@@ -124,7 +128,7 @@ Color has **jobs**. Objects do not get a theme. Contacts are not a blue chapter.
 | H1 | Montserrat | 700 | ~48px (web is fluid clamp) |
 | H2 | Montserrat | 700 | ~32px |
 | H3 | Montserrat | 700 | ~28px |
-| Eyebrow / category | Montserrat | 700 | ~15–18px · UPPERCASE · letter-spacing **0.5rem** · often green |
+| Eyebrow / category | Montserrat | 700 | ~15–18px · UPPERCASE · letter-spacing **0.5rem** · chapter hue (default green) |
 | Body | Inter | 400 | 16–18px · line-height **1.4** |
 | Buttons / strong | Inter | **700** | — |
 | Caption | Inter | 400/500 | 12–14px |
@@ -154,12 +158,12 @@ Color has **jobs**. Objects do not get a theme. Contacts are not a blue chapter.
 
 ### Icons
 - **Material Symbols Outlined** — not Rounded. Small icons: FILL 1, weight 300. No chip. Sit on the card.
-- Color = the **card’s job** (`--role-chrome` or semantic `--role-yes` / `--role-no` / `--role-ask` / `--role-info`). Not “this section is the blue one.”
+- Color = the **chapter hue**, unless the card is semantic (go/stop/ask). Same icon glyphs on Starts/Skips/Runs in every chapter — color follows the chapter (or `--role-no` if that card is a stop).
 - Same repeating card type (Starts / Skips / Runs, etc.) uses the **same three icons** in every object chapter.
 
 ### Borders & lines
 - Structural: `1px solid rgba(36,39,58,0.1)`.
-- Emphasis divider: `2–3px dashed #17B451` (green), often with a filled circle end cap.
+- Emphasis divider: `2–3px dashed` in the **chapter hue** (default Rally Green), often with a filled circle end cap.
 - Dark heroes / slides: thin **blue · yellow · red** stripe is allowed (that's `--clr-yellow`'s job).
 
 ---
@@ -168,7 +172,7 @@ Color has **jobs**. Objects do not get a theme. Contacts are not a blue chapter.
 
 A diagram is a component. If a line doesn’t meet a card, it’s decoration — delete it. Don’t leave two cards floating and call it a fork.
 
-- **Sequence** (1 → 2 → 3 → 4): filled numbered circles, white Montserrat Bold numerals. Hue cycle is allowed here (true series). Connectors: pick **dashed** or **solid Carbon 2px** and stick. Title dividers stay dashed green + cap — that’s chrome, not the diagram.
+- **Sequence** (1 → 2 → 3 → 4): filled numbered circles, white Montserrat Bold numerals. Hue cycle is allowed here (true series). Connectors: pick **dashed** or **solid Carbon 2px** and stick. Title dividers follow the **chapter hue** (default dashed green + cap) — that’s chrome, not the diagram.
 - **Decision tree:** `--role-ask` question node → **solid Carbon 2px T-bar** that actually touches the cards → two columns. Nested T-fork under Merge into keep / after. Same rule: every stem meets a box.
 
 ---
@@ -238,12 +242,13 @@ Leave-behinds are snapshots. **No On/Off live-status pills** on a download. Stat
 ## 10. Quick checklist
 
 - [ ] Background is off-white; page is neutral-dominant, accents sparse.
-- [ ] Chrome is Rally Green. Second hue has a one-line why (not “Contacts exist”). Cycle only on a true series.
+- [ ] Sibling categories: all one hue, **or** one hue per category all the way through. No green chapter + blue icons.
+- [ ] Semantic go/stop may punch through. Departments use the canon map (RevOps green · Growth blue · HubSpot orange · Sales red · Tech purple).
 - [ ] Every element uses a single accent hue (no mixing within one component).
 - [ ] Tinted fills are `--clr-*-bg` (20% over the actual background). No `*-light` chips on dark. Opaque on dark = `*-dark`.
 - [ ] Headings pass the swap test; no green headings; body is Inter 400; buttons are 700.
 - [ ] Buttons are pills; cards are 2px-border + matching tint; 8px radius.
-- [ ] Icons are Material Symbols **Outlined**, colored by the card’s **job**, not the chapter.
+- [ ] Icons are Material Symbols **Outlined**, colored by the **chapter** (or semantic go/stop).
 - [ ] Diagram stems actually touch cards. No floating “fork.”
 - [ ] No On/Off pills on static HTML.
 - [ ] No serif, no monospace, no gradients on surfaces, no emoji in UI.

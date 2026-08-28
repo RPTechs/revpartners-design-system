@@ -41,11 +41,11 @@ Do not use HubSpot variable names (`--clr-title`, `.btn-primary`, `icon-24`) unl
 
 ## 2. Hard rules
 
-- Neutral-dominant. One accent per element. **Chrome is Rally Green.** Cycle hues only on a true series (step 1–4), never on the same card type across chapters. Objects do not get a theme. Second hue needs a one-line why.
+- Neutral-dominant. One accent per element. Sibling categories: all the same hue, **or** the next accent for the entire category (eyebrows, cards, icons). Never mix (green chapter + blue icons). Semantic go/stop may punch through.
 - Light fills are `--clr-*-bg` (20% opacity over the actual background). `*-light` hexes are a flatten-over-white hack — never on dark. Opaque on dark = `*-dark`.
 - Headings: Montserrat 700, River Bed, never green. Swap test: bold the word that would change on the sibling page — not the workflow name.
 - Body: Inter 400. Buttons: Inter 700, pill, press scale 0.98.
-- Icons: Material Symbols **Outlined**. Color = the card’s job (`--role-chrome` or semantic), not “this section is the blue one.”
+- Icons: Material Symbols **Outlined**. Color follows the chapter, or semantic go/stop.
 - Diagrams: stems touch cards. Decision trees are solid Carbon 2px T-junctions, not two floating boxes.
 - Static HTML: no On/Off live-status pills.
 - No serif, no monospace, no emoji in UI, no random fonts, no off-brand hex.
