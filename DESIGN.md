@@ -13,7 +13,7 @@ RevPartners is a **Go-to-Market (GTM) engineering consultancy** delivering **Rev
 ## 1. First principles (read before touching anything)
 
 1. **Neutral-dominant.** 80–90% neutral (off-white bg, dark text), 10–20% accent. Color is a scalpel, not a paint roller.
-2. **One accent hue per element.** Never mix accents inside a single card/button/block (no blue border with green icons). When a group needs variety, give each *item* one hue and cycle: **green → blue → orange → red → purple**, repeat.
+2. **One accent hue per element.** Never mix accents inside a single card/button/block. **Chrome is Rally Green** — not a new hue per object/chapter. Cycle green → blue → orange → red → purple only on a **true series** (step 1–4). Never on the same card type repeated across chapters. See **Chrome vs semantic color**.
 3. **No dark cards.** Dark (Ebony Clay) is for full-width bands/heroes only. Individual cards stay light.
 4. **Weight, not color, creates hierarchy.** Headings are River Bed (`#434761`), never green. Emphasize by mixing Montserrat Bold + Regular. A single accent *word* inside a heading is fine.
 5. **Buttons and strong = Inter Bold (700).** Body is 400. Don't reach for 600 as a "brand bold" — the site doesn't.
@@ -67,6 +67,14 @@ Paste into a global stylesheet. All values match the HubSpot theme.
   --clr-stroke-2: rgba(36,39,58,0.30);  --clr-bg-2: var(--clr-mercury);
   --color-link: var(--clr-green);
 
+  /* ---- Jobs, not objects. Contacts are not blue. ---- */
+  --role-chrome: var(--clr-green);       /* eyebrows, dashed title dividers, primary pills, repeating meta cards */
+  --role-chrome-bg: var(--clr-green-bg);
+  --role-yes: var(--clr-green);          /* merge, proceed, success */
+  --role-no: var(--clr-red);             /* stop, skip, block, danger */
+  --role-ask: var(--clr-orange);         /* question, decision */
+  --role-info: var(--clr-blue);          /* detect, inspect. Jump chips: object identity only — hue does not leak into the section */
+
   /* ---- Type ---- */
   --font-display: 'Montserrat', sans-serif;
   --font-body: 'Inter', sans-serif;
@@ -95,6 +103,19 @@ Paste into a global stylesheet. All values match the HubSpot theme.
 
 ---
 
+## Chrome vs semantic color
+
+Color has **jobs**. Objects do not get a theme. Contacts are not a blue chapter.
+
+- **Chrome** (`--role-chrome`): eyebrows, dashed title dividers, primary pills, repeating meta cards, icons on those cards. Sibling sections of the same deliverable share chrome. Rally Green.
+- **Nav identity** may use a second hue **once** (Companies jump = green, Contacts jump = blue). That hue does **not** leak into the section.
+- **Semantic outcomes** may break chrome: `--role-yes` merge / `--role-no` stop or task / `--role-ask` question / `--role-info` detect.
+- Cycle hues only on a **true series** (step 1–4). Never on the same card type repeated across chapters.
+
+**Accent police:** if you used a second hue, you owe a one-line why. “Contacts exist” is not a why. Write the sentence or delete the hue.
+
+---
+
 ## 3. Typography
 
 | Role | Font | Weight | Size |
@@ -109,7 +130,7 @@ Paste into a global stylesheet. All values match the HubSpot theme.
 | Caption | Inter | 400/500 | 12–14px |
 
 - Headings River Bed (`--color-fg`), never green.
-- Mix Bold + Regular within one title (`<span>What are</span> <b>Lifecycle Stages?</b>`).
+- Mix Bold + Regular. **Swap test is not optional:** bold the word that would change on the sibling page. `<b>Company</b> Deduplication` / `<b>Contact</b> Deduplication`. Never bold the HubSpot workflow name (`Deduplication`) when the sibling is another object. Fine when the canvas title *is* the object (`<b>Target Account</b>` vs `<b>Contact</b>`).
 - Body text is River Bed; muted is Steel.
 
 ---
@@ -132,18 +153,23 @@ Paste into a global stylesheet. All values match the HubSpot theme.
 - Neutral cards: no shadow. Accent cards may use a soft tinted glow. **No** colored-left-border-only, **no** chip behind icons.
 
 ### Icons
-- **Material Symbols Outlined** — not Rounded. Small icons: FILL 1, weight 300.
-- Color maps to service area (green RevOps · blue Growth · orange HubSpot · red Sales · purple Tech).
-
-### Step sequences
-- Solid **filled circle**, no border, white numeral (Montserrat Bold) inside.
-- Circle color cycles green → blue → orange → red → purple.
-- Joined by **dashed** connector lines (2px dashed, neutral).
+- **Material Symbols Outlined** — not Rounded. Small icons: FILL 1, weight 300. No chip. Sit on the card.
+- Color = the **card’s job** (`--role-chrome` or semantic `--role-yes` / `--role-no` / `--role-ask` / `--role-info`). Not “this section is the blue one.”
+- Same repeating card type (Starts / Skips / Runs, etc.) uses the **same three icons** in every object chapter.
 
 ### Borders & lines
 - Structural: `1px solid rgba(36,39,58,0.1)`.
 - Emphasis divider: `2–3px dashed #17B451` (green), often with a filled circle end cap.
 - Dark heroes / slides: thin **blue · yellow · red** stripe is allowed (that's `--clr-yellow`'s job).
+
+---
+
+## Diagrams
+
+A diagram is a component. If a line doesn’t meet a card, it’s decoration — delete it. Don’t leave two cards floating and call it a fork.
+
+- **Sequence** (1 → 2 → 3 → 4): filled numbered circles, white Montserrat Bold numerals. Hue cycle is allowed here (true series). Connectors: pick **dashed** or **solid Carbon 2px** and stick. Title dividers stay dashed green + cap — that’s chrome, not the diagram.
+- **Decision tree:** `--role-ask` question node → **solid Carbon 2px T-bar** that actually touches the cards → two columns. Nested T-fork under Merge into keep / after. Same rule: every stem meets a box.
 
 ---
 
@@ -203,14 +229,23 @@ Header mark: `assets/RP-Mark-2026-White.svg` on the green bar.
 
 ---
 
+## Handoff / static HTML
+
+Leave-behinds are snapshots. **No On/Off live-status pills** on a download. Status on a static file is a rotting banana. If it can go stale, don’t render it as current.
+
+---
+
 ## 10. Quick checklist
 
 - [ ] Background is off-white; page is neutral-dominant, accents sparse.
+- [ ] Chrome is Rally Green. Second hue has a one-line why (not “Contacts exist”). Cycle only on a true series.
 - [ ] Every element uses a single accent hue (no mixing within one component).
 - [ ] Tinted fills are `--clr-*-bg` (20% over the actual background). No `*-light` chips on dark. Opaque on dark = `*-dark`.
-- [ ] Headings are River Bed Montserrat Bold; no green headings; body is Inter 400; buttons are 700.
+- [ ] Headings pass the swap test; no green headings; body is Inter 400; buttons are 700.
 - [ ] Buttons are pills; cards are 2px-border + matching tint; 8px radius.
-- [ ] Icons are Material Symbols **Outlined**, colored by service area.
+- [ ] Icons are Material Symbols **Outlined**, colored by the card’s **job**, not the chapter.
+- [ ] Diagram stems actually touch cards. No floating “fork.”
+- [ ] No On/Off pills on static HTML.
 - [ ] No serif, no monospace, no gradients on surfaces, no emoji in UI.
 - [ ] Logo present, correct color, with clear space.
 

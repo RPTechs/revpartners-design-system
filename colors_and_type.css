@@ -111,12 +111,20 @@
   --color-link:       var(--clr-green);
   --color-link-hover: var(--clr-green-dark);
 
-  /* Status / Category */
+  /* Status / Category — service areas. Not chapter themes. */
   --color-revops:     var(--clr-green);
   --color-growth:     var(--clr-blue);
   --color-hubspot:    var(--clr-orange);
   --color-sales:      var(--clr-red);
   --color-tech:       var(--clr-purple);
+
+  /* Jobs, not objects. Contacts are not blue. */
+  --role-chrome:      var(--clr-green);
+  --role-chrome-bg:   var(--clr-green-bg);
+  --role-yes:         var(--clr-green);
+  --role-no:          var(--clr-red);
+  --role-ask:         var(--clr-orange);
+  --role-info:        var(--clr-blue);
 
   /* ----------------------------------------------------------
      TYPOGRAPHY — Font Families
