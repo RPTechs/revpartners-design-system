@@ -56,7 +56,8 @@ AGENTS.md                        ← Start here (update check + rules)
 VERSION                          ← Bumped when brand tokens/rules change
 DESIGN.md                        ← Portable tokens + component recipes
 README.md                        ← You are here
-SKILL.md                         ← Claude skill wrapper
+SKILL.md                         ← Claude skill wrapper (clone this repo, then DESIGN.md)
+skills/revpartners-brand/        ← Self-contained Cursor skill (`/revpartners-brand`)
 colors_and_type.css              ← Full CSS custom properties
 uploads/                         ← Logos
 illustrations/                   ← SVG library (Backgrounds, Cubes, Drawings, …)
