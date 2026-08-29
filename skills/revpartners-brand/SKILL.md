@@ -93,8 +93,8 @@ Paste into a global stylesheet.
 
   /* ---- Radii ---- */
   --radius-sm: 4px;     /* tags */
-  --radius: 8px;        /* cards */
-  --radius-lg: 16px;    /* wrapping panels */
+  --radius: 8px;        /* every boxed thing — cards, sections, callouts, panels */
+  --radius-lg: 8px;     /* alias of --radius. not a bigger corner */
   --radius-pill: 120px; /* buttons */
 
   /* ---- Shadow ---- */
@@ -158,7 +158,8 @@ Page letterhead, primary CTAs, and slide title-dividers default to Rally Green *
 - Inter 700, green, trailing **Material icon** `arrow_forward` (not an Inter `→` character).
 
 ### Cards
-- Item radius **8px**, wrapping panel **16px**.
+- **8px** (`--radius`). Every boxed thing: cards, sections, callouts, step cards, “panels.” There is no inner/outer radius. `--radius-lg` is the same 8px — not a bigger corner.
+- If two sibling boxes have different radii, you already failed.
 - **`2px` border** — accent color OR `--clr-stroke` (10% ebony). Stronger: `--clr-stroke-2` (30%).
 - Background: `--clr-bg-2` **or** `--clr-<hue>-bg` (20% tint). Border and fill share the same hue. Use `--clr-<hue>-light` only on a light ground when a pattern would show through. On dark, `--clr-<hue>-bg` or `--clr-<hue>-dark` — never `*-light`.
 - Neutral cards: no shadow. Accent cards may use a soft tinted glow. **No** colored-left-border-only, **no** chip behind icons.
@@ -189,7 +190,7 @@ A diagram is a component. If a line doesn’t meet a card, it’s decoration —
 - Backgrounds: Off-White primary, Mercury for alt sections, Ebony Clay for inverted bands. No textures. Line-grid illustrations on dark heroes are fine if they stay low-contrast.
 - Web content width: **1200px**. Slides: 1920×1080 or 1280×720.
 - Generous white space. Flex/grid with `gap` tokens.
-- Corners: tags 4px · cards 8px · panels 16px · buttons pill · avatars round.
+- Corners: tags 4px · boxes 8px · buttons pill · avatars round. No 16px “panel.”
 - Motion: hover = 20% accent bg, press = 98% scale. No bounce/spring.
 - Imagery: technical line/schematic diagrams over photography. Natural-color photos only for team/testimonial headshots.
 - **Illustrations as background:** at most one per surface, in an empty area, oversized so they crop, low-contrast. Never over text.
@@ -253,7 +254,7 @@ Leave-behinds are snapshots. **No On/Off live-status pills** on a download. Stat
 - [ ] Every element uses a single accent hue (no mixing within one component).
 - [ ] Tinted fills are `--clr-*-bg` (20% over the actual background). No `*-light` chips on dark. Opaque on dark = `*-dark`.
 - [ ] Headings pass the swap test; no green headings; body is Inter 400; buttons are 700.
-- [ ] Buttons are pills; cards are 2px-border + matching tint; 8px radius.
+- [ ] Buttons are pills; boxes are 8px (`--radius`). No 16px panel leftover.
 - [ ] Icons are Material Symbols **Outlined**, colored by the **chapter** (or semantic go/stop).
 - [ ] Diagram stems actually touch cards. No floating “fork.”
 - [ ] No On/Off pills on static HTML.

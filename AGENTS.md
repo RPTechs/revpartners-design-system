@@ -42,6 +42,7 @@ Do not use HubSpot variable names (`--clr-title`, `.btn-primary`, `icon-24`) unl
 ## 2. Hard rules
 
 - Neutral-dominant. One accent per element. Sibling categories: all the same hue, **or** the next accent for the entire category (eyebrows, cards, icons). Never mix (green chapter + blue icons). Semantic go/stop may punch through.
+- Boxes are **8px**. Tags 4px. Buttons pill. No second box radius (no 16px “wrapping panel”).
 - Light fills are `--clr-*-bg` (20% opacity over the actual background). `*-light` hexes are a flatten-over-white hack — never on dark. Opaque on dark = `*-dark`.
 - Headings: Montserrat 700, River Bed, never green. Swap test: bold the word that would change on the sibling page — not the workflow name.
 - Body: Inter 400. Buttons: Inter 700, pill, press scale 0.98.

@@ -156,8 +156,8 @@ Each accent has three surface treatments. For a tinted fill, use ONE of:
 - Use rems for all dimensions, never absolute px in production
 
 ### Corner Radii
-- **Small elements / tags:** 4–5px
-- **Cards:** 8px (`--corner`). Wrapping panels: 16px (`--corner-l`).
+- **Boxes (cards, sections, callouts, panels):** 8px (`--radius` / `--corner`). One radius. No inner/outer split.
+- **Tags:** 4px
 - **Buttons:** 120px (fully pill-shaped)
 - **Circles / avatars:** 999px / 50%
 
@@ -186,7 +186,7 @@ Each accent has three surface treatments. For a tinted fill, use ONE of:
 - **Fancy text link:** Inter Bold (700), green, trailing Material icon `arrow_forward` (not an Inter `→` character).
 
 ### Cards
-- `border-radius: 8px` (items) / `16px` (wrapping panel)
+- `border-radius: 8px` (`--radius`). Same on every boxed sibling. There is no 16px wrapping-panel radius.
 - **`2px` border** — either an **accent color** or the neutral **`--clr-stroke`** (`rgba(36,39,58,0.10)`). Stronger: `--clr-stroke-2` (30%).
 - **Background** is **`--clr-bg-2`** (neutral) OR the opaque accent (`--clr-<hue>-light`) for accent cards. Border and fill share the same accent hue.
 - **No colored-left-border-only cards. Neutral cards: no shadow. Accent cards may use a soft tinted glow. No background chip behind icons.**
