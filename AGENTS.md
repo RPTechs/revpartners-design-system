@@ -42,7 +42,7 @@ Do not use HubSpot variable names (`--clr-title`, `.btn-primary`, `icon-24`) unl
 
 ## 2. Hard rules
 
-- Neutral-dominant. **Green is the default.** Extra hues only in a list, in order green → blue → orange → red → purple (then restart). Purple last. Departments are not mascots. Semantic go/stop only on a neutral field. No green header + purple card + red card.
+- Neutral-dominant. **One accent per thing.** Sibling items — including sections — may cycle green → blue → orange → red → purple (then restart). Purple last. Never mix inside one card/section (no green header + purple card + red card). Semantic go/stop only on a neutral field.
 - Boxes are **8px**. Tags 4px. Buttons pill. No second box radius (no 16px “wrapping panel”).
 - Light fills are `--clr-*-bg` (20% opacity over the actual background). `*-light` hexes are a flatten-over-white hack — never on dark. Opaque on dark = `*-dark`.
 - Headings: Montserrat 700, River Bed, never green. Swap test: bold the word that would change on the sibling page — not the workflow name.

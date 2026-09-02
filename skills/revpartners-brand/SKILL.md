@@ -19,7 +19,7 @@ If they invoked this without saying what to build, reply: "RevPartners brand loc
 ## 1. First principles
 
 1. **Neutral-dominant.** 80–90% neutral (off-white bg, dark text), 10–20% accent. Color is a scalpel, not a paint roller.
-2. **Green is the default. Restraint.** Never mix accents inside a card. Extra hues only in a **list**, in order green → blue → orange → red → purple (then restart). Purple last. Departments are not mascots. Semantic only on a neutral field. See **Accent restraint**.
+2. **One accent per thing.** Never mix inside a card, section, or header. A lone thing is green. Sibling items — including **sections** — may cycle green → blue → orange → red → purple (then restart). Purple last. See **Accent restraint**.
 3. **No dark cards.** Dark (Ebony Clay) is for full-width bands/heroes only. Individual cards stay light.
 4. **Weight, not color, creates hierarchy.** Headings are River Bed (`#434761`), never green. Emphasize by mixing Montserrat Bold + Regular. A single accent *word* inside a heading is fine.
 5. **Buttons and strong = Inter Bold (700).** Body is 400. Don't reach for 600 as a "brand bold" — the site doesn't.
@@ -115,20 +115,23 @@ Copy `RP-Mark-2026-Green.svg` into the deliverable (or use `https://raw.githubus
 
 ## Accent restraint
 
-Green is the default. Other colors are for **lists**, not mascots. Do not vomit.
+**One accent color per thing.** Mixing is the vomit. Sections count as list items.
 
-- **Most of the page is green or neutral.** Header, single card, CTA, eyebrow, letterhead: Rally Green or off-white / River Bed. Not purple because the topic is integrations.
-- **Lists only** (2+ sibling items of the same type): cycle **green → blue → orange → red → purple**. Always that order. Item 6 restarts at green. Each list item is one hue all the way through (eyebrow, border, icon). Never green chrome with blue icons on the same item.
-- **Purple is last.** Almost never. Only when you already used the first four and need a fifth. Completing a set — not “this is Tech.”
-- **Departments are not themes.** “Sales page” ≠ red everything. “Marketing” ≠ blue header. Green, unless the *entire* page is a whole-page accent (next bullet).
-- **Whole-page accent** is allowed when the page is *only* that offering (integrations landing may set `--clr-primary` to purple). Neutrals still do 80–90%. You did not earn a purple header *and* a red card.
-- **Semantic** (go / stop / ask / info) only on a **neutral** field. Green merge next to a red skip is fine on off-white. Semantic on top of a themed purple/red chapter is vomit.
+- A “thing” is a card, a header, a section, a list item. Eyebrow, border, fill, icon: **same hue**.
+- **Siblings are a list** — cards, steps, **and sections** of the same page (Companies vs Contacts). Cycle **green → blue → orange → red → purple**. Always that order. Item 6 restarts at green. Each sibling is one hue all the way through.
+- A lone thing (one card, one section, no siblings) is Rally Green or neutral. Not purple because the topic is integrations.
+- **Purple is last** in a cycle. Completing a set, not a mascot.
+- **Departments are not a reason to mix.** “Sales” ≠ red header + orange cards.
+- **Whole-page accent** when the page is *only* that offering (integrations landing may set `--clr-primary` to purple). Still one accent per thing. Sibling lists on that page may still cycle.
+- **Semantic** (go / stop / ask / info) only on a **neutral** field.
 
-Bad: green header + purple card + red card.
+Bad: one section with a green header + purple card + red card.
+
+Good: Section A all green, Section B all blue (sibling sections).
 
 Good: neutral header + one green card.
 
-Good: neutral header + green, blue, orange, red cards (a list, in order).
+Good: green, blue, orange, red cards in a row (a list).
 
 ---
 
@@ -259,7 +262,7 @@ Every generated HTML file includes:
 ## 10. Quick checklist
 
 - [ ] Background is off-white; page is neutral-dominant, accents sparse.
-- [ ] Default accent is green or neutral. Extra hues only in a list, in order. Purple last. No department mascots.
+- [ ] One accent per thing. Sibling sections/cards may cycle in order. No mixing inside one section.
 - [ ] Semantic go/stop only on a neutral field. No green header + purple card + red card.
 - [ ] Favicon is `RP-Mark-2026-Green.svg`.
 - [ ] Every element uses a single accent hue (no mixing within one component).
