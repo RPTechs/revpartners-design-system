@@ -29,7 +29,7 @@ High-fidelity recreation of the `revpartners.io` marketing website. Based on Fig
 - Buttons: `border-radius: 120px` pill, Inter Bold 16–18px
 - Section padding: `80px 120px`
 - Cards: `border-radius: 8px`, `border: 2px solid [accent]`, matching fill
-- Service categories: Green=RevOps, Blue=Growth, Orange=HubSpot, Red=Sales, Purple=Tech
+- Service categories exist as tokens. Do not spray them as page themes. Green is the default.
 
 ## Usage
 Open `index.html` in a browser. Navigate pages with the tab bar at the bottom.

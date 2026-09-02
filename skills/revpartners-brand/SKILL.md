@@ -10,7 +10,7 @@ Self-contained. Do not read local theme files, `DESIGN.md`, `slides/`, `docs/`, 
 
 RevPartners is a **Go-to-Market (GTM) engineering consultancy** delivering **Revenue Operations through HubSpot**. The brand reads **bold, technical, and confident** — clean, lots of white space, one accent color at a time, never busy.
 
-Talk about the thing being made (copy, layout, argument). Do not narrate tokens, hex, or this skill unless they asked how the brand works.
+Talk about the thing being made (copy, layout, argument). Do not narrate tokens, hex, or this skill unless they asked how the brand works. Exception: if you pulled a newer design-system `VERSION`, tell the user the number, then continue.
 
 If they invoked this without saying what to build, reply: "RevPartners brand locked and loaded. What do you want built? A slide deck, PDF one-pager, Google Doc, social graphic, something else? And roughly what's it about / who's it for?"
 
@@ -19,7 +19,7 @@ If they invoked this without saying what to build, reply: "RevPartners brand loc
 ## 1. First principles
 
 1. **Neutral-dominant.** 80–90% neutral (off-white bg, dark text), 10–20% accent. Color is a scalpel, not a paint roller.
-2. **One accent hue per element — and per category.** Never mix accents inside a card. Sibling categories: all the same hue, **or** the next accent for the *entire* category (eyebrows, dividers, cards, icons). The sin is a green chapter with blue icons. See **Category color vs semantic color**.
+2. **Green is the default. Restraint.** Never mix accents inside a card. Extra hues only in a **list**, in order green → blue → orange → red → purple (then restart). Purple last. Departments are not mascots. Semantic only on a neutral field. See **Accent restraint**.
 3. **No dark cards.** Dark (Ebony Clay) is for full-width bands/heroes only. Individual cards stay light.
 4. **Weight, not color, creates hierarchy.** Headings are River Bed (`#434761`), never green. Emphasize by mixing Montserrat Bold + Regular. A single accent *word* inside a heading is fine.
 5. **Buttons and strong = Inter Bold (700).** Body is 400. Don't reach for 600 as a "brand bold" — the site doesn't.
@@ -74,13 +74,13 @@ Paste into a global stylesheet.
   --clr-stroke-2: rgba(36,39,58,0.30);  --clr-bg-2: var(--clr-mercury);
   --color-link: var(--clr-green);
 
-  /* ---- Jobs. Chapter hue is a local override of chrome, not a separate object mascot. ---- */
-  --role-chrome: var(--clr-green);       /* default page/doc chrome. Inside a chapter, use that chapter's hue */
+  /* ---- Jobs. Default chrome is green. Do not spray department mascots. ---- */
+  --role-chrome: var(--clr-green);
   --role-chrome-bg: var(--clr-green-bg);
-  --role-yes: var(--clr-green);          /* merge, proceed, success — may punch through a chapter */
-  --role-no: var(--clr-red);             /* stop, skip, block, danger */
-  --role-ask: var(--clr-orange);         /* question, decision */
-  --role-info: var(--clr-blue);          /* detect, inspect */
+  --role-yes: var(--clr-green);          /* merge, proceed — only on a neutral field */
+  --role-no: var(--clr-red);             /* stop, skip — only on a neutral field */
+  --role-ask: var(--clr-orange);         /* question — only on a neutral field */
+  --role-info: var(--clr-blue);          /* detect — only on a neutral field */
 
   /* ---- Type ---- */
   --font-display: 'Montserrat', sans-serif;
@@ -103,27 +103,32 @@ Paste into a global stylesheet.
 ```
 
 ```html
+<link rel="icon" href="assets/RP-Mark-2026-Green.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
 ```
 
+Copy `RP-Mark-2026-Green.svg` into the deliverable (or use `https://raw.githubusercontent.com/RPTechs/revpartners-design-system/main/assets/RP-Mark-2026-Green.svg`). Every generated HTML doc gets a favicon. Do not skip.
+
 ---
 
-## Category color vs semantic color
+## Accent restraint
 
-**Pick a scheme. Don’t mix.**
+Green is the default. Other colors are for **lists**, not mascots. Do not vomit.
 
-Sibling categories of the same thing (Companies vs Contacts, items in a list, departments) get **one** of:
+- **Most of the page is green or neutral.** Header, single card, CTA, eyebrow, letterhead: Rally Green or off-white / River Bed. Not purple because the topic is integrations.
+- **Lists only** (2+ sibling items of the same type): cycle **green → blue → orange → red → purple**. Always that order. Item 6 restarts at green. Each list item is one hue all the way through (eyebrow, border, icon). Never green chrome with blue icons on the same item.
+- **Purple is last.** Almost never. Only when you already used the first four and need a fifth. Completing a set — not “this is Tech.”
+- **Departments are not themes.** “Sales page” ≠ red everything. “Marketing” ≠ blue header. Green, unless the *entire* page is a whole-page accent (next bullet).
+- **Whole-page accent** is allowed when the page is *only* that offering (integrations landing may set `--clr-primary` to purple). Neutrals still do 80–90%. You did not earn a purple header *and* a red card.
+- **Semantic** (go / stop / ask / info) only on a **neutral** field. Green merge next to a red skip is fine on off-white. Semantic on top of a themed purple/red chapter is vomit.
 
-1. **All the same hue** — every chapter is Rally Green (or one chosen accent).
-2. **One hue per category, all the way through** — cycle **green → blue → orange → red → purple**. Companies chapter = green (eyebrows, dashed dividers, cards, icons). Contacts chapter = blue (*same*, all of it). Never a green chapter with blue icons.
+Bad: green header + purple card + red card.
 
-**Canonical department hues** (when the category *is* a department): RevOps green · Marketing/Growth blue · HubSpot admin orange · Sales red · Tech/integrations/migrations purple.
+Good: neutral header + one green card.
 
-**Semantic outcomes** may punch through a chapter: `--role-yes` go/merge · `--role-no` stop/skip · `--role-ask` question · `--role-info` detect. That’s one element’s job, not a license to retheme the chapter.
-
-Page letterhead, primary CTAs, and slide title-dividers default to Rally Green **until** they sit inside a colored chapter — then they follow that chapter.
+Good: neutral header + green, blue, orange, red cards (a list, in order).
 
 ---
 
@@ -135,7 +140,7 @@ Page letterhead, primary CTAs, and slide title-dividers default to Rally Green *
 | H1 | Montserrat | 700 | ~48px (web is fluid clamp) |
 | H2 | Montserrat | 700 | ~32px |
 | H3 | Montserrat | 700 | ~28px |
-| Eyebrow / category | Montserrat | 700 | ~15–18px · UPPERCASE · letter-spacing **0.5rem** · chapter hue (default green) |
+| Eyebrow / category | Montserrat | 700 | ~15–18px · UPPERCASE · letter-spacing **0.5rem** · green (or list-item hue) |
 | Body | Inter | 400 | 16–18px · line-height **1.4** |
 | Buttons / strong | Inter | **700** | — |
 | Caption | Inter | 400/500 | 12–14px |
@@ -166,7 +171,7 @@ Page letterhead, primary CTAs, and slide title-dividers default to Rally Green *
 
 ### Icons
 - **Material Symbols Outlined** — not Rounded. Small icons: FILL 1, weight 300. No chip. Sit on the card.
-- Color = the **chapter hue**, unless the card is semantic (go/stop/ask). Same icon glyphs on Starts/Skips/Runs in every chapter — color follows the chapter (or `--role-no` if that card is a stop).
+- Color = green by default, or the list-item hue if this card is in a cycle. Semantic go/stop only on a neutral field.
 - Same repeating card type (Starts / Skips / Runs, etc.) uses the **same three icons** in every object chapter.
 
 ### Borders & lines
@@ -208,10 +213,9 @@ A diagram is a component. If a line doesn’t meet a card, it’s decoration —
 
 ## 7. Logo
 
-- Primary: horizontal wordmark. Mark-only for tight spaces/favicon/doc headers. Green on light, white on dark (and on the green doc header bar).
-- Use the SVG and URL in **ASSETS** below. Recolor the mark via `--clr-primary` (green default; white `#FDFDFD` on dark/green bars).
-- Dark covers: green wordmark + **white** “a Walker Sands company” line — not navy tagline on ebony clay.
-- Keep clear space; never recolor to a non-brand hue, stretch, or add effects.
+- Primary: `assets/RevPartners-Logo-2026-Green.svg`. Mark: `assets/RP-Mark-2026-Green.svg` (favicon + tight spaces). White mark on green/dark bars. Need the word “RevPartners” without the lockup? Set it in Montserrat — don’t use a wordmark-only SVG.
+- Dark covers: green wordmark + **white** “a Walker Sands company” line (`assets/RevPartners-Logo-2026-Green-on-Dark.svg`).
+- Keep clear space; never recolor to a non-brand hue, stretch, or add effects. Do not use `RevPartners-Logo-Green.svg`, `RevPartners-Logo-Horizontal-Green.svg`, or `RP-Mark-Green.svg` — they’re gone.
 
 ---
 
@@ -244,18 +248,25 @@ Don't invent letterhead.
 
 Leave-behinds are snapshots. **No On/Off live-status pills** on a download. Status on a static file is a rotting banana. If it can go stale, don’t render it as current.
 
+Every generated HTML file includes:
+
+```html
+<link rel="icon" href="assets/RP-Mark-2026-Green.svg" type="image/svg+xml">
+```
+
 ---
 
 ## 10. Quick checklist
 
 - [ ] Background is off-white; page is neutral-dominant, accents sparse.
-- [ ] Sibling categories: all one hue, **or** one hue per category all the way through. No green chapter + blue icons.
-- [ ] Semantic go/stop may punch through. Departments use the canon map (RevOps green · Growth blue · HubSpot orange · Sales red · Tech purple).
+- [ ] Default accent is green or neutral. Extra hues only in a list, in order. Purple last. No department mascots.
+- [ ] Semantic go/stop only on a neutral field. No green header + purple card + red card.
+- [ ] Favicon is `RP-Mark-2026-Green.svg`.
 - [ ] Every element uses a single accent hue (no mixing within one component).
 - [ ] Tinted fills are `--clr-*-bg` (20% over the actual background). No `*-light` chips on dark. Opaque on dark = `*-dark`.
 - [ ] Headings pass the swap test; no green headings; body is Inter 400; buttons are 700.
 - [ ] Buttons are pills; boxes are 8px (`--radius`). No 16px panel leftover.
-- [ ] Icons are Material Symbols **Outlined**, colored by the **chapter** (or semantic go/stop).
+- [ ] Icons are Material Symbols **Outlined**, green (or list-item hue / semantic on neutrals).
 - [ ] Diagram stems actually touch cards. No floating “fork.”
 - [ ] No On/Off pills on static HTML.
 - [ ] No serif, no monospace, no gradients on surfaces, no emoji in UI.

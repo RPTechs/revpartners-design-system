@@ -19,10 +19,11 @@ Repo: `https://github.com/RPTechs/revpartners-design-system`
    - Prefer `git pull --ff-only` in this directory.
    - If there is no `.git` (Claude Projects cloud clone, copy-paste, zip leftover): `git clone https://github.com/RPTechs/revpartners-design-system.git` into a sibling/temp dir and use **that** copy as the source of truth.
    - After a pull/reclone: **re-read `AGENTS.md` and `DESIGN.md`**. Your earlier context is stale. Use the new files.
+   - **Tell the user.** One sentence, with the new VERSION number: “Grabbed design system 1.0.11.” Do not skip this. Then continue the work.
 4. If local === remote, continue with what you already know. Don't re-lecture the brand.
 5. Never invent a "close enough" palette because the repo "might be old." Update, then work.
 
-Silent. No VERSION numbers, no file lists, no palette recap. If you actually pulled an update, you may say one short line ("Grabbed a brand update.") then continue. If git isn't available and the fetch fails, one sentence, then proceed — and tell them to re-clone.
+If git isn't available and the fetch fails, one sentence, then proceed — and tell them to re-clone.
 
 ## 1. What to read
 
@@ -34,19 +35,20 @@ Silent. No VERSION numbers, no file lists, no palette recap. If you actually pul
 | `slides/` | Any deck. Copy a specimen; don't invent chrome. |
 | `docs/` | Google Docs / written docs. Two templates — see DESIGN.md §9. |
 | `fonts/` | Local Montserrat, Inter, Material Symbols. Use `fonts/fonts.css`. |
+| `assets/` | Logos. Favicon = `RP-Mark-2026-Green.svg`. |
 | `illustrations/` | Background motifs. One per surface, cropped, quiet. |
-| `uploads/` | Logos. |
 
 Do not use HubSpot variable names (`--clr-title`, `.btn-primary`, `icon-24`) unless the human asked for HubSpot/theme work. This kit is portable.
 
 ## 2. Hard rules
 
-- Neutral-dominant. One accent per element. Sibling categories: all the same hue, **or** the next accent for the entire category (eyebrows, cards, icons). Never mix (green chapter + blue icons). Semantic go/stop may punch through.
+- Neutral-dominant. **Green is the default.** Extra hues only in a list, in order green → blue → orange → red → purple (then restart). Purple last. Departments are not mascots. Semantic go/stop only on a neutral field. No green header + purple card + red card.
 - Boxes are **8px**. Tags 4px. Buttons pill. No second box radius (no 16px “wrapping panel”).
 - Light fills are `--clr-*-bg` (20% opacity over the actual background). `*-light` hexes are a flatten-over-white hack — never on dark. Opaque on dark = `*-dark`.
 - Headings: Montserrat 700, River Bed, never green. Swap test: bold the word that would change on the sibling page — not the workflow name.
 - Body: Inter 400. Buttons: Inter 700, pill, press scale 0.98.
-- Icons: Material Symbols **Outlined**. Color follows the chapter, or semantic go/stop.
+- Icons: Material Symbols **Outlined**. Green by default (list-item hue in a cycle; semantic only on neutrals).
+- HTML docs get a favicon: `assets/RP-Mark-2026-Green.svg`.
 - Diagrams: stems touch cards. Decision trees are solid Carbon 2px T-junctions, not two floating boxes.
 - Static HTML: no On/Off live-status pills.
 - No serif, no monospace, no emoji in UI, no random fonts, no off-brand hex.
@@ -70,7 +72,9 @@ The human asked for a thing (a slide, a one-pager, a headline). Talk about **tha
 
 Do **not** talk about the design system. That is your homework, not the conversation.
 
-No need to mention: tokens, CSS variables, hex values, font names/weights, `DESIGN.md`, `AGENTS.md`, `VERSION`, specimen filenames, HubSpot theme rules, “per the brand kit,” “this token doesn’t exist,” “I used --clr-…,” or a recap of colors/type.
+Exception: if you just pulled a newer `VERSION`, tell the user (one sentence + the number). Then stop talking about the kit.
+
+No need to mention: tokens, CSS variables, hex values, font names/weights, `DESIGN.md`, `AGENTS.md`, specimen filenames, HubSpot theme rules, “per the brand kit,” “this token doesn’t exist,” “I used --clr-…,” or a recap of colors/type.
 
 If you had to make a brand call, show it in the work. If you need a decision, ask in content terms (“Want the problem column on the left or the right?”) not kit terms (“Should I use the red semantic token?”).
 

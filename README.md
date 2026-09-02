@@ -41,11 +41,7 @@ This kit is for **slides, PDFs, Google Docs, mocks, and other non-HubSpot work**
 
 - **Figma file:** RevPartners Brand — Partial file saved 5-4-2026 (59 pages, 2343 frames)  
   Figma link: not publicly accessible; file was mounted as virtual filesystem  
-- **Uploaded brand assets:**
-  - `uploads/RevPartners Brand Guidelines - Arc - 2026-05-May 11꞉05 AM꞉46@2x.png` — Base colors page
-  - `uploads/RevPartners Brand Guidelines - Arc - 2026-05-May 11꞉06 AM꞉30@2x.png` — Accent colors page
-  - `uploads/RevPartners Logo SVG Horizontal - Green.svg` — Horizontal logo (green)
-  - `uploads/RP Mark - Green.svg` — Logomark only (green)
+- **Uploaded brand assets:** use `assets/` (2026 lockup + mark). Do not use `RevPartners-Logo-Horizontal-Green`, `RevPartners-Logo-Green`, or `RP-Mark-Green`.
 
 ---
 
@@ -59,7 +55,7 @@ README.md                        ← You are here
 SKILL.md                         ← Claude skill wrapper (clone this repo, then DESIGN.md)
 skills/revpartners-brand/        ← Self-contained Cursor skill (`/revpartners-brand`)
 colors_and_type.css              ← Full CSS custom properties
-uploads/                         ← Logos
+assets/                          ← Logos. Favicon = RP-Mark-2026-Green.svg
 illustrations/                   ← SVG library (Backgrounds, Cubes, Drawings, …)
 slides/                          ← 16:9 specimens
 docs/                            ← Google Doc specimens (01 branded, 02 working)
@@ -219,7 +215,7 @@ A library of ready-made brand SVGs lives in `Illustrations/`, organized by type:
 - **As a background element in empty areas**, never over text or interactive content. Anchor to a corner or edge where there's whitespace (typically the side opposite the headline).
 - **Oversized and cropped** — scale large so the illustration bleeds off one or more edges of the frame; it's a partial, cropped motif, not a centered, fully-contained graphic.
 - **Low contrast / receding.** Keep it subtle so copy stays dominant: the gray line-art versions, or a single accent tinted well down (≈ line art at low opacity). Never let it compete with the foreground.
-- **Match the accent** to the surface's service color when one applies (green RevOps · blue Growth · orange HubSpot · red Sales · purple Tech); otherwise use the gray variant.
+- **Match the accent** to the page’s primary (usually green) or the gray variant. Do not pick purple because the topic is Tech.
 - Full-bleed `Backgrounds/` grids are the exception — those tile edge-to-edge behind a whole section rather than sitting cropped in a corner.
 
 Copy the specific SVGs a design needs into `assets/` (or reference from `Illustrations/`); don't bulk-copy the whole library into a deliverable.
@@ -250,7 +246,7 @@ Copy the specific SVGs a design needs into `assets/` (or reference from `Illustr
 - Small UI icons: weight **300**, filled. Don't go thinner on 20/24px icons.
 - Functional only — never decorative.
 - **Icons sit directly on the surface** in their accent color — no circular chip / colored background behind them.
-- Color maps to service area: Green RevOps · Blue Growth · Orange HubSpot · Red Sales · Purple Tech.
+- Color is green by default. List-item hue in a cycle. Semantic only on a neutral field. Not a department mascot.
 
 ### CDN
 ```html
