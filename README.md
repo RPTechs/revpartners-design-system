@@ -246,7 +246,7 @@ Copy the specific SVGs a design needs into `assets/` (or reference from `Illustr
 - Small UI icons: weight **300**, filled. Don't go thinner on 20/24px icons.
 - Functional only — never decorative.
 - **Icons sit directly on the surface** in their accent color — no circular chip / colored background behind them.
-- Color is green by default. List-item hue in a cycle. Semantic only on a neutral field. Not a department mascot.
+- Color is green by default. Nested ask/stop/info ok. Never purple as its own thing.
 
 ### CDN
 ```html

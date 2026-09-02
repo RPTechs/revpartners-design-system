@@ -42,12 +42,12 @@ Do not use HubSpot variable names (`--clr-title`, `.btn-primary`, `icon-24`) unl
 
 ## 2. Hard rules
 
-- Neutral-dominant. **One accent per thing.** Sibling items — including sections — may cycle green → blue → orange → red → purple (then restart). Purple last. Never mix inside one card/section (no green header + purple card + red card). Semantic go/stop only on a neutral field.
+- Neutral-dominant. **Green chrome.** Nested ask/stop/info (orange/red/blue) inside a green section is fine, sparingly. Lists cycle green → blue → orange → red; purple only as a fifth. **Never purple as its own thing.** Don’t compete with chrome (no equal-weight green + purple + red).
 - Boxes are **8px**. Tags 4px. Buttons pill. No second box radius (no 16px “wrapping panel”).
 - Light fills are `--clr-*-bg` (20% opacity over the actual background). `*-light` hexes are a flatten-over-white hack — never on dark. Opaque on dark = `*-dark`.
 - Headings: Montserrat 700, River Bed, never green. Swap test: bold the word that would change on the sibling page — not the workflow name.
 - Body: Inter 400. Buttons: Inter 700, pill, press scale 0.98.
-- Icons: Material Symbols **Outlined**. Green by default (list-item hue in a cycle; semantic only on neutrals).
+- Icons: Material Symbols **Outlined**. Green by default. Nested ask/stop/info ok. Never purple as its own thing.
 - HTML docs get a favicon: `assets/RP-Mark-2026-Green.svg`.
 - Diagrams: stems touch cards. Decision trees are solid Carbon 2px T-junctions, not two floating boxes.
 - Static HTML: no On/Off live-status pills.

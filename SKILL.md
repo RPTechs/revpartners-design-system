@@ -10,4 +10,4 @@ If the user invokes this skill without saying what to build, do not recap the br
 
 Talk only about the thing being made (copy, layout, argument). Never narrate tokens, variables, hex, VERSION, or kit files unless they asked how the kit works. See AGENTS.md §4.
 Written docs: copy `docs/01-branded.html` or `docs/02-working.html`. Don't invent letterhead.
-One accent per thing. Sibling sections count as a list. No mixing. Favicon = `RP-Mark-2026-Green.svg`. No On/Off pills on a static download.
+Green chrome. Nested ask/stop/info ok. Never purple as its own thing. Favicon = `RP-Mark-2026-Green.svg`. No On/Off pills on a static download.

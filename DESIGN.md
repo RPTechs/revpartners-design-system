@@ -13,7 +13,7 @@ RevPartners is a **Go-to-Market (GTM) engineering consultancy** delivering **Rev
 ## 1. First principles (read before touching anything)
 
 1. **Neutral-dominant.** 80–90% neutral (off-white bg, dark text), 10–20% accent. Color is a scalpel, not a paint roller.
-2. **One accent per thing.** Never mix inside a card, section, or header. A lone thing is green. Sibling items — including **sections** — may cycle green → blue → orange → red → purple (then restart). Purple last. See **Accent restraint**.
+2. **Green chrome. Nested accents are jobs, not mascots.** A section can contain orange ask / red stop / blue info, or a list that cycles. Sparingly. **Never purple as its own thing** — last in a 5-item set only. See **Accent restraint**.
 3. **No dark cards.** Dark (Ebony Clay) is for full-width bands/heroes only. Individual cards stay light.
 4. **Weight, not color, creates hierarchy.** Headings are River Bed (`#434761`), never green. Emphasize by mixing Montserrat Bold + Regular. A single accent *word* inside a heading is fine.
 5. **Buttons and strong = Inter Bold (700).** Body is 400. Don't reach for 600 as a "brand bold" — the site doesn't.
@@ -70,10 +70,10 @@ Paste into a global stylesheet. All values match the HubSpot theme.
   /* ---- Jobs. Default chrome is green. Do not spray department mascots. ---- */
   --role-chrome: var(--clr-green);
   --role-chrome-bg: var(--clr-green-bg);
-  --role-yes: var(--clr-green);          /* merge, proceed — only on a neutral field */
-  --role-no: var(--clr-red);             /* stop, skip — only on a neutral field */
-  --role-ask: var(--clr-orange);         /* question — only on a neutral field */
-  --role-info: var(--clr-blue);          /* detect — only on a neutral field */
+  --role-yes: var(--clr-green);          /* merge, proceed — nested in green chrome is fine */
+  --role-no: var(--clr-red);             /* stop, skip — nested, not a section theme */
+  --role-ask: var(--clr-orange);         /* question — nested */
+  --role-info: var(--clr-blue);          /* detect/note — nested. purple is not a role. */
 
   /* ---- Type ---- */
   --font-display: 'Montserrat', sans-serif;
@@ -108,23 +108,18 @@ Every generated HTML doc gets a favicon: copy `assets/RP-Mark-2026-Green.svg` in
 
 ## Accent restraint
 
-**One accent color per thing.** Mixing is the vomit. Sections count as list items.
+Chrome is green. Other colors may live **inside** a green section when they have a job. Purple is not a job.
 
-- A “thing” is a card, a header, a section, a list item. Eyebrow, border, fill, icon: **same hue**.
-- **Siblings are a list** — cards, steps, **and sections** of the same page (Companies vs Contacts). Cycle **green → blue → orange → red → purple**. Always that order. Item 6 restarts at green. Each sibling is one hue all the way through.
-- A lone thing (one card, one section, no siblings) is Rally Green or neutral. Not purple because the topic is integrations.
-- **Purple is last** in a cycle. Completing a set, not a mascot.
-- **Departments are not a reason to mix.** “Sales” ≠ red header + orange cards.
-- **Whole-page accent** when the page is *only* that offering (integrations landing may set `--clr-primary` to purple). Still one accent per thing. Sibling lists on that page may still cycle.
-- **Semantic** (go / stop / ask / info) only on a **neutral** field.
+- **Chrome** (header, nav, eyebrows, dashed dividers, primary buttons, repeating meta cards): Rally Green. Sibling sections of a spec usually stay green too — they don’t each get a mascot.
+- **Nested accents, sparingly:** `--role-ask` orange, `--role-no` red, `--role-info` blue, `--role-yes` green. Callouts and table flags inside a green section are correct. Don’t restyle the section around them.
+- **Lists** (steps, sibling cards): cycle **green → blue → orange → red**. Then restart, or reach for purple only if you truly need a fifth. A 3-step flow stops at orange.
+- **Never purple as its own thing.** Not a section theme. Not a lone purple card. Not “this is Tech.” Last resort in a 5+ set only.
+- **Departments are not themes.** Don’t paint Sales red.
+- Mixing is wrong when two accents compete as chrome (green header + purple card + red card as equals). Mixing is right when green owns the section and orange/red/blue show up as ask/stop/info or as items 2–4 in a list.
 
-Bad: one section with a green header + purple card + red card.
+Bad: a purple section. A purple card with nothing else in the set. Equal-weight green + purple + red chrome.
 
-Good: Section A all green, Section B all blue (sibling sections).
-
-Good: neutral header + one green card.
-
-Good: green, blue, orange, red cards in a row (a list).
+Good: green header, green chapters, orange “open question” callout, red “don’t” callout, blue “note,” a 1–2–3 flow in green/blue/orange. No purple.
 
 ---
 
@@ -167,7 +162,7 @@ Good: green, blue, orange, red cards in a row (a list).
 
 ### Icons
 - **Material Symbols Outlined** — not Rounded. Small icons: FILL 1, weight 300. No chip. Sit on the card.
-- Color = green by default, or the list-item hue if this card is in a cycle. Semantic go/stop only on a neutral field.
+- Color = green by default, or the list-item hue. Nested ask/stop/info may be orange/red/blue. Never purple as the card’s own color.
 - Same repeating card type (Starts / Skips / Runs, etc.) uses the **same three icons** in every object chapter.
 
 ### Borders & lines
@@ -257,8 +252,8 @@ Every generated HTML file includes:
 ## 10. Quick checklist
 
 - [ ] Background is off-white; page is neutral-dominant, accents sparse.
-- [ ] One accent per thing. Sibling sections/cards may cycle in order. No mixing inside one section.
-- [ ] Semantic go/stop only on a neutral field. No green header + purple card + red card.
+- [ ] Green chrome. Nested ask/stop/info ok. Lists stop at orange unless you need a 4th/5th. No purple as its own thing.
+- [ ] Nested ask/stop/info don’t restyle the section. No equal-weight chrome mix. No purple section/card.
 - [ ] Favicon is `RP-Mark-2026-Green.svg`.
 - [ ] Every element uses a single accent hue (no mixing within one component).
 - [ ] Tinted fills are `--clr-*-bg` (20% over the actual background). No `*-light` chips on dark. Opaque on dark = `*-dark`.
