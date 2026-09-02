@@ -19,7 +19,7 @@ Repo: `https://github.com/RPTechs/revpartners-design-system`
    - Prefer `git pull --ff-only` in this directory.
    - If there is no `.git` (Claude Projects cloud clone, copy-paste, zip leftover): `git clone https://github.com/RPTechs/revpartners-design-system.git` into a sibling/temp dir and use **that** copy as the source of truth.
    - After a pull/reclone: **re-read `AGENTS.md` and `DESIGN.md`**. Your earlier context is stale. Use the new files.
-   - **Tell the user.** One sentence, with the new VERSION number: “Grabbed design system 1.0.11.” Do not skip this. Then continue the work.
+   - **Tell the user.** One sentence, with the new VERSION number from the file. Do not skip this. Then continue the work.
 4. If local === remote, continue with what you already know. Don't re-lecture the brand.
 5. Never invent a "close enough" palette because the repo "might be old." Update, then work.
 
