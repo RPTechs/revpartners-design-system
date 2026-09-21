@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="assets/RP-Mark-2026-Green.svg" type="image/svg+xml">
+  <title>Deduplication Workflows — Channel Engine</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+  <style>
+    :root {
+      --clr-off-white: #FDFDFD;  --clr-mercury: #F3F3F4;
+      --clr-iron: #DDDEE2;       --clr-steel: #A1A2A7;     --clr-carbon: #555970;
+      --clr-river-bed: #434761;  --clr-ebony-clay: #24273A;
+      --clr-green:  #17B451;
+      --clr-blue:   #329DFF;
+      --clr-orange: #F7761E;
+      --clr-red:    #FB3131;
+      --clr-purple: #8C32FF;
+      --clr-yellow: #FBAA31;
+      --clr-green-bg:  rgba(23,180,81,0.20);
+      --clr-blue-bg:   rgba(50,157,255,0.20);
+      --clr-orange-bg: rgba(239,129,27,0.20);
+      --clr-red-bg:    rgba(251,49,49,0.20);
+      --clr-purple-bg: rgba(140,50,255,0.20);
+      --clr-primary: var(--clr-green);
+      --color-bg: var(--clr-off-white);
+      --color-bg-alt: var(--clr-mercury);
+      --color-bg-dark: var(--clr-ebony-clay);
+      --color-fg: var(--clr-river-bed);
+      --color-fg-3: var(--clr-steel);
+      --color-fg-inverted: var(--clr-off-white);
+      --color-link: var(--clr-green);
+      --clr-stroke: rgba(36,39,58,0.10);
+      --clr-bg-2: var(--clr-mercury);
+      --font-display: 'Montserrat', sans-serif;
+      --font-body: 'Inter', sans-serif;
+      --font-icons: 'Material Symbols Outlined', sans-serif;
+      --gap-xs: .5rem; --gap-s: 1rem; --gap: 1.5rem;
+      --gap-m: 3rem; --gap-l: 3.75rem;
+      --radius-sm: 4px; --radius: 8px; --radius-lg: 16px; --radius-pill: 120px;
+    }
+
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      background: var(--color-bg);
+      color: var(--color-fg);
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.4;
+    }
+    .material-symbols-outlined {
+      font-family: var(--font-icons);
+      font-weight: 300;
+      font-variation-settings: 'FILL' 1, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+      vertical-align: middle;
+    }
+
+    .wrap { max-width: 1200px; margin: 0 auto; }
+
+    .hero {
+      background: var(--color-bg-dark);
+      color: var(--color-fg-inverted);
+      padding: var(--gap) 1.5rem 3.5rem;
+      position: relative;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      left: 0; right: 0; bottom: 0;
+      height: 8px;
+      background: linear-gradient(90deg, var(--clr-blue) 0 33.33%, var(--clr-yellow) 33.33% 66.66%, var(--clr-red) 66.66%);
+    }
+    .logo-lockup { display: flex; align-items: center; gap: 12px; margin-bottom: var(--gap-s); }
+    .logomark { color: var(--clr-green); flex-shrink: 0; }
+    .logo-name {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 16px;
+      color: var(--color-fg-inverted);
+      line-height: 1.1;
+    }
+    .logo-tag { font-size: 12px; color: var(--color-fg-inverted); }
+    .eyebrow {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 13px;
+      letter-spacing: 0.5rem;
+      text-transform: uppercase;
+      color: var(--clr-green);
+      margin: 0 0 var(--gap-xs);
+    }
+    h1, h2, h3 {
+      font-family: var(--font-display);
+      font-weight: 400;
+      color: var(--color-fg);
+      margin: 0;
+    }
+    h1 {
+      font-size: clamp(28px, 4vw, 40px);
+      color: var(--color-fg-inverted);
+    }
+    h1 b, h2 b { font-weight: 700; }
+    .hero-lead {
+      margin: var(--gap-s) 0 var(--gap);
+      max-width: 38rem;
+      color: var(--color-fg-inverted);
+    }
+    .jump {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--gap-s);
+      max-width: 640px;
+    }
+    .jump a {
+      display: flex;
+      align-items: center;
+      gap: var(--gap-s);
+      color: var(--color-fg-inverted);
+      text-decoration: none;
+      border-radius: var(--radius);
+      border: 2px solid var(--clr-stroke);
+      padding: 14px 18px;
+      font-weight: 700;
+    }
+    .jump a:hover { transform: scale(0.98); }
+    .jump-green { border-color: var(--clr-green); background: var(--clr-green-bg); }
+    .jump-blue { border-color: var(--clr-blue); background: var(--clr-blue-bg); }
+    .jump .material-symbols-outlined { font-size: 22px; }
+    .jump-green .material-symbols-outlined { color: var(--clr-green); }
+    .jump-blue .material-symbols-outlined { color: var(--clr-blue); }
+
+    .section { padding: var(--gap-m) 1.5rem; }
+    .section-alt { background: var(--color-bg-alt); }
+    .title-block { margin-bottom: var(--gap); }
+    h2 { font-size: 28px; }
+    h3 { font-size: 18px; font-weight: 700; margin: 0 0 var(--gap-s); }
+    p { margin: 0 0 0.75rem; }
+    p:last-child { margin-bottom: 0; }
+    strong { font-weight: 700; }
+
+    .divider {
+      display: flex;
+      align-items: center;
+      margin: var(--gap-xs) 0 0;
+      max-width: 180px;
+    }
+    .divider-line { flex: 1; border-top: 3px dashed var(--clr-green); }
+    .divider-cap {
+      width: 10px; height: 10px; border-radius: 50%;
+      background: var(--clr-green); flex-shrink: 0;
+    }
+
+    .sub {
+      color: var(--color-fg-3);
+      font-size: 14px;
+      margin: 0 0 var(--gap);
+    }
+
+    ul {
+      margin: 0;
+      padding: 0 0 0 1.15rem;
+    }
+    li { margin: 0 0 0.4rem; }
+    li:last-child { margin-bottom: 0; }
+    ol.ladder {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      counter-reset: ladder;
+    }
+    ol.ladder li {
+      counter-increment: ladder;
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+    }
+    ol.ladder li::before {
+      content: counter(ladder);
+      width: 22px; height: 22px;
+      border-radius: 50%;
+      background: var(--clr-green);
+      color: #fff;
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--gap);
+    }
+    .grid-3 {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: var(--gap);
+    }
+
+    .card {
+      border-radius: var(--radius);
+      border: 2px solid var(--clr-stroke);
+      background: var(--clr-bg-2);
+      padding: var(--gap);
+    }
+    .card-green { border-color: var(--clr-green); background: var(--clr-green-bg); }
+    .card-blue { border-color: var(--clr-blue); background: var(--clr-blue-bg); }
+    .card-orange { border-color: var(--clr-orange); background: var(--clr-orange-bg); }
+    .card-red { border-color: var(--clr-red); background: var(--clr-red-bg); }
+    .card h3 {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--color-fg);
+      margin: 0 0 var(--gap-xs);
+    }
+    .meta-icon {
+      display: block;
+      font-size: 28px;
+      margin-bottom: var(--gap-xs);
+    }
+    .meta-green .meta-icon { color: var(--clr-green); }
+    .card-label {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 12px;
+      letter-spacing: 0.35rem;
+      text-transform: uppercase;
+      margin: 0 0 var(--gap-xs);
+    }
+    .card-green .card-label { color: var(--clr-green); }
+    .card-blue .card-label { color: var(--clr-blue); }
+    .card-orange .card-label { color: var(--clr-orange); }
+    .card-red .card-label { color: var(--clr-red); }
+
+    .panel {
+      border-radius: var(--radius);
+      border: 2px solid var(--clr-stroke);
+      background: var(--color-bg);
+      padding: var(--gap);
+    }
+
+    .scroll-x {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      padding-bottom: 4px;
+    }
+
+    /* ---- Flow map ---- */
+    .flow {
+      display: flex;
+      align-items: stretch;
+      gap: 0;
+      min-width: 720px;
+    }
+    .flow-node {
+      flex: 1 1 0;
+      min-width: 140px;
+      text-align: center;
+      padding: var(--gap-s) 10px;
+      border-radius: var(--radius);
+      border: 2px solid var(--clr-stroke);
+      background: var(--color-bg);
+    }
+    .flow-node .n {
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      color: #fff;
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 14px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 8px;
+    }
+    .flow-node h3 { font-size: 15px; margin: 0 0 4px; }
+    .flow-node p { font-size: 13px; color: var(--color-fg-3); margin: 0; }
+    .n-1 { background: var(--clr-green); }
+    .n-2 { background: var(--clr-blue); }
+    .n-3 { background: var(--clr-orange); }
+    .n-4 { background: var(--clr-red); }
+    .flow-arrow {
+      width: 28px;
+      flex: 0 0 28px;
+      align-self: center;
+      height: 2px;
+      background: var(--clr-carbon);
+      position: relative;
+    }
+    .flow-arrow::after {
+      content: '';
+      position: absolute;
+      right: -1px; top: -4px;
+      border: 5px solid transparent;
+      border-left: 7px solid var(--clr-carbon);
+    }
+
+    /* Decision trees */
+    .line-v {
+      width: 2px;
+      height: 28px;
+      margin: 0 auto -1px;
+      background: var(--clr-carbon);
+      flex-shrink: 0;
+    }
+    .tree { min-width: 760px; }
+    .tree-q {
+      text-align: center;
+      padding: 12px;
+      border-radius: var(--radius);
+      border: 2px solid var(--clr-orange);
+      background: var(--clr-orange-bg);
+      font-family: var(--font-display);
+      font-weight: 700;
+    }
+    .tree-tee {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      column-gap: var(--gap);
+      height: 28px;
+      position: relative;
+    }
+    .tree-tee::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: calc((100% - var(--gap)) / 4);
+      right: calc((100% - var(--gap)) / 4);
+      height: 2px;
+      background: var(--clr-carbon);
+    }
+    .tree-leg {
+      width: 2px;
+      height: 28px;
+      margin: 0 auto;
+      background: var(--clr-carbon);
+    }
+    .tree-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      column-gap: var(--gap);
+      align-items: start;
+    }
+    .tree-col {
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      min-width: 0;
+    }
+    .tree-col > .card,
+    .tree-col > .panel,
+    .tree-col > .tree-row { width: 100%; }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-body);
+      font-weight: 700;
+      color: #fff;
+      background: var(--clr-green);
+      border-radius: var(--radius-pill);
+      padding: 15px 40px;
+      text-decoration: none;
+    }
+    .btn:hover { background: var(--clr-green-bg); color: var(--clr-green); }
+    .btn:active { transform: scale(0.98); }
+    .btn .material-symbols-outlined { font-size: 18px; color: inherit; }
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--gap);
+      flex-wrap: wrap;
+    }
+
+    .footer {
+      background: var(--color-bg-dark);
+      color: var(--color-fg-inverted);
+      padding: var(--gap) 1.5rem 0;
+    }
+    .footer p { margin: 0; font-size: 14px; color: var(--color-fg-inverted); }
+    .footer-stripe {
+      margin-top: var(--gap);
+      height: 6px;
+      background: linear-gradient(90deg, var(--clr-blue) 0 33.33%, var(--clr-yellow) 33.33% 66.66%, var(--clr-red) 66.66%);
+    }
+
+    .path-head { margin: 0 0 var(--gap-s); }
+    .path-head + .scroll-x { margin-bottom: var(--gap-m); }
+    .path-head h3 {
+      font-size: 22px;
+      font-weight: 400;
+      color: var(--color-fg);
+      margin: 0;
+    }
+    .path-head h3 b { font-weight: 700; }
+
+    @media (max-width: 800px) {
+      .jump { grid-template-columns: 1fr; }
+    }
+    </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="wrap">
+      <div class="logo-lockup" aria-label="RevPartners, a Walker Sands company">
+        <svg class="logomark" width="36" height="33" viewBox="0 0 180 164" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M0 81.8218C0 127.005 36.6384 163.644 81.8218 163.644V0H0V81.8218Z" fill="currentColor"></path>
+          <path d="M180 163.644C180 118.46 143.362 81.8218 98.1782 81.8218V163.644H180Z" fill="currentColor"></path>
+          <path d="M139.099 81.8218C161.701 81.8218 180 63.5026 180 40.9208C180 18.339 161.681 0 139.099 0H98.198V81.8218H139.099Z" fill="currentColor"></path>
+        </svg>
+        <div>
+          <div class="logo-name">RevPartners</div>
+          <div class="logo-tag">a Walker Sands company</div>
+        </div>
+      </div>
+      <p class="eyebrow">Channel Engine</p>
+      <h1><b>Deduplication</b> workflows</h1>
+      <p class="hero-lead">Two HubSpot workflows watch new records, look for a twin, and merge only when it is safe.</p>
+      <nav class="jump">
+        <a class="jump-green" href="#companies">
+          <span class="material-symbols-outlined">apartment</span>
+          Companies
+        </a>
+        <a class="jump-blue" href="#contacts">
+          <span class="material-symbols-outlined">group</span>
+          Contacts
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="title-block">
+        <p class="eyebrow">Map</p>
+        <h2><span>What happens</span> <b>every time</b></h2>
+        <div class="divider"><span class="divider-line"></span><span class="divider-cap"></span></div>
+      </div>
+      <p class="sub">Same first steps. Detect and merge rules live in each workflow below.</p>
+
+      <div class="scroll-x">
+      <div class="flow" aria-label="Workflow path">
+        <div class="flow-node">
+          <div class="n n-1">1</div>
+          <h3>New record</h3>
+          <p>Company or contact is created</p>
+        </div>
+        <div class="flow-arrow" aria-hidden="true"></div>
+        <div class="flow-node">
+          <div class="n n-2">2</div>
+          <h3>Wait 4 minutes</h3>
+          <p>Lets enrichment finish writing</p>
+        </div>
+        <div class="flow-arrow" aria-hidden="true"></div>
+        <div class="flow-node">
+          <div class="n n-3">3</div>
+          <h3>Scan for a twin</h3>
+          <p>Search close matches only</p>
+        </div>
+        <div class="flow-arrow" aria-hidden="true"></div>
+        <div class="flow-node">
+          <div class="n n-4">4</div>
+          <h3>Decide</h3>
+          <p>Merge, make a task, or stop</p>
+        </div>
+      </div>
+      </div>
+
+      <div class="scroll-x" style="margin-top: var(--gap);">
+      <div class="tree" aria-label="Merge or stop">
+        <div class="card card-orange">
+          <p class="card-label">After the scan</p>
+          <h3>Is this a safe twin?</h3>
+          <p>If there is no match, or not enough data, the workflow just ends.</p>
+        </div>
+        <div class="line-v"></div>
+        <div class="tree-tee" aria-hidden="true">
+          <div class="tree-leg"></div>
+          <div class="tree-leg"></div>
+        </div>
+        <div class="tree-row">
+          <div class="card card-green">
+            <p class="card-label">Yes</p>
+            <h3>Merge</h3>
+            <p>The extra record is folded into the winner. A note is added on the leftover record.</p>
+          </div>
+          <div class="card card-red">
+            <p class="card-label">No</p>
+            <h3>Do not merge</h3>
+            <p>Companies may get a task for the owner. Contacts just end.</p>
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt" id="companies">
+    <div class="wrap">
+      <div class="section-head title-block">
+        <div>
+          <p class="eyebrow">Workflow</p>
+          <h2><b>Target Account</b> Deduplication</h2>
+          <div class="divider"><span class="divider-line"></span><span class="divider-cap"></span></div>
+        </div>
+        <a class="btn" href="https://app-eu1.hubspot.com/workflows/24996059/platform/flow/4692900045/edit">Open in HubSpot <span class="material-symbols-outlined">arrow_forward</span></a>
+      </div>
+
+      <div class="grid-3 meta-green" style="margin-bottom: var(--gap);">
+        <div class="card">
+          <span class="material-symbols-outlined meta-icon" aria-hidden="true">play_arrow</span>
+          <h3>Starts</h3>
+          <p>When a company is created.</p>
+        </div>
+        <div class="card">
+          <span class="material-symbols-outlined meta-icon" aria-hidden="true">skip_next</span>
+          <h3>Skips</h3>
+          <p>Companies that already have an HG child company ID.</p>
+        </div>
+        <div class="card">
+          <span class="material-symbols-outlined meta-icon" aria-hidden="true">repeat_one</span>
+          <h3>Runs</h3>
+          <p>Once. It will not enroll the same company again.</p>
+        </div>
+      </div>
+
+      <div class="card card-blue" style="margin-bottom: var(--gap);">
+        <p class="card-label">Detect</p>
+        <h3>Same root domain</h3>
+        <p>The part of the website before the country ending. <b>cocacola.com</b> and <b>cocacola.co.uk</b> are a match. No website → the workflow ends. Name and LinkedIn are not used.</p>
+      </div>
+
+      <div class="scroll-x">
+      <div class="tree" aria-label="Company merge or task rules">
+        <div class="tree-q">Found a twin. Merge it?</div>
+        <div class="line-v"></div>
+        <div class="tree-tee" aria-hidden="true">
+          <div class="tree-leg"></div>
+          <div class="tree-leg"></div>
+        </div>
+        <div class="tree-row">
+          <div class="tree-col">
+            <div class="card card-green">
+              <p class="card-label">Merge</p>
+              <h3>We are sure</h3>
+              <ul>
+                <li>Record Source is not CRM UI. Nobody typed this in by hand.</li>
+                <li>Lifecycle is Target or Lead</li>
+              </ul>
+            </div>
+            <div class="line-v"></div>
+            <div class="tree-tee" aria-hidden="true">
+              <div class="tree-leg"></div>
+              <div class="tree-leg"></div>
+            </div>
+            <div class="tree-row">
+              <div class="panel">
+                <h3>Which company we keep</h3>
+                <ol class="ladder">
+                  <li>Target Account is true</li>
+                  <li>Most contacts</li>
+                  <li>The website ends in .com</li>
+                  <li>Older HubSpot record</li>
+                </ol>
+              </div>
+              <div class="panel">
+                <h3>After the merge</h3>
+                <ul>
+                  <li>If either record is a Customer, the leftover record stays a Customer</li>
+                  <li>Same idea for a churned customer</li>
+                  <li>A short note is written on the winner</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="tree-col">
+            <div class="card card-red">
+              <p class="card-label">Task</p>
+              <h3>No auto-merge</h3>
+              <p>HubSpot makes a task for the company owner. Due in three weekdays. Nothing is merged.</p>
+              <ul>
+                <li>Record Source is CRM UI. A person created this in HubSpot.</li>
+                <li>Lifecycle is MQL, SQL, Opportunity, Customer, or Live</li>
+              </ul>
+              <p style="margin-top: 0.75rem;">Any other lifecycle (Subscriber, blank, and so on) just ends. No merge. No task.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="contacts">
+    <div class="wrap">
+      <div class="section-head title-block">
+        <div>
+          <p class="eyebrow">Workflow</p>
+          <h2><b>Contact</b> Deduplication</h2>
+          <div class="divider"><span class="divider-line"></span><span class="divider-cap"></span></div>
+        </div>
+        <a class="btn" href="https://app-eu1.hubspot.com/workflows/24996059/platform/flow/4533852383/edit">Open in HubSpot <span class="material-symbols-outlined">arrow_forward</span></a>
+      </div>
+
+      <div class="grid-3 meta-green" style="margin-bottom: var(--gap);">
+        <div class="card">
+          <span class="material-symbols-outlined meta-icon" aria-hidden="true">play_arrow</span>
+          <h3>Starts</h3>
+          <p>When a contact is created.</p>
+        </div>
+        <div class="card">
+          <span class="material-symbols-outlined meta-icon" aria-hidden="true">skip_next</span>
+          <h3>Skips</h3>
+          <p>No extra skip rule. Every new contact can enroll.</p>
+        </div>
+        <div class="card">
+          <span class="material-symbols-outlined meta-icon" aria-hidden="true">repeat_one</span>
+          <h3>Runs</h3>
+          <p>Once. Same four-minute wait as companies.</p>
+        </div>
+      </div>
+
+      <div class="scroll-x">
+      <div class="tree" aria-label="Contact merge rules">
+        <div class="tree-q">Do these two contacts look like the same person?</div>
+        <div class="line-v"></div>
+        <div class="tree-tee" aria-hidden="true">
+          <div class="tree-leg"></div>
+          <div class="tree-leg"></div>
+        </div>
+        <div class="tree-row">
+          <div class="tree-col">
+            <div class="card card-green">
+              <p class="card-label">Merge</p>
+              <h3>We are sure</h3>
+              <p>If one of the following is true:</p>
+              <ul>
+                <li>Same email</li>
+                <li>Same name AND same company. One email can be blank. We keep the contact that has the email.</li>
+                <li>Same name AND LinkedIn (one contact not associated to deal or company)</li>
+                <li>Same name OR same LinkedIn, AND only one is tied to a company. We keep the contact with the company.</li>
+              </ul>
+            </div>
+            <div class="line-v"></div>
+            <div class="tree-tee" aria-hidden="true">
+              <div class="tree-leg"></div>
+              <div class="tree-leg"></div>
+            </div>
+            <div class="tree-row">
+              <div class="panel">
+                <h3>Winners selected by:</h3>
+                <ol class="ladder">
+                  <li>Has an email. A contact with no email loses.</li>
+                  <li>Lower bounce count. Empty or under 1 beats a bouncing inbox.</li>
+                  <li>Tied to a company</li>
+                  <li>Fuller profile: name, title, or owner filled in</li>
+                  <li>More recent activity</li>
+                  <li>Older HubSpot record</li>
+                </ol>
+              </div>
+              <div class="panel">
+                <h3>After the merge</h3>
+                <ul>
+                  <li>Customer stage is protected, same as companies</li>
+                  <li>A short note is written on the winner</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="tree-col">
+            <div class="card card-red">
+              <p class="card-label">Stop</p>
+              <h3>Workflow stops</h3>
+              <p>Nothing is merged. HubSpot checks whether the contact has an owner, then ends. No task is created. Open the contact record to review.</p>
+              <ul>
+                <li>The only clue is a phone number</li>
+                <li>The match is weak</li>
+                <li>Both are Customers, but with different relationship labels</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="wrap">
+      <p>RevPartners / Channel Engine / Deduplication Workflows</p>
+    </div>
+    <div class="footer-stripe"></div>
+  </footer>
+</body>
+</html>

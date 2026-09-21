@@ -58,7 +58,8 @@ colors_and_type.css              ← Full CSS custom properties
 assets/                          ← Logos. Favicon = RP-Mark-2026-Green.svg
 illustrations/                   ← SVG library (Backgrounds, Cubes, Drawings, …)
 slides/                          ← 16:9 specimens
-docs/                            ← Google Doc specimens (01 branded, 02 working)
+docs/                            ← Letterhead shells (01 branded, 02 working)
+examples/                        ← Finished HTML docs to copy (feasibility, spec, process, guides)
 fonts/                           ← Montserrat, Inter, Material Symbols (local)
 preview/                         ← Token/component HTML specimens
 ui_kits/website/                 ← Website UI kit (reference, not HubSpot modules)
@@ -301,12 +302,18 @@ Empty · Signpost (section divider, giant faint number) · Basic Title · Title 
 
 ## GOOGLE DOCS
 
-Two templates. Purpose picks the file:
+**Copy a finished example** from `examples/` (see that folder’s README). Don’t invent letterhead.
 
-- `docs/01-branded.html` — general branded doc (title, heading ladder, alert boxes, styled table).
-- `docs/02-working.html` — client/partner deliverable (BLUF, comparison, process, notes).
+- `examples/feasibility-jesus-image-stripe-checkout.html` — scoping / “is this feasible”
+- `examples/process-channel-engine-dedupe.html` — workflow / decision tree
+- `examples/spec-mentavi-journey-event.html` — long technical spec
+- `examples/one-pager-forecast-purchase-orders.html` — compact implementation one-pager
+- `examples/guide-chat-visitor-identification.html` — step-by-step with code
+- `examples/guide-tech-scorecard-epic-metrics.html` — operating guide / scorecard
 
-Chrome (both): green header + white 2026 mark, River Bed headings, Inter body, footer `RevPartners / …` + diagonal blue/yellow/red stripe. Colored Heading 2–5 styles exist in the live Google Doc as **optional** — default to dark headings.
+`docs/01-branded.html` and `docs/02-working.html` are empty letterhead shells. Use them only if none of the examples fit.
+
+Chrome: green header + white 2026 mark, River Bed headings, Inter body, footer `RevPartners / …` + diagonal blue/yellow/red stripe. Colored Heading 2–5 styles exist in the live Google Doc as **optional** — default to dark headings.
 
 ---
 

@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="assets/RP-Mark-2026-Green.svg" type="image/svg+xml">
+  <title>Application Fee Payment Tracking — Jesus Image</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&amp;family=Inter:wght@400;500;700&amp;display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+  <style>
+    :root {
+      --clr-off-white: #FDFDFD;  --clr-mercury: #F3F3F4;
+      --clr-steel: #A1A2A7;      --clr-river-bed: #434761;
+      --clr-ebony-clay: #24273A;
+      --clr-green: #17B451;  --clr-blue: #329DFF;
+      --clr-orange: #F7761E;  --clr-red: #FB3131;
+      --clr-purple: #8C32FF;
+      --clr-yellow: #FBAA31;
+      --clr-green-bg: rgba(23,180,81,0.20);
+      --clr-blue-bg: rgba(50,157,255,0.20);
+      --clr-orange-bg: rgba(239,129,27,0.20);
+      --color-bg: var(--clr-off-white);
+      --color-fg: var(--clr-river-bed);
+      --color-fg-3: var(--clr-steel);
+      --color-fg-inverted: var(--clr-off-white);
+      --clr-stroke: rgba(36,39,58,0.10);
+      --font-display: 'Montserrat', sans-serif;
+      --font-body: 'Inter', sans-serif;
+      --font-icons: 'Material Symbols Outlined', sans-serif;
+      --gap-xs: .5rem; --gap-s: 1rem; --gap: 1.5rem; --gap-m: 3rem;
+      --radius: 8px; --radius-lg: 16px;
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    body { margin: 0; font-family: var(--font-body); font-size: 17px; line-height: 1.5; color: var(--color-fg); background: var(--color-bg); }
+    .doc-header { background: var(--clr-green); padding: 1.25rem 2rem; display: flex; align-items: center; gap: 1rem; }
+    .doc-header svg { width: 36px; height: auto; flex-shrink: 0; }
+    .doc-header svg path { fill: var(--color-fg-inverted); }
+    .doc-header-text { color: var(--color-fg-inverted); font-family: var(--font-display); font-weight: 700; font-size: 15px; }
+    .doc-header-text span { display: block; font-weight: 400; font-size: 13px; opacity: 0.9; margin-top: 2px; }
+    .page { max-width: 720px; margin: 0 auto; padding: 2.5rem 2rem 5rem; }
+    .doc-meta { font-size: 14px; color: var(--color-fg-3); margin-bottom: var(--gap-s); }
+    h1 { font-family: var(--font-display); font-weight: 700; font-size: clamp(1.5rem, 4vw, 2rem); color: var(--clr-ebony-clay); margin: 0 0 var(--gap-s); line-height: 1.25; }
+    .subtitle { font-size: 17px; color: var(--color-fg); margin: 0 0 var(--gap-m); max-width: 38em; }
+    h2 { font-family: var(--font-display); font-weight: 700; font-size: 1.1rem; color: var(--clr-ebony-clay); margin: 0 0 var(--gap-s); }
+    .title-divider { display: flex; align-items: center; margin-bottom: var(--gap-m); }
+    .title-divider-line { flex: 1; border: none; border-top: 2px dashed var(--clr-green); }
+    .title-divider-cap { width: 10px; height: 10px; border-radius: 50%; background: var(--clr-green); flex-shrink: 0; }
+    .callout { border-radius: var(--radius); padding: var(--gap); margin-bottom: var(--gap); border: 2px dashed; }
+    .callout-yes { border-color: var(--clr-green); background: var(--clr-green-bg); }
+    .callout-info { border-color: var(--clr-blue); background: var(--clr-blue-bg); }
+    .callout-scope { border-color: var(--clr-orange); background: var(--clr-orange-bg); }
+    .callout-label { font-family: var(--font-display); font-weight: 700; font-size: 13px; letter-spacing: 0.35rem; text-transform: uppercase; margin-bottom: var(--gap-xs); }
+    .callout-yes .callout-label { color: var(--clr-green); }
+    .callout-info .callout-label { color: var(--clr-blue); }
+    .callout-scope .callout-label { color: var(--clr-orange); }
+    .callout p { margin: 0; }
+    .callout p + p { margin-top: 0.75rem; }
+    .section { border: 2px solid var(--clr-stroke); border-radius: var(--radius); padding: var(--gap); margin-bottom: var(--gap); }
+    .section-eyebrow { font-family: var(--font-display); font-weight: 700; font-size: 13px; letter-spacing: 0.35rem; text-transform: uppercase; color: var(--clr-green); margin-bottom: var(--gap-xs); }
+    .flow { list-style: none; margin: 0; padding: 0; counter-reset: flow; }
+    .flow li { counter-increment: flow; display: flex; gap: var(--gap-s); padding: var(--gap-s) 0; border-bottom: 1px solid var(--clr-stroke); font-size: 15px; }
+    .flow li:last-child { border-bottom: none; }
+    .flow-num { flex-shrink: 0; width: 28px; height: 28px; border-radius: 50%; background: var(--clr-green); color: white; font-family: var(--font-display); font-weight: 700; font-size: 14px; display: flex; align-items: center; justify-content: center; }
+    .flow-num::before { content: counter(flow); }
+    .flow li:nth-child(1) .flow-num { background: var(--clr-green); }
+    .flow li:nth-child(2) .flow-num { background: var(--clr-blue); }
+    .flow li:nth-child(3) .flow-num { background: var(--clr-orange); }
+    .flow li:nth-child(4) .flow-num { background: var(--clr-red); }
+    .flow li:nth-child(5) .flow-num { background: var(--clr-purple); }
+    code { font-size: 0.88em; background: var(--clr-mercury); padding: 2px 6px; border-radius: 4px; word-break: break-all; display: inline-block; margin-top: 0.35rem; }
+    .url-example { font-size: 14px; background: var(--clr-mercury); padding: var(--gap-s); border-radius: var(--radius); word-break: break-all; margin: var(--gap-s) 0 0; line-height: 1.4; }
+    .data-table { width: 100%; border-collapse: collapse; font-size: 15px; margin: var(--gap-s) 0 0; }
+    .data-table th, .data-table td { border: 1px solid var(--clr-stroke); padding: 10px 12px; text-align: left; vertical-align: top; }
+    .data-table th { background: var(--clr-green-bg); font-family: var(--font-display); font-weight: 700; font-size: 14px; }
+    .stack { list-style: none; margin: 0; padding: 0; }
+    .stack li { display: flex; align-items: flex-start; gap: var(--gap-s); padding: var(--gap-xs) 0; font-size: 15px; }
+    .stack .material-symbols-outlined { font-family: var(--font-icons); color: var(--clr-green); font-size: 22px; font-variation-settings: 'FILL' 1, 'wght' 400; flex-shrink: 0; }
+    .prose { font-size: 15px; margin: 0 0 var(--gap-s); }
+    .prose:last-child { margin-bottom: 0; }
+    .hours-total { font-family: var(--font-display); font-weight: 700; font-size: 1.05rem; color: var(--clr-green); margin-top: var(--gap-s); }
+    .hours-note { font-size: 14px; color: var(--color-fg-3); margin-top: var(--gap-xs); }
+    .doc-footer { position: fixed; bottom: 0; left: 0; right: 0; background: var(--color-bg); border-top: 1px solid var(--clr-stroke); padding: 10px 2rem 14px; display: flex; justify-content: space-between; font-size: 12px; color: var(--color-fg-3); }
+    .footer-stripe { position: fixed; bottom: 0; left: 0; right: 0; height: 4px; display: flex; z-index: 10; }
+    .footer-stripe span { flex: 1; }
+    .footer-stripe .s-blue { background: var(--clr-blue); }
+    .footer-stripe .s-yellow { background: var(--clr-yellow); }
+    .footer-stripe .s-red { background: var(--clr-red); }
+    @media (max-width: 600px) { .page { padding: 1.5rem 1rem 5rem; } }
+  </style>
+</head>
+<body>
+
+  <header class="doc-header">
+    <svg viewBox="0 0 180 164" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M0 81.8218C0 127.005 36.6384 163.644 81.8218 163.644V0H0V81.8218Z"></path>
+      <path d="M180 163.644C180 118.46 143.362 81.8218 98.1782 81.8218V163.644H180Z"></path>
+      <path d="M139.099 81.8218C161.701 81.8218 180 63.5026 180 40.9208C180 18.339 161.681 0 139.099 0H98.198V81.8218H139.099Z"></path>
+    </svg>
+    <div class="doc-header-text">
+      Jesus Image
+      <span>Application Fee Payment Tracking · Prepared by RevPartners</span>
+    </div>
+  </header>
+
+  <main class="page">
+    <p class="doc-meta">Project overview · August 2026</p>
+    <h1>Application Fee Student Association Feasibility</h1>
+    <div class="title-divider" aria-hidden="true">
+    
+      <hr class="title-divider-line"><span class="title-divider-cap"></span>
+    </div>
+    <h2>The question</h2>
+      <p>Can we record each application fee in HubSpot and associate it with the correct student and Application — even when a parent, spouse, or sponsor pays using their own email at checkout?</p>
+    
+
+      <h2>Answer</h2>
+
+    <div class="callout callout-yes">
+
+      <p><strong>Yes, this is feasible.</strong> We can use Stripe-hosted checkout pages (Stripe Payment Links) plus a small automation in your HubSpot account so every fee payment appears on the right Application and student record — and the same student/program details are written back onto the Stripe payment for reconciliation.</p>
+    </div>
+
+    <section class="section">
+      <div class="section-eyebrow">The problem today</div>
+      <h2>Why payments are hard to match</h2>
+      <p class="prose">Applicants complete their application in HubSpot, then pay an application fee through a shared payment link. Often the person who pays is not the student — a parent, spouse, or sponsor may use their own email at checkout.</p>
+      <p class="prose">HubSpot correctly records the payment, but it associates the payment with whoever entered their email at checkout. Your team cannot reliably see which student the fee was for without manual cleanup.</p>
+    </section>
+
+    <section class="section">
+      <div class="section-eyebrow">The goal</div>
+      <h2>Data tracked in HubSpot and Stripe</h2>
+      <table class="data-table">
+        <thead><tr><th>Information</th><th>HubSpot</th><th>Stripe</th></tr></thead>
+        <tbody>
+          <tr><td>Applicant name</td><td>On Payment + Application / Contact</td><td>Payment metadata</td></tr>
+          <tr><td>Applicant email</td><td>On Payment + Contact</td><td>Payment metadata</td></tr>
+          <tr><td>Program / class applying for</td><td>On Payment + Application</td><td>Payment metadata</td></tr>
+          <tr><td>School year / program year</td><td>On Payment + Application</td><td>Payment metadata</td></tr>
+          <tr><td>Application + student association</td><td>Payment linked to Application and student Contact</td><td>Tracking ID on Checkout Session</td></tr>
+          <tr><td>Amount paid + who paid</td><td>Payment record; payer Contact (recommended)</td><td>Native Stripe payment + payer email</td></tr>
+        </tbody>
+      </table>
+      <p class="prose" style="margin-top:var(--gap-s);">In short: HubSpot gets the associations and reporting you need, and staff can also reconcile in Stripe by <strong>student name and program</strong> — without asking the payer to re-enter applicant details at checkout.</p>
+    </section>
+
+    <section class="section">
+      <div class="section-eyebrow">Recommended approach</div>
+      <h2>How it will work</h2>
+      <ol class="flow">
+        <li><span class="flow-num"></span><span>We set up one Stripe Payment Link per class type (typically three links), each with the correct application fee amount.</span></li>
+        <li><span class="flow-num"></span><span>When an application reaches the <strong>Application fee</strong> stage, your portal shows a pay link unique to that application. The portal selects the Stripe link for that class type and adds a tracking ID for the Application.<br><div class="url-example">https://buy.stripe.com/CLASS_A_LINK?client_reference_id=987654321</div><br><span style="font-size:14px;color:var(--color-fg-3);">Class type is set by which base link is used (<code>JS_IN_PERSON</code>, <code>JS_ONLINE</code>, <code>HOB_IN_PERSON</code>, etc.). The tracking ID is your HubSpot Application record ID.</span></span></li>
+        <li><span class="flow-num"></span><span>The student shares the link. The payer completes Stripe checkout using their own email — no change for families.</span></li>
+        <li><span class="flow-num"></span><span>When payment succeeds, Stripe notifies a HubSpot serverless function in your account.</span></li>
+        <li><span class="flow-num"></span><span>That function looks up the Application, creates or updates the HubSpot Payment (associations + payer), marks the fee paid, and <strong>writes applicant name, applicant email, program/class, and school year onto the Stripe payment as metadata</strong> so finance can reconcile in Stripe as well as HubSpot.</span></li>
+      </ol>
+      <p class="prose" style="margin-top:var(--gap-s); color:var(--color-fg-3);">This replaces today’s HubSpot payment-link checkout with Stripe Payment Links, and adds the missing step so the payment follows the application — not only the payer’s email.</p>
+    </section>
+
+    <section class="section">
+      <div class="section-eyebrow">Checkout experience</div>
+      <h2>Stripe Payment Links</h2>
+      <p class="prose">Stripe Payment Links are hosted checkout pages — the same kind of secure, card-on-file experience families expect. Setup is straightforward: create a product and price for each class fee, then generate a link. Branding (logo, colors, description) is available within Stripe’s standard options.</p>
+      <p class="prose">We do not need to build a custom payment form or handle card data. Stripe remains the payment processor; HubSpot remains your system of record for applications and payments.</p>
+    </section>
+
+    <section class="section">
+      <div class="section-eyebrow">Tracking details</div>
+      <h2>What the URL carries — and what we write after payment</h2>
+      <table class="data-table">
+        <thead><tr><th>Item</th><th>Effect</th></tr></thead>
+        <tbody>
+          <tr><td>Application tracking ID on the link</td><td>Tells our automation which Application (and student) the payment is for. Does not change the charge amount.</td></tr>
+          <tr><td>Class type / fee amount</td><td>Determined by which payment link the portal shows (based on the Application). Not a separate URL parameter.</td></tr>
+          <tr><td>Applicant name, email, program, school year</td><td>Already on the Application in HubSpot. After payment, automation copies these onto the HubSpot Payment <em>and</em> onto Stripe payment metadata. They are not typed again at checkout, and they are not passed as free-form URL parameters.</td></tr>
+          <tr><td>Extra questions at checkout</td><td>Optional. Stripe Payment Links can show up to three buyer-filled custom fields if you want additional info from the payer. That is separate from the applicant/program metadata above.</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="section">
+      <div class="section-eyebrow">Reliability</div>
+      <h2>Duplicate payments and payers</h2>
+      <p class="prose"><strong>Duplicates:</strong> Stripe may send the same payment notification more than once. Our automation checks whether a payment was already recorded before creating a new one, so you will not see duplicate Payment records.</p>
+      <p class="prose"><strong>Payers:</strong> When someone other than the student pays, we can create or update a Contact for the payer and link that person to the payment, while still associating the payment with the correct student and Application.</p>
+    </section>
+
+    <section class="section">
+      <div class="section-eyebrow">Scope</div>
+      <h2>What is included</h2>
+      <ul class="stack">
+        <li><span class="material-symbols-outlined">check_circle</span><span>Application fee tied to the correct student and Application</span></li>
+        <li><span class="material-symbols-outlined">check_circle</span><span>Payment records and reporting in HubSpot</span></li>
+        <li><span class="material-symbols-outlined">check_circle</span><span>Same applicant/program details written to Stripe payment metadata for reconciliation</span></li>
+        <li><span class="material-symbols-outlined">check_circle</span><span>Stripe checkout for application fees</span></li>
+        <li><span class="material-symbols-outlined">check_circle</span><span>Portal pay button at Application fee stage</span></li>
+      </ul>
+    </section>
+
+    <section class="section">
+      <div class="section-eyebrow">Next steps</div>
+      <h2>What we need from Jesus Image to begin</h2>
+      <ul class="stack">
+        <li><span class="material-symbols-outlined">key</span><span>Access to your Stripe account (test mode first, then production)</span></li>
+        <li><span class="material-symbols-outlined">payments</span><span>Confirmed application fee amount for each class type</span></li>
+        <li><span class="material-symbols-outlined">deployed_code</span><span>Permission to deploy a serverless function and private app in HubSpot</span></li>
+        <li><span class="material-symbols-outlined">checklist</span><span>Agreement on how staff will verify success (report, list view, or Application property)</span></li>
+      </ul>
+    </section>
+
+    <section class="section">
+      <div class="section-eyebrow">Estimate</div>
+      <h2>Timeline and effort</h2>
+      <table class="data-table">
+        <thead><tr><th>Phase</th><th>Estimate</th></tr></thead>
+        <tbody>
+          <tr><td>Stripe payment links (one per class)</td><td>~8–12 hours</td></tr>
+          <tr><td>Webhook + serverless (HubSpot write + Stripe metadata)</td><td>~10–14 hours</td></tr>
+          <tr><td>Application portal pay link</td><td>~4–8 hours</td></tr>
+          <tr><td>HubSpot properties, testing, and handoff</td><td>~4–6 hours</td></tr>
+        </tbody>
+      </table>
+      <p class="hours-total">Total: approximately 26–40 hours for a production-ready MVP</p>
+      <p class="hours-note">A working proof of concept (one class, manual test link) can often be completed in one to two days once access is in place.</p>
+    </section>
+
+    <div class="callout callout-info">
+      <div class="callout-label">Prepared by</div>
+      <p><h2>RevPartners</h2><br>Questions about this overview can be directed to your RevOps strategist.</p>
+    </div>
+  </main>
+
+  <footer class="doc-footer">
+    <span>Jesus Image · Application Fee Payment Tracking</span>
+    <span>RevPartners</span>
+  </footer>
+  <div class="footer-stripe" aria-hidden="true">
+    <span class="s-blue"></span><span class="s-yellow"></span><span class="s-red"></span>
+  </div>
+
+
+
+</body>
+</html>

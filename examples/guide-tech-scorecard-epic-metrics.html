@@ -1,0 +1,1247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tech Scorecard &amp; Epic Metrics | RevPartners</title>
+  <link rel="icon" href="assets/RP-Mark-2026-Green.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,300,1,0" rel="stylesheet">
+  <style>
+    :root {
+      --clr-off-white: #FDFDFD;  --clr-mercury: #F3F3F4;
+      --clr-iron: #DDDEE2;       --clr-steel: #A1A2A7;     --clr-carbon: #555970;
+      --clr-river-bed: #434761;  --clr-ebony-clay: #24273A;
+
+      --clr-green:  #17B451;
+      --clr-blue:   #329DFF;
+      --clr-orange: #F7761E;
+      --clr-red:    #FB3131;
+      --clr-purple: #8C32FF;
+      --clr-yellow: #FBAA31;
+
+      --clr-green-bg:  rgba(23,180,81,0.20);   --clr-blue-bg:   rgba(50,157,255,0.20);
+      --clr-orange-bg: rgba(239,129,27,0.20);  --clr-red-bg:    rgba(251,49,49,0.20);
+      --clr-purple-bg: rgba(140,50,255,0.20);
+
+      --clr-primary: var(--clr-green);
+      --clr-text: var(--clr-river-bed);
+      --clr-title: var(--clr-ebony-clay);
+      --color-bg: var(--clr-off-white);
+      --color-bg-alt: var(--clr-mercury);
+      --color-bg-dark: var(--clr-ebony-clay);
+      --color-fg: var(--clr-river-bed);
+      --color-fg-3: var(--clr-steel);
+      --color-fg-inverted: var(--clr-off-white);
+      --color-primary: var(--clr-green);
+      --color-primary-bg: var(--clr-green-bg);
+      --color-border: rgba(36,39,58,0.10);
+      --clr-stroke: rgba(36,39,58,0.10);
+      --clr-stroke-2: rgba(36,39,58,0.30);
+      --clr-bg-2: var(--clr-mercury);
+      --color-link: var(--clr-green);
+
+      --role-chrome: var(--clr-green);
+      --role-chrome-bg: var(--clr-green-bg);
+      --role-yes: var(--clr-green);
+      --role-no: var(--clr-red);
+      --role-ask: var(--clr-orange);
+      --role-info: var(--clr-blue);
+
+      --font-display: "Montserrat", sans-serif;
+      --font-body: "Inter", sans-serif;
+      --font-icons: "Material Symbols Outlined", sans-serif;
+
+      --gap-xxs: .25rem; --gap-xs: .5rem; --gap-s: 1rem; --gap: 1.5rem;
+      --gap-m: 3rem; --gap-l: 3.75rem;
+
+      --radius-sm: 4px;
+      --radius: 8px;
+      --radius-pill: 120px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; scroll-padding-top: 72px; }
+    body {
+      background: var(--color-bg);
+      color: var(--color-fg);
+      font-family: var(--font-body);
+      font-weight: 400;
+      font-size: 17px;
+      line-height: 1.4;
+    }
+    img { max-width: 100%; }
+    a { color: var(--color-link); font-weight: 700; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    strong, b { font-weight: 700; }
+    h1, h2, h3, h4 { font-family: var(--font-display); color: var(--color-fg); font-weight: 700; line-height: 1.2; }
+    h1 { font-size: clamp(32px, 5vw, 48px); }
+    h2 { font-size: 28px; }
+    h3 { font-size: 20px; }
+    h4 { font-size: 16px; }
+    p { margin: 0 0 1rem; }
+    ul, ol { margin: 0 0 1rem; padding-left: 1.35rem; }
+    li { margin: 0.25rem 0; }
+
+    .material-symbols-outlined {
+      font-family: var(--font-icons);
+      font-weight: 300;
+      font-variation-settings: "FILL" 1, "wght" 300, "GRAD" 0, "opsz" 24;
+      vertical-align: middle;
+      font-size: 22px;
+      line-height: 1;
+    }
+
+    .doc-header {
+      background: var(--clr-green);
+      color: var(--color-fg-inverted);
+      padding: 0.85rem 0;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+    .doc-header .inner {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .mark { width: 36px; height: 33px; flex-shrink: 0; }
+    .mark path { fill: var(--clr-off-white); }
+    .doc-header p { margin: 0; font-size: 13px; color: var(--clr-off-white); }
+    .doc-header strong { color: var(--clr-off-white); }
+    .doc-header .header-meta {
+      margin-left: auto;
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 13px;
+      letter-spacing: 0.02em;
+    }
+    .nav-toggle {
+      display: none;
+      margin-left: 0.5rem;
+      border: 2px solid var(--clr-off-white);
+      background: transparent;
+      color: var(--clr-off-white);
+      border-radius: var(--radius-pill);
+      padding: 6px 14px;
+      font-family: var(--font-body);
+      font-weight: 700;
+      font-size: 13px;
+      cursor: pointer;
+    }
+
+    .shell {
+      display: flex;
+      align-items: flex-start;
+      max-width: 1440px;
+      margin: 0 auto;
+    }
+    .side-nav {
+      position: sticky;
+      top: 56px;
+      flex: 0 0 210px;
+      width: 210px;
+      height: calc(100vh - 56px);
+      overflow-y: auto;
+      padding: 1.25rem 0.75rem 2rem 1.25rem;
+      border-right: 1px solid var(--clr-stroke);
+      background: var(--color-bg);
+    }
+    .side-nav .nav-label {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--role-chrome);
+      margin: 0 0 0.75rem;
+    }
+    .side-nav ol { list-style: none; margin: 0; padding: 0; }
+    .side-nav li { margin: 0 0 2px; }
+    .side-nav a {
+      display: block;
+      font-weight: 400;
+      font-size: 14px;
+      color: var(--color-fg);
+      text-decoration: none;
+      padding: 0.4rem 0.65rem;
+      border-radius: var(--radius);
+      border: 2px solid transparent;
+    }
+    .side-nav a:hover { background: var(--role-chrome-bg); text-decoration: none; }
+    .side-nav a.active {
+      font-weight: 700;
+      border-color: var(--role-chrome);
+      background: var(--role-chrome-bg);
+    }
+
+    .wrap {
+      flex: 1 1 auto;
+      min-width: 0;
+      padding: 40px 48px 5rem 32px;
+    }
+
+    .eyebrow {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 15px;
+      letter-spacing: 0.5rem;
+      text-transform: uppercase;
+      color: var(--role-chrome);
+      margin-bottom: 1rem;
+    }
+    .hero { margin-bottom: var(--gap); }
+    .hero h1 { margin-bottom: 0.75rem; }
+    .hero h1 span { font-weight: 400; }
+    .lede { font-size: 18px; max-width: 720px; }
+    .title-rule {
+      display: flex;
+      align-items: center;
+      margin: 1.25rem 0 2rem;
+    }
+    .title-rule .line {
+      flex: 1;
+      border-top: 3px dashed var(--role-chrome);
+    }
+    .title-rule .cap {
+      width: 12px; height: 12px; border-radius: 50%;
+      background: var(--role-chrome); flex-shrink: 0;
+    }
+
+    .bluf {
+      background: var(--role-chrome-bg);
+      border: 2px solid var(--clr-green);
+      border-radius: var(--radius);
+      padding: 1.25rem 1.5rem;
+      margin: 0 0 var(--gap);
+    }
+    .bluf .label {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 12px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--clr-green);
+      margin-bottom: 0.35rem;
+    }
+    .bluf p { margin: 0; font-size: 17px; }
+
+    .section {
+      margin: 0 0 var(--gap-m);
+      padding-top: 0.5rem;
+    }
+    .section > h2 {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.75rem;
+    }
+    .section > h2 .material-symbols-outlined { color: var(--role-chrome); font-size: 28px; }
+    .section-lead { color: var(--clr-carbon); margin-bottom: 1.25rem; max-width: 760px; }
+
+    .split-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--gap-s);
+      margin-bottom: var(--gap);
+    }
+    .system-card {
+      border: 2px solid var(--clr-stroke);
+      border-radius: var(--radius);
+      background: var(--clr-bg-2);
+      padding: 1.25rem 1.35rem;
+    }
+    .system-card.accent {
+      border-color: var(--clr-green);
+      background: var(--clr-green-bg);
+    }
+    .system-card.accent-blue {
+      border-color: var(--clr-blue);
+      background: var(--clr-blue-bg);
+    }
+    .system-card .sys-eyebrow {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 0.4rem;
+    }
+    .system-card.accent .sys-eyebrow { color: var(--clr-green); }
+    .system-card.accent-blue .sys-eyebrow { color: var(--clr-blue); }
+    .system-card h3 { margin-bottom: 0.5rem; font-size: 22px; }
+    .system-card ul { margin: 0.75rem 0 0; }
+    .system-card .meta-line {
+      font-size: 14px;
+      color: var(--clr-carbon);
+      margin: 0;
+    }
+
+    .meta-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--gap-s);
+      margin: 0 0 var(--gap);
+    }
+    .meta-card {
+      background: var(--clr-bg-2);
+      border: 2px solid var(--clr-stroke);
+      border-radius: var(--radius);
+      padding: 1rem 1.15rem;
+    }
+    .meta-card .label {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--color-fg-3);
+      margin-bottom: 0.3rem;
+    }
+    .meta-card p { margin: 0; font-size: 15px; }
+
+    .weight-stack {
+      display: flex;
+      height: 28px;
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 2px solid var(--clr-stroke);
+      margin: 0 0 0.75rem;
+    }
+    .weight-stack span {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 11px;
+      color: var(--clr-ebony-clay);
+      min-width: 0;
+    }
+    .weight-stack .w-time { background: var(--clr-green); color: #fff; flex: 30; }
+    .weight-stack .w-qc { background: var(--clr-blue); color: #fff; flex: 25; }
+    .weight-stack .w-hygiene { background: var(--clr-orange); color: #fff; flex: 20; }
+    .weight-stack .w-process { background: var(--clr-red); color: #fff; flex: 20; }
+    .weight-stack .w-misc { background: var(--clr-iron); flex: 5; }
+    .weight-legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem 1.25rem;
+      margin: 0 0 1.5rem;
+      font-size: 13px;
+    }
+    .weight-legend i {
+      display: inline-block;
+      width: 10px; height: 10px;
+      border-radius: 2px;
+      margin-right: 0.35rem;
+    }
+    .weight-legend .l-time { background: var(--clr-green); }
+    .weight-legend .l-qc { background: var(--clr-blue); }
+    .weight-legend .l-hygiene { background: var(--clr-orange); }
+    .weight-legend .l-process { background: var(--clr-red); }
+    .weight-legend .l-misc { background: var(--clr-iron); }
+
+    .metric-list {
+      display: grid;
+      gap: 0.5rem;
+      margin: 0 0 1.5rem;
+    }
+    .metric {
+      display: grid;
+      grid-template-columns: 64px 1fr;
+      gap: 0.85rem;
+      align-items: start;
+      border: 2px solid var(--clr-stroke);
+      border-radius: var(--radius);
+      background: var(--color-bg);
+      padding: 0.85rem 1rem;
+    }
+    .metric .wt {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 22px;
+      line-height: 1;
+      color: var(--clr-green);
+      padding-top: 0.15rem;
+    }
+    .metric .wt small {
+      display: block;
+      font-size: 11px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--color-fg-3);
+      margin-top: 0.2rem;
+    }
+    .metric h4 { margin: 0 0 0.2rem; }
+    .metric .q {
+      margin: 0;
+      font-size: 14px;
+      color: var(--clr-carbon);
+    }
+    .metric .how {
+      margin: 0.4rem 0 0;
+      font-size: 13px;
+      color: var(--clr-steel);
+    }
+    .metric.bonus {
+      border-color: var(--clr-green);
+      background: var(--clr-green-bg);
+      grid-template-columns: 72px 1fr;
+    }
+    .metric.bonus .wt { color: var(--clr-green); }
+    .metric.ref {
+      opacity: 0.92;
+      background: var(--clr-bg-2);
+    }
+    .metric.ref .wt { color: var(--clr-carbon); font-size: 14px; padding-top: 0.35rem; }
+
+    .group-label {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--role-chrome);
+      margin: 1.25rem 0 0.6rem;
+    }
+
+    .raci {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--gap-s);
+    }
+    .raci-card {
+      border: 2px solid var(--clr-stroke);
+      border-radius: var(--radius);
+      background: var(--clr-bg-2);
+      padding: 1.15rem 1.25rem;
+    }
+    .raci-card .icon { color: var(--clr-green); margin-bottom: 0.5rem; display: block; font-size: 28px; }
+    .raci-card h3 { margin-bottom: 0.4rem; font-size: 18px; }
+    .raci-card p { margin: 0 0 0.65rem; font-size: 14px; color: var(--clr-carbon); }
+    .raci-card ul { margin: 0; padding-left: 1.1rem; font-size: 14px; }
+
+    .epic-bars {
+      display: grid;
+      gap: 0.65rem;
+      margin: 0 0 1.5rem;
+    }
+    .epic-bar {
+      display: grid;
+      grid-template-columns: 160px 1fr 52px;
+      gap: 0.75rem;
+      align-items: center;
+    }
+    .epic-bar .name { font-weight: 700; font-size: 14px; }
+    .epic-bar .track {
+      height: 18px;
+      background: var(--clr-mercury);
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      border: 1px solid var(--clr-stroke);
+    }
+    .epic-bar .fill {
+      height: 100%;
+      border-radius: var(--radius-sm);
+      background: var(--clr-green);
+    }
+    .epic-bar .pts {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 14px;
+      text-align: right;
+    }
+    .epic-bar.total .fill { background: var(--clr-ebony-clay); }
+    .epic-bar.total .name,
+    .epic-bar.total .pts { font-size: 15px; }
+
+    .ladder {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--gap-s);
+      margin-bottom: 1.5rem;
+    }
+    .ladder-card {
+      border: 2px solid var(--clr-stroke);
+      border-radius: var(--radius);
+      background: var(--color-bg);
+      padding: 1.1rem 1.2rem;
+    }
+    .ladder-card h3 {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 0.5rem;
+      margin-bottom: 0.75rem;
+      font-size: 17px;
+    }
+    .ladder-card h3 .max {
+      font-family: var(--font-body);
+      font-weight: 700;
+      font-size: 13px;
+      color: var(--clr-green);
+      white-space: nowrap;
+    }
+    .ladder-card ol {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .ladder-card li {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 0.5rem;
+      padding: 0.45rem 0;
+      border-top: 1px solid var(--clr-stroke);
+      font-size: 14px;
+      margin: 0;
+    }
+    .ladder-card li:first-child { border-top: 0; }
+    .ladder-card .pts {
+      font-weight: 700;
+      color: var(--clr-green);
+      white-space: nowrap;
+    }
+    .ladder-card .pts.mid { color: var(--clr-orange); }
+    .ladder-card .pts.zero { color: var(--clr-red); }
+
+    .callout {
+      border: 2px solid var(--clr-stroke);
+      border-radius: var(--radius);
+      padding: 1.1rem 1.25rem;
+      margin: 0 0 1rem;
+      background: var(--clr-bg-2);
+    }
+    .callout.stop {
+      border-color: var(--clr-red);
+      background: var(--clr-red-bg);
+    }
+    .callout.ask {
+      border-color: var(--clr-orange);
+      background: var(--clr-orange-bg);
+    }
+    .callout.info {
+      border-color: var(--clr-blue);
+      background: var(--clr-blue-bg);
+    }
+    .callout .co-label {
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 0.4rem;
+    }
+    .callout.stop .co-label { color: var(--clr-red); }
+    .callout.ask .co-label { color: var(--clr-orange); }
+    .callout.info .co-label { color: var(--clr-blue); }
+    .callout p:last-child { margin-bottom: 0; }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--gap-s);
+      margin: 0 0 1rem;
+    }
+    .step {
+      border: 2px solid var(--clr-stroke);
+      border-radius: var(--radius);
+      background: var(--color-bg);
+      padding: 1.1rem 1.2rem;
+      position: relative;
+    }
+    .step .n {
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      background: var(--clr-green);
+      color: #fff;
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 0.65rem;
+    }
+    .step:nth-child(2) .n { background: var(--clr-blue); }
+    .step:nth-child(3) .n { background: var(--clr-orange); }
+    .step h4 { margin-bottom: 0.35rem; }
+    .step p { margin: 0; font-size: 14px; color: var(--clr-carbon); }
+
+    .fold {
+      border: 2px solid var(--clr-stroke);
+      border-radius: var(--radius);
+      background: var(--color-bg);
+      margin: 0 0 0.65rem;
+    }
+    .fold > summary {
+      cursor: pointer;
+      padding: 0.9rem 1.15rem;
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 15px;
+      list-style: none;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .fold > summary::-webkit-details-marker { display: none; }
+    .fold > summary .material-symbols-outlined { color: var(--role-chrome); }
+    .fold[open] > summary { border-bottom: 3px dashed var(--role-chrome); }
+    .fold .fold-body { padding: 1rem 1.15rem 1.15rem; font-size: 15px; }
+    .fold .fold-body p:last-child { margin-bottom: 0; }
+
+    .trouble {
+      display: grid;
+      gap: 0.65rem;
+    }
+    .trouble-card {
+      border: 2px solid var(--clr-stroke);
+      border-radius: var(--radius);
+      padding: 1.1rem 1.2rem;
+      background: var(--clr-bg-2);
+    }
+    .trouble-card h3 {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 17px;
+      margin-bottom: 0.65rem;
+    }
+    .trouble-card h3 .material-symbols-outlined { color: var(--clr-orange); }
+    .trouble-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.75rem;
+    }
+    .trouble-grid > div {
+      background: var(--color-bg);
+      border: 1px solid var(--clr-stroke);
+      border-radius: var(--radius);
+      padding: 0.75rem 0.85rem;
+    }
+    .trouble-grid .k {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--color-fg-3);
+      margin-bottom: 0.25rem;
+    }
+    .trouble-grid p { margin: 0; font-size: 13px; }
+
+    .milestones {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin: 0.75rem 0 0;
+    }
+    .milestones span {
+      font-size: 12px;
+      font-weight: 700;
+      padding: 0.3rem 0.65rem;
+      border-radius: var(--radius-sm);
+      background: var(--clr-green-bg);
+      border: 1px solid var(--clr-green);
+      color: var(--clr-ebony-clay);
+    }
+
+    .survey {
+      margin: 0.75rem 0 0;
+      padding-left: 1.2rem;
+      font-size: 14px;
+    }
+    .ratings {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.5rem;
+      margin-top: 0.75rem;
+    }
+    .rating {
+      border: 2px solid var(--clr-stroke);
+      border-radius: var(--radius);
+      padding: 0.7rem 0.85rem;
+      font-size: 13px;
+      background: var(--color-bg);
+    }
+    .rating strong { display: block; margin-bottom: 0.2rem; }
+    .rating.good { border-color: var(--clr-green); background: var(--clr-green-bg); }
+    .rating.ok { border-color: var(--clr-blue); background: var(--clr-blue-bg); }
+    .rating.mid { border-color: var(--clr-orange); background: var(--clr-orange-bg); }
+    .rating.bad { border-color: var(--clr-red); background: var(--clr-red-bg); }
+
+    .footer {
+      margin-top: var(--gap-m);
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--clr-stroke);
+      font-size: 13px;
+      color: var(--color-fg-3);
+    }
+    .footer .stripe {
+      height: 4px;
+      margin: 1.25rem -48px -5rem -32px;
+      background: linear-gradient(90deg, var(--clr-blue) 0 33.33%, var(--clr-yellow) 33.33% 66.66%, var(--clr-red) 66.66%);
+    }
+
+    .databox-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-weight: 700;
+    }
+    .databox-link .material-symbols-outlined { font-size: 18px; }
+
+    @media (max-width: 1100px) {
+      .split-2, .raci, .ladder, .steps, .meta-row, .trouble-grid, .ratings {
+        grid-template-columns: 1fr;
+      }
+      .epic-bar { grid-template-columns: 120px 1fr 48px; }
+      .weight-stack span { font-size: 0; }
+    }
+    @media (max-width: 860px) {
+      .side-nav { display: none; }
+      body.nav-open .side-nav {
+        display: block;
+        position: fixed;
+        inset: 56px 0 auto 0;
+        width: 100%;
+        height: auto;
+        max-height: calc(100vh - 56px);
+        z-index: 40;
+        border-right: 0;
+        border-bottom: 2px solid var(--clr-stroke);
+        box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+      }
+      .nav-toggle { display: inline-block; }
+      .wrap { padding: 28px 20px 4rem; }
+      .footer .stripe { margin-left: -20px; margin-right: -20px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="doc-header">
+    <div class="inner">
+      <svg class="mark" viewBox="0 0 180 164" aria-hidden="true">
+        <path d="M0 81.8218C0 127.005 36.6384 163.644 81.8218 163.644V0H0V81.8218Z"/>
+        <path d="M180 163.644C180 118.46 143.362 81.8218 98.1782 81.8218V163.644H180Z"/>
+        <path d="M139.099 81.8218C161.701 81.8218 180 63.5026 180 40.9208C180 18.339 161.681 0 139.099 0H98.198V81.8218H139.099Z"/>
+      </svg>
+      <p><strong>RevPartners</strong> · Tech Ops</p>
+      <span class="header-meta">Scorecard &amp; Epic Metrics</span>
+      <button class="nav-toggle" type="button" id="navToggle" aria-expanded="false">Menu</button>
+    </div>
+  </header>
+
+  <div class="shell">
+    <nav class="side-nav" id="sideNav" aria-label="On this page">
+      <p class="nav-label">On this page</p>
+      <ol>
+        <li><a href="#glance">At a glance</a></li>
+        <li><a href="#raci">Who does what</a></li>
+        <li><a href="#scorecard">Tech Scorecard</a></li>
+        <li><a href="#epic">Tech Epic Score</a></li>
+        <li><a href="#flagging">Flagging issues</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="#troubleshoot">Troubleshooting</a></li>
+      </ol>
+    </nav>
+
+    <main class="wrap">
+      <header class="hero" id="top">
+        <p class="eyebrow">Tech Ops</p>
+        <h1><b>Tech Scorecard</b> <span>&amp; Epic Metrics</span></h1>
+        <div class="title-rule"><span class="line"></span><span class="cap"></span></div>
+        <p class="lede">How we measure delivery — weekly task hygiene for technologists, and project-level epic health for closed work.</p>
+      </header>
+
+      <div class="bluf">
+        <div class="label">BLUF</div>
+        <p>Two score systems, one bonus. <strong>Tech Scorecard</strong> = your weekly ClickUp habits (weighted %). <strong>Tech Epic Score</strong> = closed HubSpot projects (100 pts). Epic performance can add a <strong>0–5% bonus</strong> on top of the scorecard.</p>
+      </div>
+
+      <!-- AT A GLANCE -->
+      <section class="section" id="glance">
+        <h2><span class="material-symbols-outlined">visibility</span> At a glance</h2>
+        <p class="section-lead">Memorize this split. Everything else is detail.</p>
+
+        <div class="split-2">
+          <article class="system-card accent">
+            <p class="sys-eyebrow">Micro · Weekly</p>
+            <h3>Tech Scorecard</h3>
+            <p class="meta-line">Technologist · ClickUp · Databox</p>
+            <ul>
+              <li>Task hygiene &amp; process discipline</li>
+              <li>Weighted % (time-estimate weighted)</li>
+              <li>Feeds performance + bonuses</li>
+            </ul>
+          </article>
+          <article class="system-card accent-blue">
+            <p class="sys-eyebrow">Macro · Per project</p>
+            <h3>Tech Epic Score</h3>
+            <p class="meta-line">Epic · HubSpot · Closeout</p>
+            <ul>
+              <li>Timeliness, gates, estimates, experience</li>
+              <li>100-point project score</li>
+              <li>Closed epics → 0–5% scorecard bonus</li>
+            </ul>
+          </article>
+        </div>
+
+        <div class="meta-row">
+          <div class="meta-card">
+            <div class="label">Used for</div>
+            <p>Performance, bonuses, monthly reviews, weekly team visibility</p>
+          </div>
+          <div class="meta-card">
+            <div class="label">Default estimate weight</div>
+            <p>Tasks with no estimate still count — weighted as <strong>3h</strong></p>
+          </div>
+          <div class="meta-card">
+            <div class="label">Live reports</div>
+            <p>
+              <a class="databox-link" href="https://app.databox.com/databoards/loops/275198" target="_blank" rel="noopener">
+                Databox boards
+                <span class="material-symbols-outlined">arrow_forward</span>
+              </a>
+            </p>
+          </div>
+        </div>
+
+        <div class="callout ask">
+          <div class="co-label"><span class="material-symbols-outlined">tune</span> Databox hygiene</div>
+          <p><strong>Do</strong> change date ranges. <strong>Do not</strong> change filters.</p>
+        </div>
+      </section>
+
+      <!-- RACI -->
+      <section class="section" id="raci">
+        <h2><span class="material-symbols-outlined">groups</span> Who does what</h2>
+        <p class="section-lead">Three roles. One escalation path.</p>
+        <div class="raci">
+          <article class="raci-card">
+            <span class="material-symbols-outlined icon">engineering</span>
+            <h3>Technologist</h3>
+            <p>Execute, track time, keep task hygiene clean.</p>
+            <ul>
+              <li>Start/due dates, categories, ratings</li>
+              <li>Acceptance &amp; sprint review comments</li>
+              <li>Flag blockers early to Lead</li>
+            </ul>
+          </article>
+          <article class="raci-card">
+            <span class="material-symbols-outlined icon">manage_accounts</span>
+            <h3>Lead / Tech Ops Manager</h3>
+            <p>Oversight, capacity, dispute resolution.</p>
+            <ul>
+              <li>Reviews weekly scores</li>
+              <li>Marks tasks Review / Issue</li>
+              <li>Owns script/formula investigations</li>
+            </ul>
+          </article>
+          <article class="raci-card">
+            <span class="material-symbols-outlined icon">handshake</span>
+            <h3>Strategist</h3>
+            <p>Partner relationship, scope, feedback.</p>
+            <ul>
+              <li>Quality &amp; Communication ratings</li>
+              <li>Epic Closeout survey</li>
+              <li>Scope / partner blocker alignment</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <!-- SCORECARD -->
+      <section class="section" id="scorecard">
+        <h2><span class="material-symbols-outlined">speed</span> Tech Scorecard</h2>
+        <p class="section-lead">Bigger tasks (by time estimate) move the needle more. Quality &amp; Communication only count rated tasks.</p>
+
+        <div class="weight-stack" aria-hidden="true">
+          <span class="w-time">30%</span>
+          <span class="w-qc">25%</span>
+          <span class="w-hygiene">20%</span>
+          <span class="w-process">20%</span>
+          <span class="w-misc">5%</span>
+        </div>
+        <div class="weight-legend">
+          <span><i class="l-time"></i>Timeliness 30%</span>
+          <span><i class="l-qc"></i>Quality + Comm 25%</span>
+          <span><i class="l-hygiene"></i>Dates / time / estimates 20%</span>
+          <span><i class="l-process"></i>Acceptance + Sprint Review 20%</span>
+          <span><i class="l-misc"></i>Admin fields 5%</span>
+        </div>
+
+        <p class="group-label">Weighted metrics</p>
+        <div class="metric-list">
+          <article class="metric">
+            <div class="wt">30%<small>weight</small></div>
+            <div>
+              <h4>Timeliness</h4>
+              <p class="q">Did we deliver on time?</p>
+              <p class="how">Done date on/before due date = on time.</p>
+            </div>
+          </article>
+          <article class="metric">
+            <div class="wt">12.5%<small>weight</small></div>
+            <div>
+              <h4>Quality (rating)</h4>
+              <p class="q">Did we meet the desired end state?</p>
+              <p class="how">Strategist rates. Starts at 100%; reduced when “Desired End State not Met.”</p>
+            </div>
+          </article>
+          <article class="metric">
+            <div class="wt">12.5%<small>weight</small></div>
+            <div>
+              <h4>Communication (rating)</h4>
+              <p class="q">Did we communicate effectively?</p>
+              <p class="how">Strategist rates. Starts at 100%; reduced when “Room for Improvement.”</p>
+            </div>
+          </article>
+          <article class="metric">
+            <div class="wt">5%<small>× 4</small></div>
+            <div>
+              <h4>Start Dates · Due Dates · Time Tracked · Estimate Accuracy</h4>
+              <p class="q">When did work start/stop? Are we tracking? Are estimates honest?</p>
+              <p class="how">Admin Y/N fields + estimate vs tracked (30m or 20% buffer still = 100%).</p>
+            </div>
+          </article>
+          <article class="metric">
+            <div class="wt">5%<small>× 4</small></div>
+            <div>
+              <h4>Acceptance &amp; Sprint Review — Comment + SLA</h4>
+              <p class="q">Are we following the process?</p>
+              <p class="how">Keyword check on comments + submitted within SLA.</p>
+            </div>
+          </article>
+          <article class="metric">
+            <div class="wt">5%<small>split</small></div>
+            <div>
+              <h4>Task Rating · Work Category · Work Type</h4>
+              <p class="q">Was feedback / demand tagging filled?</p>
+              <p class="how">2% + 2% + 1%. Admin Y/N on eligible tasks.</p>
+            </div>
+          </article>
+          <article class="metric bonus">
+            <div class="wt">+0–5%<small>bonus</small></div>
+            <div>
+              <h4>Epic Score Bonus</h4>
+              <p class="q">Did closed epics meet delivery standards?</p>
+              <p class="how">Average of closed Epic Scores in range → stacks on top of base scorecard.</p>
+            </div>
+          </article>
+        </div>
+
+        <p class="group-label">Reference only — not in the score</p>
+        <div class="metric-list">
+          <article class="metric ref">
+            <div class="wt">Ref<small>only</small></div>
+            <div>
+              <h4>Efficiency · Time Estimate · Time Tracked</h4>
+              <p class="q">Capacity signal, not a grade.</p>
+              <p class="how">Efficiency = hours tracked ÷ 30 ÷ weeks in range (e.g. 66h ÷ 30 ÷ 2 = 110%).</p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- EPIC -->
+      <section class="section" id="epic">
+        <h2><span class="material-symbols-outlined">account_tree</span> Tech Epic Score</h2>
+        <p class="section-lead">One closed epic = one 100-point score. Triggered when HubSpot Data Ops moves to Delivered / Closeout completes.</p>
+
+        <div class="epic-bars">
+          <div class="epic-bar">
+            <div class="name">Timeliness</div>
+            <div class="track"><div class="fill" style="width:40%"></div></div>
+            <div class="pts">40</div>
+          </div>
+          <div class="epic-bar">
+            <div class="name">Gate Score</div>
+            <div class="track"><div class="fill" style="width:30%"></div></div>
+            <div class="pts">30</div>
+          </div>
+          <div class="epic-bar">
+            <div class="name">Delivery Experience</div>
+            <div class="track"><div class="fill" style="width:20%"></div></div>
+            <div class="pts">20</div>
+          </div>
+          <div class="epic-bar">
+            <div class="name">Estimate Accuracy</div>
+            <div class="track"><div class="fill" style="width:10%"></div></div>
+            <div class="pts">10</div>
+          </div>
+          <div class="epic-bar total">
+            <div class="name">Overall</div>
+            <div class="track"><div class="fill" style="width:100%"></div></div>
+            <div class="pts">100</div>
+          </div>
+        </div>
+
+        <div class="ladder">
+          <article class="ladder-card">
+            <h3>Timeliness <span class="max">max 40</span></h3>
+            <ol>
+              <li><span>Early or on due date</span><span class="pts">40</span></li>
+              <li><span>1–14 days late</span><span class="pts mid">20</span></li>
+              <li><span>&gt;14 days late</span><span class="pts zero">0</span></li>
+            </ol>
+          </article>
+          <article class="ladder-card">
+            <h3>Gate Score <span class="max">max 30</span></h3>
+            <ol>
+              <li><span>100% milestones done</span><span class="pts">30</span></li>
+              <li><span>85–99%</span><span class="pts mid">22.5</span></li>
+              <li><span>70–84%</span><span class="pts mid">15</span></li>
+              <li><span>&lt;70%</span><span class="pts zero">0</span></li>
+            </ol>
+          </article>
+          <article class="ladder-card">
+            <h3>Estimate Accuracy <span class="max">max 10</span></h3>
+            <ol>
+              <li><span>≥90% alignment</span><span class="pts">10</span></li>
+              <li><span>75–89%</span><span class="pts mid">5</span></li>
+              <li><span>&lt;75%</span><span class="pts zero">0</span></li>
+            </ol>
+          </article>
+          <article class="ladder-card">
+            <h3>Delivery Experience <span class="max">max 20</span></h3>
+            <p style="font-size:14px;margin:0 0 0.5rem;color:var(--clr-carbon)">Strategist Closeout survey. “Met Expectations” = successful standard delivery. Score never goes below zero.</p>
+            <div class="callout info" style="margin:0">
+              <div class="co-label"><span class="material-symbols-outlined">info</span> Note</div>
+              <p style="font-size:13px">No epics closed in the week → Databox shows blank / 0%.</p>
+            </div>
+          </article>
+        </div>
+
+        <details class="fold">
+          <summary><span class="material-symbols-outlined">flag</span> Required milestones (Gate Score)</summary>
+          <div class="fold-body">
+            <p>Milestone = task type in tech playbooks (from ClickUp).</p>
+            <div class="milestones">
+              <span>Handoff</span>
+              <span>Scoping</span>
+              <span>Consulted Tech Approval</span>
+              <span>Partner Approval</span>
+              <span>Build Milestone(s)</span>
+              <span>Go Live</span>
+              <span>Epic Closeout</span>
+            </div>
+          </div>
+        </details>
+
+        <details class="fold">
+          <summary><span class="material-symbols-outlined">quiz</span> Delivery Experience survey &amp; ratings</summary>
+          <div class="fold-body">
+            <p>Questions to strategist at Closeout:</p>
+            <ul class="survey">
+              <li>How would you rate the epic, overall?</li>
+              <li>Collaboration and execution throughout delivery?</li>
+              <li>Risk / blocker / challenge management?</li>
+              <li>Were you informed enough to update the partner?</li>
+              <li>How would the partner rate this epic?</li>
+              <li>Anything else?</li>
+            </ul>
+            <div class="ratings">
+              <div class="rating good"><strong>Far Exceeded</strong> Proactive, organized, low friction.</div>
+              <div class="rating ok"><strong>Met Expectations</strong> Standard successful delivery.</div>
+              <div class="rating mid"><strong>Partially Met</strong> Gaps, delays, or extra follow-up.</div>
+              <div class="rating bad"><strong>Did Not Meet</strong> Significant concerns / escalation.</div>
+            </div>
+          </div>
+        </details>
+      </section>
+
+      <!-- FLAGGING -->
+      <section class="section" id="flagging">
+        <h2><span class="material-symbols-outlined">report</span> Flagging issues</h2>
+        <p class="section-lead">Scores look wrong? Don’t touch the sheets. Pull the task out of the calc.</p>
+
+        <div class="callout stop">
+          <div class="co-label"><span class="material-symbols-outlined">block</span> Do not</div>
+          <p>Edit raw data sheets or scripts directly.</p>
+        </div>
+
+        <div class="steps">
+          <article class="step">
+            <div class="n">1</div>
+            <h4>You notify</h4>
+            <p>Send Lead/Manager a task link + short note on the discrepancy.</p>
+          </article>
+          <article class="step">
+            <div class="n">2</div>
+            <h4>They park it</h4>
+            <p>Tracking status → <strong>Review</strong> or <strong>Issue</strong>. Task drops out of active scorecard calc immediately.</p>
+          </article>
+          <article class="step">
+            <div class="n">3</div>
+            <h4>Resolve &amp; restore</h4>
+            <p>Validate or fix formula/script, then revert status.</p>
+          </article>
+        </div>
+      </section>
+
+      <!-- FAQ -->
+      <section class="section" id="faq">
+        <h2><span class="material-symbols-outlined">help</span> FAQ</h2>
+        <p class="section-lead">The questions people actually ask.</p>
+
+        <details class="fold" open>
+          <summary><span class="material-symbols-outlined">compare_arrows</span> Scorecard vs Epic Score — what’s the difference?</summary>
+          <div class="fold-body">
+            <p><strong>Scorecard</strong> = micro weekly task hygiene in ClickUp/Databox.<br>
+            <strong>Epic Score</strong> = macro project health on closed HubSpot epics (gates, timing, strategist satisfaction).</p>
+          </div>
+        </details>
+        <details class="fold">
+          <summary><span class="material-symbols-outlined">hourglass_empty</span> Why is Epic Score / Bonus blank or 0%?</summary>
+          <div class="fold-body">
+            <p>Epic scores land on Closeout survey submission. No closed epics in the date range → blank / 0% by design.</p>
+          </div>
+        </details>
+        <details class="fold">
+          <summary><span class="material-symbols-outlined">timer</span> Tasks with no time estimate?</summary>
+          <div class="fold-body">
+            <p>Default to a <strong>3-hour</strong> baseline weight so they still count.</p>
+          </div>
+        </details>
+        <details class="fold">
+          <summary><span class="material-symbols-outlined">star</span> No Quality / Communication rating — am I penalized?</summary>
+          <div class="fold-body">
+            <p>No. Only tasks with an explicit rating count toward those two scores.</p>
+          </div>
+        </details>
+        <details class="fold">
+          <summary><span class="material-symbols-outlined">front_hand</span> Partner blockers delayed me?</summary>
+          <div class="fold-body">
+            <p>Flag early in standups. Use pushed-back process. Get manager to set Review status before scores freeze Monday.</p>
+          </div>
+        </details>
+        <details class="fold">
+          <summary><span class="material-symbols-outlined">key</span> Comment keywords for automated checks?</summary>
+          <div class="fold-body">
+            <p><strong>Acceptance:</strong> “Accepted”, “Task Confirmed”, or the acceptance template.<br>
+            <strong>Sprint Review:</strong> “Task Complete”, “What we did”, “Closing Out”, or the sprint review template.</p>
+          </div>
+        </details>
+        <details class="fold">
+          <summary><span class="material-symbols-outlined">edit_calendar</span> Update estimates / start dates after submission?</summary>
+          <div class="fold-body">
+            <p>Only when scope or schedule genuinely shifts. Keep capacity forecasting honest.</p>
+          </div>
+        </details>
+      </section>
+
+      <!-- TROUBLESHOOT -->
+      <section class="section" id="troubleshoot">
+        <h2><span class="material-symbols-outlined">build</span> Troubleshooting</h2>
+        <p class="section-lead">Find the layer first. Fixing the wrong layer is how weekends die.</p>
+
+        <div class="trouble">
+          <article class="trouble-card">
+            <h3><span class="material-symbols-outlined">cable</span> Databox connector</h3>
+            <div class="trouble-grid">
+              <div>
+                <div class="k">Looks like</div>
+                <p>Empty columns in the report; error indicator in Databox corner.</p>
+              </div>
+              <div>
+                <div class="k">Identify</div>
+                <p>Treated Data sheet still looks fine with scores — connector is the culprit.</p>
+              </div>
+              <div>
+                <div class="k">Fix</div>
+                <p>Update the metric connector.</p>
+              </div>
+            </div>
+          </article>
+
+          <article class="trouble-card">
+            <h3><span class="material-symbols-outlined">code</span> Script / raw data</h3>
+            <div class="trouble-grid">
+              <div>
+                <div class="k">Looks like</div>
+                <p>Databox zeros; Task Raw Data empty or weird after a given week.</p>
+              </div>
+              <div>
+                <div class="k">Identify</div>
+                <p>Weird values in a filled column → <code>updateSheetTaskRawData</code> (column order drift).<br>Empty column → <code>fetchTask</code> (custom field rename / not found).</p>
+              </div>
+              <div>
+                <div class="k">Fix</div>
+                <p>Have a technologist check the script.</p>
+              </div>
+            </div>
+          </article>
+
+          <article class="trouble-card">
+            <h3><span class="material-symbols-outlined">functions</span> Formulas</h3>
+            <div class="trouble-grid">
+              <div>
+                <div class="k">Looks like</div>
+                <p>Raw Data has rows, but Treated Data missing scores for a range / whole column.</p>
+              </div>
+              <div>
+                <div class="k">Identify</div>
+                <p>Confirm Raw Data is healthy first. Then hunt Treated Data for known-good weeks.</p>
+              </div>
+              <div>
+                <div class="k">Fix</div>
+                <p>Check header row (row 2): header name + raw values × task weight.</p>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <p>RevPartners / Tech Ops / Tech Scorecard &amp; Epic Metrics</p>
+        <p>Definitions stay lightweight and will iterate with team feedback.</p>
+        <div class="stripe" aria-hidden="true"></div>
+      </footer>
+    </main>
+  </div>
+
+  <script>
+    (function () {
+      var toggle = document.getElementById("navToggle");
+      var links = document.querySelectorAll(".side-nav a");
+      var sections = [];
+      links.forEach(function (a) {
+        var id = a.getAttribute("href").slice(1);
+        var el = document.getElementById(id);
+        if (el) sections.push({ id: id, el: el, a: a });
+      });
+      if (toggle) {
+        toggle.addEventListener("click", function () {
+          var open = document.body.classList.toggle("nav-open");
+          toggle.setAttribute("aria-expanded", open ? "true" : "false");
+        });
+      }
+      links.forEach(function (a) {
+        a.addEventListener("click", function () {
+          document.body.classList.remove("nav-open");
+          if (toggle) toggle.setAttribute("aria-expanded", "false");
+        });
+      });
+      function onScroll() {
+        var y = window.scrollY + 80;
+        var current = sections[0];
+        for (var i = 0; i < sections.length; i++) {
+          if (sections[i].el.offsetTop <= y) current = sections[i];
+        }
+        links.forEach(function (a) { a.classList.remove("active"); });
+        if (current) current.a.classList.add("active");
+      }
+      window.addEventListener("scroll", onScroll, { passive: true });
+      onScroll();
+    })();
+  </script>
+</body>
+</html>

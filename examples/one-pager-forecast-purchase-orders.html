@@ -1,0 +1,1429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Forecast Purchase Orders in HubSpot | RevPartners</title>
+  <link rel="icon" href="assets/RP-Mark-2026-Green.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,300,1,0" rel="stylesheet">
+  <style>
+    :root {
+      --clr-off-white: #FDFDFD;  --clr-mercury: #F3F3F4;
+      --clr-iron: #DDDEE2;       --clr-steel: #A1A2A7;     --clr-carbon: #555970;
+      --clr-river-bed: #434761;  --clr-ebony-clay: #24273A;
+      --clr-green:  #17B451;  --clr-blue:   #329DFF;
+      --clr-orange: #F7761E;  --clr-red:    #FB3131;
+      --clr-yellow: #FBAA31;
+      --clr-green-bg:  rgba(23,180,81,0.20);   --clr-blue-bg:   rgba(50,157,255,0.20);
+      --clr-orange-bg: rgba(239,129,27,0.20);  --clr-red-bg:    rgba(251,49,49,0.20);
+      --clr-primary: var(--clr-green);
+      --clr-text: var(--clr-river-bed);
+      --clr-title: var(--clr-ebony-clay);
+      --color-bg: var(--clr-off-white);
+      --color-bg-alt: var(--clr-mercury);
+      --color-bg-dark: var(--clr-ebony-clay);
+      --color-fg: var(--clr-river-bed);
+      --color-fg-3: var(--clr-steel);
+      --color-fg-inverted: var(--clr-off-white);
+      --color-primary: var(--clr-green);
+      --color-border: rgba(36,39,58,0.10);
+      --clr-stroke: rgba(36,39,58,0.10);
+      --clr-stroke-2: rgba(36,39,58,0.30);
+      --clr-bg-2: var(--clr-mercury);
+      --color-link: var(--clr-green);
+      --role-chrome: var(--clr-green);
+      --role-chrome-bg: var(--clr-green-bg);
+      --role-yes: var(--clr-green);
+      --role-no: var(--clr-red);
+      --role-ask: var(--clr-orange);
+      --role-info: var(--clr-blue);
+      --font-display: "Montserrat", sans-serif;
+      --font-body: "Inter", sans-serif;
+      --font-icons: "Material Symbols Outlined", sans-serif;
+      --gap-xxs: .25rem; --gap-xs: .5rem; --gap-s: 1rem; --gap: 1.5rem;
+      --gap-m: 3rem;
+      --radius-sm: 4px;
+      --radius: 8px;
+      --radius-pill: 120px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; scroll-padding-top: 72px; }
+    body {
+      background: var(--color-bg);
+      color: var(--color-fg);
+      font-family: var(--font-body);
+      font-weight: 400;
+      font-size: 17px;
+      line-height: 1.4;
+    }
+    a { color: var(--color-link); font-weight: 700; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    strong, b { font-weight: 700; }
+    h1, h2, h3 { font-family: var(--font-display); color: var(--color-fg); font-weight: 700; line-height: 1.2; }
+    h1 { font-size: clamp(28px, 4vw, 40px); }
+    h2 { font-size: 26px; }
+    h3 { font-size: 18px; }
+    p { margin: 0 0 0.85rem; }
+    ul, ol { margin: 0 0 1rem; padding-left: 1.25rem; }
+    li { margin: 0.3rem 0; }
+    .material-symbols-outlined {
+      font-family: var(--font-icons);
+      font-weight: 300;
+      font-variation-settings: "FILL" 1, "wght" 300, "GRAD" 0, "opsz" 24;
+      vertical-align: middle;
+      font-size: 22px;
+      line-height: 1;
+    }
+
+    .doc-header {
+      background: var(--clr-green);
+      color: var(--color-fg-inverted);
+      padding: 0.85rem 0;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+    .doc-header .inner {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .mark { width: 36px; height: 33px; flex-shrink: 0; }
+    .mark path { fill: var(--clr-off-white); }
+    .doc-header p { margin: 0; font-size: 13px; color: var(--clr-off-white); }
+    .doc-header strong { color: var(--clr-off-white); }
+    .doc-header .header-meta {
+      margin-left: auto;
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 13px;
+    }
+
+    .wrap {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 40px 24px 5rem;
+    }
+
+    .eyebrow {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: 0.5rem;
+      text-transform: uppercase;
+      color: var(--role-chrome);
+      margin-bottom: 0.75rem;
+    }
+    .hero { margin-bottom: var(--gap); }
+    .hero h1 { margin-bottom: 0.65rem; }
+    .hero h1 span { font-weight: 400; }
+    .lede { font-size: 18px; max-width: 720px; color: var(--clr-carbon); }
+    .title-rule {
+      display: flex;
+      align-items: center;
+      margin: 1.1rem 0 1.75rem;
+    }
+    .title-rule .line {
+      flex: 1;
+      border-top: 3px dashed var(--role-chrome);
+    }
+    .title-rule .cap {
+      width: 12px; height: 12px; border-radius: 50%;
+      background: var(--role-chrome); flex-shrink: 0;
+    }
+
+    .bluf {
+      background: var(--role-chrome-bg);
+      border: 2px solid var(--clr-green);
+      border-radius: var(--radius);
+      padding: 1.15rem 1.35rem;
+      margin: 0 0 var(--gap);
+    }
+    .bluf .label {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 12px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--clr-green);
+      margin-bottom: 0.35rem;
+    }
+    .bluf p { margin: 0; }
+
+    .section {
+      margin: 0 0 var(--gap-m);
+      padding-top: 0.25rem;
+    }
+    .section > h2 {
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+      margin-bottom: 0.65rem;
+    }
+    .section > h2 .material-symbols-outlined { color: var(--role-chrome); font-size: 26px; }
+    .section-lead { color: var(--clr-carbon); margin-bottom: 1rem; max-width: 760px; }
+
+    .callout {
+      border: 2px solid var(--clr-green);
+      background: var(--clr-green-bg);
+      border-radius: var(--radius);
+      padding: 1rem 1.15rem;
+      margin: 0 0 var(--gap-s);
+    }
+    .callout .label {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 0.3rem;
+      color: var(--clr-green);
+    }
+    .callout p:last-child { margin: 0; }
+    .callout.info {
+      border-color: var(--role-info);
+      background: var(--clr-blue-bg);
+    }
+    .callout.info .label { color: var(--role-info); }
+    .callout.ask {
+      border-color: var(--role-ask);
+      background: var(--clr-orange-bg);
+    }
+    .callout.ask .label { color: var(--role-ask); }
+    .callout.stop {
+      border-color: var(--role-no);
+      background: var(--clr-red-bg);
+    }
+    .callout.stop .label { color: var(--role-no); }
+
+    .split-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--gap-s);
+      margin-bottom: var(--gap-s);
+    }
+
+    .card {
+      border: 2px solid var(--clr-stroke);
+      border-radius: var(--radius);
+      background: var(--clr-bg-2);
+      padding: 1.15rem 1.25rem;
+    }
+    .card h3 { margin-bottom: 0.45rem; }
+    .card p:last-child { margin-bottom: 0; }
+    .card.save {
+      border-color: var(--clr-green);
+      background: var(--clr-green-bg);
+    }
+    .card.replace {
+      border-color: var(--role-no);
+      background: var(--clr-red-bg);
+    }
+    .card .sys-eyebrow {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 0.4rem;
+    }
+    .card.save .sys-eyebrow { color: var(--clr-green); }
+    .card.replace .sys-eyebrow { color: var(--role-no); }
+
+    .benefit-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: 0.55rem;
+    }
+    .benefit-list li {
+      margin: 0;
+      display: flex;
+      gap: 0.75rem;
+      align-items: flex-start;
+      border: 2px solid var(--clr-stroke);
+      border-radius: var(--radius);
+      background: var(--clr-bg-2);
+      padding: 0.85rem 1rem;
+      font-size: 15px;
+    }
+    .benefit-list .material-symbols-outlined {
+      color: var(--clr-green);
+      flex-shrink: 0;
+      margin-top: 0.05rem;
+    }
+
+    /* ---- Diagrams ---- */
+    .tree {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 0.5rem 0 0.25rem;
+    }
+    .node {
+      position: relative;
+      border: 2px solid var(--clr-green);
+      background: var(--clr-green-bg);
+      border-radius: var(--radius);
+      padding: 0.7rem 1.1rem;
+      text-align: center;
+      min-width: 160px;
+    }
+    .node .kicker {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--clr-green);
+      margin-bottom: 0.15rem;
+    }
+    .node .name { font-family: var(--font-display); font-weight: 700; font-size: 15px; }
+    .node .hint { font-size: 13px; color: var(--clr-carbon); margin-top: 0.15rem; }
+    .node.neutral {
+      border-color: var(--clr-stroke-2);
+      background: var(--clr-bg-2);
+    }
+    .node.neutral .kicker { color: var(--clr-carbon); }
+    .stem {
+      width: 2px;
+      height: 22px;
+      background: var(--clr-carbon);
+      flex-shrink: 0;
+    }
+    .children {
+      display: grid;
+      grid-template-columns: repeat(var(--cols, 4), minmax(0, 1fr));
+      gap: 0.75rem;
+      position: relative;
+      padding-top: 22px;
+      width: 100%;
+      max-width: 780px;
+    }
+    .children::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      height: 2px;
+      background: var(--clr-carbon);
+      left: calc(100% / var(--cols) / 2);
+      right: calc(100% / var(--cols) / 2);
+    }
+    .children .node { min-width: 0; }
+    .children .node::before {
+      content: "";
+      position: absolute;
+      top: -22px;
+      left: 50%;
+      width: 2px;
+      height: 22px;
+      background: var(--clr-carbon);
+      transform: translateX(-50%);
+    }
+    .children .node.po {
+      border-color: var(--clr-blue);
+      background: var(--clr-blue-bg);
+    }
+    .children .node.po .kicker { color: var(--clr-blue); }
+
+    /* ---- HubSpot CRM mock (scoped; page chrome stays RevPartners) ---- */
+    .hs-crm {
+      --hs-bg: #f5f8fa;
+      --hs-card: #ffffff;
+      --hs-border: #cbd6e2;
+      --hs-text: #33475b;
+      --hs-muted: #516f90;
+      --hs-link: #0091ae;
+      --hs-orange: #ff7a59;
+      --hs-orange-hover: #ff8f73;
+      --hs-danger: #f2545b;
+      --hs-radius: 12px;
+      --hs-btn-radius: 3px;
+      font-family: "Avenir Next", "Segoe UI", Helvetica, Arial, sans-serif;
+      color: var(--hs-text);
+      background: var(--hs-bg);
+      border-radius: var(--hs-radius);
+      padding: 12px;
+      margin: 0 0 var(--gap-s);
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 12px;
+    }
+    .hs-highlight,
+    .hs-main,
+    .hs-card {
+      background: var(--hs-card);
+      border-radius: var(--hs-radius);
+    }
+    .hs-main { min-width: 0; background: transparent; }
+    .hs-highlight { padding: 16px; }
+    .hs-crm:has([data-po-type]) {
+      grid-template-columns: 1fr;
+    }
+    .hs-crm:has([data-po-type]) .hs-highlight { display: none; }
+    .hs-highlight .obj-type {
+      font-size: 12px;
+      color: var(--hs-muted);
+      margin-bottom: 4px;
+    }
+    .hs-highlight .rec-name {
+      font-size: 20px;
+      font-weight: 700;
+      line-height: 1.25;
+      margin-bottom: 4px;
+      color: var(--hs-text);
+    }
+    .hs-highlight .assoc {
+      color: var(--hs-link);
+      font-size: 13px;
+      font-weight: 600;
+      margin: 0 0 12px;
+    }
+    .hs-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      border-top: 1px solid var(--hs-bg);
+      padding-top: 12px;
+    }
+    .hs-actions span {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2px;
+      font-size: 11px;
+      color: var(--hs-muted);
+      min-width: 36px;
+    }
+    .hs-actions .dot {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      border: 1px solid var(--hs-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      color: var(--hs-text);
+    }
+    .hs-props {
+      list-style: none;
+      padding: 12px 0 0;
+      margin: 0;
+      font-size: 13px;
+    }
+    .hs-props li { margin: 0 0 10px; }
+    .hs-props .pl { color: var(--hs-muted); font-size: 12px; }
+    .hs-props .pv { font-weight: 600; }
+    .hs-tabs {
+      display: flex;
+      gap: 2px;
+      padding: 6px 8px 0;
+    }
+    .hs-tabs span {
+      padding: 10px 14px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--hs-muted);
+      border-radius: 8px 8px 0 0;
+    }
+    .hs-tabs span.on {
+      background: var(--hs-card);
+      color: var(--hs-text);
+    }
+    .hs-card {
+      padding: 16px 18px 18px;
+      margin: 0 8px 8px;
+    }
+    .hs-card-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+    .hs-card-head h4 {
+      font-family: inherit;
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--hs-text);
+      margin: 0;
+    }
+    .hs-card-head .more {
+      font-size: 13px;
+      color: var(--hs-muted);
+      border: 1px solid var(--hs-border);
+      background: #fff;
+      border-radius: var(--hs-btn-radius);
+      padding: 4px 10px;
+    }
+    .forecast-table-wrap { overflow-x: auto; }
+    .hs-crm table.forecast {
+      width: 100%;
+      min-width: 640px;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+    .hs-crm table.forecast th {
+      text-align: left;
+      font-weight: 600;
+      font-size: 12px;
+      color: var(--hs-muted);
+      padding: 8px 8px 8px 0;
+      border-bottom: 1px solid var(--hs-border);
+    }
+    .hs-crm table.forecast td {
+      padding: 6px 8px 6px 0;
+      border-bottom: 1px solid var(--hs-bg);
+      vertical-align: middle;
+    }
+    .hs-crm table.forecast input,
+    .hs-crm table.forecast select {
+      width: 100%;
+      min-width: 4.5rem;
+      font-family: inherit;
+      font-size: 13px;
+      color: var(--hs-text);
+      background: #fff;
+      border: 1px solid var(--hs-border);
+      border-radius: var(--hs-btn-radius);
+      padding: 6px 8px;
+    }
+    .hs-crm table.forecast input:focus,
+    .hs-crm table.forecast select:focus {
+      outline: none;
+      border-color: var(--hs-link);
+      box-shadow: 0 0 0 1px var(--hs-link);
+    }
+    .hs-crm table.forecast .row-del { width: 32px; text-align: center; padding-right: 0; }
+    .hs-crm .icon-btn {
+      border: 0;
+      background: transparent;
+      color: var(--hs-muted);
+      cursor: pointer;
+      padding: 4px;
+      border-radius: var(--hs-btn-radius);
+      display: inline-flex;
+    }
+    .hs-crm .icon-btn:hover { color: var(--hs-danger); background: #fdedee; }
+    .hs-crm .icon-btn .material-symbols-outlined { font-size: 16px; }
+    .hs-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+      margin-top: 12px;
+    }
+    .hs-btn {
+      font-family: inherit;
+      font-weight: 600;
+      font-size: 13px;
+      border-radius: var(--hs-btn-radius);
+      padding: 8px 16px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      border: 1px solid transparent;
+    }
+    .hs-btn:active { transform: scale(0.98); }
+    .hs-btn.primary {
+      background: var(--hs-orange);
+      color: #fff;
+      border-color: var(--hs-orange);
+    }
+    .hs-btn.primary:hover { background: var(--hs-orange-hover); }
+    .hs-btn.secondary {
+      background: #fff;
+      color: var(--hs-text);
+      border-color: var(--hs-border);
+    }
+    .hs-btn.secondary:hover { background: var(--hs-bg); }
+    .hs-btn.danger {
+      background: #fff;
+      color: var(--hs-danger);
+      border-color: var(--hs-danger);
+    }
+    .hs-btn.link {
+      background: transparent;
+      color: var(--hs-orange);
+      padding: 8px 8px;
+    }
+    .hs-toast {
+      display: none;
+      margin-top: 12px;
+      background: #e5f5f8;
+      border: 1px solid var(--hs-link);
+      border-radius: var(--hs-btn-radius);
+      padding: 10px 12px;
+      font-size: 13px;
+      color: var(--hs-text);
+    }
+    .hs-toast.show { display: block; }
+    .hs-toast.replace-msg {
+      background: #fdedee;
+      border-color: var(--hs-danger);
+    }
+
+    .table-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.65rem;
+      align-items: center;
+      margin-top: 0.9rem;
+    }
+    .btn {
+      font-family: var(--font-body);
+      font-weight: 700;
+      font-size: 14px;
+      border-radius: var(--radius-pill);
+      padding: 12px 28px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      border: 2px solid transparent;
+    }
+    .btn:active { transform: scale(0.98); }
+    .btn .material-symbols-outlined { font-size: 18px; }
+    .btn.primary {
+      background: var(--clr-green);
+      color: var(--clr-off-white);
+      border-color: var(--clr-green);
+    }
+    .btn.primary:hover { background: #129a44; }
+    .btn.outline {
+      background: transparent;
+      color: var(--clr-green);
+      border-color: var(--clr-green);
+    }
+    .btn.outline:hover {
+      background: var(--clr-green-bg);
+      border-style: dashed;
+    }
+    .btn.danger {
+      background: transparent;
+      color: var(--role-no);
+      border-color: var(--role-no);
+    }
+    .btn.danger:hover {
+      background: var(--clr-red-bg);
+      border-style: dashed;
+    }
+    .copy-btn.copied {
+      background: var(--clr-green);
+      color: var(--clr-off-white);
+      border-color: var(--clr-green);
+      border-style: solid;
+    }
+
+    .overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(51, 71, 91, 0.45);
+      z-index: 80;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+    }
+    .overlay.show { display: flex; }
+    .modal {
+      background: #fff;
+      border-radius: 8px;
+      max-width: 480px;
+      width: 100%;
+      padding: 24px;
+      font-family: "Avenir Next", "Segoe UI", Helvetica, Arial, sans-serif;
+      color: #33475b;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.18);
+    }
+    .modal h3 { margin-bottom: 0.5rem; font-family: inherit; color: #33475b; }
+    .modal .table-actions { margin-top: 1rem; }
+    .modal .hs-btn { font-family: inherit; }
+
+    /* ---- Steps ---- */
+    .steps {
+      display: grid;
+      gap: 0.65rem;
+      margin: 0 0 var(--gap-s);
+    }
+    .step {
+      display: grid;
+      grid-template-columns: 36px 1fr;
+      gap: 0.85rem;
+      align-items: start;
+      border: 2px solid var(--clr-stroke);
+      border-radius: var(--radius);
+      background: var(--color-bg);
+      padding: 0.95rem 1.1rem;
+    }
+    .step .num {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-display);
+      font-weight: 700;
+      color: var(--clr-off-white);
+      background: var(--clr-green);
+      flex-shrink: 0;
+    }
+    .step.s2 .num { background: var(--clr-blue); }
+    .step.s3 .num { background: var(--clr-orange); }
+    .step.s4 .num { background: var(--clr-red); }
+    .step h3 { margin-bottom: 0.2rem; }
+    .step p { margin: 0; font-size: 15px; color: var(--clr-carbon); }
+
+    /* ---- Property mock ---- */
+    .prop {
+      border: 2px solid var(--clr-stroke);
+      border-radius: var(--radius);
+      background: var(--clr-bg-2);
+      padding: 1.1rem 1.2rem;
+    }
+    .prop .field-label {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--clr-carbon);
+      margin-bottom: 0.65rem;
+    }
+    .choices {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .choice {
+      border: 2px solid var(--clr-stroke);
+      background: var(--color-bg);
+      border-radius: var(--radius);
+      padding: 0.55rem 0.85rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+      font-size: 15px;
+      font-weight: 700;
+    }
+    .choice input { accent-color: var(--clr-green); }
+    .choice:has(input:checked) {
+      border-color: var(--clr-green);
+      background: var(--clr-green-bg);
+    }
+    .choice.actual:has(input:checked) {
+      border-color: var(--role-info);
+      background: var(--clr-blue-bg);
+    }
+    .status-row { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .status {
+      border: 2px solid var(--clr-green);
+      background: var(--clr-green-bg);
+      color: var(--color-fg);
+      border-radius: var(--radius-sm);
+      padding: 0.4rem 0.7rem;
+      font-weight: 700;
+      font-size: 13px;
+    }
+    .status.s2 { border-color: var(--clr-blue); background: var(--clr-blue-bg); }
+    .status.s3 { border-color: var(--clr-orange); background: var(--clr-orange-bg); }
+    .status.s4 { border-color: var(--clr-red); background: var(--clr-red-bg); }
+
+    /* ---- Questions ---- */
+    .q {
+      border: 2px solid var(--role-ask);
+      background: var(--color-bg);
+      border-radius: var(--radius);
+      padding: 1.05rem 1.15rem;
+      margin: 0 0 0.65rem;
+    }
+    .q .q-num {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--role-ask);
+      margin-bottom: 0.3rem;
+    }
+    .q h3 { margin-bottom: 0.65rem; font-size: 16px; }
+    .q .opts {
+      display: grid;
+      gap: 0.4rem;
+    }
+    .q label {
+      display: flex;
+      gap: 0.65rem;
+      align-items: flex-start;
+      border: 2px solid var(--clr-stroke);
+      border-radius: var(--radius);
+      background: var(--clr-bg-2);
+      padding: 0.65rem 0.85rem;
+      font-size: 15px;
+      cursor: pointer;
+    }
+    .q label:hover { border-color: var(--role-ask); }
+    .q label:has(input:checked) {
+      border-color: var(--role-ask);
+      background: var(--clr-orange-bg);
+    }
+    .q input[type="radio"] { margin-top: 0.2rem; accent-color: var(--role-ask); flex-shrink: 0; }
+    .q .free {
+      width: 100%;
+      font-family: var(--font-body);
+      font-size: 15px;
+      color: var(--color-fg);
+      border: 2px solid var(--clr-stroke);
+      border-radius: var(--radius);
+      padding: 0.65rem 0.8rem;
+      background: var(--clr-bg-2);
+    }
+    .q .free:focus { outline: none; border-color: var(--role-ask); }
+    .q-copy { margin-top: 0.85rem; }
+
+    .doc-footer {
+      margin-top: var(--gap-m);
+      padding-top: 1rem;
+      border-top: 1px solid var(--clr-stroke);
+      font-size: 13px;
+      color: var(--clr-steel);
+    }
+    .byr {
+      height: 4px;
+      background: linear-gradient(90deg, var(--clr-blue) 0 33%, var(--clr-yellow) 33% 66%, var(--clr-red) 66% 100%);
+      margin-top: 1.5rem;
+    }
+
+    @media (max-width: 720px) {
+      .split-2 { grid-template-columns: 1fr; }
+      .doc-header .header-meta { display: none; }
+      .children {
+        grid-template-columns: 1fr;
+        max-width: 280px;
+        padding-top: 0;
+        gap: 0;
+      }
+      .children::before { display: none; }
+      .children .node::before {
+        position: relative;
+        top: auto;
+        left: auto;
+        transform: none;
+        display: block;
+        height: 16px;
+        margin: 0 auto;
+      }
+      .stem { height: 16px; }
+      .btn { padding: 12px 18px; }
+      .hs-crm { grid-template-columns: 1fr; }
+      .hs-highlight { display: none; }
+      .hs-card { margin: 0; }
+    }
+  </style>
+</head>
+<body>
+  <header class="doc-header">
+    <div class="inner">
+      <svg class="mark" width="36" height="33" viewBox="0 0 180 164" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M0 81.8218C0 127.005 36.6384 163.644 81.8218 163.644V0H0V81.8218Z"></path>
+        <path d="M180 163.644C180 118.46 143.362 81.8218 98.1782 81.8218V163.644H180Z"></path>
+        <path d="M139.099 81.8218C161.701 81.8218 180 63.5026 180 40.9208C180 18.339 161.681 0 139.099 0H98.198V81.8218H139.099Z"></path>
+      </svg>
+      <p><strong>RevPartners</strong> · Recommended approach</p>
+      <span class="header-meta">Materials Contract forecasting</span>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div class="hero">
+      <p class="recommendation">This is a Recommendation</p>
+      <h1><b>Forecast Purchase Orders</b> <span>in HubSpot</span></h1>
+      <div class="title-rule" aria-hidden="true"><span class="line"></span><span class="cap"></span></div>
+      <p class="lede">Stop importing forecast spreadsheets. Give sales a table on the Materials Contract, and let HubSpot create the Purchase Order records.</p>
+    </div>
+
+    <div class="bluf">
+      <div class="label">Bottom line</div>
+      <p>Create a dedicated <strong>Purchase Order</strong> custom object for forecast records and manage those forecasts directly from the <strong>Materials Contract</strong>. Reps enter many future orders in one sitting. HubSpot creates the records and associations. No import file, no hunting record IDs, no association workflows.</p>
+    </div>
+
+    <section class="section" id="structure">
+      <h2><span class="material-symbols-outlined">account_tree</span> Proposed Structure</h2>
+      <p class="section-lead">The Materials Contract stays the agreement and sales-lifecycle record. Purchase Orders become the individual, reportable forecast lines.</p>
+
+      <div class="tree" aria-label="Materials Contract parent with four Purchase Order children">
+        <div class="node">
+          <div class="kicker">Parent</div>
+          <div class="name">Materials Contract</div>
+          <div class="hint">Agreement + sales lifecycle</div>
+        </div>
+        <div class="stem" aria-hidden="true"></div>
+        <div class="children" style="--cols: 4">
+          <div class="node po">
+            <div class="kicker">Child</div>
+            <div class="name">Purchase Order</div>
+          </div>
+          <div class="node po">
+            <div class="kicker">Child</div>
+            <div class="name">Purchase Order</div>
+          </div>
+          <div class="node po">
+            <div class="kicker">Child</div>
+            <div class="name">Purchase Order</div>
+          </div>
+          <div class="node po">
+            <div class="kicker">Child</div>
+            <div class="name">Purchase Order</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="entry">
+      <h2><span class="material-symbols-outlined">table</span> Forecast Entry</h2>
+      <p class="section-lead">A sales rep opens a Materials Contract and uses a Forecast Purchase Orders section on that record. Spreadsheet-style bulk entry, entirely inside HubSpot. Try it — add a row, save, or replace.</p>
+
+      <div class="hs-crm" data-crm="entry">
+        <aside class="hs-highlight">
+          <div class="obj-type">Materials Contract</div>
+          <div class="rec-name">Q4 Polymer Supply</div>
+          <p class="assoc">Acme Polymers</p>
+          <div class="hs-actions">
+            <span><span class="dot">N</span>Note</span>
+            <span><span class="dot">E</span>Email</span>
+            <span><span class="dot">C</span>Call</span>
+            <span><span class="dot">T</span>Task</span>
+          </div>
+          <ul class="hs-props">
+            <li><div class="pl">Contract ID</div><div class="pv">MC-10482</div></li>
+            <li><div class="pl">Status</div><div class="pv">Active</div></li>
+            <li><div class="pl">Associated company</div><div class="pv" style="color:var(--hs-link)">Acme Polymers</div></li>
+          </ul>
+        </aside>
+        <div class="hs-main">
+          <div class="hs-tabs">
+            <span class="on">Overview</span>
+            <span>Activities</span>
+            <span>Associations</span>
+          </div>
+          <div class="hs-card">
+            <div class="hs-card-head">
+              <h4>Forecast Purchase Orders</h4>
+              <button type="button" class="more">Actions</button>
+            </div>
+            <div class="forecast-table-wrap">
+              <table class="forecast">
+                <thead>
+                  <tr>
+                    <th>Unit Price</th>
+                    <th>Volume</th>
+                    <th>Unit</th>
+                    <th>Ship Date</th>
+                    <th class="row-del"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><input type="text" value="$100" aria-label="Unit Price"></td>
+                    <td><input type="text" value="100" aria-label="Volume"></td>
+                    <td>
+                      <select aria-label="Unit of Measurement">
+                        <option selected>Grams</option>
+                        <option>Kilograms</option>
+                        <option>Pounds</option>
+                        <option>Units</option>
+                      </select>
+                    </td>
+                    <td><input type="text" value="10/1/2027" aria-label="Ship Date"></td>
+                    <td class="row-del"><button type="button" class="icon-btn" data-del aria-label="Remove row"><span class="material-symbols-outlined">close</span></button></td>
+                  </tr>
+                  <tr>
+                    <td><input type="text" value="$105" aria-label="Unit Price"></td>
+                    <td><input type="text" value="125" aria-label="Volume"></td>
+                    <td>
+                      <select aria-label="Unit of Measurement">
+                        <option selected>Grams</option>
+                        <option>Kilograms</option>
+                        <option>Pounds</option>
+                        <option>Units</option>
+                      </select>
+                    </td>
+                    <td><input type="text" value="11/1/2027" aria-label="Ship Date"></td>
+                    <td class="row-del"><button type="button" class="icon-btn" data-del aria-label="Remove row"><span class="material-symbols-outlined">close</span></button></td>
+                  </tr>
+                  <tr>
+                    <td><input type="text" value="$110" aria-label="Unit Price"></td>
+                    <td><input type="text" value="150" aria-label="Volume"></td>
+                    <td>
+                      <select aria-label="Unit of Measurement">
+                        <option selected>Grams</option>
+                        <option>Kilograms</option>
+                        <option>Pounds</option>
+                        <option>Units</option>
+                      </select>
+                    </td>
+                    <td><input type="text" value="12/1/2027" aria-label="Ship Date"></td>
+                    <td class="row-del"><button type="button" class="icon-btn" data-del aria-label="Remove row"><span class="material-symbols-outlined">close</span></button></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="hs-bar">
+              <button type="button" class="hs-btn link" data-add>+ Add row</button>
+              <button type="button" class="hs-btn primary" data-save>Save changes</button>
+              <button type="button" class="hs-btn danger" data-replace>Replace entire forecast</button>
+            </div>
+            <div class="hs-toast" data-toast role="status"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="update">
+      <h2><span class="material-symbols-outlined">sync</span> Updating or Replacing</h2>
+      <p class="section-lead">Two actions. One edits. One starts over. Actual Purchase Orders are never in the blast radius.</p>
+
+      <div class="split-2">
+        <div class="card save">
+          <div class="sys-eyebrow">Incremental</div>
+          <h3>Save Changes</h3>
+          <p>Updates or adds forecast Purchase Orders. Leaves the rest of the existing forecast alone.</p>
+        </div>
+        <div class="card replace">
+          <div class="sys-eyebrow">Full refresh</div>
+          <h3>Replace Entire Forecast</h3>
+          <p>Use this when a new projection lands and the old forecast should come off the board.</p>
+        </div>
+      </div>
+
+      <p class="section-lead" style="margin-top:0.5rem">Replace Entire Forecast would:</p>
+      <div class="steps">
+        <div class="step">
+          <div class="num">1</div>
+          <div>
+            <h3>Find the current forecast</h3>
+            <p>Load Purchase Orders associated to this Materials Contract where PO Type is Forecast.</p>
+          </div>
+        </div>
+        <div class="step s2">
+          <div class="num">2</div>
+          <div>
+            <h3>Archive the old lines</h3>
+            <p>Remove or archive those forecast records. Actual Purchase Orders stay put.</p>
+          </div>
+        </div>
+        <div class="step s3">
+          <div class="num">3</div>
+          <div>
+            <h3>Create the new forecast</h3>
+            <p>Write one Purchase Order record for each row in the table.</p>
+          </div>
+        </div>
+        <div class="step s4">
+          <div class="num">4</div>
+          <div>
+            <h3>Associate to the contract</h3>
+            <p>Attach the new records to the same Materials Contract. No ID hunt.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="callout info">
+        <div class="label">Why this matters</div>
+        <p>Today, a new forecast means finding and deleting last quarter’s imported rows by hand. Replace Entire Forecast is that cleanup, without the scavenger hunt.</p>
+      </div>
+    </section>
+
+    <section class="section" id="type">
+      <h2><span class="material-symbols-outlined">category</span> Forecast Versus Actual</h2>
+      <p class="section-lead">Same table, with a PO Type column. Forecast-management actions only touch rows marked Forecast. Actual Purchase Orders stay put.</p>
+
+      <div class="hs-crm" data-crm="typed">
+        <aside class="hs-highlight">
+          <div class="obj-type">Materials Contract</div>
+          <div class="rec-name">Q4 Polymer Supply</div>
+          <p class="assoc">Acme Polymers</p>
+          <div class="hs-actions">
+            <span><span class="dot">N</span>Note</span>
+            <span><span class="dot">E</span>Email</span>
+            <span><span class="dot">C</span>Call</span>
+            <span><span class="dot">T</span>Task</span>
+          </div>
+          <ul class="hs-props">
+            <li><div class="pl">Contract ID</div><div class="pv">MC-10482</div></li>
+            <li><div class="pl">Status</div><div class="pv">Active</div></li>
+            <li><div class="pl">Associated company</div><div class="pv" style="color:var(--hs-link)">Acme Polymers</div></li>
+          </ul>
+        </aside>
+        <div class="hs-main">
+          <div class="hs-tabs">
+            <span class="on">Overview</span>
+            <span>Activities</span>
+            <span>Associations</span>
+          </div>
+          <div class="hs-card">
+            <div class="hs-card-head">
+              <h4>Forecast Purchase Orders</h4>
+              <button type="button" class="more">Actions</button>
+            </div>
+            <div class="forecast-table-wrap">
+              <table class="forecast" data-po-type>
+                <thead>
+                  <tr>
+                    <th>PO Type</th>
+                    <th>Unit Price</th>
+                    <th>Volume</th>
+                    <th>Unit</th>
+                    <th>Ship Date</th>
+                    <th class="row-del"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      <select aria-label="PO Type">
+                        <option selected>Forecast</option>
+                        <option>Actual</option>
+                      </select>
+                    </td>
+                    <td><input type="text" value="$100" aria-label="Unit Price"></td>
+                    <td><input type="text" value="100" aria-label="Volume"></td>
+                    <td>
+                      <select aria-label="Unit of Measurement">
+                        <option selected>Grams</option>
+                        <option>Kilograms</option>
+                        <option>Pounds</option>
+                        <option>Units</option>
+                      </select>
+                    </td>
+                    <td><input type="text" value="10/1/2027" aria-label="Ship Date"></td>
+                    <td class="row-del"><button type="button" class="icon-btn" data-del aria-label="Remove row"><span class="material-symbols-outlined">close</span></button></td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <select aria-label="PO Type">
+                        <option selected>Forecast</option>
+                        <option>Actual</option>
+                      </select>
+                    </td>
+                    <td><input type="text" value="$105" aria-label="Unit Price"></td>
+                    <td><input type="text" value="125" aria-label="Volume"></td>
+                    <td>
+                      <select aria-label="Unit of Measurement">
+                        <option selected>Grams</option>
+                        <option>Kilograms</option>
+                        <option>Pounds</option>
+                        <option>Units</option>
+                      </select>
+                    </td>
+                    <td><input type="text" value="11/1/2027" aria-label="Ship Date"></td>
+                    <td class="row-del"><button type="button" class="icon-btn" data-del aria-label="Remove row"><span class="material-symbols-outlined">close</span></button></td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <select aria-label="PO Type">
+                        <option selected>Forecast</option>
+                        <option>Actual</option>
+                      </select>
+                    </td>
+                    <td><input type="text" value="$110" aria-label="Unit Price"></td>
+                    <td><input type="text" value="150" aria-label="Volume"></td>
+                    <td>
+                      <select aria-label="Unit of Measurement">
+                        <option selected>Grams</option>
+                        <option>Kilograms</option>
+                        <option>Pounds</option>
+                        <option>Units</option>
+                      </select>
+                    </td>
+                    <td><input type="text" value="12/1/2027" aria-label="Ship Date"></td>
+                    <td class="row-del"><button type="button" class="icon-btn" data-del aria-label="Remove row"><span class="material-symbols-outlined">close</span></button></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="hs-bar">
+              <button type="button" class="hs-btn link" data-add>+ Add row</button>
+              <button type="button" class="hs-btn primary" data-save>Save changes</button>
+              <button type="button" class="hs-btn danger" data-replace>Replace entire forecast</button>
+            </div>
+            <div class="hs-toast" data-toast role="status"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="callout stop">
+        <div class="label">Do not</div>
+        <p>Replacing an entire forecast must never remove or alter an actual Purchase Order. If a later process turns forecasts into real orders, a status model (Forecast → Submitted → Fulfilled → Cancelled) can sit on the same object.</p>
+      </div>
+    </section>
+
+    <section class="section" id="associations">
+      <h2><span class="material-symbols-outlined">hub</span> Association Model</h2>
+      <p class="section-lead">Each Purchase Order associates to its Materials Contract. Company and Contact stay on the contract unless a report specifically needs them on every forecast line.</p>
+
+      <div class="tree" aria-label="Company and contacts, then Materials Contract, then forecast Purchase Orders">
+        <div class="node neutral">
+          <div class="kicker">Existing CRM</div>
+          <div class="name">Company / Contacts</div>
+        </div>
+        <div class="stem" aria-hidden="true"></div>
+        <div class="node">
+          <div class="kicker">Parent</div>
+          <div class="name">Materials Contract</div>
+          <div class="hint">One association hop from the company</div>
+        </div>
+        <div class="stem" aria-hidden="true"></div>
+        <div class="children" style="--cols: 3">
+          <div class="node po">
+            <div class="kicker">Forecast</div>
+            <div class="name">Purchase Order</div>
+          </div>
+          <div class="node po">
+            <div class="kicker">Forecast</div>
+            <div class="name">Purchase Order</div>
+          </div>
+          <div class="node po">
+            <div class="kicker">Forecast</div>
+            <div class="name">Purchase Order</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="benefits">
+      <h2><span class="material-symbols-outlined">verified</span> Benefits</h2>
+      <ul class="benefit-list">
+        <li><span class="material-symbols-outlined">block</span> Eliminate recurring spreadsheet imports.</li>
+        <li><span class="material-symbols-outlined">playlist_add</span> Let reps enter many forecast orders at once.</li>
+        <li><span class="material-symbols-outlined">link</span> Automatically associate each forecast PO to the correct Materials Contract.</li>
+        <li><span class="material-symbols-outlined">content_copy</span> Avoid duplicating Contact and Company associations across dozens of forecast rows.</li>
+        <li><span class="material-symbols-outlined">call_split</span> Keep contract data separate from forecast-order data.</li>
+        <li><span class="material-symbols-outlined">restart_alt</span> Make replacing outdated forecasts a single action.</li>
+        <li><span class="material-symbols-outlined">shield</span> Protect actual Purchase Orders from forecast cleanup.</li>
+        <li><span class="material-symbols-outlined">database</span> Preserve each forecast entry as its own reportable CRM record.</li>
+        <li><span class="material-symbols-outlined">home</span> Keep the whole process inside HubSpot.</li>
+      </ul>
+    </section>
+
+    <section class="section" id="feasibility">
+      <h2><span class="material-symbols-outlined">build</span> Feasibility</h2>
+      <div class="callout">
+        <div class="label">Validated</div>
+        <p>The custom HubSpot interface is technically feasible in the partner’s current HubSpot environment. Remaining work is business behavior, not platform capability. This is the recommended direction over the original import-based approach.</p>
+      </div>
+    </section>
+
+    <section class="section" id="questions">
+      <h2><span class="material-symbols-outlined">help</span> Open Questions</h2>
+      <p class="section-lead">These are the calls we still need from the business. Nothing is saved on this page — mark answers here, then copy them out.</p>
+
+      <div class="q">
+        <div class="q-num">Question 1</div>
+        <h3>When a new projection comes in, do you replace the entire forecast or edit individual Purchase Orders?</h3>
+        <div class="opts">
+          <label><input type="radio" name="q1" value="We almost always replace the whole forecast."> We almost always replace the whole forecast.</label>
+          <label><input type="radio" name="q1" value="We usually edit individual lines and leave the rest."> We usually edit individual lines and leave the rest.</label>
+          <label><input type="radio" name="q1" value="Both — depends on the contract."> Both — depends on the contract.</label>
+        </div>
+      </div>
+
+      <div class="q">
+        <div class="q-num">Question 2</div>
+        <h3>Besides Unit Price, Volume, Unit of Measurement, and Ship Date, which fields are required on each Purchase Order?</h3>
+        <input class="free" type="text" name="q2" placeholder="List any other required fields…">
+      </div>
+
+      <div class="q">
+        <div class="q-num">Question 3</div>
+        <h3>After a forecast is replaced, do you need to keep the old version, or is the current forecast enough?</h3>
+        <div class="opts">
+          <label><input type="radio" name="q3" value="Keep historical forecast versions (archive, don’t delete)."> Keep historical forecast versions (archive, don’t delete).</label>
+          <label><input type="radio" name="q3" value="Current forecast only. Old lines can go."> Current forecast only. Old lines can go.</label>
+        </div>
+      </div>
+
+      <div class="q">
+        <div class="q-num">Question 4</div>
+        <h3>Do forecast Purchase Orders ever become actual Purchase Orders?</h3>
+        <div class="opts">
+          <label><input type="radio" name="q4" value="Yes — a forecast line can convert into a real order."> Yes — a forecast line can convert into a real order.</label>
+          <label><input type="radio" name="q4" value="No — actuals are created separately. Forecasts stay forecasts."> No — actuals are created separately. Forecasts stay forecasts.</label>
+        </div>
+      </div>
+
+      <div class="q">
+        <div class="q-num">Question 5</div>
+        <h3>On the Materials Contract, should forecast and actual Purchase Orders appear together or in separate sections?</h3>
+        <div class="opts">
+          <label><input type="radio" name="q5" value="One table, distinguished by PO Type."> One table, distinguished by PO Type.</label>
+          <label><input type="radio" name="q5" value="Separate sections — forecast vs actual."> Separate sections — forecast vs actual.</label>
+        </div>
+      </div>
+
+      <div class="q">
+        <div class="q-num">Question 6</div>
+        <h3>Does any report need Company or Contact associations on the Purchase Order itself?</h3>
+        <div class="opts">
+          <label><input type="radio" name="q6" value="No — reporting through the Materials Contract is enough."> No — reporting through the Materials Contract is enough.</label>
+          <label><input type="radio" name="q6" value="Yes — POs need direct Company and/or Contact associations."> Yes — POs need direct Company and/or Contact associations.</label>
+        </div>
+      </div>
+
+      <div class="q-copy">
+        <button type="button" class="btn outline copy-btn" id="copy-answers"><span class="material-symbols-outlined">content_copy</span> Copy answers to clipboard</button>
+      </div>
+    </section>
+
+    <footer class="doc-footer">
+      <p>RevPartners · Materials Contract forecasting · Recommended over spreadsheet import</p>
+      <div class="byr" aria-hidden="true"></div>
+    </footer>
+  </main>
+
+  <div class="overlay" id="overlay" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal">
+      <h3 id="modal-title">Replace the entire forecast?</h3>
+      <p>This archives existing <strong>forecast</strong> Purchase Orders on this Materials Contract, then creates the rows currently in the table.</p>
+      <div class="callout stop" style="margin-bottom:0">
+        <div class="label">Protected</div>
+        <p>Actual Purchase Orders are not removed or changed.</p>
+      </div>
+      <div class="table-actions">
+        <button type="button" class="hs-btn secondary" id="cancel-replace">Cancel</button>
+        <button type="button" class="hs-btn danger" id="confirm-replace">Replace forecast</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      var overlay = document.getElementById("overlay");
+      var activeCrm = null;
+
+      function unitSelect() {
+        return '<select aria-label="Unit of Measurement"><option>Grams</option><option>Kilograms</option><option>Pounds</option><option>Units</option></select>';
+      }
+      function typeSelect() {
+        return '<select aria-label="PO Type"><option selected>Forecast</option><option>Actual</option></select>';
+      }
+      function delBtn() {
+        return '<td class="row-del"><button type="button" class="icon-btn" data-del aria-label="Remove row"><span class="material-symbols-outlined">close</span></button></td>';
+      }
+      function rowTemplate(hasType) {
+        var tr = document.createElement("tr");
+        var typeCell = hasType ? "<td>" + typeSelect() + "</td>" : "";
+        tr.innerHTML =
+          typeCell +
+          '<td><input type="text" value="" aria-label="Unit Price" placeholder="$0"></td>' +
+          '<td><input type="text" value="" aria-label="Volume" placeholder="0"></td>' +
+          "<td>" + unitSelect() + "</td>" +
+          '<td><input type="text" value="" aria-label="Ship Date" placeholder="MM/DD/YYYY"></td>' +
+          delBtn();
+        return tr;
+      }
+      function forecastCount(tbody, hasType) {
+        if (!hasType) return tbody.rows.length;
+        var n = 0;
+        Array.prototype.forEach.call(tbody.rows, function (row) {
+          var sel = row.querySelector('select[aria-label="PO Type"]');
+          if (!sel || sel.value === "Forecast") n += 1;
+        });
+        return n;
+      }
+      function showToast(root, html, isReplace) {
+        var toast = root.querySelector("[data-toast]");
+        toast.className = "hs-toast show" + (isReplace ? " replace-msg" : "");
+        toast.textContent = html;
+      }
+
+      function bindCrm(root) {
+        var tbody = root.querySelector("tbody");
+        var hasType = !!root.querySelector("[data-po-type]");
+        root.querySelector("[data-add]").addEventListener("click", function () {
+          tbody.appendChild(rowTemplate(hasType));
+        });
+        tbody.addEventListener("click", function (e) {
+          var btn = e.target.closest("[data-del]");
+          if (!btn) return;
+          if (tbody.rows.length <= 1) return;
+          btn.closest("tr").remove();
+        });
+        root.querySelector("[data-save]").addEventListener("click", function () {
+          overlay.classList.remove("show");
+          var n = forecastCount(tbody, hasType);
+          showToast(
+            root,
+            "Save changes would update or add " + n + " forecast Purchase Order" + (n === 1 ? "" : "s") + " on this Materials Contract. Actual POs are untouched."
+          );
+        });
+        root.querySelector("[data-replace]").addEventListener("click", function () {
+          activeCrm = root;
+          overlay.classList.add("show");
+        });
+      }
+
+      document.querySelectorAll(".hs-crm").forEach(bindCrm);
+
+      document.getElementById("cancel-replace").addEventListener("click", function () {
+        overlay.classList.remove("show");
+      });
+      overlay.addEventListener("click", function (e) {
+        if (e.target === overlay) overlay.classList.remove("show");
+      });
+      document.getElementById("confirm-replace").addEventListener("click", function () {
+        overlay.classList.remove("show");
+        if (!activeCrm) return;
+        var tbody = activeCrm.querySelector("tbody");
+        var hasType = !!activeCrm.querySelector("[data-po-type]");
+        var n = forecastCount(tbody, hasType);
+        showToast(
+          activeCrm,
+          "Replace entire forecast would archive existing forecast POs on this contract, then create " +
+            n +
+            " new forecast record" +
+            (n === 1 ? "" : "s") +
+            ". Actual Purchase Orders are not in scope.",
+          true
+        );
+      });
+
+      var copyBtn = document.getElementById("copy-answers");
+      copyBtn.addEventListener("click", function () {
+        var parts = [];
+        document.querySelectorAll("#questions .q").forEach(function (q) {
+          var title = q.querySelector("h3").textContent.trim();
+          var checked = q.querySelector("input[type=radio]:checked");
+          var text = q.querySelector(".free");
+          var answer = "(unanswered)";
+          if (checked) answer = checked.value;
+          else if (text && text.value.trim()) answer = text.value.trim();
+          parts.push(title);
+          parts.push("- " + answer);
+          parts.push("");
+        });
+        navigator.clipboard.writeText(parts.join("\n").trim()).then(function () {
+          copyBtn.classList.add("copied");
+          var label = copyBtn.childNodes[copyBtn.childNodes.length - 1];
+          var prev = label.textContent;
+          label.textContent = " Copied";
+          setTimeout(function () {
+            copyBtn.classList.remove("copied");
+            label.textContent = prev;
+          }, 1600);
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

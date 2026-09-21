@@ -220,12 +220,18 @@ Cover is `01-cover` (dark / Ebony Clay, thick BYR stripe, quiet cropped illustra
 
 ## 9. Google Docs / written docs
 
-Two templates. Copy a specimen in `docs/` — don't invent letterhead.
+**Copy a finished example.** `examples/README.md` is the menu. Don’t invent letterhead, and don’t dress a brief as a SaaS landing.
 
 | File | Use when |
 |---|---|
-| `docs/01-branded.html` | General branded doc — title + subtitle, heading ladder, alerts, table. Internal notes, style reference. |
-| `docs/02-working.html` | Client / partner deliverable — BLUF callout, comparison table, step-by-step, notes. |
+| `examples/feasibility-jesus-image-stripe-checkout.html` | Scoping / “is this feasible” |
+| `examples/process-channel-engine-dedupe.html` | Workflow / decision tree |
+| `examples/spec-mentavi-journey-event.html` | Long technical spec |
+| `examples/one-pager-forecast-purchase-orders.html` | Compact implementation one-pager |
+| `examples/guide-chat-visitor-identification.html` | Step-by-step with code |
+| `examples/guide-tech-scorecard-epic-metrics.html` | Operating guide / scorecard |
+
+`docs/01-branded.html` and `docs/02-working.html` are empty letterhead shells (green bar, dashed divider, footer stripe). Use them only if none of the examples fit. Real proportion, type, and 2px borders live in `examples/`.
 
 Shared chrome: green header bar with white mark, 1" margins, dashed green title divider (branded), footer `RevPartners / …` + the diagonal blue/yellow/red stripe.
 
@@ -261,6 +267,7 @@ Every generated HTML file includes:
 - [ ] Buttons are pills; boxes are 8px (`--radius`). No 16px panel leftover.
 - [ ] Icons are Material Symbols **Outlined**, green (or list-item hue / semantic on neutrals).
 - [ ] Diagram stems actually touch cards. No floating “fork.”
+- [ ] Written docs copied from `examples/` (closest genre). Empty `docs/` shells only if nothing matches.
 - [ ] No On/Off pills on static HTML.
 - [ ] No serif, no monospace, no gradients on surfaces, no emoji in UI.
 - [ ] Logo present, correct color, with clear space.

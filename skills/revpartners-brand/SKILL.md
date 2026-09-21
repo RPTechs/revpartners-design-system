@@ -6,7 +6,7 @@ disable-model-invocation: true
 
 # RevPartners brand
 
-Self-contained. Do not read local theme files, `DESIGN.md`, `slides/`, `docs/`, or `assets/`. Tokens below are canonical. Do not invent colors, fonts, or component recipes.
+Self-contained. Do not read local theme files, `DESIGN.md`, `slides/`, `docs/`, or `assets/`. Tokens below are canonical. Do not invent colors, fonts, or component recipes. Exception: if you are in the design-system repo, copy the closest file in `examples/`.
 
 RevPartners is a **Go-to-Market (GTM) engineering consultancy** delivering **Revenue Operations through HubSpot**. The brand reads **bold, technical, and confident** — clean, lots of white space, one accent color at a time, never busy.
 
@@ -232,7 +232,7 @@ Don't freehand a 16:9 from the web card recipe.
 
 ## 9. Google Docs / written docs
 
-Don't invent letterhead.
+Don't invent letterhead. If you are in the design-system repo, **copy `examples/`** — feasibility (Jesus Image), process/fork (Channel Engine), long spec (Mentavi), one-pager (Forecast POs), how-to with code (Chat visitor ID), operating guide (Tech Scorecard). Empty shells in `docs/` are not the look.
 
 - **Branded doc:** title + subtitle, heading ladder, dashed-border alert boxes, green styled table.
 - **Working doc:** client/partner deliverable — BLUF callout, comparison table, step-by-step, notes.
@@ -266,6 +266,7 @@ Every generated HTML file includes:
 - [ ] Buttons are pills; boxes are 8px (`--radius`). No 16px panel leftover.
 - [ ] Icons are Material Symbols **Outlined**, green (or list-item hue / semantic on neutrals).
 - [ ] Diagram stems actually touch cards. No floating “fork.”
+- [ ] Written docs copied from `examples/` (closest genre) when in the kit. Empty `docs/` shells only if nothing matches.
 - [ ] No On/Off pills on static HTML.
 - [ ] No serif, no monospace, no gradients on surfaces, no emoji in UI.
 - [ ] Logo present, correct color, with clear space.

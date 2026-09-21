@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SETWorks · Embed HubSpot Chat in an Authenticated App | RevPartners</title>
+  <link rel="icon" href="assets/RP-Mark-2026-Green.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,300,1,0" rel="stylesheet">
+  <link rel="stylesheet" href="assets/prism.css">
+  <style>
+    :root {
+      --clr-off-white: #FDFDFD;  --clr-mercury: #F3F3F4;
+      --clr-iron: #DDDEE2;       --clr-steel: #A1A2A7;     --clr-carbon: #555970;
+      --clr-river-bed: #434761;  --clr-ebony-clay: #24273A;
+      --clr-green:  #17B451;  --clr-blue:   #329DFF;
+      --clr-orange: #F7761E;  --clr-red:    #FB3131;
+      --clr-yellow: #FBAA31;
+      --clr-green-bg:  rgba(23,180,81,0.20);   --clr-blue-bg:   rgba(50,157,255,0.20);
+      --clr-orange-bg: rgba(239,129,27,0.20);  --clr-red-bg:    rgba(251,49,49,0.20);
+      --clr-primary: var(--clr-green);
+      --clr-text: var(--clr-river-bed);
+      --clr-title: var(--clr-ebony-clay);
+      --color-bg: var(--clr-off-white);
+      --color-bg-alt: var(--clr-mercury);
+      --color-bg-dark: var(--clr-ebony-clay);
+      --color-fg: var(--clr-river-bed);
+      --color-fg-3: var(--clr-steel);
+      --color-fg-inverted: var(--clr-off-white);
+      --color-primary: var(--clr-green);
+      --color-border: rgba(36,39,58,0.10);
+      --clr-stroke: rgba(36,39,58,0.10);
+      --clr-stroke-2: rgba(36,39,58,0.30);
+      --clr-bg-2: var(--clr-mercury);
+      --color-link: var(--clr-green);
+      --role-chrome: var(--clr-green);
+      --role-chrome-bg: var(--clr-green-bg);
+      --role-ask: var(--clr-orange);
+      --role-info: var(--clr-blue);
+      --role-no: var(--clr-red);
+      --font-display: "Montserrat", sans-serif;
+      --font-body: "Inter", sans-serif;
+      --font-icons: "Material Symbols Outlined", sans-serif;
+      --gap-xxs: .25rem; --gap-xs: .5rem; --gap-s: 1rem; --gap: 1.5rem;
+      --gap-m: 3rem;
+      --radius: 8px;
+      --radius-pill: 120px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; scroll-padding-top: 72px; }
+    body {
+      background: var(--color-bg);
+      color: var(--color-fg);
+      font-family: var(--font-body);
+      font-weight: 400;
+      font-size: 17px;
+      line-height: 1.4;
+    }
+    a { color: var(--color-link); font-weight: 700; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    strong, b { font-weight: 700; }
+    h1, h2, h3 { font-family: var(--font-display); color: var(--color-fg); font-weight: 700; line-height: 1.2; }
+    h1 { font-size: clamp(28px, 4vw, 40px); }
+    h2 { font-size: 26px; }
+    h3 { font-size: 18px; }
+    p { margin: 0 0 0.85rem; }
+    ul, ol { margin: 0 0 1rem; padding-left: 1.25rem; }
+    li { margin: 0.3rem 0; }
+    .material-symbols-outlined {
+      font-family: var(--font-icons);
+      font-weight: 300;
+      font-variation-settings: "FILL" 1, "wght" 300, "GRAD" 0, "opsz" 24;
+      vertical-align: middle;
+      font-size: 22px;
+      line-height: 1;
+    }
+
+    .doc-header {
+      background: var(--clr-green);
+      color: var(--color-fg-inverted);
+      padding: 0.85rem 0;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+    .doc-header .inner {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .mark { width: 36px; height: 33px; flex-shrink: 0; }
+    .mark path { fill: var(--clr-off-white); }
+    .doc-header p { margin: 0; font-size: 13px; color: var(--clr-off-white); }
+    .doc-header strong { color: var(--clr-off-white); }
+    .doc-header .header-meta {
+      margin-left: auto;
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 13px;
+    }
+
+    .wrap {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 40px 24px 5rem;
+    }
+
+    .eyebrow {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: 0.5rem;
+      text-transform: uppercase;
+      color: var(--role-chrome);
+      margin-bottom: 0.75rem;
+    }
+    .hero { margin-bottom: var(--gap); }
+    .hero h1 { margin-bottom: 0.65rem; }
+    .hero h1 span { font-weight: 400; }
+    .lede { font-size: 18px; max-width: 720px; color: var(--clr-carbon); }
+    .title-rule {
+      display: flex;
+      align-items: center;
+      margin: 1.1rem 0 1.75rem;
+    }
+    .title-rule .line {
+      flex: 1;
+      border-top: 3px dashed var(--role-chrome);
+    }
+    .title-rule .cap {
+      width: 12px; height: 12px; border-radius: 50%;
+      background: var(--role-chrome); flex-shrink: 0;
+    }
+
+    .bluf {
+      background: var(--role-chrome-bg);
+      border: 2px solid var(--clr-green);
+      border-radius: var(--radius);
+      padding: 1.15rem 1.35rem;
+      margin: 0 0 var(--gap);
+    }
+    .bluf .label {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 12px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--clr-green);
+      margin-bottom: 0.35rem;
+    }
+    .bluf p { margin: 0; }
+
+    .split-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--gap-s);
+      margin-bottom: var(--gap);
+    }
+    .system-card {
+      border: 2px solid var(--clr-stroke);
+      border-radius: var(--radius);
+      background: var(--clr-bg-2);
+      padding: 1.15rem 1.25rem;
+    }
+    .system-card.hs {
+      border-color: var(--clr-orange);
+      background: var(--clr-orange-bg);
+    }
+    .system-card.dev {
+      border-color: var(--clr-blue);
+      background: var(--clr-blue-bg);
+    }
+    .system-card .sys-eyebrow {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 0.4rem;
+    }
+    .system-card.hs .sys-eyebrow { color: var(--clr-orange); }
+    .system-card.dev .sys-eyebrow { color: var(--clr-blue); }
+    .system-card h3 { margin-bottom: 0.5rem; }
+    .system-card ul { margin: 0.5rem 0 0; }
+    .system-card li { font-size: 15px; }
+
+    .section {
+      margin: 0 0 var(--gap-m);
+      padding-top: 0.25rem;
+    }
+    .section > h2 {
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+      margin-bottom: 0.65rem;
+    }
+    .section > h2 .material-symbols-outlined { color: var(--role-chrome); font-size: 26px; }
+    .section-lead { color: var(--clr-carbon); margin-bottom: 1rem; max-width: 760px; }
+
+    .step {
+      border: 2px solid var(--clr-stroke);
+      border-radius: var(--radius);
+      background: var(--color-bg);
+      padding: 1.15rem 1.25rem;
+      margin: 0 0 var(--gap-s);
+      --step-accent: var(--clr-green);
+      --step-accent-bg: var(--clr-green-bg);
+    }
+    .step.hs {
+      --step-accent: var(--clr-orange);
+      --step-accent-bg: var(--clr-orange-bg);
+    }
+    .step.dev {
+      --step-accent: var(--clr-blue);
+      --step-accent-bg: var(--clr-blue-bg);
+    }
+    .step .who {
+      display: inline-block;
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      border-radius: 4px;
+      padding: 0.2rem 0.5rem;
+      margin-bottom: 0.55rem;
+      background: var(--step-accent-bg);
+      color: var(--step-accent);
+      border: 1px solid var(--step-accent);
+    }
+    .step h3 { margin-bottom: 0.45rem; }
+    .step p:last-child { margin-bottom: 0; }
+    .step a { color: var(--step-accent); }
+    .docs {
+      font-size: 14px;
+      margin-top: 0.65rem;
+    }
+    .docs a { margin-right: 0.85rem; }
+
+    .callout {
+      border: 2px solid var(--clr-green);
+      background: var(--clr-green-bg);
+      border-radius: var(--radius);
+      padding: 1rem 1.15rem;
+      margin: 0 0 var(--gap-s);
+    }
+    .callout .label {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 0.3rem;
+      color: var(--clr-green);
+    }
+    .callout p:last-child { margin: 0; }
+    .step .callout {
+      border-color: var(--step-accent);
+      background: var(--step-accent-bg);
+    }
+    .step .callout .label { color: var(--step-accent); }
+
+    .snippet {
+      margin: 0.85rem 0 0;
+      border: 2px solid var(--clr-stroke);
+      border-radius: var(--radius);
+      overflow: hidden;
+      background: var(--clr-bg-2);
+    }
+    .snippet-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      padding: 0.45rem 0.75rem;
+      background: var(--color-bg);
+      border-bottom: 1px solid var(--clr-stroke);
+    }
+    .snippet-bar .src {
+      font-size: 12px;
+      color: var(--clr-steel);
+      font-weight: 500;
+    }
+    .copy-btn {
+      border: 2px solid var(--step-accent, var(--clr-green));
+      background: transparent;
+      color: var(--step-accent, var(--clr-green));
+      border-radius: var(--radius-pill);
+      padding: 4px 14px;
+      font-family: var(--font-body);
+      font-weight: 700;
+      font-size: 12px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+    }
+    .copy-btn:hover { background: var(--step-accent-bg, var(--clr-green-bg)); }
+    .copy-btn:active { transform: scale(0.98); }
+    .copy-btn.copied {
+      border-color: var(--step-accent, var(--clr-green));
+      background: var(--step-accent, var(--clr-green));
+      color: var(--clr-off-white);
+    }
+    .snippet pre,
+    .snippet pre[class*="language-"] {
+      margin: 0;
+      border: 0;
+      border-radius: 0;
+      background: var(--clr-bg-2);
+    }
+
+    .check-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .check-list li {
+      margin: 0 0 0.55rem;
+    }
+    .check-list label {
+      display: flex;
+      gap: 0.75rem;
+      align-items: flex-start;
+      border: 2px solid var(--clr-stroke);
+      border-radius: var(--radius);
+      background: var(--clr-bg-2);
+      padding: 0.85rem 1rem;
+      font-size: 15px;
+      cursor: pointer;
+      transition: border-color 0.15s, background 0.15s;
+    }
+    .check-list label:hover {
+      border-color: var(--clr-green);
+      background: var(--clr-green-bg);
+    }
+    .check-list input[type="checkbox"] {
+      appearance: none;
+      -webkit-appearance: none;
+      width: 1.25rem;
+      height: 1.25rem;
+      margin-top: 0.1rem;
+      flex-shrink: 0;
+      border: 2px solid var(--clr-stroke-2);
+      border-radius: 4px;
+      background: var(--color-bg);
+      cursor: pointer;
+      position: relative;
+    }
+    .check-list input[type="checkbox"]:checked {
+      background: var(--clr-green);
+      border-color: var(--clr-green);
+    }
+    .check-list input[type="checkbox"]:checked::after {
+      content: "";
+      position: absolute;
+      left: 0.28rem;
+      top: 0.05rem;
+      width: 0.35rem;
+      height: 0.65rem;
+      border: solid var(--clr-off-white);
+      border-width: 0 2px 2px 0;
+      transform: rotate(45deg);
+    }
+    .check-list input[type="checkbox"]:focus-visible {
+      outline: 2px solid var(--clr-green);
+      outline-offset: 2px;
+    }
+    .check-list label:has(input:checked) {
+      border-color: var(--clr-green);
+      background: var(--clr-green-bg);
+    }
+    .check-list label span { flex: 1; }
+
+    .links-box {
+      border: 2px solid var(--clr-green);
+      background: var(--clr-green-bg);
+      border-radius: var(--radius);
+      padding: 1.15rem 1.25rem;
+    }
+    .links-box h3 { margin-bottom: 0.55rem; }
+    .links-box ul { margin: 0; }
+    .links-box li { font-size: 15px; }
+
+    .doc-footer {
+      margin-top: var(--gap-m);
+      padding-top: 1rem;
+      border-top: 1px solid var(--clr-stroke);
+      font-size: 13px;
+      color: var(--clr-steel);
+    }
+    .byr {
+      height: 4px;
+      background: linear-gradient(90deg, var(--clr-blue) 0 33%, var(--clr-yellow) 33% 66%, var(--clr-red) 66% 100%);
+      margin-top: 1.5rem;
+    }
+
+    @media (max-width: 720px) {
+      .split-2 { grid-template-columns: 1fr; }
+      .doc-header .header-meta { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <header class="doc-header">
+    <div class="inner">
+      <svg class="mark" width="36" height="33" viewBox="0 0 180 164" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M0 81.8218C0 127.005 36.6384 163.644 81.8218 163.644V0H0V81.8218Z"></path>
+        <path d="M180 163.644C180 118.46 143.362 81.8218 98.1782 81.8218V163.644H180Z"></path>
+        <path d="M139.099 81.8218C161.701 81.8218 180 63.5026 180 40.9208C180 18.339 161.681 0 139.099 0H98.198V81.8218H139.099Z"></path>
+      </svg>
+      <p><strong>RevPartners</strong> · SETWorks implementation guide</p>
+      <span class="header-meta">Hub ID 48197330</span>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div class="hero">
+      <p class="eyebrow">Implementation</p>
+      <h1><b>Embed HubSpot Chat</b> <span>in Your Authenticated App</span></h1>
+      <div class="title-rule" aria-hidden="true"><span class="line"></span><span class="cap"></span></div>
+      <p class="lede">Short build guide for the SETWorks developer. The HubSpot Customer Agent and chatflow already exist in portal <strong>48197330</strong>. This covers tracking code, URL targeting, Visitor Identification, tokens, and SPA behavior.</p>
+    </div>
+
+    <div class="split-2" style="margin-bottom: var(--gap);">
+      <div class="system-card" style="border-color: var(--clr-green); background: var(--clr-green-bg);">
+        <div class="sys-eyebrow" style="color: var(--clr-green);">Partner</div>
+        <h3>SETWorks</h3>
+        <p style="margin:0;font-size:15px;color:var(--clr-carbon);">Authenticated custom web app</p>
+      </div>
+      <div class="system-card" style="border-color: var(--clr-green); background: var(--clr-green-bg);">
+        <div class="sys-eyebrow" style="color: var(--clr-green);">HubSpot portal</div>
+        <h3>48197330</h3>
+        <p style="margin:0;font-size:15px;color:var(--clr-carbon);">Tracking code + chat + Visitor ID</p>
+      </div>
+    </div>
+
+    <div class="bluf">
+      <div class="label">Bottom line</div>
+      <p>Install the HubSpot tracking code (hub <code>48197330</code>) on every SETWorks app page. Target the chatflow to your app URLs. Your backend creates a visitor ID token. Your frontend sets that token before the widget loads. Refresh the widget on client-side route changes.</p>
+    </div>
+
+    <section class="section" id="owners">
+      <h2><span class="material-symbols-outlined">handshake</span> Who Does What</h2>
+      <p class="section-lead">We cannot access the SETWorks app or sandbox. Split the work like this.</p>
+      <div class="split-2">
+        <div class="system-card hs">
+          <div class="sys-eyebrow">RevPartners / HubSpot</div>
+          <h3>We configure</h3>
+          <ul>
+            <li>Customer Agent + chatflow in portal 48197330 (done)</li>
+            <li>Chatflow URL / page targeting for SETWorks app domains</li>
+            <li>Optional: target logged-in visitors only</li>
+            <li>Private app (or OAuth) with Visitor Identification scope — or hand you the token endpoint access path</li>
+            <li>Inbox checks that identified chats show the contact</li>
+          </ul>
+        </div>
+        <div class="system-card dev">
+          <div class="sys-eyebrow">SETWorks developer</div>
+          <h3>You build + test</h3>
+          <ul>
+            <li>Tracking code on every authenticated page</li>
+            <li>Backend route that creates the visitor token</li>
+            <li>Frontend that sets email + token, then loads the widget</li>
+            <li>Token cache / refresh before 12 hours</li>
+            <li>SPA: <code>setPath</code> + <code>widget.refresh</code> on navigation</li>
+            <li>Logout: clear chat cookies / reset widget</li>
+            <li>Sandbox checklist below</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="tracking">
+      <h2><span class="material-symbols-outlined">code</span> 1. Tracking Code (Every Page)</h2>
+      <div class="step hs">
+        <span class="who">HubSpot / RevPartners</span>
+        <h3>Confirm the embed for portal 48197330</h3>
+        <p>Tracking code lives in HubSpot: <strong>Settings → Tracking &amp; Analytics → Tracking code</strong>. For SETWorks the hub ID is <code>48197330</code> — use the snippet below (or copy from that settings page). Paste before the closing <code>&lt;/body&gt;</code> on each page (or one shared layout shell).</p>
+        <p class="docs">
+          <a href="https://knowledge.hubspot.com/reports/install-the-hubspot-tracking-code" target="_blank" rel="noopener">Install tracking code →</a>
+        </p>
+      </div>
+      <div class="step dev">
+        <span class="who">SETWorks developer</span>
+        <h3>Load the script once across the app</h3>
+        <p>SETWorks portal embed (hub ID <code>48197330</code>):</p>
+        <div class="snippet">
+          <div class="snippet-bar">
+            <span class="src">HubSpot tracking embed · portal 48197330</span>
+            <button type="button" class="copy-btn" data-copy="tracking"><span class="material-symbols-outlined" style="font-size:16px">content_copy</span> Copy</button>
+          </div>
+          <pre class="language-markup"><code class="language-markup" id="tracking">&lt;!-- Start of HubSpot Embed Code --&gt;
+  &lt;script type="text/javascript" id="hs-script-loader" async defer src="//js.hs-scripts.com/48197330.js"&gt;&lt;/script&gt;
+&lt;!-- End of HubSpot Embed Code --&gt;</code></pre>
+        </div>
+        <div class="callout" style="margin-top:1rem">
+          <div class="label">Do not</div>
+          <p>Do not install more than one HubSpot tracking code on a page. The first one wins; later ones do not load.</p>
+        </div>
+        <p class="docs">
+          <a href="https://developers.hubspot.com/docs/api-reference/latest/account/settings/tracking-code/overview" target="_blank" rel="noopener">Tracking code API →</a>
+        </p>
+      </div>
+    </section>
+
+    <section class="section" id="targeting">
+      <h2><span class="material-symbols-outlined">filter_alt</span> 2. Chatflow URL Targeting</h2>
+      <div class="step hs">
+        <span class="who">HubSpot / RevPartners</span>
+        <h3>Target tab on the chatflow</h3>
+        <p>Set <strong>Website URL</strong> rules so the widget shows on the SETWorks app (domain / path). Use <strong>contains</strong> or <strong>begins with</strong> for the app host. Add exclusion rules for login, legal, or other pages if needed.</p>
+        <p>Optional: target <strong>logged-in visitors</strong> only after Visitor Identification is live. See HubSpot’s guide.</p>
+        <p class="docs">
+          <a href="https://knowledge.hubspot.com/forms/use-targeting-rules-in-ctas-and-chatflows" target="_blank" rel="noopener">Targeting rules →</a>
+          <a href="https://knowledge.hubspot.com/chatflows/chat-with-logged-in-visitors" target="_blank" rel="noopener">Logged-in visitors →</a>
+          <a href="https://knowledge.hubspot.com/chatflows/chat-widget-is-not-appearing-on-your-pages" target="_blank" rel="noopener">Widget not appearing →</a>
+        </p>
+      </div>
+      <div class="step dev">
+        <span class="who">SETWorks developer</span>
+        <h3>Send the exact app URLs</h3>
+        <p>Share SETWorks production + sandbox hosts and key paths (with or without <code>www</code>). Targeting matches the URL the browser reports. Wrong host = no widget.</p>
+      </div>
+    </section>
+
+    <section class="section" id="visitor-id">
+      <h2><span class="material-symbols-outlined">badge</span> 3. Visitor Identification</h2>
+      <p class="section-lead">Goal: HubSpot knows the logged-in user by email, greets by first name, and skips the “who are you?” capture. Needs Professional or Enterprise.</p>
+
+      <div class="callout">
+        <div class="label">Flow</div>
+        <p>1) Frontend: set <code>loadImmediately: false</code>. 2) Backend: create token with the user’s email (and name if you have it). 3) Frontend: set <code>identificationEmail</code> + <code>identificationToken</code>. 4) Call <code>widget.load()</code>.</p>
+      </div>
+
+      <div class="step hs">
+        <span class="who">HubSpot / RevPartners</span>
+        <h3>API access</h3>
+        <p>Provide a private app (or OAuth) with scope <code>conversations.visitor_identification.tokens.create</code>. Never put that secret in browser code.</p>
+      </div>
+
+      <div class="step dev">
+        <span class="who">SETWorks developer — backend</span>
+        <h3>Create the token on your server</h3>
+        <p>Call HubSpot from your backend after the user is authenticated. Official example request:</p>
+        <div class="snippet">
+          <div class="snippet-bar">
+            <span class="src">developers.hubspot.com · Visitor Identification guide</span>
+            <button type="button" class="copy-btn" data-copy="curl-token"><span class="material-symbols-outlined" style="font-size:16px">content_copy</span> Copy</button>
+          </div>
+          <pre class="language-bash"><code class="language-bash" id="curl-token">curl --request POST \
+  --url 'https://api.hubapi.com/visitor-identification/v3/tokens/create' \
+--data '{
+  "email": "gob@bluth.com",
+  "firstName": "Gob",
+  "lastName": "Bluth"
+}'</code></pre>
+        </div>
+        <p style="margin-top:0.85rem">Authenticate with your private app token / OAuth access token (Bearer). Response includes a <code>token</code> string. Return that token to your frontend over your own authenticated API — do not expose HubSpot credentials.</p>
+        <div class="callout" style="margin-top:0.85rem">
+          <div class="label">API note</div>
+          <p>HubSpot’s current create-token schema also lists <code>hsCustomerAgentContext</code> as required on newer API versions. Check the live create endpoint before you ship. Do not invent fields — use the reference.</p>
+        </div>
+        <p class="docs">
+          <a href="https://developers.hubspot.com/docs/api-reference/legacy/conversations/visitor-identification/guide" target="_blank" rel="noopener">Visitor Identification guide →</a>
+          <a href="https://developers.hubspot.com/docs/api-reference/legacy/conversations/visitor-identification/generate-visitor-token" target="_blank" rel="noopener">Create token (v3) →</a>
+          <a href="https://developers.hubspot.com/docs/api-reference/latest/conversations/visitor-identification/create-visitor-identification" target="_blank" rel="noopener">Create token (latest) →</a>
+        </p>
+      </div>
+
+      <div class="step dev">
+        <span class="who">SETWorks developer — frontend</span>
+        <h3>Pass email + token into the widget</h3>
+        <p>Set settings <strong>before</strong> the Conversations API is ready. Then load the widget.</p>
+        <div class="snippet">
+          <div class="snippet-bar">
+            <span class="src">Visitor Identification guide · prevent early load</span>
+            <button type="button" class="copy-btn" data-copy="load-false"><span class="material-symbols-outlined" style="font-size:16px">content_copy</span> Copy</button>
+          </div>
+          <pre class="language-javascript"><code class="language-javascript" id="load-false">window.hsConversationsSettings = {
+  loadImmediately: false,
+};</code></pre>
+        </div>
+        <div class="snippet">
+          <div class="snippet-bar">
+            <span class="src">Visitor Identification guide · identify + load</span>
+            <button type="button" class="copy-btn" data-copy="identify-load"><span class="material-symbols-outlined" style="font-size:16px">content_copy</span> Copy</button>
+          </div>
+          <pre class="language-javascript"><code class="language-javascript" id="identify-load">window.hsConversationsSettings = {
+  loadImmediately: false,
+  identificationEmail: "visitor-email@example.com",
+  identificationToken: "&lt;TOKEN FROM STEP 1&gt;",
+};
+window.HubSpotConversations.widget.load();</code></pre>
+        </div>
+        <div class="snippet">
+          <div class="snippet-bar">
+            <span class="src">Visitor Identification guide · wait for API ready</span>
+            <button type="button" class="copy-btn" data-copy="on-ready"><span class="material-symbols-outlined" style="font-size:16px">content_copy</span> Copy</button>
+          </div>
+          <pre class="language-markup"><code class="language-markup" id="on-ready">&lt;script type="text/javascript"&gt;
+  function onConversationsAPIReady() {
+    console.log(`HubSpot Conversations API: ${window.HubSpotConversations}`);
+  }
+  /*
+    configure window.hsConversationsSettings if needed.
+  */
+  window.hsConversationsSettings = {};
+  /*
+   If external API methods are already available, use them.
+  */
+  if (window.HubSpotConversations) {
+    onConversationsAPIReady();
+  } else {
+    /*
+      Otherwise, callbacks can be added to the hsConversationsOnReady on the window object.
+      These callbacks will be called once the external API has been initialized.
+    */
+    window.hsConversationsOnReady = [onConversationsAPIReady];
+  }
+&lt;/script&gt;</code></pre>
+        </div>
+        <p class="docs">
+          <a href="https://developers.hubspot.com/docs/api-reference/latest/conversations/chat-configuration/chat-widget-sdk" target="_blank" rel="noopener">Chat Widget SDK →</a>
+        </p>
+      </div>
+    </section>
+
+    <section class="section" id="tokens">
+      <h2><span class="material-symbols-outlined">timer</span> 4. Token Expiry + Refresh</h2>
+      <div class="step dev">
+        <span class="who">SETWorks developer</span>
+        <h3>Tokens last 12 hours</h3>
+        <p>From HubSpot: set email + token on <code>hsConversationsSettings</code> <strong>every page load</strong> for an authenticated visitor. That context does not carry over by itself if you stop setting it.</p>
+        <p>Tokens expire after <strong>12 hours</strong>. You may cache the token and skip a HubSpot call on every load, but refresh it at least every 12 hours.</p>
+        <ul>
+          <li>On login / session start: fetch a fresh token.</li>
+          <li>On full page load: reuse cached token if still valid; else fetch again.</li>
+          <li>On logout: clear chat state (see below).</li>
+        </ul>
+      </div>
+      <div class="step dev">
+        <span class="who">SETWorks developer</span>
+        <h3>Logout</h3>
+        <p>Official clear / reset:</p>
+        <div class="snippet">
+          <div class="snippet-bar">
+            <span class="src">Chat Widget SDK · clear</span>
+            <button type="button" class="copy-btn" data-copy="clear"><span class="material-symbols-outlined" style="font-size:16px">content_copy</span> Copy</button>
+          </div>
+          <pre class="language-javascript"><code class="language-javascript" id="clear">window.HubSpotConversations.clear();</code></pre>
+        </div>
+        <div class="snippet">
+          <div class="snippet-bar">
+            <span class="src">Chat Widget SDK · clear + reset widget</span>
+            <button type="button" class="copy-btn" data-copy="clear-reset"><span class="material-symbols-outlined" style="font-size:16px">content_copy</span> Copy</button>
+          </div>
+          <pre class="language-javascript"><code class="language-javascript" id="clear-reset">window.HubSpotConversations.clear({ resetWidget: true });</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="spa">
+      <h2><span class="material-symbols-outlined">route</span> 5. SPA Notes</h2>
+      <div class="step dev">
+        <span class="who">SETWorks developer</span>
+        <h3>Track route changes</h3>
+        <p>The tracking code records one page view on first load. On client-side navigation, update the path and track again:</p>
+        <div class="snippet">
+          <div class="snippet-bar">
+            <span class="src">Tracking code API · SPA page views</span>
+            <button type="button" class="copy-btn" data-copy="spa-track"><span class="material-symbols-outlined" style="font-size:16px">content_copy</span> Copy</button>
+          </div>
+          <pre class="language-markup"><code class="language-markup" id="spa-track">&lt;!-- Set up the path for the initial page view --&gt;
+&lt;script&gt;
+  var _hsq = window._hsq = window._hsq || [];
+  _hsq.push(['setPath', '/home']);
+&lt;/script&gt;
+
+&lt;!-- Load the HubSpot tracking code --&gt;
+&lt;!-- Start of HubSpot Embed Code --&gt;
+  &lt;script type="text/javascript" id="hs-script-loader" async defer src="//js.hs-scripts.com/48197330.js"&gt;&lt;/script&gt;
+&lt;!-- End of HubSpot Embed Code --&gt;
+
+&lt;!-- Tracking subsequent page views --&gt;
+&lt;script&gt;
+  var _hsq = window._hsq = window._hsq || [];
+  _hsq.push(['setPath', '/about-us']);
+  _hsq.push(['trackPageView']);
+&lt;/script&gt;</code></pre>
+        </div>
+      </div>
+      <div class="step dev">
+        <span class="who">SETWorks developer</span>
+        <h3>Refresh the chat widget on route change</h3>
+        <p>URL targeting uses the current page URL. After you change the route, refresh the widget:</p>
+        <div class="snippet">
+          <div class="snippet-bar">
+            <span class="src">Chat Widget SDK · widget.refresh</span>
+            <button type="button" class="copy-btn" data-copy="widget-refresh"><span class="material-symbols-outlined" style="font-size:16px">content_copy</span> Copy</button>
+          </div>
+          <pre class="language-javascript"><code class="language-javascript" id="widget-refresh">window.HubSpotConversations.widget.refresh();
+
+/* ... */
+
+// Force the widget to open to a specific chat flow
+window.HubSpotConversations.widget.refresh({ openToNewThread: true });</code></pre>
+        </div>
+        <p style="margin-top:0.75rem">Throttled to one call per second. If the route has no matching chatflow and the user is not in an active chat, refresh can remove the widget.</p>
+        <p class="docs">
+          <a href="https://knowledge.hubspot.com/chatflows/chat-widget-is-not-appearing-on-your-pages" target="_blank" rel="noopener">SPA troubleshooting →</a>
+        </p>
+      </div>
+    </section>
+
+    <section class="section" id="checklist">
+      <h2><span class="material-symbols-outlined">checklist</span> 6. Sandbox Checklist</h2>
+      <p class="section-lead">Run this in the SETWorks sandbox. We check the HubSpot inbox (portal 48197330) with you.</p>
+      <ul class="check-list">
+        <li>
+          <label>
+            <input type="checkbox" name="check-1" value="1">
+            <span>Tracking code loads on a logged-in app page (Network: <code>hs-scripts.com</code>).</span>
+          </label>
+        </li>
+        <li>
+          <label>
+            <input type="checkbox" name="check-2" value="1">
+            <span>Chat widget shows on a targeted URL; stays hidden on an excluded URL.</span>
+          </label>
+        </li>
+        <li>
+          <label>
+            <input type="checkbox" name="check-3" value="1">
+            <span>Backend token create returns <code>200</code> + <code>token</code> for a test user email.</span>
+          </label>
+        </li>
+        <li>
+          <label>
+            <input type="checkbox" name="check-4" value="1">
+            <span>Frontend sets email + token with <code>loadImmediately: false</code>, then <code>widget.load()</code>.</span>
+          </label>
+        </li>
+        <li>
+          <label>
+            <input type="checkbox" name="check-5" value="1">
+            <span>Start a chat: inbox shows the known contact (not “Unknown visitor”), with the identified-visitor badge.</span>
+          </label>
+        </li>
+        <li>
+          <label>
+            <input type="checkbox" name="check-6" value="1">
+            <span>Agent / greet uses first name; chat skips email capture for identified visitors.</span>
+          </label>
+        </li>
+        <li>
+          <label>
+            <input type="checkbox" name="check-7" value="1">
+            <span>SPA: navigate client-side → call <code>setPath</code> + <code>trackPageView</code> + <code>widget.refresh</code>; widget still matches targeting.</span>
+          </label>
+        </li>
+        <li>
+          <label>
+            <input type="checkbox" name="check-8" value="1">
+            <span>Logout → <code>clear({ resetWidget: true })</code>; next session does not keep the previous identity.</span>
+          </label>
+        </li>
+        <li>
+          <label>
+            <input type="checkbox" name="check-9" value="1">
+            <span>Optional: second test user → second identified thread in the inbox.</span>
+          </label>
+        </li>
+      </ul>
+      <p class="docs">
+        <a href="https://developers.hubspot.com/docs/api-reference/legacy/conversations/visitor-identification/guide" target="_blank" rel="noopener">HubSpot verify steps →</a>
+      </p>
+    </section>
+
+    <section class="section" id="links">
+      <div class="links-box">
+        <h3>Official docs</h3>
+        <ul>
+          <li><a href="https://knowledge.hubspot.com/reports/install-the-hubspot-tracking-code" target="_blank" rel="noopener">Install the HubSpot tracking code</a></li>
+          <li><a href="https://knowledge.hubspot.com/chatflows/chat-with-logged-in-visitors" target="_blank" rel="noopener">Chat with logged in visitors</a></li>
+          <li><a href="https://developers.hubspot.com/docs/api-reference/legacy/conversations/visitor-identification/guide" target="_blank" rel="noopener">Visitor Identification API guide</a></li>
+          <li><a href="https://developers.hubspot.com/docs/api-reference/latest/conversations/chat-configuration/chat-widget-sdk" target="_blank" rel="noopener">Chat Widget SDK</a></li>
+          <li><a href="https://developers.hubspot.com/docs/api-reference/latest/account/settings/tracking-code/overview" target="_blank" rel="noopener">Tracking code API (SPA)</a></li>
+          <li><a href="https://knowledge.hubspot.com/forms/use-targeting-rules-in-ctas-and-chatflows" target="_blank" rel="noopener">Targeting rules for chatflows</a></li>
+        </ul>
+      </div>
+    </section>
+
+    <footer class="doc-footer">
+      <p>RevPartners · SETWorks · Hub 48197330 · Customer Agent assumed configured · Snippets copied from HubSpot docs as published</p>
+      <div class="byr" aria-hidden="true"></div>
+    </footer>
+  </main>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha384-06z5D//U/xpvxZHuUz92xBvq3DqBBFi7Up53HRrbV7Jlv7Yvh/MZ7oenfUe9iCEt" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js" integrity="sha384-9WmlN8ABpoFSSHvBGGjhvB3E/D8UkNB9HpLJjBQFC2VSQsM1odiQDv4NbEo+7l15" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script>
+    (function () {
+      document.querySelectorAll(".copy-btn").forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          var id = btn.getAttribute("data-copy");
+          var el = document.getElementById(id);
+          if (!el) return;
+          var text = el.textContent;
+          navigator.clipboard.writeText(text).then(function () {
+            var label = btn.childNodes[btn.childNodes.length - 1];
+            var prev = label.textContent;
+            btn.classList.add("copied");
+            label.textContent = " Copied";
+            setTimeout(function () {
+              btn.classList.remove("copied");
+              label.textContent = prev;
+            }, 1600);
+          });
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,1820 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="assets/RP-Mark-2026-Green.svg" type="image/svg+xml">
+  <title>Journey Event Custom Object Build Spec | Mentavi Health</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,300,1,0" rel="stylesheet">
+  <style>
+    :root {
+      --clr-off-white: #FDFDFD;  --clr-mercury: #F3F3F4;
+      --clr-iron: #DDDEE2;       --clr-steel: #A1A2A7;     --clr-carbon: #555970;
+      --clr-river-bed: #434761;  --clr-ebony-clay: #24273A;
+
+      --clr-green:  #17B451;
+      --clr-blue:   #329DFF;
+      --clr-orange: #F7761E;
+      --clr-red:    #FB3131;
+      --clr-purple: #8C32FF;
+      --clr-yellow: #FBAA31;
+
+      --clr-green-bg:  rgba(23,180,81,0.20);   --clr-blue-bg:   rgba(50,157,255,0.20);
+      --clr-orange-bg: rgba(239,129,27,0.20);  --clr-red-bg:    rgba(251,49,49,0.20);
+      --clr-purple-bg: rgba(140,50,255,0.20);
+
+      --clr-primary: var(--clr-green);
+      --clr-text: var(--clr-river-bed);
+      --clr-title: var(--clr-ebony-clay);
+      --color-bg: var(--clr-off-white);
+      --color-bg-alt: var(--clr-mercury);
+      --color-bg-dark: var(--clr-ebony-clay);
+      --color-fg: var(--clr-river-bed);
+      --color-fg-3: var(--clr-steel);
+      --color-fg-inverted: var(--clr-off-white);
+      --color-primary: var(--clr-green);
+      --color-primary-bg: var(--clr-green-bg);
+      --color-border: rgba(36,39,58,0.10);
+      --clr-stroke: rgba(36,39,58,0.10);
+      --clr-stroke-2: rgba(36,39,58,0.30);
+      --clr-bg-2: var(--clr-mercury);
+      --color-link: var(--clr-green);
+
+      --role-chrome: var(--clr-green);
+      --role-chrome-bg: var(--clr-green-bg);
+      --role-yes: var(--clr-green);
+      --role-no: var(--clr-red);
+      --role-ask: var(--clr-orange);
+      --role-info: var(--clr-blue);
+
+      --font-display: "Montserrat", sans-serif;
+      --font-body: "Inter", sans-serif;
+      --font-icons: "Material Symbols Outlined", sans-serif;
+
+      --gap-xxs: .25rem; --gap-xs: .5rem; --gap-s: 1rem; --gap: 1.5rem;
+      --gap-m: 3rem; --gap-l: 3.75rem; --gap-xl: 7.5rem;
+
+      --radius-sm: 4px;
+      --radius: 8px;
+      --radius-pill: 120px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; scroll-padding-top: 72px; }
+    body {
+      background: var(--color-bg);
+      color: var(--color-fg);
+      font-family: var(--font-body);
+      font-weight: 400;
+      font-size: 17px;
+      line-height: 1.4;
+    }
+    img { max-width: 100%; }
+    a { color: var(--color-link); font-weight: 700; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    strong, b { font-weight: 700; }
+    h1, h2, h3, h4 { font-family: var(--font-display); color: var(--color-fg); font-weight: 700; line-height: 1.2; }
+    h1 { font-size: 48px; }
+    h2 { font-size: 32px; }
+    h3 { font-size: 22px; }
+    h4 { font-size: 16px; }
+    p { margin: 0 0 1rem; }
+    ul, ol {
+      margin: 0 0 1rem;
+      padding-left: 1.5rem;
+    }
+    li { margin: 0.25rem 0; }
+
+    .material-symbols-outlined {
+      font-family: var(--font-icons);
+      font-weight: 300;
+      font-variation-settings: "FILL" 1, "wght" 300, "GRAD" 0, "opsz" 24;
+      vertical-align: middle;
+      font-size: 22px;
+      line-height: 1;
+    }
+
+    .doc-header {
+      background: var(--clr-green);
+      color: var(--color-fg-inverted);
+      padding: 0.85rem 0;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+    .doc-header .inner {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .nav-toggle { display: none; }
+    .mark { width: 36px; height: 33px; flex-shrink: 0; }
+    .mark path { fill: var(--clr-off-white); }
+    .doc-header p { margin: 0; font-size: 13px; color: var(--clr-off-white); font-weight: 400; }
+    .doc-header strong { color: var(--clr-off-white); }
+    .doc-header .header-client {
+      margin-left: auto;
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: 0.02em;
+    }
+
+    .shell {
+      display: flex;
+      align-items: flex-start;
+      max-width: 1440px;
+      margin: 0 auto;
+    }
+    .side-nav {
+      position: sticky;
+      top: 56px;
+      flex: 0 0 220px;
+      width: 220px;
+      height: calc(100vh - 56px);
+      overflow-x: hidden;
+      overflow-y: auto;
+      padding: 1.25rem 0.75rem 2rem 1.25rem;
+      border-right: 1px solid var(--clr-stroke);
+      background: var(--color-bg);
+    }
+    .side-nav .nav-label {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--role-chrome);
+      margin: 0 0 0.75rem;
+    }
+    .side-nav ol { list-style: none; margin: 0; padding: 0; }
+    .side-nav li { margin: 0 0 2px; }
+    .side-nav a {
+      display: block;
+      font-weight: 400;
+      font-size: 14px;
+      color: var(--color-fg);
+      text-decoration: none;
+      padding: 0.4rem 0.65rem;
+      border-radius: var(--radius);
+      border: 2px solid transparent;
+    }
+    .side-nav a:hover { background: var(--role-chrome-bg); text-decoration: none; }
+    .side-nav a.active {
+      font-weight: 700;
+      border-color: var(--role-chrome);
+      background: var(--role-chrome-bg);
+    }
+    .side-nav > ol > li > a { font-weight: 700; }
+    .side-nav > ol > li > ol {
+      list-style: none;
+      margin: 0.1rem 0 0.7rem 0.7rem;
+      padding: 0 0 0 0.6rem;
+      border-left: 2px solid var(--clr-stroke);
+    }
+    .side-nav > ol > li > ol a {
+      font-size: 13px;
+      font-weight: 400;
+      padding: 0.15rem 0.45rem;
+      color: var(--clr-carbon);
+    }
+    .side-nav > ol > li > ol a.active {
+      font-weight: 700;
+      color: var(--color-fg);
+    }
+    .side-nav .num-label {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 11px;
+      letter-spacing: 0.06em;
+      color: var(--role-chrome);
+      display: block;
+    }
+    .wrap {
+      flex: 1 1 auto;
+      min-width: 0;
+      max-width: none;
+      margin: 0;
+      padding: 40px 48px 4rem 32px;
+    }
+    .hero { margin-bottom: var(--gap-m); }
+    .eyebrow {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 15px;
+      letter-spacing: 0.5rem;
+      text-transform: uppercase;
+      color: var(--role-chrome);
+      margin-bottom: 1rem;
+    }
+    .hero h1 { margin-bottom: 0.75rem; }
+    .hero h1 span { font-weight: 400; }
+    .lede { font-size: 18px; max-width: 720px; color: var(--color-fg); }
+    .title-rule {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      margin: 1.5rem 0 2rem;
+    }
+    .title-rule .line {
+      flex: 1;
+      height: 0;
+      border-top: 3px dashed var(--role-chrome);
+    }
+    .title-rule .cap {
+      width: 12px; height: 12px; border-radius: 50%;
+      background: var(--role-chrome); flex-shrink: 0;
+    }
+
+    .meta {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--gap-s);
+      margin: var(--gap) 0 var(--gap-m);
+    }
+    .meta-card {
+      background: var(--clr-bg-2);
+      border: 2px solid var(--clr-stroke);
+      border-radius: var(--radius);
+      padding: 1rem 1.25rem;
+    }
+    .meta-card .label {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--color-fg-3);
+      margin-bottom: 0.25rem;
+    }
+    .meta-card p { margin: 0; font-size: 15px; }
+
+    code {
+      font-family: var(--font-body);
+      font-size: 0.86em;
+      font-weight: 700;
+      background: var(--clr-mercury);
+      border: 1px solid var(--clr-iron);
+      border-radius: 4px;
+      padding: 0.08em 0.38em;
+      word-break: break-word;
+    }
+
+    .spec-facts {
+      display: flex;
+      gap: var(--gap);
+      margin: 0 0 1.5rem;
+    }
+    .spec-facts ul {
+      flex: 1;
+      margin: 0;
+    }
+
+    .fold {
+      border: 2px solid var(--clr-stroke);
+      border-radius: var(--radius);
+      background: var(--color-bg);
+      margin: 0 0 1.5rem;
+    }
+    .fold > summary {
+      cursor: pointer;
+      padding: 1rem 1.25rem;
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 16px;
+      list-style: none;
+    }
+    .fold > summary::-webkit-details-marker { display: none; }
+    .fold > summary .material-symbols-outlined { color: var(--role-chrome); }
+    .fold[open] > summary { border-bottom: 3px dashed var(--role-chrome); }
+    .fold .fold-body { padding: 1rem 1.25rem 0.25rem; }
+    .fold .table-scroll { margin-bottom: 1rem; }
+
+    .table-tools {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      align-items: center;
+      margin: 0 0 1rem;
+    }
+    .table-tools label { font-size: 14px; font-weight: 700; }
+    .table-tools input[type="search"] {
+      font-family: var(--font-body);
+      font-size: 15px;
+      border: 2px solid var(--clr-stroke-2);
+      border-radius: var(--radius);
+      padding: 0.5rem 0.75rem;
+      min-width: 220px;
+      background: var(--color-bg);
+      color: var(--color-fg);
+    }
+    .btn {
+      font-family: var(--font-body);
+      font-weight: 700;
+      font-size: 14px;
+      border-radius: var(--radius-pill);
+      padding: 10px 24px;
+      cursor: pointer;
+      border: 2px solid var(--role-chrome);
+      background: transparent;
+      color: var(--role-chrome);
+    }
+    .btn:hover { background: var(--role-chrome-bg); }
+    .btn:active { transform: scale(0.98); }
+    .btn[aria-pressed="true"] { background: var(--role-chrome-bg); }
+    .review-check {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      font-weight: 700;
+      font-size: 14px;
+      cursor: pointer;
+      user-select: none;
+    }
+    .review-check input {
+      width: 16px;
+      height: 16px;
+      accent-color: var(--clr-green);
+      cursor: pointer;
+    }
+    tr.hidden-row { display: none; }
+    .empty-filter { display: none; color: var(--color-fg-3); font-size: 14px; margin: 0 0 1rem; }
+    .empty-filter.show { display: block; }
+
+    .back-top {
+      position: fixed;
+      right: 200px;
+      bottom: 24px;
+      z-index: 40;
+      display: none;
+      align-items: center;
+      gap: 0.35rem;
+      font-family: var(--font-body);
+      font-weight: 700;
+      font-size: 14px;
+      color: #fff;
+      background: var(--clr-green);
+      border: 0;
+      border-radius: var(--radius-pill);
+      padding: 12px 22px;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .back-top.show { display: inline-flex; }
+    .back-top:hover { background: var(--role-chrome); text-decoration: none; filter: brightness(0.95); }
+    .back-top .material-symbols-outlined { color: #fff; }
+
+    .callout {
+      border: 2px dashed;
+      border-radius: var(--radius);
+      padding: 1.25rem 1.5rem;
+      margin: 0 0 1.5rem;
+      background: var(--clr-bg-2);
+    }
+    .callout h3, .callout h4 {
+      margin: 0 0 0.5rem;
+      padding: 0;
+      border: 0;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .callout p:last-child, .callout ul:last-child, .callout ol:last-child { margin-bottom: 0; }
+    .callout ul, .callout ol { padding-left: 1.35rem; }
+    .callout-go { border-color: var(--role-yes); background: var(--clr-green-bg); }
+    .callout-go .material-symbols-outlined { color: var(--role-yes); }
+    .callout-ask { border-color: var(--role-ask); background: var(--clr-orange-bg); }
+    .callout-ask .material-symbols-outlined { color: var(--role-ask); }
+    .callout-no { border-color: var(--role-no); background: var(--clr-red-bg); }
+    .callout-no .material-symbols-outlined { color: var(--role-no); }
+    .callout-info { border-color: var(--role-info); background: var(--clr-blue-bg); }
+    .callout-info .material-symbols-outlined { color: var(--role-info); }
+
+    .readers {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--gap);
+      margin: 0 0 var(--gap-m);
+    }
+    .reader {
+      background: var(--clr-green-bg);
+      border: 2px solid var(--clr-green);
+      border-radius: var(--radius);
+      padding: 1.25rem 1.5rem;
+    }
+    .reader .material-symbols-outlined { color: var(--role-chrome); font-size: 28px; margin-bottom: 0.5rem; }
+    .reader h3 { font-size: 18px; margin-bottom: 0.5rem; }
+    .reader p { margin: 0; font-size: 15px; }
+
+    section.chapter {
+      margin-bottom: var(--gap-l);
+      padding-top: var(--gap-m);
+      border-top: 3px dashed var(--role-chrome);
+    }
+    section.chapter:target { outline: none; }
+    .chapter > .eyebrow { margin-bottom: 0.5rem; }
+    .chapter > h2 { margin-bottom: 1rem; }
+    .chapter h3 {
+      margin: 2rem 0 0.75rem;
+      padding-top: 1.25rem;
+      padding-bottom: 0.25rem;
+      border-bottom: 2px dashed var(--clr-stroke);
+      scroll-margin-top: 72px;
+    }
+    .chapter h4 { margin: 1.25rem 0 0.5rem; }
+    .chapter .callout h3,
+    .chapter .callout h4 {
+      margin: 0 0 0.5rem;
+      padding: 0;
+      border: 0;
+    }
+
+    .flow {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr auto 1fr;
+      gap: 0.75rem;
+      align-items: stretch;
+      margin: 1.5rem 0 2rem;
+    }
+    .flow-card {
+      background: var(--clr-bg-2);
+      border: 2px solid var(--clr-stroke);
+      border-radius: var(--radius);
+      padding: 1.25rem;
+    }
+    .flow-card.step-1 { border-color: var(--clr-green); background: var(--clr-green-bg); }
+    .flow-card.step-2 { border-color: var(--clr-blue); background: var(--clr-blue-bg); }
+    .flow-card.step-3 { border-color: var(--clr-orange); background: var(--clr-orange-bg); }
+    .num {
+      width: 28px; height: 28px; border-radius: 50%;
+      display: inline-flex; align-items: center; justify-content: center;
+      font-family: var(--font-display); font-weight: 700; font-size: 14px;
+      color: #fff; margin-bottom: 0.5rem;
+    }
+    .step-1 .num { background: var(--clr-green); }
+    .step-2 .num { background: var(--clr-blue); }
+    .step-3 .num { background: var(--clr-orange); }
+    .flow-card h4 { margin: 0 0 0.35rem; font-size: 16px; }
+    .flow-card p { margin: 0; font-size: 14px; }
+    .spec-figure {
+      margin: 0 0 1.5rem;
+      padding: 0;
+      border: 1px solid var(--clr-stroke);
+      border-radius: var(--radius);
+      overflow: hidden;
+      background: var(--clr-bg-2);
+    }
+    .spec-figure img { display: block; width: 100%; height: auto; }
+    .spec-figure figcaption {
+      font-size: 13px;
+      color: var(--clr-carbon);
+      padding: 0.75rem 1rem 1rem;
+    }
+    .flow-join {
+      display: flex; align-items: center; justify-content: center;
+      color: var(--clr-carbon);
+    }
+    .flow-join span { font-size: 28px; color: var(--clr-carbon); }
+
+    .calls {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: var(--gap);
+      margin: 1.5rem 0 2rem;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+      margin: 0 0 1.5rem;
+      background: var(--color-bg);
+    }
+    th, td {
+      border: 1px solid var(--clr-stroke);
+      padding: 0.55rem 0.7rem;
+      text-align: left;
+      vertical-align: top;
+    }
+    thead th {
+      background: var(--clr-green);
+      color: var(--clr-off-white);
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 12px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+    tbody tr:nth-child(even) { background: var(--clr-bg-2); }
+    .table-scroll { overflow-x: auto; margin-bottom: 1.5rem; }
+    .table-scroll table { margin-bottom: 0; }
+    .table-je-props { table-layout: fixed; }
+    .table-je-props th:nth-child(1),
+    .table-je-props td:nth-child(1) { width: 11%; }
+    .table-je-props th:nth-child(2),
+    .table-je-props td:nth-child(2) { width: 12%; }
+    .table-je-props th:nth-child(3),
+    .table-je-props td:nth-child(3) { width: 13%; }
+    .table-je-props th:nth-child(4),
+    .table-je-props td:nth-child(4) { width: 7%; }
+    .table-je-props th:nth-child(5),
+    .table-je-props td:nth-child(5) { width: 10%; }
+    .table-je-props th:nth-child(6),
+    .table-je-props td:nth-child(6) { width: 22%; }
+    .table-je-props th:nth-child(7),
+    .table-je-props td:nth-child(7) { width: 25%; }
+    td.ask { color: var(--role-ask); font-weight: 700; }
+    td.flag { font-weight: 700; }
+
+    .payload {
+      background: var(--clr-bg-2);
+      border: 2px solid var(--clr-stroke);
+      border-radius: var(--radius);
+      padding: 1.25rem 1.5rem;
+      margin: 0 0 1.5rem;
+      font-size: 14px;
+      line-height: 1.5;
+      white-space: pre-wrap;
+      overflow-x: auto;
+      color: var(--clr-river-bed);
+    }
+    .payload .verb { font-weight: 700; color: var(--clr-green); }
+
+    .phase-pair {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--gap);
+      margin: 0 0 1.5rem;
+    }
+    .phase-card {
+      border: 2px solid var(--clr-stroke);
+      border-radius: var(--radius);
+      padding: 1.25rem 1.5rem;
+      background: var(--clr-bg-2);
+    }
+    .phase-card.phase-now {
+      border-color: var(--clr-green);
+      background: var(--clr-green-bg);
+    }
+    .phase-card .kicker {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--role-chrome);
+      margin: 0 0 0.35rem;
+    }
+    .phase-card h4 { margin: 0 0 0.5rem; font-size: 18px; }
+    .phase-card p { margin: 0 0 0.75rem; font-size: 15px; }
+    .phase-card p:last-child { margin-bottom: 0; }
+
+    .doc-footer {
+      margin-top: var(--gap-xl);
+    }
+    .footer-meta {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1.5rem 64px;
+      display: flex;
+      justify-content: space-between;
+      font-size: 13px;
+      color: var(--color-fg-3);
+    }
+    .byr {
+      height: 8px;
+      background: linear-gradient(90deg, var(--clr-blue) 0 33.33%, var(--clr-yellow) 33.33% 66.66%, var(--clr-red) 66.66%);
+    }
+
+    @media (max-width: 900px) {
+      .side-nav { flex-basis: 160px; width: 160px; }
+      .wrap { padding: 28px 1.25rem 4rem 1rem; }
+      .doc-header .inner, .footer-meta { padding-left: 1.25rem; padding-right: 1.25rem; }
+      .side-nav { padding-left: 0.75rem; padding-right: 0.4rem; }
+      .side-nav a { font-size: 13px; padding: 0.35rem 0.45rem; }
+      h1 { font-size: 32px; }
+      .meta, .readers, .calls, .flow, .spec-facts, .phase-pair { grid-template-columns: 1fr; }
+      .spec-facts, .phase-pair { flex-direction: column; }
+      .flow-join { transform: rotate(90deg); }
+    }
+
+    @media print {
+      body { font-size: 12px; }
+      h1 { font-size: 28px; }
+      h2 { font-size: 20px; }
+      .shell { display: block; }
+      .side-nav, .back-top, .table-tools { display: none !important; }
+      .wrap { padding: 24px 36px 0; }
+      .doc-header { position: static; }
+      .doc-header .inner, .footer-meta { padding-left: 36px; padding-right: 36px; }
+      section.chapter { break-inside: avoid; page-break-inside: avoid; border-top: 2px dashed var(--role-chrome); }
+      .byr { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      thead { display: table-header-group; }
+      .fold { border: 0; }
+      .fold > summary { display: none; }
+      .fold .fold-body, .fold .table-scroll { display: block !important; padding: 0; }
+    }
+  </style>
+</head>
+<body>
+  <header class="doc-header">
+    <div class="inner">
+      <svg class="mark" width="180" height="164" viewBox="0 0 180 164" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M0 81.8218C0 127.005 36.6384 163.644 81.8218 163.644V0H0V81.8218Z"></path>
+        <path d="M180 163.644C180 118.46 143.362 81.8218 98.1782 81.8218V163.644H180Z"></path>
+        <path d="M139.099 81.8218C161.701 81.8218 180 63.5026 180 40.9208C180 18.339 161.681 0 139.099 0H98.198V81.8218H139.099Z"></path>
+      </svg>
+      <p><strong>RevPartners</strong>, a Walker Sands company</p>
+      <p class="header-client">ADHD Online</p>
+    </div>
+  </header>
+
+  <div class="shell">
+  <nav class="side-nav" id="sideNav" aria-label="Sections">
+    <p class="nav-label">Jump to</p>
+    <ol>
+      <li>
+        <a href="#s1"><span class="num-label">01</span> Executive</a>
+        <ol>
+          <li><a href="#s1-problem">Problem</a></li>
+          <li><a href="#s1-arch">Architecture</a></li>
+          <li><a href="#s1-open">Open decisions</a></li>
+          <li><a href="#s1-signoff">Sign-off</a></li>
+        </ol>
+      </li>
+      <li>
+        <a href="#s2"><span class="num-label">02</span> Current state</a>
+        <ol>
+          <li><a href="#s2-live">Live integration</a></li>
+          <li><a href="#s2-families">Event families</a></li>
+          <li><a href="#s2-inventory">Inventory</a></li>
+          <li><a href="#s2-scope">In / out of scope</a></li>
+        </ol>
+      </li>
+      <li>
+        <a href="#s3"><span class="num-label">03</span> Architecture</a>
+        <ol>
+          <li><a href="#s3-writes">Three writes</a></li>
+          <li><a href="#fig-arch">Architecture figure</a></li>
+          <li><a href="#s3-own">Ownership</a></li>
+          <li><a href="#s3-auth">Auth</a></li>
+        </ol>
+      </li>
+      <li>
+        <a href="#s4"><span class="num-label">04</span> Identity</a>
+        <ol>
+          <li><a href="#s4-rec">Recommended pattern</a></li>
+          <li><a href="#s4-alt">Alternatives</a></li>
+          <li><a href="#s4-idemp">Idempotency</a></li>
+        </ol>
+      </li>
+      <li>
+        <a href="#s5"><span class="num-label">05</span> Schema</a>
+        <ol>
+          <li><a href="#s5-je">Journey Event</a></li>
+          <li><a href="#s5-contact">Contact</a></li>
+          <li><a href="#s5-fields">Field disposition</a></li>
+          <li><a href="#s5-deal">Deal</a></li>
+        </ol>
+      </li>
+      <li>
+        <a href="#s6"><span class="num-label">06</span> Mapping</a>
+        <ol>
+          <li><a href="#s6-coding">Coding strategy</a></li>
+          <li><a href="#s6-map">Event table</a></li>
+          <li><a href="#fig-seq">Sequence figure</a></li>
+          <li><a href="#s6-api">API contract</a></li>
+        </ol>
+      </li>
+      <li>
+        <a href="#s7"><span class="num-label">07</span> Downstream</a>
+        <ol>
+          <li><a href="#s7-lists">Lists</a></li>
+          <li><a href="#s7-wf">Workflow</a></li>
+          <li><a href="#s7-reports">Reports</a></li>
+        </ol>
+      </li>
+      <li>
+        <a href="#s8"><span class="num-label">08</span> Controls</a>
+        <ol>
+          <li><a href="#s8-min">Minimum necessary</a></li>
+          <li><a href="#s8-config">Portal config</a></li>
+          <li><a href="#s8-auth">Auth and logs</a></li>
+        </ol>
+      </li>
+      <li>
+        <a href="#s9"><span class="num-label">09</span> QA</a>
+        <ol>
+          <li><a href="#s9-tests">Test cases</a></li>
+          <li><a href="#fig-cutover">Cutover figure</a></li>
+          <li><a href="#s9-cutover">Cutover paths</a></li>
+        </ol>
+      </li>
+      <li>
+        <a href="#s10"><span class="num-label">10</span> Build plan</a>
+        <ol>
+          <li><a href="#s10-hs">HubSpot hours</a></li>
+          <li><a href="#s10-mentavi">Mentavi work</a></li>
+          <li><a href="#s10-p2">Phase 2</a></li>
+        </ol>
+      </li>
+    </ol>
+  </nav>
+  <main class="wrap">
+    <div class="hero">
+      <p class="eyebrow">Technical specification</p>
+      <h1><b>Journey Event</b> <span>Custom Object Build Spec</span></h1>
+      <div class="title-rule" aria-hidden="true"><span class="cap"></span><span class="line"></span></div>
+      <p class="lede">Replace Mentavi’s Custom Behavioral Event write path with CRM-native Journey Event records so patient-linked data lands only in HubSpot’s Sensitive Data-capable CRM layer.</p>
+    </div>
+
+    <div class="meta">
+      <div class="meta-card">
+        <div class="label">Partner</div>
+        <p>ADHD Online / Mentavi Health</p>
+      </div>
+      <div class="meta-card">
+        <div class="label">Portal</div>
+        <p>21221632 · Marketing Hub Enterprise</p>
+      </div>
+      <div class="meta-card">
+        <div class="label">Author</div>
+        <p>Sasha Sosin, RevPartners</p>
+      </div>
+      <div class="meta-card">
+        <div class="label">Document date</div>
+        <p>2 September 2026</p>
+      </div>
+    </div>
+
+    <div class="callout callout-info">
+      <h3><span class="material-symbols-outlined">info</span> How to read this</h3>
+      <p>This specification is for Mentavi compliance and legal, Mentavi engineering, and RevPartners. Each audience has a job below. It describes a HIPAA-supportable architecture on HubSpot. It is not legal advice and not a certification. Mentavi owns the compliance determination.</p>
+      <p>The event type mapping table is in section 6.</p>
+    </div>
+
+    <div class="readers">
+      <article class="reader">
+        <span class="material-symbols-outlined">gavel</span>
+        <h3>Mentavi compliance and legal</h3>
+        <p>Sections 1, 4, 5, 6, and 8. Approve architecture, Contact matching, Sensitive Data flags, and Option A vs B. A written yes in section 1 is the build gate.</p>
+      </article>
+      <article class="reader">
+        <span class="material-symbols-outlined">terminal</span>
+        <h3>Mentavi engineering</h3>
+        <p>Sections 3, 4, and 6, including the mapping table. Build the connector from the three CRM writes, matching method, and API contract.</p>
+      </article>
+      <article class="reader">
+        <span class="material-symbols-outlined">hub</span>
+        <h3>RevPartners</h3>
+        <p>Sections 5, 7, 9, and 10. HubSpot build and QA begin after Mentavi compliance sign-off.</p>
+      </article>
+    </div>
+
+    <section class="chapter" id="s1">
+      <p class="eyebrow">01. Executive</p>
+      <h2><b>Executive</b> and compliance summary</h2>
+
+      <h3 id="s1-problem">Problem</h3>
+      <p>Mentavi’s patient portal writes lifecycle journey data into HubSpot Custom Behavioral Events (CBEs). Custom Behavioral Events are not expressly included in HubSpot’s Sensitive Data Covered Services. The live New User Journey event currently carries patient names, date of birth, and phone in plain text. That write path is not HIPAA-supportable.</p>
+
+      <h3 id="s1-arch">Recommended architecture</h3>
+      <p>Replace all Custom Behavioral Event writes with CRM-native records on HubSpot’s 2026-03 CRM Object APIs. The Journey Event is a CRM custom object. After cutover, records associate natively. No reversible patient identifier is stored as a property on the Journey Event.</p>
+
+      <div class="flow" role="img" aria-label="Portal to connector to HubSpot CRM">
+        <div class="flow-card step-1">
+          <div class="num">1</div>
+          <h4>Patient Portal</h4>
+          <p>One patient action. Mentavi ensures a stable <code>occurrence_id</code> exists before send.</p>
+        </div>
+        <div class="flow-join"><span class="material-symbols-outlined">arrow_forward</span></div>
+        <div class="flow-card step-2">
+          <div class="num">2</div>
+          <h4>Mentavi connector</h4>
+          <p>Resolves the stored Contact Record ID. Three CRM writes. No events API.</p>
+        </div>
+        <div class="flow-join"><span class="material-symbols-outlined">arrow_forward</span></div>
+        <div class="flow-card step-3">
+          <div class="num">3</div>
+          <h4>HubSpot CRM APIs</h4>
+          <p>Contact / Deal properties plus one Journey Event record per occurrence. Current GA version: 2026-03.</p>
+        </div>
+      </div>
+
+      <div class="callout callout-go">
+        <h3><span class="material-symbols-outlined">verified</span> What Mentavi is approving</h3>
+        <ul>
+          <li>Patient identity and PHI live only on the Contact, in Sensitive Data properties, under the BAA.</li>
+          <li>The Journey Event stores coded event types, timestamps, an opaque <code>occurrence_id</code>, and non-sensitive technical metadata.</li>
+          <li>The relationship to a patient lives in HubSpot’s native association layer, not in a Journey Event property.</li>
+          <li>All writes enter through the covered CRM path using a private app with Sensitive Data scopes.</li>
+          <li>Event type strings are coded or generic, never clinically descriptive.</li>
+          <li>No PHI appears in logs, errors, or unapproved stores. An approved Contact retry may resend the same patient fields. That retry stays inside Mentavi’s approved infrastructure.</li>
+        </ul>
+      </div>
+
+      <div class="callout callout-ask">
+        <h3 id="s1-open"><span class="material-symbols-outlined">help</span> Open decisions for Mentavi legal</h3>
+        <ol>
+          <li>Contact matching method (section 4). Recommendation: HubSpot Contact Record ID. Alternatives are in that section. This is not locked.</li>
+          <li>Final Sensitive Data classification for each property in section 5. The table is proposed. Classification is irreversible once set.</li>
+          <li>Coded event type naming: Option A (collapse) vs Option B (distinct opaque codes). RevPartners recommends Option B.</li>
+          <li>Whether current patient-linked writes continue during Phase 1, and whether history-dependent automations may keep reading Custom Behavioral Event data. Corey is taking this to Mentavi compliance. It changes the activation gate, not the architecture.</li>
+          <li>Whether <code>occurrence_id</code> stays a standard unique property (required for HubSpot-enforced upsert) or is classified Sensitive Data (Mentavi must de-dupe before the write).</li>
+        </ol>
+      </div>
+
+      <h3>Limitations</h3>
+      <p>HubSpot’s BAA covers the platform when Mentavi is a covered entity or business associate. Mentavi’s current legal status with HubSpot is for Mentavi to confirm with counsel. This specification does not determine that status.</p>
+
+      <div class="callout callout-go">
+        <h3 id="s1-signoff"><span class="material-symbols-outlined">verified</span> Documented sign-off</h3>
+        <p>A written yes from Mentavi legal or compliance is the build gate. Email is enough.</p>
+        <p>Record who approved, their role, the date, and that they reviewed this specification (2 September 2026). Verbal-only does not count until that written confirmation follows.</p>
+      </div>
+    </section>
+
+    <!-- ========== 2 ========== -->
+    <section class="chapter" id="s2">
+      <p class="eyebrow">02. Current state</p>
+      <h2><b>Current state</b> and scope</h2>
+
+      <h3 id="s2-live">Live integration</h3>
+      <p>The live Mentavi connector posts to HubSpot Custom Behavioral Events. The current contract is the outbound HubSpot interfaces, 56 analytics event strings, and the New User Journey event in portal 21221632.</p>
+      <table>
+        <thead><tr><th>Item</th><th>Current value</th></tr></thead>
+        <tbody>
+          <tr><td>Endpoint</td><td>POST <code>https://api.hubapi.com/events/v3/send</code></td></tr>
+          <tr><td>Auth</td><td>Existing private app <strong>Mentavi-Hubspot-Integration</strong> (Development → Legacy Apps), Access Token. Confirmed 11 August 2026. Mentavi adds Sensitive Data scopes before integration testing (section 6). RevPartners cannot edit scopes on this app.</td></tr>
+          <tr><td>Identifiers</td><td><code>userId</code> / <code>clientId</code> primary, <code>patientId</code> secondary. Email is present on every documented outbound family.</td></tr>
+          <tr><td>Repeat events</td><td>Any event can repeat technically. Mapping-table “Repeat? = No” means not expected in normal business use.</td></tr>
+          <tr><td>Retries</td><td>Built in. Mentavi confirmed retries resend the original payload. Mentavi can generate a stable <code>occurrence_id</code>.</td></tr>
+          <tr><td>Test environment</td><td>Mentavi UAT available. HubSpot sandboxes cannot validate Sensitive Data. Live portal 21221632 is the HubSpot acceptance environment.</td></tr>
+          <tr><td>Live event</td><td>New User Journey: <code>pe21221632_user_journey_event</code>. Record source for created contacts = Custom Events.</td></tr>
+        </tbody>
+      </table>
+
+      <h3 id="s2-families">Event families</h3>
+      <p>Source: Mentavi files dated 6 August 2026 (<code>messageBody.ts</code>, <code>hubspotPortalEvents.ts</code>). Seven values in <code>PortalEventType</code>. Seven outbound interfaces. That is eight live families: Patient Address Update is on the enum and has a validation body, with no matching outbound interface. Demographics Updated has an outbound interface, with no enum value and no validation body. Chris confirmed on 11 August they are two separate live events, not one process.</p>
+      <table>
+        <thead><tr><th>#</th><th>Family</th><th>Interface</th><th>Enum</th><th>Validation body</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td>User Journey</td><td>HubSpotUserJourneyEvent</td><td>UserJourneyEvent</td><td>UserJourneyBody</td></tr>
+          <tr><td>2</td><td>Account Verified</td><td>HubSpotAccountVerifiedEvent</td><td>AccountVerifiedEvent</td><td>AccountVerifiedBody</td></tr>
+          <tr><td>3</td><td>User Purchase</td><td>HubSpotUserPurchaseEvent</td><td>UserPurchaseEvent</td><td>UserPurchaseBody</td></tr>
+          <tr><td>4</td><td>Patient Address Update</td><td>None</td><td>PatientAddressUpdateEvent</td><td>PatientAddressUpdateBody</td></tr>
+          <tr><td>5</td><td>User Event</td><td>HubSpotUserEvent</td><td>UserEvent</td><td>UserEventBody</td></tr>
+          <tr><td>6</td><td>Marketing Consent</td><td>HubSpotMarketingConsentEvent</td><td>MarketingConsentEvent</td><td>MarketingConsentBody</td></tr>
+          <tr><td>7</td><td>User Purchase Detail</td><td>HubSpotUserPurchaseDetailEvent</td><td>UserPurchaseDetailEvent</td><td>UserPurchaseDetailEventBody</td></tr>
+          <tr><td>8</td><td>Demographics Updated</td><td>HubSpotDemographicsUpdatedEvent</td><td>None</td><td>None</td></tr>
+        </tbody>
+      </table>
+
+      <h3>Analytics taxonomy</h3>
+      <p>56 values in AnalyticsEvents. Many are clinically descriptive (initialMedMgmt_initiated, teleTherapy_initiated, coaching_initiated, diagnostic_reevaluation_*). Eleven require coded mapping. See section 6. Original clinical strings are not stored on the Journey Event.</p>
+
+      <h3>Properties on the live event</h3>
+      <p>About 50 properties on the HubSpot “Show properties” panel. PHI that belongs on Contact only in the future state:</p>
+      <ul>
+        <li><code>patient_first_name</code>, <code>patient_last_name</code>, <code>patient_preferred_name</code>, <code>patient_dob</code></li>
+        <li><code>client_first_name</code>, <code>client_last_name</code>, <code>client_preferred_name</code>, <code>client_dob</code></li>
+        <li><code>client_phone_number</code></li>
+      </ul>
+      <p>Geographic fields stay on both objects: Journey Event holds state at time of event; Contact holds current state. <code>user_pk</code> and <code>patient_type</code> move to Contact only. <code>analytics</code> is replaced by coded <code>event_type</code>; the original string is not stored.</p>
+      <p>Names, date of birth, and phone appear on the live HubSpot event. They are not present in every copy of the connector payloads reviewed for this specification. They are treated as data sent today: they move to Contact Sensitive Data and never land on Journey Event. Confirm against the live event property list during QA.</p>
+
+      <h3>Auto-captured today, not auto-captured tomorrow</h3>
+      <div class="callout callout-warn">
+        <h4><span class="material-symbols-outlined">warning</span> UTMs are not in the connector today</h4>
+        <p>Custom Behavioral Events auto-capture UTMs. CRM custom objects do not. The 6 August connector files (<code>messageBody.ts</code>, <code>hubspotPortalEvents.ts</code>) send no UTM fields on any event family. After cutover, Mentavi must capture UTMs in the portal and pass them on the Journey Event write. That is a required Mentavi engineering build item — not optional. The event-path UTM copy workflow depends on it.</p>
+      </div>
+      <p>Browser, device, geo, page, and element metadata are also lost unless Mentavi explicitly sends them. This specification requires UTMs on Journey Event only where AQW attribution needs them.</p>
+
+      <h3 id="s2-inventory">Confirmed downstream inventory</h3>
+      <p>Inventory from the NUJ “Used in” panel (13 July 2026). Filter-level audit completed in portal 21221632 on 2 September 2026 — see section 7.</p>
+      <p><strong>Lists (5).</strong> <a href="https://app.hubspot.com/contacts/21221632/objectLists/2981/" target="_blank" rel="noopener">1.2 PQL Lifecycle Stage Inclusion List</a>. <a href="https://app.hubspot.com/contacts/21221632/objectLists/2775/" target="_blank" rel="noopener">Active AA Segment</a>. <a href="https://app.hubspot.com/contacts/21221632/objectLists/2773/" target="_blank" rel="noopener">General Newsletter List</a>. <a href="https://app.hubspot.com/contacts/21221632/objectLists/2466/" target="_blank" rel="noopener">AA Discount Segment</a>. <a href="https://app.hubspot.com/contacts/21221632/objectLists/1861/" target="_blank" rel="noopener">Privacy &amp; Consent: visited site but no selection made</a>.</p>
+      <p><strong>Workflow (1).</strong> <a href="https://app.hubspot.com/workflows/21221632/platform/flow/1841942132/edit" target="_blank" rel="noopener">Playbook: Ops | Copy UTM Parameters to GTM Campaigns / Sources / Content / Term [Event Path]</a>. Currently off in the portal.</p>
+      <p><strong>Reports (10).</strong> Including ADT Clinician Referrals, labelled “disregard.” It still gets a decision: Retire. Rebuild count of active reports is 9 unless audit finds a consumer.</p>
+
+      <h3 id="s2-scope">In scope: Phase 1</h3>
+      <ul>
+        <li>Custom object definition and property creation</li>
+        <li>API spec for Mentavi engineering (endpoints, payloads, auth, idempotency)</li>
+        <li>Coded event type mapping</li>
+        <li>Contact property changes; Deal GTM fields per AQW table (section 7)</li>
+        <li>5 lists, 1 workflow, 10 reports, activity-view equivalent</li>
+        <li>QA plan, cutover sequence, compliance summary, walkthrough</li>
+      </ul>
+
+      <h3>Out of scope</h3>
+      <ul>
+        <li>Historical CBE backfill (Phase 2; Mentavi legal owns the direction)</li>
+        <li>D2C purchase event migration</li>
+        <li>Parallel Contact property remediation already in progress (dependency only)</li>
+        <li>Auth0, CookieYes, Stape, CAPI</li>
+        <li>Building or enabling objects and properties in HubSpot as part of this specification</li>
+        <li>Legal / compliance determination</li>
+      </ul>
+    </section>
+
+    <!-- ========== 3 ========== -->
+    <section class="chapter" id="s3">
+      <p class="eyebrow">03. Architecture</p>
+      <h2><b>Target architecture</b> and ownership</h2>
+
+      <h3 id="s3-writes">Three CRM writes per occurrence</h3>
+      <figure class="spec-figure" id="fig-arch">
+        <img src="assets/miro-frame-1.png" alt="Future-state architecture: Mentavi portal, Mentavi connector, HubSpot CRM objects, and Phase 1 rewiring" width="1600" height="900">
+        <figcaption>Figure 1. Future-state architecture. The portal sends one patient action. Mentavi’s connector turns that into two jobs and three HubSpot CRM writes. Contact holds identity. Journey Event holds the occurrence. They associate natively. Nothing writes back to Custom Behavioral Events after approved cutover. <a href="https://miro.com/app/board/uXjVHsWdhjc=/?moveToWidget=3458764682356323665&amp;cot=14" target="_blank" rel="noopener">Open the live frame</a>.</figcaption>
+      </figure>
+      <div class="calls">
+        <div class="flow-card step-1">
+          <div class="num">1</div>
+          <h4>Contact create or update</h4>
+          <p>POST or PATCH <code>/crm/objects/2026-03/contacts</code>. Sensitive Data: names, DOB, phone, <code>patient_type</code>, address fields. Standard: <code>lifecyclestage</code>, attribution, current state. Store the returned Record ID.</p>
+        </div>
+        <div class="flow-card step-2">
+          <div class="num">2</div>
+          <h4>Journey Event upsert</h4>
+          <p>POST <code>/crm/objects/2026-03/{objectTypeId}/batch/upsert</code> with <code>idProperty=occurrence_id</code>. Coded <code>event_type</code>, <code>occurred_at</code>, UTMs, product metadata. No patient identifiers on this object.</p>
+        </div>
+        <div class="flow-card step-3">
+          <div class="num">3</div>
+          <h4>Native association</h4>
+          <p>PUT the default association Journey Event → Contact using the stored Record ID. See section 6 for the documented URL.</p>
+        </div>
+      </div>
+
+      <div class="callout callout-info">
+        <h4><span class="material-symbols-outlined">info</span> Connector scope</h4>
+        <p>The connector changes endpoints, payload shape, PHI placement, coded types, <code>occurrence_id</code>, Contact Record ID storage, association create, and Sensitive Data scopes. Mentavi engineering time is separate from the HubSpot hours in section 10.</p>
+      </div>
+
+      <h3 id="s3-own">Ownership</h3>
+      <table>
+        <thead><tr><th>Component</th><th>Owner</th><th>Notes</th></tr></thead>
+        <tbody>
+          <tr><td>Integration / connector</td><td>Mentavi (Joel / Chris)</td><td>Payload restructure, <code>occurrence_id</code>, Contact Record ID storage, Sensitive Data scopes on the existing Access Token</td></tr>
+          <tr><td>Private app and scopes</td><td>Mentavi</td><td>Add Sensitive Data scopes on <strong>Mentavi-Hubspot-Integration</strong>. Requires a Mentavi user who can edit that app — RevPartners users in 21221632 cannot open the Scopes tab on this app.</td></tr>
+          <tr><td>Custom object and properties</td><td>RP creates the object and standard properties. Mentavi Super Admin creates Sensitive Data properties in the UI.</td><td>Classification is permanent. Sensitive Data properties cannot be unique. Sensitive Data settings and SD property create require Super Admin; RevPartners is not Super Admin in this portal.</td></tr>
+          <tr><td>5 lists, 1 workflow, 10 reports</td><td>RP</td><td>Repoint, rebuild, or retire</td></tr>
+          <tr><td>Coded event mapping</td><td>RP proposes, Mentavi compliance approves</td><td>Section 6</td></tr>
+          <tr><td>Contact matching method</td><td>RP recommends, Mentavi legal decides</td><td>Section 4</td></tr>
+          <tr><td>HubSpot QA</td><td>RP</td><td>Synthetic records only, live portal as acceptance env</td></tr>
+          <tr><td>Integration QA</td><td>Mentavi</td><td>From Mentavi UAT into portal 21221632 test records</td></tr>
+          <tr><td>Compliance sign-off</td><td>Mentavi legal / compliance</td><td>Gate before any HubSpot build</td></tr>
+        </tbody>
+      </table>
+
+      <h3 id="s3-auth">Auth: existing private app</h3>
+      <p>Chris confirmed 11 August 2026: the live credential is the Access Token on the existing private app <strong>Mentavi-Hubspot-Integration</strong>, under Development → Legacy Apps. Keep this token. Add Sensitive Data scopes before integration testing.</p>
+      <p>A Mentavi user who can edit <strong>Mentavi-Hubspot-Integration</strong> adds the scopes below. RevPartners users cannot edit this app: HubSpot shows <em>“You can’t edit this app’s scopes, because this app has scopes you don’t have access to.”</em> That is a portal permission gate, not a connector design choice.</p>
+      <ul>
+        <li><code>crm.objects.contacts.sensitive.read</code> / <code>crm.objects.contacts.sensitive.write</code> (picker may show the <code>.v2</code> names used by the 2026-03 APIs)</li>
+        <li><code>crm.objects.custom.sensitive.read</code> / <code>crm.objects.custom.sensitive.write</code> (same)</li>
+      </ul>
+      <p>Those scopes cover Sensitive Data record read/write. Schema scopes for object build: <code>crm.schemas.custom.read</code> / <code>crm.schemas.custom.write</code>. There are no schema-level Sensitive Data scopes — only record scopes and standard schema read/write.</p>
+      <p><strong>Sensitive Data property definitions:</strong> created in the HubSpot UI by a Mentavi Super Admin after Sensitive Data settings are enabled. This is the costed build path for portal 21221632. HubSpot’s Properties API can create sensitive definitions when the caller has object <code>sensitive.write</code>, but RevPartners cannot add scopes to Mentavi-Hubspot-Integration and cannot open Sensitive Data settings in this portal, so RP cannot execute or verify an API create path here.</p>
+      <p>A Mentavi Super Admin must confirm Health/Medical Data and the HIPAA covered-entity setting in portal 21221632 before build. Enabling Sensitive Data is irreversible. See section 8.</p>
+    </section>
+
+    <!-- ========== 4 ========== -->
+    <section class="chapter" id="s4">
+      <p class="eyebrow">04. Identity</p>
+      <h2><b>Identity,</b> matching, and idempotency</h2>
+
+      <div class="callout callout-go">
+        <h3 id="s4-rec"><span class="material-symbols-outlined">verified</span> Recommended pattern: Contact Record ID</h3>
+        <ol>
+          <li>At email verification (or first Contact create), Mentavi calls POST <code>/crm/objects/2026-03/contacts</code> with identity data.</li>
+          <li>HubSpot returns the Contact Record ID.</li>
+          <li>Mentavi stores that ID against its user record.</li>
+          <li>Every later Journey Event associates using that stored Record ID.</li>
+          <li>Nothing patient-identifying is sent on the Journey Event payload: not email, <code>user_pk</code>, <code>clientId</code>, <code>patientId</code>, names, DOB, phone, or address.</li>
+        </ol>
+        <p>Why: it is HubSpot’s native record identifier, minimum-necessary, and it avoids resending direct identifiers on every occurrence. It also sidesteps HubSpot’s hard constraint: Sensitive Data properties cannot enforce unique values. A Sensitive Data <code>user_pk</code> cannot be the unique Contact key.</p>
+      </div>
+
+      <h3 id="s4-alt">Alternatives for Mentavi legal</h3>
+      <table>
+        <thead><tr><th>Method</th><th>Sensitivity</th><th>Uniqueness</th><th>API behavior</th><th>Risk</th></tr></thead>
+        <tbody>
+          <tr><td>Contact Record ID (recommended)</td><td>HubSpot’s native record id. Whether it is a HIPAA identifier is Mentavi legal’s call, not a technical fact.</td><td>Unique by design</td><td>Association target directly</td><td>Merges require a one-time re-lookup</td></tr>
+          <tr><td>Email</td><td>HIPAA identifier</td><td>Unique in HubSpot</td><td>idProperty=email at write time; do not store on Journey Event</td><td>Sent on every call; easy to leak into logs</td></tr>
+          <tr><td><code>user_pk</code></td><td>Depends on derivation; counsel decides</td><td>Unique if standard. Cannot be unique if Sensitive Data</td><td>idProperty if configured unique</td><td>If PHI, finished as a matching key</td></tr>
+          <tr><td><code>patientId</code> / <code>clientId</code></td><td>Likely PHI</td><td>Same unique-vs-sensitive trap</td><td>Same as <code>user_pk</code></td><td>Same as <code>user_pk</code></td></tr>
+        </tbody>
+      </table>
+      <p>This specification recommends Contact Record ID, with the alternatives above. Mentavi legal chooses the matching method.</p>
+
+      <h3 id="s4-idemp">Idempotency</h3>
+      <p><strong>Primary pattern.</strong> Mentavi ensures one stable <code>occurrence_id</code> (UUIDv4 or equivalent) exists before the Journey Event write. Never derived from a patient value. Stored as a unique <em>standard</em> property on Journey Event. Retries reuse the same <code>occurrence_id</code>. HubSpot’s documented upsert is batch upsert on that unique property, so a retry updates rather than duplicates.</p>
+      <p><strong>Fallback, only if legal classifies <code>occurrence_id</code> as Sensitive Data.</strong> HubSpot cannot enforce uniqueness on a Sensitive Data property. Mentavi then checks for an existing row (or consults its own sent-events store) before the write. The architecture still works. HubSpot just stops being the duplicate lock. Compliance decides the classification.</p>
+      <p>A UUID is not automatically non-PHI. Mentavi legal decides. If <code>occurrence_id</code> cannot go in ordinary logs, Mentavi logs a separate correlation id (status, timestamp, event family, that correlation id). The UUID still goes to HubSpot. It does not go to Datadog / error text.</p>
+
+      <h3>Display vs unique</h3>
+      <p>These are two properties. They are not the same field.</p>
+      <ul>
+        <li><strong>Unique technical property:</strong> <code>occurrence_id</code></li>
+        <li><strong>Primary display property:</strong> <code>display_label</code>, written by the integration as [coded <code>event_type</code>] | [<code>occurred_at</code>]</li>
+        <li><strong>Record card:</strong> <code>event_type</code>, <code>occurred_at</code>, <code>event_family</code></li>
+      </ul>
+      <p>A formatted display string is not a safe unique key. Two events of the same type can share a timestamp second. UUIDv4 does not.</p>
+
+      <h3>Edge cases</h3>
+      <table>
+        <thead><tr><th>Scenario</th><th>Handling</th></tr></thead>
+        <tbody>
+          <tr><td>Retry</td><td>Same <code>occurrence_id</code>, batch upsert, no duplicate. If legal classifies <code>occurrence_id</code> Sensitive Data, Mentavi de-dupes before the write instead.</td></tr>
+          <tr><td>Second legitimate occurrence</td><td>New <code>occurrence_id</code>, new record</td></tr>
+          <tr><td>Contact merge</td><td>Stored Record ID goes stale. Controlled one-time lookup and re-store. Not the normal path.</td></tr>
+          <tr><td>Contact not found</td><td>404 → one-time fallback lookup (email unless legal forbids it) → re-store ID → associate. Email is not stored on the Journey Event.</td></tr>
+          <tr><td>Failed Contact write</td><td>Skip Journey Event create. Retry the same approved Contact payload inside Mentavi infrastructure. Logs: correlation id (or <code>occurrence_id</code> only if classification allows), status. No names, DOB, phone, email, or address in logs.</td></tr>
+          <tr><td>Failed Journey Event write</td><td>Retry with same <code>occurrence_id</code>. Upsert is safe.</td></tr>
+          <tr><td>Failed association</td><td>Retry. Record exists but is orphaned until association succeeds.</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- ========== 5 ========== -->
+    <section class="chapter" id="s5">
+      <p class="eyebrow">05. Schema</p>
+      <h2><b>Object</b> and property map</h2>
+
+      <div class="spec-facts">
+        <ul>
+          <li>Object label: Journey Event</li>
+          <li>Internal name: <code>journey_event</code>. API paths use the plural <code>journey_events</code>.</li>
+        </ul>
+        <ul>
+          <li>Association: Contact, native, one-to-many</li>
+          <li>Primary display: <code>display_label</code></li>
+          <li>Unique key: <code>occurrence_id</code> (standard, unique)</li>
+          <li>Schema: allow Sensitive Data properties on the object, even if none are classified that way at create</li>
+        </ul>
+      </div>
+
+      <h3 id="s5-je">Journey Event properties</h3>
+      <div class="table-scroll">
+        <table class="table-je-props">
+          <thead>
+            <tr>
+              <th>Label</th><th>Internal</th><th>Type</th><th>Required</th><th title="Mentavi compliance confirms Sensitive Data flags">Classification</th><th>Why it exists</th><th>Source</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Occurrence ID</td><td><code>occurrence_id</code></td><td>Single-line text (unique)</td><td>Yes</td><td>Standard (unique). SD fallback: §4.</td><td>Idempotency key</td><td>Mentavi ensures it exists before the Journey Event write</td></tr>
+            <tr><td>Display label</td><td><code>display_label</code></td><td>Single-line text</td><td>Yes</td><td>No</td><td>Primary display: <code>event_type</code> | <code>occurred_at</code></td><td>Composed by Mentavi</td></tr>
+            <tr><td>Event Type</td><td><code>event_type</code></td><td>Single-line text</td><td>Yes</td><td>No</td><td>Coded type. Replaces analytics. Original string not stored.</td><td>analytics, mapped</td></tr>
+            <tr><td>Occurred At</td><td><code>occurred_at</code></td><td>DateTime</td><td>Yes</td><td>No</td><td>When the action happened</td><td><code>occurredAt</code></td></tr>
+            <tr><td>Event Family</td><td><code>event_family</code></td><td>Dropdown</td><td>Yes</td><td>No</td><td>Which integration family sent this</td><td><code>PortalEventType</code></td></tr>
+            <tr><td>Client State</td><td><code>client_state</code></td><td>Single-line text</td><td>No</td><td>No (geographic snapshot)</td><td>State at time of event</td><td><code>client_state</code></td></tr>
+            <tr><td>Client State Full</td><td><code>client_state_full</code></td><td>Single-line text</td><td>No</td><td>No</td><td>State at time of event</td><td><code>client_state_full</code></td></tr>
+            <tr><td>Patient State</td><td><code>patient_state</code></td><td>Single-line text</td><td>No</td><td>No (geographic snapshot)</td><td>State at time of event</td><td><code>patient_state</code></td></tr>
+            <tr><td>Patient State Full</td><td><code>patient_state_full</code></td><td>Single-line text</td><td>No</td><td>No</td><td>State at time of event</td><td><code>patient_state_full</code></td></tr>
+            <tr><td>Contract ID</td><td><code>contract_id</code></td><td>Single-line text</td><td>No</td><td>No</td><td>Purchase reference</td><td><code>contract_id</code></td></tr>
+            <tr><td>Product ID</td><td><code>product_id</code></td><td>Single-line text</td><td>No</td><td>No</td><td>Purchase detail</td><td><code>product_id</code></td></tr>
+            <tr><td>Product Name</td><td><code>product_name</code></td><td>Single-line text</td><td>No</td><td>No</td><td>Purchase detail</td><td><code>product_name</code></td></tr>
+            <tr><td>Product Price ID</td><td><code>product_price_id</code></td><td>Single-line text</td><td>No</td><td>No</td><td>Purchase detail</td><td><code>product_price_id</code></td></tr>
+            <tr><td>Product Price</td><td><code>product_price</code></td><td>Single-line text</td><td>No</td><td>No</td><td>Purchase detail</td><td><code>product_price</code></td></tr>
+            <tr><td>Product Paid Price</td><td><code>product_paid_price</code></td><td>Single-line text</td><td>No</td><td>No</td><td>Purchase detail</td><td><code>product_paid_price</code></td></tr>
+            <tr><td>UTM Campaign</td><td><code>utm_campaign</code></td><td>Single-line text</td><td>No</td><td>Standard</td><td>AQW attribution</td><td><code>utm_campaign</code></td></tr>
+            <tr><td>UTM Content</td><td><code>utm_content</code></td><td>Single-line text</td><td>No</td><td>No</td><td>AQW attribution</td><td><code>utm_content</code></td></tr>
+            <tr><td>UTM Medium</td><td><code>utm_medium</code></td><td>Single-line text</td><td>No</td><td>No</td><td>AQW attribution</td><td><code>utm_medium</code></td></tr>
+            <tr><td>UTM Source</td><td><code>utm_source</code></td><td>Single-line text</td><td>No</td><td>No</td><td>AQW attribution</td><td><code>utm_source</code></td></tr>
+            <tr><td>UTM Term</td><td><code>utm_term</code></td><td>Single-line text</td><td>No</td><td>No</td><td>AQW attribution</td><td><code>utm_term</code></td></tr>
+            <tr><td>Marketing Email Consent</td><td><code>accepted_email_marketing</code></td><td>Boolean</td><td>No</td><td>No</td><td>Consent state at time of event</td><td><code>accepted_email_marketing</code></td></tr>
+            <tr><td>Marketing SMS Consent</td><td><code>accepted_sms_marketing</code></td><td>Boolean</td><td>No</td><td>No</td><td>Consent state at time of event</td><td><code>accepted_sms_marketing</code></td></tr>
+            <tr><td>Test record flag</td><td><code>is_test_record</code></td><td>Boolean</td><td>No</td><td>No</td><td>Live-portal QA suppression</td><td>QA only</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout callout-no">
+        <h4><span class="material-symbols-outlined">block</span> Not on Journey Event</h4>
+        <p>No names (patient or client). No preferred names. No DOB. No phone. No email. No <code>user_pk</code>, <code>clientId</code>, or <code>patientId</code>. No street address, <code>city</code>, <code>country</code>, or postal code. All of that lives on the Contact only. Those event records are already linked to a contact that has that information.</p>
+      </div>
+
+      <h3 id="s5-contact">Contact properties written by the integration</h3>
+      <p><code>email</code> is a default HubSpot Contact property used at create / fallback lookup (not listed below). Proposed classification: Mentavi compliance confirms. An existing standard property cannot be converted to Sensitive Data later. If a field already exists as standard and must become Sensitive Data, create a new internal name. Tyler’s parallel property remediation covers overlaps.</p>
+      <div class="table-scroll">
+      <table>
+        <thead><tr><th>Property</th><th>Type</th><th>Proposed classification</th><th>Exists today</th><th>Current sensitivity</th><th>New internal name needed?</th><th>Tyler dependency</th><th>Source</th></tr></thead>
+        <tbody>
+          <tr><td><code>patient_first_name</code></td><td>Text</td><td>Sensitive Data</td><td>Confirm in portal</td><td>Confirm</td><td>If it exists as standard, yes</td><td>Yes if it already exists</td><td>User Journey</td></tr>
+          <tr><td><code>patient_last_name</code></td><td>Text</td><td>Sensitive Data</td><td>Confirm in portal</td><td>Confirm</td><td>If it exists as standard, yes</td><td>Yes if it already exists</td><td>User Journey</td></tr>
+          <tr><td><code>patient_preferred_name</code></td><td>Text</td><td>Sensitive Data</td><td>Confirm in portal</td><td>Confirm</td><td>If it exists as standard, yes</td><td>Yes if it already exists</td><td>User Journey</td></tr>
+          <tr><td><code>patient_dob</code></td><td>Date</td><td>Sensitive Data</td><td>Confirm in portal</td><td>Confirm</td><td>If it exists as standard, yes</td><td>Yes if it already exists</td><td>User Journey</td></tr>
+          <tr><td><code>client_first_name</code></td><td>Text</td><td>Sensitive Data</td><td>Confirm in portal</td><td>Confirm</td><td>If it exists as standard, yes</td><td>Yes if it already exists</td><td>User Journey</td></tr>
+          <tr><td><code>client_last_name</code></td><td>Text</td><td>Sensitive Data</td><td>Confirm in portal</td><td>Confirm</td><td>If it exists as standard, yes</td><td>Yes if it already exists</td><td>User Journey</td></tr>
+          <tr><td><code>client_preferred_name</code></td><td>Text</td><td>Sensitive Data</td><td>Confirm in portal</td><td>Confirm</td><td>If it exists as standard, yes</td><td>Yes if it already exists</td><td>User Journey</td></tr>
+          <tr><td><code>client_dob</code></td><td>Date</td><td>Sensitive Data</td><td>Confirm in portal</td><td>Confirm</td><td>If it exists as standard, yes</td><td>Yes if it already exists</td><td>User Journey</td></tr>
+          <tr><td><code>client_phone_number</code></td><td>Text</td><td>Sensitive Data</td><td>Confirm in portal</td><td>Confirm</td><td>If it exists as standard, yes</td><td>Yes if it already exists</td><td>User Journey, User Event, Marketing Consent</td></tr>
+          <tr><td><code>patient_type</code></td><td>Dropdown</td><td>Sensitive Data</td><td>Confirm in portal</td><td>Confirm</td><td>If it exists as standard, yes</td><td>Yes if it already exists</td><td>User Journey, Patient Address Update</td></tr>
+          <tr><td><code>patient_state</code> / <code>patient_state_full</code></td><td>Text</td><td>Standard</td><td>Confirm in portal</td><td>Confirm</td><td>No if already standard</td><td>No</td><td>User Journey, Patient Address Update, Demographics Updated</td></tr>
+          <tr><td><code>client_state</code> / <code>client_state_full</code></td><td>Text</td><td>Standard</td><td>Confirm in portal</td><td>Confirm</td><td>No if already standard</td><td>No</td><td>User Journey</td></tr>
+          <tr><td><code>address</code> (street)</td><td>Text</td><td>Sensitive Data</td><td>HubSpot default <code>address</code></td><td>Confirm</td><td>If default is standard and must be sensitive, new name</td><td>Yes if converting default</td><td>User Event <code>streetAddress</code>; Patient Address Update <code>patientAddress1</code></td></tr>
+          <tr><td><code>address2</code></td><td>Text</td><td>Sensitive Data</td><td>HubSpot default</td><td>Confirm</td><td>Same rule</td><td>Yes if converting default</td><td>Patient Address Update <code>patientAddress2</code></td></tr>
+          <tr><td><code>city</code></td><td>Text</td><td>Sensitive Data</td><td>HubSpot default</td><td>Confirm</td><td>Same rule</td><td>Yes if converting default</td><td>User Event; Patient Address Update <code>patientCity</code></td></tr>
+          <tr><td><code>state</code></td><td>Text</td><td>Standard</td><td>HubSpot default</td><td>Standard</td><td>No</td><td>No</td><td>User Event; Patient Address Update <code>patientState</code></td></tr>
+          <tr><td><code>country</code></td><td>Text</td><td>Standard</td><td>HubSpot default</td><td>Standard</td><td>No</td><td>No</td><td>User Event</td></tr>
+          <tr><td><code>zip</code></td><td>Text</td><td>Sensitive Data</td><td>HubSpot default</td><td>Confirm</td><td>Same rule as address</td><td>Yes if converting default</td><td>User Event <code>postalCode</code>; Patient Address Update <code>patientZip</code></td></tr>
+          <tr><td><code>lifecyclestage</code></td><td>Dropdown (HubSpot default)</td><td>Standard</td><td>Yes</td><td>Standard</td><td>No. Internal name is one word.</td><td>No</td><td>Existing. Confirm stage values in 21221632.</td></tr>
+          <tr><td><code>is_test_record</code></td><td>Boolean</td><td>Standard</td><td>No</td><td>—</td><td>Create new</td><td>No</td><td>QA only</td></tr>
+        </tbody>
+      </table>
+      </div>
+      <p>Sensitive Data properties: unique values are not allowed. Classification cannot be changed later. Calculation, rollup, property-sync, and HubSpot-user properties cannot hold Sensitive Data. Attribution properties remain standard by design. Exact workflow behaviour is verified in the portal before build.</p>
+      <p>Sensitive Data property definitions are created in the HubSpot UI by a Mentavi Super Admin. That is the costed path for this project. RP creates standard Journey Event properties and the custom object; Mentavi Super Admin creates Contact Sensitive Data properties and confirms field-level access. QA writes and reads back Sensitive Data values on <code>/crm/objects/2026-03/</code>.</p>
+
+      <h3 id="s5-fields">Field disposition (all eight families)</h3>
+      <p>Every field Mentavi currently sends gets one home. Destination is proposed. Mentavi compliance confirms classification. Identifiers used only to find the Contact are not stored on Journey Event.</p>
+      <div class="table-scroll">
+      <table>
+        <thead><tr><th>Family</th><th>Source field</th><th>Destination</th><th>Target property</th><th>Proposed classification</th><th>If dropped, why</th></tr></thead>
+        <tbody>
+          <tr><td>All</td><td><code>email</code></td><td>Contact (match / create only)</td><td><code>email</code></td><td>HubSpot default; HIPAA identifier</td><td>Never stored on Journey Event</td></tr>
+          <tr><td>All with analytics</td><td><code>analytics</code></td><td>Journey Event</td><td>coded <code>event_type</code></td><td>Standard</td><td>Original string is not stored</td></tr>
+          <tr><td>Most</td><td><code>userPk</code> / <code>user_pk</code></td><td>Not stored</td><td>—</td><td>—</td><td>Used only if legal picks it as a match key. Relationship is the association.</td></tr>
+          <tr><td>User Journey</td><td>client / patient names, DOB, phone</td><td>Contact</td><td>matching Contact properties above</td><td>Sensitive Data</td><td></td></tr>
+          <tr><td>User Journey</td><td><code>clientState</code>, <code>patientState</code>, <code>*_full</code></td><td>Contact (current) and Journey Event (snapshot)</td><td><code>client_state</code>, <code>patient_state</code>, full variants</td><td>Standard</td><td></td></tr>
+          <tr><td>User Journey</td><td><code>patientType</code></td><td>Contact</td><td><code>patient_type</code></td><td>Sensitive Data</td><td></td></tr>
+          <tr><td>Account Verified</td><td><code>userPk</code>, <code>email</code></td><td>Contact match only / not stored on JE</td><td>—</td><td>—</td><td>Occurrence is the Journey Event row</td></tr>
+          <tr><td>User Purchase</td><td><code>contractId</code></td><td>Journey Event</td><td><code>contract_id</code></td><td>Standard</td><td></td></tr>
+          <tr><td>Patient Address Update</td><td><code>patientAddress1</code></td><td>Contact</td><td><code>address</code> or new sensitive name</td><td>Sensitive Data</td><td></td></tr>
+          <tr><td>Patient Address Update</td><td><code>patientAddress2</code></td><td>Contact</td><td><code>address2</code> or new sensitive name</td><td>Sensitive Data</td><td></td></tr>
+          <tr><td>Patient Address Update</td><td><code>patientCity</code></td><td>Contact</td><td><code>city</code> or new sensitive name</td><td>Sensitive Data</td><td></td></tr>
+          <tr><td>Patient Address Update</td><td><code>patientZip</code></td><td>Contact</td><td><code>zip</code> or new sensitive name</td><td>Sensitive Data</td><td></td></tr>
+          <tr><td>Patient Address Update</td><td><code>patientState</code></td><td>Contact current + JE snapshot</td><td><code>patient_state</code></td><td>Standard</td><td></td></tr>
+          <tr><td>Patient Address Update</td><td><code>patientType</code></td><td>Contact</td><td><code>patient_type</code></td><td>Sensitive Data</td><td></td></tr>
+          <tr><td>Patient Address Update</td><td><code>patientId</code></td><td>Not stored on Journey Event</td><td>—</td><td>—</td><td>Match-time only if legal requires it. Do not persist on the occurrence.</td></tr>
+          <tr><td>User Event</td><td><code>phoneNumber</code>, <code>firstName</code>, <code>lastName</code>, street, city, postal</td><td>Contact</td><td>phone / name / address fields</td><td>Sensitive Data</td><td></td></tr>
+          <tr><td>User Event</td><td><code>clientId</code></td><td>Not stored on Journey Event</td><td>—</td><td>—</td><td>Same as <code>user_pk</code></td></tr>
+          <tr><td>User Event</td><td><code>state</code>, <code>country</code></td><td>Contact + JE snapshot</td><td>state / country</td><td>Standard</td><td></td></tr>
+          <tr><td>Marketing Consent</td><td><code>acceptedEmailMarketing</code>, <code>acceptedSMSMarketing</code></td><td>Journey Event snapshot; Contact current consent if Mentavi already writes it</td><td><code>accepted_email_marketing</code>, <code>accepted_sms_marketing</code></td><td>Standard</td><td></td></tr>
+          <tr><td>Marketing Consent</td><td><code>client_phone_number</code></td><td>Contact</td><td><code>client_phone_number</code></td><td>Sensitive Data</td><td></td></tr>
+          <tr><td>User Purchase Detail</td><td>product id / name / prices</td><td>Journey Event</td><td><code>product_*</code></td><td>Standard</td><td></td></tr>
+          <tr><td>Demographics Updated</td><td><code>patient_id</code></td><td>Not stored on Journey Event</td><td>—</td><td>—</td><td>Match-time only</td></tr>
+          <tr><td>Demographics Updated</td><td><code>patient_state</code>, <code>patient_state_full</code></td><td>Contact current + JE snapshot</td><td><code>patient_state</code>, <code>patient_state_full</code></td><td>Standard</td><td></td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <h3 id="s5-deal">Deal properties</h3>
+      <p>UTM / GTM copy from Contact to Deal must use standard properties only. Attribution fields stay standard by design. Exact workflow behaviour is verified in the portal before build. Tyler’s parallel Contact property remediation runs separately.</p>
+    </section>
+
+    <!-- ========== 6 ========== -->
+    <section class="chapter" id="s6">
+      <p class="eyebrow">06. Mapping</p>
+      <h2><b>Event mapping</b> and API contract</h2>
+
+      <p><code>event_type</code> stores the value in the Proposed column. The original analytics string is not stored on the Journey Event. If the original string does not name a medical service or procedure, keep it. Only recode events that name specific clinical services.</p>
+
+      <div class="callout callout-ask">
+        <h3 id="s6-coding"><span class="material-symbols-outlined">help</span> Coding strategy: compliance chooses</h3>
+        <p><strong>Option A.</strong> Collapse clinical events to generic <code>service_initiated</code> / <code>service_purchased</code>. Most restrictive. Loses sub-type unless Mentavi adds a separate coded <code>service_category</code> dictionary.</p>
+        <p><strong>Option B (recommended).</strong> Distinct opaque codes that preserve reportability without naming the service (<code>service_type_a_initiated</code> vs <code>service_type_b_initiated</code>). Mentavi holds the lookup. Follow-up and re-evaluation stay distinct because they are different occurrence classes, not just different service names.</p>
+        <p>The table below is Option B. Option A codes are not for the integration until compliance says so.</p>
+      </div>
+
+      <h3 id="s6-map">Event type mapping</h3>
+      <details class="fold" id="mapFold" open>
+        <summary><span class="material-symbols-outlined">table_rows</span> 56 event types, 11 need REVIEW. Search or collapse.</summary>
+        <div class="fold-body">
+      <div class="table-tools">
+        <label for="mapFilter">Find an event</label>
+        <input type="search" id="mapFilter" placeholder="Type a name" autocomplete="off">
+        <label class="review-check"><input type="checkbox" id="reviewOnly"> REVIEW only</label>
+      </div>
+      <p class="empty-filter" id="mapEmpty">No rows match. Clear the search or turn off REVIEW only.</p>
+      <div class="table-scroll">
+        <table id="mapTable">
+          <thead><tr><th>Current analytics value</th><th>Proposed coded type</th><th>Proposed keep / REVIEW</th><th>Repeat?</th></tr></thead>
+          <tbody>
+            <tr><td><code>initialMedMgmt_initiated</code></td><td><code>service_type_a_initiated</code></td><td class="ask">REVIEW</td><td>Yes</td></tr>
+            <tr><td><code>followUpMedMgmt_initiated</code></td><td><code>service_type_a_followup_initiated</code></td><td class="ask">REVIEW</td><td>Yes</td></tr>
+            <tr><td><code>teleTherapy_initiated</code></td><td><code>service_type_b_initiated</code></td><td class="ask">REVIEW</td><td>Yes</td></tr>
+            <tr><td><code>coaching_initiated</code></td><td><code>service_type_c_initiated</code></td><td class="ask">REVIEW</td><td>Yes</td></tr>
+            <tr><td><code>medicalTreatmentReEvaluation_initiated</code></td><td><code>service_type_d_initiated</code></td><td class="ask">REVIEW</td><td>Yes</td></tr>
+            <tr><td><code>initialMedMgmt_purchased</code></td><td><code>service_type_a_purchased</code></td><td class="ask">REVIEW</td><td>Yes</td></tr>
+            <tr><td><code>followUpMedMgmt_purchased</code></td><td><code>service_type_a_followup_purchased</code></td><td class="ask">REVIEW</td><td>Yes</td></tr>
+            <tr><td><code>teleTherapy_purchased</code></td><td><code>service_type_b_purchased</code></td><td class="ask">REVIEW</td><td>Yes</td></tr>
+            <tr><td><code>coaching_purchased</code></td><td><code>service_type_c_purchased</code></td><td class="ask">REVIEW</td><td>Yes</td></tr>
+            <tr><td><code>medicalTreatmentReEvaluation_purchased</code></td><td><code>service_type_d_purchased</code></td><td class="ask">REVIEW</td><td>Yes</td></tr>
+            <tr><td><code>diagnostic_reevaluation_pre_purchase_info_page_view</code></td><td><code>assessment_type_e_viewed</code></td><td class="ask">REVIEW</td><td>Yes</td></tr>
+            <tr><td><code>account_verified</code></td><td><code>account_verified</code></td><td>Proposed keep</td><td>No</td></tr>
+            <tr><td><code>banner_clicked</code></td><td><code>banner_clicked</code></td><td>Proposed keep</td><td>Yes</td></tr>
+            <tr><td><code>services_offered_clicked</code></td><td><code>services_offered_clicked</code></td><td>Proposed keep</td><td>Yes</td></tr>
+            <tr><td><code>account_signup_wellness_d2c</code></td><td><code>account_signup_wellness_d2c</code></td><td>Proposed keep</td><td>No</td></tr>
+            <tr><td><code>account_signup_wellness_b2b</code></td><td><code>account_signup_wellness_b2b</code></td><td>Proposed keep</td><td>No</td></tr>
+            <tr><td><code>account_signup_assessment_d2c</code></td><td><code>account_signup_assessment_d2c</code></td><td>Proposed keep</td><td>No</td></tr>
+            <tr><td><code>account_signup_assessment_b2b</code></td><td><code>account_signup_assessment_b2b</code></td><td>Proposed keep</td><td>No</td></tr>
+            <tr><td><code>account_created_no_cta</code></td><td><code>account_created_no_cta</code></td><td>Proposed keep</td><td>No</td></tr>
+            <tr><td><code>account_created_wellness_d2c</code></td><td><code>account_created_wellness_d2c</code></td><td>Proposed keep</td><td>No</td></tr>
+            <tr><td><code>account_created_wellness_b2b</code></td><td><code>account_created_wellness_b2b</code></td><td>Proposed keep</td><td>No</td></tr>
+            <tr><td><code>account_created_assessment_d2c</code></td><td><code>account_created_assessment_d2c</code></td><td>Proposed keep</td><td>No</td></tr>
+            <tr><td><code>account_created_assessment_b2b</code></td><td><code>account_created_assessment_b2b</code></td><td>Proposed keep</td><td>No</td></tr>
+            <tr><td><code>wellness_subscription_initiated_d2c</code></td><td><code>wellness_subscription_initiated_d2c</code></td><td>Proposed keep</td><td>No</td></tr>
+            <tr><td><code>wellness_subscription_initiated_b2b</code></td><td><code>wellness_subscription_initiated_b2b</code></td><td>Proposed keep</td><td>No</td></tr>
+            <tr><td><code>wellness_subscription_purchased_d2c</code></td><td><code>wellness_subscription_purchased_d2c</code></td><td>Proposed keep</td><td>No</td></tr>
+            <tr><td><code>wellness_subscription_redeemed_b2b</code></td><td><code>wellness_subscription_redeemed_b2b</code></td><td>Proposed keep</td><td>No</td></tr>
+            <tr><td><code>wellness_snapshot_started</code></td><td><code>wellness_snapshot_started</code></td><td>Proposed keep</td><td>Yes</td></tr>
+            <tr><td><code>wellness_snapshot_completed</code></td><td><code>wellness_snapshot_completed</code></td><td>Proposed keep</td><td>Yes</td></tr>
+            <tr><td><code>wellness_snapshot_report_viewed</code></td><td><code>wellness_snapshot_report_viewed</code></td><td>Proposed keep</td><td>Yes</td></tr>
+            <tr><td><code>account_completed_wellness_d2c</code></td><td><code>account_completed_wellness_d2c</code></td><td>Proposed keep</td><td>No</td></tr>
+            <tr><td><code>account_completed_wellness_b2b</code></td><td><code>account_completed_wellness_b2b</code></td><td>Proposed keep</td><td>No</td></tr>
+            <tr><td><code>account_completed_assessment_d2c_adult</code></td><td><code>account_completed_assessment_d2c_adult</code></td><td>Proposed keep</td><td>No</td></tr>
+            <tr><td><code>account_completed_assessment_b2b_adult</code></td><td><code>account_completed_assessment_b2b_adult</code></td><td>Proposed keep</td><td>No</td></tr>
+            <tr><td><code>account_completed_assessment_no_cta_adult</code></td><td><code>account_completed_assessment_no_cta_adult</code></td><td>Proposed keep</td><td>No</td></tr>
+            <tr><td><code>account_completed_assessment_d2c_dependent</code></td><td><code>account_completed_assessment_d2c_dependent</code></td><td>Proposed keep</td><td>No</td></tr>
+            <tr><td><code>account_completed_assessment_b2b_dependent</code></td><td><code>account_completed_assessment_b2b_dependent</code></td><td>Proposed keep</td><td>No</td></tr>
+            <tr><td><code>account_completed_assessment_no_cta_dependent</code></td><td><code>account_completed_assessment_no_cta_dependent</code></td><td>Proposed keep</td><td>No</td></tr>
+            <tr><td><code>smart_assessment_pre_purchase_page_view</code></td><td><code>smart_assessment_pre_purchase_page_view</code></td><td>Proposed keep</td><td>Yes</td></tr>
+            <tr><td><code>smart_assessment_pre_redeem_page_view</code></td><td><code>smart_assessment_pre_redeem_page_view</code></td><td>Proposed keep</td><td>Yes</td></tr>
+            <tr><td><code>smart_assessment_purchased</code></td><td><code>smart_assessment_purchased</code></td><td>Proposed keep</td><td>No</td></tr>
+            <tr><td><code>smart_assessment_purchased_payment_plan</code></td><td><code>smart_assessment_purchased_payment_plan</code></td><td>Proposed keep</td><td>No</td></tr>
+            <tr><td><code>smart_assessment_redeemed</code></td><td><code>smart_assessment_redeemed</code></td><td>Proposed keep</td><td>No</td></tr>
+            <tr><td><code>smart_assessment_continued</code></td><td><code>smart_assessment_continued</code></td><td>Proposed keep</td><td>Yes</td></tr>
+            <tr><td><code>smart_assessment_submitted</code></td><td><code>smart_assessment_submitted</code></td><td>Proposed keep</td><td>No</td></tr>
+            <tr><td><code>smart_assessment_report_viewed</code></td><td><code>smart_assessment_report_viewed</code></td><td>Proposed keep</td><td>Yes</td></tr>
+            <tr><td><code>user_consent_shown</code></td><td><code>user_consent_shown</code></td><td>Proposed keep</td><td>Yes</td></tr>
+            <tr><td><code>user_consent_accepted</code></td><td><code>user_consent_accepted</code></td><td>Proposed keep</td><td>No</td></tr>
+            <tr><td><code>appointment_statement_downloaded</code></td><td><code>appointment_statement_downloaded</code></td><td>Proposed keep</td><td>Yes</td></tr>
+            <tr><td><code>after_visit_summary_downloaded</code></td><td><code>after_visit_summary_downloaded</code></td><td>Proposed keep</td><td>Yes</td></tr>
+            <tr><td><code>patient_address_update_initiated</code></td><td><code>patient_address_update_initiated</code></td><td>Proposed keep</td><td>Yes</td></tr>
+            <tr><td><code>patient_address_update_completed</code></td><td><code>patient_address_update_completed</code></td><td>Proposed keep</td><td>Yes</td></tr>
+            <tr><td><code>patient_address_update_submitted</code></td><td><code>patient_address_update_submitted</code></td><td>Proposed keep</td><td>Yes</td></tr>
+            <tr><td><code>marketing_communication_consents_accepted</code></td><td><code>marketing_communication_consents_accepted</code></td><td>Proposed keep</td><td>No</td></tr>
+            <tr><td><code>marketing_communication_consents_declined</code></td><td><code>marketing_communication_consents_declined</code></td><td>Proposed keep</td><td>No</td></tr>
+            <tr><td><code>communication_preferences_opened</code></td><td><code>communication_preferences_opened</code></td><td>Proposed keep</td><td>Yes</td></tr>
+          </tbody>
+        </table>
+      </div>
+        </div>
+      </details>
+      <p>11 rows flagged REVIEW. 56 rows mapped from the current analytics taxonomy. If Mentavi later adds strings, they join this table before go-live. Repeat purchases and appointments must stay independently reportable, which is why Option B keeps types distinct. All “Proposed keep” rows still need Mentavi compliance confirmation.</p>
+
+      <figure class="spec-figure" id="fig-seq">
+        <img src="assets/miro-frame-2.png" alt="Seven-step engineering sequence for one occurrence" width="1600" height="900">
+        <figcaption>Figure 2. One occurrence, seven steps. Mentavi ensures a stable <code>occurrence_id</code> before the Journey Event write. After object create, GET <code>/crm-object-schemas/2026-03/schemas</code> for <code>objectTypeId</code>. Upsert: batch upsert on <code>occurrence_id</code>. <a href="https://miro.com/app/board/uXjVHsWdhjc=/?moveToWidget=3458764682356323666&amp;cot=14" target="_blank" rel="noopener">Open the live frame</a>.</figcaption>
+      </figure>
+
+      <h3 id="s6-api">API contract</h3>
+      <p>Base URL: <code>https://api.hubapi.com</code>. Pin <strong>2026-03</strong> — HubSpot’s current generally available (GA) CRM API, released 30 March 2026. All object URLs use <code>/crm/objects/2026-03/</code>. QA proves write + read-back on every Sensitive Data property.</p>
+      <p>Docs used as canon:</p>
+      <ul>
+        <li><a href="https://developers.hubspot.com/docs/developer-tooling/platform/versioning" target="_blank" rel="noopener">API versioning</a></li>
+        <li><a href="https://developers.hubspot.com/docs/api-reference/latest/crm/using-object-apis" target="_blank" rel="noopener">Using object APIs (upsert)</a></li>
+        <li><a href="https://developers.hubspot.com/docs/api-reference/latest/crm/objects/custom-objects/batch/upsert-custom-objects" target="_blank" rel="noopener">Custom object batch upsert</a></li>
+        <li><a href="https://developers.hubspot.com/docs/api-reference/latest/crm/associations/associate-records/update-association" target="_blank" rel="noopener">Default association</a></li>
+        <li><a href="https://developers.hubspot.com/docs/api-reference/latest/crm/objects/schemas/guide" target="_blank" rel="noopener">Schemas API (retrieve objectTypeId)</a></li>
+        <li><a href="https://developers.hubspot.com/docs/api-reference/latest/crm/properties/sensitive-data" target="_blank" rel="noopener">Sensitive Data via API</a></li>
+      </ul>
+
+      <h4>After RP creates the object</h4>
+      <p><span class="verb">GET</span> <code>/crm-object-schemas/2026-03/schemas</code>. Find Journey Event. Copy <code>objectTypeId</code> (form <code>2-…</code>) and <code>fullyQualifiedName</code> (form <code>p21221632_journey_event</code>). Use either in the object URLs below. Retrieve this id after RP creates the object.</p>
+
+      <h4>Minimum scopes on Mentavi-Hubspot-Integration</h4>
+      <ul>
+        <li><code>crm.objects.contacts.read</code> / <code>crm.objects.contacts.write</code></li>
+        <li><code>crm.objects.contacts.sensitive.read</code> / <code>crm.objects.contacts.sensitive.write</code> (picker may show <code>.v2</code>)</li>
+        <li><code>crm.objects.custom.read</code> / <code>crm.objects.custom.write</code></li>
+        <li><code>crm.objects.custom.sensitive.read</code> / <code>crm.objects.custom.sensitive.write</code> (picker may show <code>.v2</code>)</li>
+        <li><code>crm.schemas.custom.read</code> (to retrieve objectTypeId). Schema write is RP’s build, not Joel’s connector.</li>
+        <li><code>crm.objects.deals.read</code> / <code>crm.objects.deals.write</code> only if the connector writes Deal properties</li>
+      </ul>
+      <p>Journey Event properties in this specification are standard unless Mentavi compliance reclassifies <code>occurrence_id</code>.</p>
+
+      <h4>Call 1: Contact (synthetic)</h4>
+      <div class="payload"><span class="verb">POST</span> /crm/objects/2026-03/contacts
+<span class="verb">PATCH</span> /crm/objects/2026-03/contacts/{contactId}
+
+{
+  "properties": {
+    "email": "synthetic.patient@example.com",
+    "patient_first_name": "Jane",
+    "patient_last_name": "Doe",
+    "patient_dob": "1990-01-15",
+    "client_phone_number": "555-0100",
+    "patient_type": "adult",
+    "patient_state": "TX",
+    "patient_state_full": "Texas",
+    "lifecyclestage": "customer",
+    "is_test_record": "true"
+  }
+}
+
+Response includes { "id": "12345678" }. Store that id.
+Confirm lifecyclestage values in portal 21221632.</div>
+
+      <h4>Call 2: Journey Event upsert (synthetic)</h4>
+      <p>Batch upsert on unique property <code>occurrence_id</code>.</p>
+      <div class="payload"><span class="verb">POST</span> /crm/objects/2026-03/{objectTypeId}/batch/upsert
+
+{
+  "inputs": [
+    {
+      "id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+      "idProperty": "occurrence_id",
+      "properties": {
+        "occurrence_id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+        "display_label": "account_verified | 2026-08-06T14:30:00.000Z",
+        "event_type": "account_verified",
+        "occurred_at": "2026-08-06T14:30:00.000Z",
+        "event_family": "Account Verified",
+        "utm_source": "google",
+        "utm_medium": "cpc",
+        "utm_campaign": "adhd_awareness_2026",
+        "is_test_record": "true"
+      }
+    }
+  ]
+}
+
+Response includes results[].id and results[].new (true if created, false if updated).</div>
+
+      <h4>Call 3: Associate (default type)</h4>
+      <div class="payload"><span class="verb">PUT</span> /crm/objects/2026-03/{objectTypeId}/{journeyEventId}/associations/default/contacts/{contactId}
+
+Empty body. This creates the default association between the two records.
+The schema must list contacts in associatedObjects when RP creates the object.</div>
+
+      <h4>Errors: PHI stays out of logs</h4>
+      <table>
+        <thead><tr><th>Scenario</th><th>Handling</th><th>In logs</th></tr></thead>
+        <tbody>
+          <tr><td>Contact write fails</td><td>Retry the same approved payload inside Mentavi infrastructure. Skip Journey Event create.</td><td>Correlation id (or <code>occurrence_id</code> only if classification allows), status, timestamp, <code>event_family</code></td></tr>
+          <tr><td>Journey Event write fails</td><td>Retry same <code>occurrence_id</code> through batch upsert.</td><td>Same</td></tr>
+          <tr><td>Association fails</td><td>Retry. Orphan until success.</td><td>Same</td></tr>
+          <tr><td>401 / 403</td><td>Alert. Do not put PHI in the error body or ticket.</td><td>Status only</td></tr>
+          <tr><td>Contact not found after merge</td><td>One-time fallback lookup. The lookup value is not logged.</td><td>Correlation id, status</td></tr>
+        </tbody>
+      </table>
+      <p>PHI stays out of logs through Mentavi middleware design. Verified in QA test 13.</p>
+
+      <h3>How this differs from today</h3>
+      <table>
+        <thead><tr><th>Aspect</th><th>Current (CBE)</th><th>Future (CRM object)</th></tr></thead>
+        <tbody>
+          <tr><td>Endpoint</td><td><code>events/v3/send</code></td><td><code>/crm/objects/2026-03/…</code></td></tr>
+          <tr><td>Calls per event</td><td>1</td><td>3 (Contact, Journey Event upsert, association)</td></tr>
+          <tr><td>PHI on occurrence</td><td>Yes</td><td>No</td></tr>
+          <tr><td>Identifier on occurrence</td><td>email, <code>user_pk</code></td><td><code>occurrence_id</code> only</td></tr>
+          <tr><td>Idempotency</td><td>None</td><td>Batch upsert on unique <code>occurrence_id</code></td></tr>
+          <tr><td>UTM capture</td><td>Auto</td><td>Explicit. Portal must send.</td></tr>
+          <tr><td>Auth</td><td>Mentavi-Hubspot-Integration Access Token</td><td>Same token, plus Sensitive Data scopes added by a user who can edit the app</td></tr>
+          <tr><td>Sensitive Data</td><td>Not supported on this path</td><td>Required on Contact; optional on Journey Event pending classification</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- ========== 7 ========== -->
+    <section class="chapter" id="s7">
+      <p class="eyebrow">07. Downstream</p>
+      <h2><b>Downstream</b> dependency migration</h2>
+
+      <p>16 named assets depend on the current Custom Behavioral Event. Classification B: architecture confirmed, material migration. Lists, the workflow, reports, and the activity view do not survive unchanged. They are rebuilt or repointed onto Journey Event / Contact properties.</p>
+
+      <div class="callout callout-info">
+        <h3><span class="material-symbols-outlined">info</span> Portal audit — 2 September 2026</h3>
+        <p>All 16 assets opened in portal 21221632. Current logic below is from live filters, workflow definitions, and report titles. Hours are working bands inside the section 10 total.</p>
+        <p>Action vocabulary: <strong>Repoint</strong> = same logic, new data source. <strong>Rebuild</strong> = new trigger or query. <strong>Retire</strong> = archive. <strong>No change</strong> = not event-triggered, or static segment with no CBE dependency.</p>
+      </div>
+
+      <h3>Association-change workaround</h3>
+      <p>Custom-object workflows enroll on record creation or on a property “is known,” with re-enrollment when that property changes. Workaround properties on Contact must be standard — calculated, rollup, and property-sync fields cannot hold Sensitive Data.</p>
+      <p><strong>Default for this inventory:</strong> the one live workflow is event-path. Rebuild it to “Journey Event created” + UTM is known. That does not need association-change detection. Lists and reports that filter “Contact has associated Journey Event” use association filters, not association-change triggers.</p>
+      <p><strong>Fallback, only if an opened asset actually needs “just associated”:</strong> standard Contact property <code>latest_journey_event_date</code>, written by the integration at association time. Workflows and lists watch that property. Build it only if an opened asset needs it.</p>
+
+      <h3 id="s7-lists">Lists (5)</h3>
+      <div class="table-scroll">
+        <table>
+          <thead>
+            <tr><th>#</th><th>Asset</th><th>Current logic (audited)</th><th>Action</th><th>Future logic</th><th>Owner</th><th>Hours</th><th>QA test</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td><a href="https://app.hubspot.com/contacts/21221632/objectLists/2981/" target="_blank" rel="noopener">1.2 PQL Lifecycle Stage Inclusion List</a></td>
+              <td>CBE: <strong>New User Journey</strong> completed AND <strong>Email Address Verified</strong> completed (67,660 contacts)</td>
+              <td>Repoint</td>
+              <td>Associated Journey Event of coded types <code>nuj_*</code> AND <code>account_verified</code>. No <code>latest_journey_event_date</code> needed — association filter.</td>
+              <td>RP</td>
+              <td>1–2h</td>
+              <td>Known PQL contacts still in; test-flagged contacts out</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td><a href="https://app.hubspot.com/contacts/21221632/objectLists/2775/" target="_blank" rel="noopener">Active AA Segment</a></td>
+              <td>Static segment — no filters (37,077 contacts). Manual membership.</td>
+              <td>No change</td>
+              <td>Not CBE-driven. Refresh membership rules with strategist if AA definition changes; no Journey Event repoint required.</td>
+              <td>RP</td>
+              <td>0.5h</td>
+              <td>Sample contacts unchanged after cutover</td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td><a href="https://app.hubspot.com/contacts/21221632/objectLists/2773/" target="_blank" rel="noopener">General Newsletter List</a></td>
+              <td>OR: 3 segment memberships, email opt-in, OR five CBE completions (NUJ, Med Mgmt Appt, Assessment Signed, Email Verified, User Purchase). AND marketing contact. Excludes unengaged segments.</td>
+              <td>Repoint</td>
+              <td>Replace each CBE arm with associated Journey Event of the matching coded type. Keep segment-membership and consent arms unchanged.</td>
+              <td>RP</td>
+              <td>2–3h</td>
+              <td>Consented contacts remain; unconsented stay out</td>
+            </tr>
+            <tr>
+              <td>4</td>
+              <td><a href="https://app.hubspot.com/contacts/21221632/objectLists/2466/" target="_blank" rel="noopener">AA Discount Segment</a></td>
+              <td>Not active in Welcome Series workflow AND not in Snapshot Exclusion AND NUJ CBE completed AND User Purchase CBE not completed (88,184 contacts)</td>
+              <td>Repoint</td>
+              <td>Swap NUJ / User Purchase CBE filters for Journey Event association filters on coded purchase types.</td>
+              <td>RP</td>
+              <td>1–2h</td>
+              <td>Discount-eligible sample still qualifies</td>
+            </tr>
+            <tr>
+              <td>5</td>
+              <td><a href="https://app.hubspot.com/contacts/21221632/objectLists/1861/" target="_blank" rel="noopener">Privacy &amp; Consent: visited site but no selection made</a></td>
+              <td>Four OR groups on <strong>Privacy &amp; Tracking Consent (no response)</strong> segment plus session, email click, ads, or NUJ CBE (150,364 contacts)</td>
+              <td>Repoint</td>
+              <td>Replace Group 4 NUJ CBE arm with Marketing Consent Journey Events + associated NUJ coded types. Consent segment arms unchanged.</td>
+              <td>RP</td>
+              <td>2h</td>
+              <td>No-selection contacts still isolated; consented contacts not trapped here</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 id="s7-wf">Workflow — NUJ Used in (1)</h3>
+      <table>
+        <thead><tr><th>Asset</th><th>Current trigger</th><th>Action</th><th>Future trigger / actions</th><th>Owner</th><th>Hours</th><th>QA test</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><a href="https://app.hubspot.com/workflows/21221632/platform/flow/1841942132/edit" target="_blank" rel="noopener">Playbook: Ops | Copy UTM … [Event Path]</a></td>
+            <td>Off. Enrolls on <strong>New User Journey</strong> CBE (<code>6-37146369</code>). Copies hs_utm_* from event to Contact utm_* if <code>event_attribution_locked</code> is false; sets lock after copy.</td>
+            <td>Rebuild</td>
+            <td>Enroll when Journey Event created with coded type <code>nuj_*</code> and <code>utm_source</code> is known. Copy UTM properties from Journey Event to Contact GTM fields. Same lock logic. Mentavi must send UTMs — see section 2.</td>
+            <td>RP</td>
+            <td>2–3h</td>
+            <td>New Journey Event with UTMs copies to Contact GTM. Empty UTMs do not overwrite. Test records excluded.</td>
+          </tr>
+        </tbody>
+      </table>
+      <p>Duplicate event-path workflow <a href="https://app.hubspot.com/workflows/21221632/platform/flow/1841942125/edit" target="_blank" rel="noopener">1841942125</a>: Retire — same name, older copy, also off. Form-path sibling <a href="https://app.hubspot.com/workflows/21221632/platform/flow/1841267053/edit" target="_blank" rel="noopener">1841267053</a> enrolls on form submit, not CBE — no change for Journey Event cutover.</p>
+      <p>Copy Property still cannot reference Sensitive Data. That is why UTMs stay standard. Contact-to-Deal GTM copy (<a href="https://app.hubspot.com/workflows/21221632/platform/flow/1841341314/edit" target="_blank" rel="noopener">1841341314</a>) exists and is off — rewired in AQW pass below.</p>
+
+      <h3 id="s7-aqw">AQW Playbook workflows — paused (9, all off)</h3>
+      <p>Attribution Quality Workstream build is paused. These nine <code>⚙️Playbook: Ops</code> workflows are off in portal 21221632. None enroll today. Rewire after lists, the event-path UTM workflow, and reports are clean on Journey Event. All use standard Contact / Deal properties only.</p>
+      <div class="table-scroll">
+        <table>
+          <thead><tr><th>Workflow</th><th>ID</th><th>Trigger</th><th>Action on cutover</th><th>Hours</th><th>QA</th></tr></thead>
+          <tbody>
+            <tr><td><a href="https://app.hubspot.com/workflows/21221632/platform/flow/1841340746/edit" target="_blank" rel="noopener">GTM Sources Mapping — Offline</a></td><td>1841340746</td><td>Filter criteria (offline Original Source)</td><td>Repoint if offline source fields unchanged; verify mapping table</td><td>0.5–1h</td><td>Offline contacts get correct GTM Summary</td></tr>
+            <tr><td><a href="https://app.hubspot.com/workflows/21221632/platform/flow/1841341315/edit" target="_blank" rel="noopener">1-Self Reported Attribution Mapping</a></td><td>1841341315</td><td>Filter criteria</td><td>Repoint on self-reported source property change</td><td>0.5–1h</td><td>Self-reported value maps to category</td></tr>
+            <tr><td><a href="https://app.hubspot.com/workflows/21221632/platform/flow/1841341197/edit" target="_blank" rel="noopener">2-Self Reported | Sources → Categories</a></td><td>1841341197</td><td>Filter criteria</td><td>Repoint — second step of self-reported chain</td><td>0.5h</td><td>Category populated</td></tr>
+            <tr><td><a href="https://app.hubspot.com/workflows/21221632/platform/flow/1841341196/edit" target="_blank" rel="noopener">3-Self Reported | Contact ➝ Deal</a></td><td>1841341196</td><td>Filter criteria</td><td>Repoint — copy self-reported fields Contact → Deal (standard only)</td><td>0.5–1h</td><td>Deal inherits self-reported fields</td></tr>
+            <tr><td><a href="https://app.hubspot.com/workflows/21221632/platform/flow/1841341198/edit" target="_blank" rel="noopener">UTM Parameters — GTM Medium/Motion</a></td><td>1841341198</td><td>Filter criteria on <code>utm_source</code></td><td>Repoint — depends on UTMs populated (Mentavi build item)</td><td>0.5–1h</td><td>Channel maps to GTM medium/motion</td></tr>
+            <tr><td><a href="https://app.hubspot.com/workflows/21221632/platform/flow/1841267053/edit" target="_blank" rel="noopener">Copy UTM … (form path)</a></td><td>1841267053</td><td>Form submission</td><td>No change — not CBE / Journey Event</td><td>0h</td><td>Form UTMs still copy after cutover</td></tr>
+            <tr><td><a href="https://app.hubspot.com/workflows/21221632/platform/flow/1841942132/edit" target="_blank" rel="noopener">Copy UTM … [Event Path]</a></td><td>1841942132</td><td>NUJ CBE</td><td>Rebuild — see workflow table above</td><td>2–3h</td><td>Test 16</td></tr>
+            <tr><td><a href="https://app.hubspot.com/workflows/21221632/platform/flow/1841942125/edit" target="_blank" rel="noopener">Copy UTM … [Event Path] (duplicate)</a></td><td>1841942125</td><td>Duplicate</td><td>Retire</td><td>0.25h</td><td>No enrollment; archive</td></tr>
+            <tr><td><a href="https://app.hubspot.com/workflows/21221632/platform/flow/1841341314/edit" target="_blank" rel="noopener">GTM Sources: Contact → Deal</a></td><td>1841341314</td><td>Filter criteria</td><td>Repoint — copy GTM fields Contact → Deal after UTM chain populates Contact</td><td>0.5–1h</td><td>Deal GTM matches Contact</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 id="s7-reports">Reports (10)</h3>
+      <div class="table-scroll">
+        <table>
+          <thead><tr><th>#</th><th>Asset</th><th>Current source</th><th>Action</th><th>Future source</th><th>Owner</th><th>Hours</th><th>QA test</th></tr></thead>
+          <tbody>
+            <tr><td>1</td><td><a href="https://app.hubspot.com/reports-list/21221632/156455886/" target="_blank" rel="noopener">New User Journey Report (draft: all, custom event based) Clone</a></td><td>CBE — NUJ events</td><td>Retire</td><td>Duplicate draft. Fold into canonical NUJ report (#6).</td><td>RP</td><td>0.5h</td><td>No dashboard consumer</td></tr>
+            <tr><td>2</td><td><a href="https://app.hubspot.com/reports-list/21221632/150448277/" target="_blank" rel="noopener">Journey Report (pop up form capture)</a></td><td>Form submissions</td><td>No change</td><td>Title implies popup form capture, not CBE. Verify once in UI; expected to survive cutover unchanged.</td><td>RP</td><td>0.5h</td><td>Popup captures still count</td></tr>
+            <tr><td>3</td><td><a href="https://app.hubspot.com/reports-list/21221632/147413253/" target="_blank" rel="noopener">Journey Report (popup form submissions)</a></td><td>Form submissions</td><td>No change</td><td>Same as #2</td><td>RP</td><td>0.5h</td><td>Submissions still count</td></tr>
+            <tr><td>4</td><td><a href="https://app.hubspot.com/reports-list/21221632/143790146/" target="_blank" rel="noopener">ADT Clinician Referrals (disregard)</a></td><td>n/a</td><td>Retire</td><td>Labelled disregard. Archive after confirming no live consumer.</td><td>RP</td><td>0.5h</td><td>No live workflow or dashboard still points here</td></tr>
+            <tr><td>5</td><td><a href="https://app.hubspot.com/reports-list/21221632/141497180/" target="_blank" rel="noopener">Santa Barbara New User Journey Report</a></td><td>CBE — NUJ + geo filter</td><td>Rebuild</td><td>Journey Event object with Santa Barbara filter (state/region from audited report definition).</td><td>RP</td><td>2–3h</td><td>Geographic filter matches old report on dated sample</td></tr>
+            <tr><td>6</td><td><a href="https://app.hubspot.com/reports-list/21221632/140162504/" target="_blank" rel="noopener">New User Journey Report (draft: all, custom event based)</a></td><td>CBE — NUJ events</td><td>Rebuild</td><td>Canonical NUJ report on Journey Event. Retire clones (#1, #7).</td><td>RP</td><td>2–3h</td><td>Synthetic events appear; test flag excluded</td></tr>
+            <tr><td>7</td><td><a href="https://app.hubspot.com/reports-list/21221632/140109421/" target="_blank" rel="noopener">New User Journey Report (Draft)</a></td><td>CBE — NUJ events</td><td>Retire</td><td>Redirect to canonical report (#6)</td><td>RP</td><td>0.5h</td><td>Draft retired</td></tr>
+            <tr><td>8</td><td><a href="https://app.hubspot.com/reports-list/21221632/129920922/" target="_blank" rel="noopener">Journey Funnel Chart: New User Journey to Purchase (since 11-20-24)</a></td><td>CBE funnel</td><td>Rebuild</td><td>Journey Event funnel: signup → assessment → purchase coded types. Highest-effort report.</td><td>RP</td><td>3–5h</td><td>Stage conversion on synthetic sequence matches expected order</td></tr>
+            <tr><td>9</td><td><a href="https://app.hubspot.com/reports-list/21221632/126403962/" target="_blank" rel="noopener">Journey Report: New User Journey to Purchase (since 11-20-24)</a></td><td>CBE</td><td>Rebuild</td><td>Journey Event, same date fence</td><td>RP</td><td>2–3h</td><td>Purchase occurrences independently countable</td></tr>
+            <tr><td>10</td><td><a href="https://app.hubspot.com/reports-list/21221632/126403661/" target="_blank" rel="noopener">Journey Report: user purchase (draft)</a></td><td>CBE — User Purchase</td><td>Rebuild</td><td>User Purchase + User Purchase Detail Journey Events. Repeat purchases = separate records.</td><td>RP</td><td>2–3h</td><td>Two purchases, two rows, one Contact</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Additional downstream</h3>
+      <table>
+        <thead><tr><th>Item</th><th>Action</th><th>Notes</th></tr></thead>
+        <tbody>
+          <tr><td>Contact activity / timeline equivalent</td><td>Rebuild</td><td>Associated Journey Event records on the Contact. Exact CBE UI is not required. Operational one-to-many history is.</td></tr>
+          <tr><td>Record Source</td><td>Document</td><td>Today: Custom Events. After cutover: CRM API. Screenshot before cutover so AQW emptiness is not misattributed.</td></tr>
+          <tr><td>Lifecycle stages</td><td>Repoint if event-triggered</td><td>If stages move on Contact properties the portal writes, they survive. If CBE-triggered, rebuild on Journey Event create.</td></tr>
+          <tr><td>Consent and suppression</td><td>Repoint</td><td>Marketing Consent family. Continuity-of-care / partner-referral sends are not pause-and-hope marketing.</td></tr>
+          <tr><td>AQW Playbook workflows (9)</td><td>Rewire after cutover prep</td><td>Named in section 7 AQW table. All off today. Stay off until event-path UTM workflow and reports are clean.</td></tr>
+          <tr><td>Repeat purchases and appointments</td><td>Keep</td><td>One Journey Event per occurrence. A properties-only model is not in scope.</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- ========== 8 ========== -->
+    <section class="chapter" id="s8">
+      <p class="eyebrow">08. Controls</p>
+      <h2><b>Security</b> and compliance controls</h2>
+
+      <h3 id="s8-min">Minimum necessary</h3>
+      <ul>
+        <li>Only data required for the business purpose lands on each record.</li>
+        <li>PHI on Contact only. Journey Event holds coded types, timestamps, opaque IDs, attribution, and product metadata.</li>
+        <li>No PHI duplicated onto the occurrence record “for convenience.”</li>
+      </ul>
+
+      <h3 id="s8-config">Property and portal configuration</h3>
+      <div class="callout callout-ask">
+        <h4><span class="material-symbols-outlined">lock</span> Sensitive Data settings — Mentavi Super Admin only</h4>
+        <p>In portal 21221632, RevPartners users are not Super Admins. Opening Settings &gt; Security redirects to the user’s own account security page, not the portal Sensitive Data tab. HubSpot requires Super Admin to turn on or edit those settings.</p>
+        <p>A Mentavi Super Admin opens Settings &gt; Security &gt; Sensitive Data and confirms both of these before any Sensitive Data property is created:</p>
+        <ul>
+          <li>Health/Medical Data</li>
+          <li>We are a HIPAA-covered entity or business associate</li>
+        </ul>
+        <p>Once on, those settings are permanent. Categories cannot be removed. Until a Super Admin confirms this page, RevPartners cannot create Sensitive Data properties or verify that the setting is already enabled.</p>
+      </div>
+      <ul>
+        <li>PHI properties: Sensitive Data classification, Health/Medical category, HIPAA / PHI checkbox where applicable.</li>
+        <li>Field-level access: restrict Sensitive Data visibility to authorized roles. Super Admins can still see the values.</li>
+        <li>Classification is permanent. An existing standard property cannot be marked Sensitive Data later, and a Sensitive Data property cannot be unmarked.</li>
+      </ul>
+
+      <h3 id="s8-auth">Auth, logging, retries</h3>
+      <ul>
+        <li>Private app with the scopes in section 6. Mentavi owns the app. If RP holds a token that receives PHI, Mentavi counsel decides whether RP is a business associate requiring its own BAA.</li>
+        <li>Logs, errors, monitoring: correlation id, HTTP status, timestamp, <code>event_family</code>. Log <code>occurrence_id</code> only if Mentavi classifies it as safe for ordinary logs. Never names, DOB, phone, email, address, <code>user_pk</code>, <code>patientId</code>.</li>
+        <li>Retries reuse <code>occurrence_id</code>. An approved Contact retry may resend the same patient fields inside Mentavi infrastructure. That is allowed. PHI in logs is not.</li>
+      </ul>
+
+      <h3>Open approvals</h3>
+      <ul>
+        <li>Mentavi compliance: architecture, before build.</li>
+        <li>Mentavi legal: matching method.</li>
+        <li>Mentavi compliance: Option A vs B coded types, and per-property Sensitive Data flags.</li>
+        <li>Mentavi and HubSpot: BAA applicability given current legal status.</li>
+      </ul>
+
+      <h3>Stated limitations</h3>
+      <p>This document validates platform supportability. It is not legal advice. RP does not certify HIPAA compliance. HubSpot’s BAA covers the platform. Mentavi’s policies cover Mentavi’s use of it.</p>
+    </section>
+
+    <!-- ========== 9 ========== -->
+    <section class="chapter" id="s9">
+      <p class="eyebrow">09. QA</p>
+      <h2><b>QA,</b> cutover, and activation</h2>
+
+      <h3>Environment</h3>
+      <p>Sensitive Data is unavailable in HubSpot sandboxes. Portal 21221632 is the HubSpot acceptance environment. Mentavi drives their side from UAT. A sandbox may be used for isolated non-sensitive logic. It is not the sign-off environment.</p>
+      <p>Live-portal controls: <code>is_test_record</code> on Contact and Journey Event. Lists, workflows, and reports exclude flagged records. Test records cannot enroll in live branches. Restricted property access during test. Named cleanup: who deletes test records, and when. Named owner for each test and each sign-off. Synthetic data only. No PHI in test payloads.</p>
+
+      <h3 id="s9-tests">Test cases</h3>
+      <table>
+        <thead><tr><th>#</th><th>Case</th><th>Expected result</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td>Contact create</td><td>New Contact. Sensitive Data properties populated. Read-back confirms the value saved.</td></tr>
+          <tr><td>2</td><td>Contact update</td><td>Existing Contact updated. No duplicate.</td></tr>
+          <tr><td>3</td><td>Contact ID stored</td><td>Mentavi stores the returned Record ID.</td></tr>
+          <tr><td>4</td><td>Association</td><td>Journey Event linked to the correct Contact.</td></tr>
+          <tr><td>5</td><td>First occurrence</td><td>One Journey Event record.</td></tr>
+          <tr><td>6</td><td>Second legitimate occurrence</td><td>New record, different <code>occurrence_id</code>.</td></tr>
+          <tr><td>7</td><td>Retry</td><td>Same <code>occurrence_id</code>. No duplicate. Batch upsert updates. If <code>occurrence_id</code> is Sensitive Data, Mentavi’s pre-write check prevents the duplicate.</td></tr>
+          <tr><td>8</td><td>Missing / stale Contact ID</td><td>Fallback lookup succeeds. New ID stored. Not logged.</td></tr>
+          <tr><td>9</td><td>Failed Contact write</td><td>No Journey Event. Error without PHI.</td></tr>
+          <tr><td>10</td><td>Failed Journey Event write</td><td>Retry succeeds. No orphan duplicate.</td></tr>
+          <tr><td>11</td><td>Failed association</td><td>Retry associates. Orphan resolved.</td></tr>
+          <tr><td>12</td><td>Sensitive Data save</td><td>Write + read-back on 2026-03 confirms the value saved.</td></tr>
+          <tr><td>13</td><td>No PHI in logs</td><td>Inspect error output: correlation id (or <code>occurrence_id</code> only if classification allows), status, timestamp, <code>event_family</code>. No names, DOB, phone, email, address.</td></tr>
+          <tr><td>14</td><td>No CBE writes after cutover</td><td>Send a synthetic occurrence through the production-like CRM path. Count of New User Journey Custom Behavioral Event records does not increase.</td></tr>
+          <tr><td>15</td><td>Lists</td><td>All five return the approved membership.</td></tr>
+          <tr><td>16</td><td>Workflow</td><td>UTM copy fires on new Journey Event. No overwrite of blanks.</td></tr>
+          <tr><td>17</td><td>Reports</td><td>Active reports read Journey Event. Retired report has no consumers.</td></tr>
+        </tbody>
+      </table>
+
+      <h3 id="s9-cutover">Cutover: two compliance paths</h3>
+      <figure class="spec-figure" id="fig-cutover">
+        <img src="miro-frame-3.png" alt="Cutover sequence and Phase 2 historical decision" width="1600" height="900">
+        <figcaption>Figure 3. Cutover. Phase 1 fixes new writes. Phase 2 is historical Custom Behavioral Event data. Default rollback is fail closed. A return to the old send path happens only if Mentavi compliance pre-approves it in writing. <a href="https://miro.com/app/board/uXjVHsWdhjc=/?moveToWidget=3458764682356323667&amp;cot=14" target="_blank" rel="noopener">Open the live frame</a>.</figcaption>
+      </figure>
+      <div class="phase-pair">
+        <article class="phase-card phase-now">
+          <p class="kicker">Phase 1</p>
+          <h4>New path</h4>
+          <p>Build and validate Journey Event writes. Cut new occurrences over. Define transition controls for anything still reading history.</p>
+          <p><strong>Assumption, labeled:</strong> clean cutover. No historical backfill in this phase.</p>
+        </article>
+        <article class="phase-card">
+          <p class="kicker">Phase 2</p>
+          <h4>Historical CBE</h4>
+          <p>Migrate, retain, restrict, or delete historical Custom Behavioral Event data. Mentavi legal owns that decision.</p>
+          <p>Outside the HubSpot hours in section 10.</p>
+        </article>
+      </div>
+      <div class="callout callout-ask">
+        <h4><span class="material-symbols-outlined">help</span> Interim writes are not decided</h4>
+        <p>Steve said on 23 July to keep current writes going. Corey is taking this to Mentavi compliance. This specification does not treat as settled that current patient-linked writes continue, or that continuity-of-care / partner referral sends cannot be paused.</p>
+        <p>Mentavi compliance decides whether current patient-linked writes continue during Phase 1, and whether history-dependent automations may keep reading Custom Behavioral Event data. That changes the activation gate. It does not change the three-call architecture.</p>
+      </div>
+
+      <table>
+        <thead><tr><th></th><th>Path A: history may keep feeding live automations during migration</th><th>Path B: historical remediation is an activation gate</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>What happens</td>
+            <td>New writes go to Journey Event only. Lists / workflows that must see new activity are repointed first. Assets that only need historical CBE keep reading it until Phase 2.</td>
+            <td>No activation until Mentavi legal says how historical CBE is handled. New path can be built and QA’d against test records. Production cutover waits.</td>
+          </tr>
+          <tr>
+            <td>Sequence impact</td>
+            <td>Repoint event-triggered assets before flipping the portal URL. Property-triggered assets can follow. Dual-read window is explicit and dated.</td>
+            <td>Same HubSpot build. Go-live date slides by however long the Phase 2 decision takes. Hours in this specification do not include backfill.</td>
+          </tr>
+          <tr>
+            <td>Double-send risk</td>
+            <td>Suppression: a Contact who already received an occurrence-based send is excluded from the equivalent Journey Event enrollment (property or list membership). No parallel CBE and Journey Event writes.</td>
+            <td>Same suppression design, applied at the later activation date.</td>
+          </tr>
+          <tr>
+            <td>Pause window</td>
+            <td>AQW stays paused until lists, the UTM workflow, and dashboards are clean on the new object. Continuity-of-care and partner referral sends: Mentavi compliance decides whether they may keep reading historical CBE data. Inventory them during the asset pass.</td>
+            <td>Longer pause of anything that reads CBE, until legal picks migrate / retain / restrict / delete.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>Suggested Phase 1 sequence (Path A shaped; Path B inserts a legal hold before step 6)</h3>
+      <ol>
+        <li>Sensitive Data settings confirmed. Object + properties exist. Association type ID recorded.</li>
+        <li>Private app scopes live. Mentavi UAT writes synthetic records. Tests 1–13 pass.</li>
+        <li>Rebuild UTM workflow against Journey Event, suppressed for is_test_record.</li>
+        <li>Repoint / rebuild lists and reports. Dual-read where an asset still needs CBE history.</li>
+        <li>Activity view equivalent visible on a test Contact.</li>
+        <li>Portal cutover: Mentavi stops <code>events/v3/send</code>, starts CRM writes. No parallel path.</li>
+        <li>Tests 14–17 on a small production-like synthetic set, then cleanup.</li>
+        <li>AQW remains paused until attribution properties and Contact-to-Deal copy are verified on standard fields.</li>
+      </ol>
+      <p>Condition for retiring the old path: zero new CBE writes on the production-like CRM path, all event-triggered assets reading Journey Event, suppression verified, Mentavi sign-off on tests 14–17. Default rollback is fail closed: pause affected writes and alert Mentavi engineering. A time-boxed return to <code>events/v3/send</code> happens only if Mentavi compliance pre-approves that fallback in writing. It is never automatic. Journey Event records from a failed attempt are orphans; RP deletes by <code>is_test_record</code> and by <code>occurrence_id</code> list. Who triggers rollback: Mentavi engineering lead. Criteria: Sensitive Data not persisting, association failure rate, or PHI in logs.</p>
+    </section>
+
+    <!-- ========== 10 ========== -->
+    <section class="chapter" id="s10">
+      <p class="eyebrow">10. Build plan</p>
+      <h2><b>Build plan</b> and Tech Epic scope</h2>
+
+      <div class="callout callout-no">
+        <h3><span class="material-symbols-outlined">block</span> Build gate</h3>
+        <p>HubSpot build starts after Mentavi compliance approves the architecture.</p>
+      </div>
+
+      <h3 id="s10-hs">Phase 1: HubSpot (RevPartners)</h3>
+      <div class="table-scroll">
+        <table>
+          <thead><tr><th>#</th><th>Item</th><th>What changes</th><th>Owner</th><th>Depends on</th><th>Hours</th><th>Sequence</th><th>QA test</th></tr></thead>
+          <tbody>
+            <tr><td>1</td><td>Sensitive Data settings</td><td>Confirm / enable Health/Medical Data and the HIPAA covered-entity boxes. Super Admin only — RevPartners cannot open this page in 21221632.</td><td>Mentavi Super Admin</td><td>Compliance sign-off</td><td>0.5h</td><td>First</td><td>Settings visible as enabled to a Super Admin</td></tr>
+            <tr><td>2</td><td>Custom object</td><td>Journey Event. Display <code>display_label</code>. Unique <code>occurrence_id</code>. Association to Contact. Record card.</td><td>RP</td><td>1</td><td>1h</td><td>Second</td><td>Object visible. Association type ID retrieved.</td></tr>
+            <tr><td>3</td><td>Journey Event properties (standard)</td><td>Section 5 map, including UTMs and <code>is_test_record</code></td><td>RP</td><td>2</td><td>2h</td><td>Third</td><td>Types correct. <code>occurrence_id</code> unique.</td></tr>
+            <tr><td>4</td><td>Journey Event properties (sensitive)</td><td>Only if compliance reclassifies any JE field. Super Admin. Unique is not available if sensitive.</td><td>Mentavi Super Admin</td><td>1, 2</td><td>0–1h</td><td>With 3</td><td>Flag set. Cannot be unique if sensitive.</td></tr>
+            <tr><td>5</td><td>Contact Sensitive Data properties</td><td>Section 5 Contact map. Mentavi Super Admin creates them in the UI. Set field-level access. PHI checkbox where applicable. Not via API for this project.</td><td>Mentavi Super Admin (RP assists)</td><td>1</td><td>2h</td><td>Parallel with 2</td><td>Restricted access. Write + read-back on 2026-03.</td></tr>
+            <tr><td>6</td><td>Record card / timeline</td><td><code>event_type</code>, <code>occurred_at</code>, <code>event_family</code> on the card. Associated records on Contact.</td><td>RP</td><td>3</td><td>1–2h</td><td>After properties</td><td>Visible on a test Contact</td></tr>
+            <tr><td>7</td><td>Private app scopes</td><td>Mentavi user adds Sensitive Data scopes on <strong>Mentavi-Hubspot-Integration</strong> (section 6). RevPartners cannot edit Scopes on this app.</td><td>Mentavi</td><td>1</td><td>0.5h</td><td>Before integration testing</td><td>App scopes match section 6</td></tr>
+            <tr><td>8</td><td>5 lists</td><td>Repoint / no change per section 7 audit</td><td>RP</td><td>2, 3</td><td>5–9h</td><td>After object</td><td>Tests 15</td></tr>
+            <tr><td>9</td><td>UTM workflow</td><td>Event-path → Journey Event created (1841942132). Retire duplicate 1841942125.</td><td>RP</td><td>2, 3</td><td>2–3h</td><td>After lists start</td><td>Test 16</td></tr>
+            <tr><td>10</td><td>10 reports</td><td>Rebuild 6 CBE reports. Retire 3 drafts/ADT. No change 2 form reports.</td><td>RP</td><td>2, 3</td><td>10–16h</td><td>After workflow</td><td>Test 17</td></tr>
+            <tr><td>11</td><td>AQW rewiring</td><td>9 Playbook workflows (section 7). All off. Rewire UTM chain, self-reported, offline, Contact→Deal after row 10.</td><td>RP + strategist</td><td>8, 9, 10</td><td>4–7h</td><td>Last HubSpot logic</td><td>No live enrollment until clean</td></tr>
+            <tr><td>12</td><td>Cutover + rollback</td><td>Sequence, suppression, cleanup, rollback trigger</td><td>RP + Mentavi</td><td>All above</td><td>2h</td><td>Last</td><td>Documented. Tests 14–17 signed.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p><strong>Sum of rows: 31 hours low, 47 hours high.</strong> Classification B: architecture confirmed, material migration. Portal audit completed 2 September 2026.</p>
+      <ul>
+        <li>RevPartners HubSpot work (rows 2, 3, 6, 8–11, plus 1h of cutover): <strong>27–42 hours</strong></li>
+        <li>Mentavi Super Admin / app-owner (rows 1, 4, 5, 7): <strong>3–4 hours</strong></li>
+        <li>Shared cutover remainder (row 12): <strong>1 hour Mentavi + 1 hour already in RP</strong></li>
+      </ul>
+      <p>Mentavi engineering (connector) is separate. Phase 2 is separate.</p>
+
+      <h3 id="s10-mentavi">Phase 1: Mentavi engineering (not in the HubSpot hours)</h3>
+      <ul>
+        <li>Ensure a stable <code>occurrence_id</code> (UUIDv4) exists before the Journey Event write; reuse it on retry</li>
+        <li>If legal classifies <code>occurrence_id</code> as Sensitive Data: HubSpot cannot unique-upsert. Mentavi checks for an existing row (or a sent-events store) before the write.</li>
+        <li>Store HubSpot Contact Record ID (or the matching method legal picks)</li>
+        <li>Three CRM calls on 2026-03, new payload shape, PHI off the occurrence</li>
+        <li>Coded <code>event_type</code> mapping</li>
+        <li>Capture UTMs in the portal and pass them on the Journey Event write — confirmed not in connector today (section 2)</li>
+        <li>Keep using the Mentavi-Hubspot-Integration Access Token after Sensitive Data scopes are added</li>
+        <li>Log redaction</li>
+        <li>UAT → live portal synthetic tests</li>
+      </ul>
+
+      <h3 id="s10-p2">Phase 2 preview</h3>
+      <p>Not estimated. Decision artifact only. Check in portal 21221632: how many CBE records, date range, types, whether they export with Contact associations, and which live assets still read them. That last question sizes the problem. If nothing live reads old records, the transition is smaller than it currently appears.</p>
+      <table>
+        <thead><tr><th>Option</th><th>Old records</th><th>Live automations</th><th>Rough size</th></tr></thead>
+        <tbody>
+          <tr><td>Migrate</td><td>ETL into Journey Event</td><td>Repointed to new data</td><td>Medium–large. CBEs do not export with a Contact association column.</td></tr>
+          <tr><td>Retain in place</td><td>Stay in CBE, no new writes</td><td>History-dependent assets keep working</td><td>Small</td></tr>
+          <tr><td>Restrict</td><td>Lock down CBE, read-only</td><td>Same as retain, with access control</td><td>Small</td></tr>
+          <tr><td>Delete</td><td>Remove CBE records</td><td>Anything still reading history breaks</td><td>Medium, needs backup</td></tr>
+        </tbody>
+      </table>
+
+      <h3>Still to confirm</h3>
+      <p>None of these block this specification. All block go-live.</p>
+      <ul>
+        <li>Mentavi Super Admin: confirm Sensitive Data settings in portal 21221632 (RevPartners is redirected away from that tab)</li>
+        <li>Mentavi user who can edit Mentavi-Hubspot-Integration: add Sensitive Data scopes (RevPartners cannot)</li>
+        <li>Actual <code>lifecyclestage</code> values in 21221632 (example payloads use placeholders)</li>
+        <li>Mentavi compliance: interim writes during Phase 1 (section 9)</li>
+      </ul>
+    </section>
+  </main>
+  </div>
+
+  <a href="#s1" class="back-top" id="backTop"><span class="material-symbols-outlined">arrow_upward</span> Top</a>
+
+  <footer class="doc-footer">
+    <div class="footer-meta">
+      <span>RevPartners / Mentavi Health / Journey Event Custom Object Build Spec</span>
+      <span>Portal 21221632</span>
+    </div>
+    <div class="byr" aria-hidden="true"></div>
+  </footer>
+  <script>
+    (function () {
+      var nav = document.getElementById("sideNav");
+      var links = nav ? nav.querySelectorAll("a") : [];
+      var back = document.getElementById("backTop");
+
+      if (window.IntersectionObserver && links.length) {
+        var obs = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (!entry.isIntersecting) return;
+            var id = entry.target.id;
+            links.forEach(function (a) {
+              a.classList.toggle("active", a.getAttribute("href") === "#" + id);
+            });
+          });
+        }, { rootMargin: "-20% 0px -65% 0px", threshold: 0 });
+        document.querySelectorAll("section.chapter, section.chapter [id]").forEach(function (el) {
+          if (el.id) obs.observe(el);
+        });
+      }
+
+      if (back) {
+        window.addEventListener("scroll", function () {
+          back.classList.toggle("show", window.scrollY > 600);
+        }, { passive: true });
+      }
+
+      var input = document.getElementById("mapFilter");
+      var reviewBox = document.getElementById("reviewOnly");
+      var rows = document.querySelectorAll("#mapTable tbody tr");
+      var empty = document.getElementById("mapEmpty");
+      var fold = document.getElementById("mapFold");
+
+      function applyFilter() {
+        if (!input || !empty) return;
+        var q = (input.value || "").toLowerCase().trim();
+        var reviewOnly = reviewBox ? reviewBox.checked : false;
+        var shown = 0;
+        rows.forEach(function (row) {
+          var text = row.textContent.toLowerCase();
+          var isReview = !!row.querySelector("td.ask");
+          var match = (!q || text.indexOf(q) !== -1) && (!reviewOnly || isReview);
+          row.classList.toggle("hidden-row", !match);
+          if (match) shown += 1;
+        });
+        empty.classList.toggle("show", shown === 0);
+      }
+      if (input) input.addEventListener("input", applyFilter);
+      if (reviewBox) {
+        reviewBox.addEventListener("change", function () {
+          if (reviewBox.checked && fold && !fold.open) fold.open = true;
+          applyFilter();
+        });
+      }
+      if (input) {
+        input.addEventListener("focus", function () {
+          if (fold && !fold.open) fold.open = true;
+        });
+      }
+      window.addEventListener("beforeprint", function () {
+        if (fold) fold.open = true;
+      });
+    })();
+  </script>
+</body>
+</html>

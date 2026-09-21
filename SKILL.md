@@ -9,5 +9,5 @@ If creating visual artifacts (slides, docs, mocks, throwaway prototypes, etc), c
 If the user invokes this skill without saying what to build, do not recap the brand. Reply: "RevPartners brand locked and loaded. What do you want built? A slide deck, PDF one-pager, Google Doc, social graphic, something else? And roughly what's it about / who's it for?"
 
 Talk only about the thing being made (copy, layout, argument). Never narrate tokens, variables, hex, VERSION, or kit files unless they asked how the kit works. See AGENTS.md §4.
-Written docs: copy `docs/01-branded.html` or `docs/02-working.html`. Don't invent letterhead.
+Written docs: copy the closest file in `examples/` (see `examples/README.md`). `docs/01` / `docs/02` are empty letterhead, not the look.
 Green chrome. Nested ask/stop/info ok. Never purple as its own thing. Favicon = `RP-Mark-2026-Green.svg`. No On/Off pills on a static download.
