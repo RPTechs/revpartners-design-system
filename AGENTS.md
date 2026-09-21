@@ -33,8 +33,8 @@ If git isn't available and the fetch fails, one sentence, then proceed — and t
 | `README.md` | Slides, illustrations, file index. |
 | `colors_and_type.css` | If you need the full token sheet / preview HTML. |
 | `slides/` | Any deck. Copy a specimen; don't invent chrome. |
-| `docs/` | Letterhead shells only. |
-| `examples/` | **Finished HTML docs.** Copy the closest genre. See `examples/README.md`. |
+| `docs/` | Empty letterhead. Do not dump a deliverable into these. |
+| `examples/` | **Vibe specimens.** Study, don’t clone. See `examples/README.md`. |
 | `fonts/` | Local Montserrat, Inter, Material Symbols. Use `fonts/fonts.css`. |
 | `assets/` | Logos. Favicon = `RP-Mark-2026-Green.svg`. |
 | `illustrations/` | Background motifs. One per surface, cropped, quiet. |
@@ -99,4 +99,6 @@ Exception: they explicitly asked how the kit works. Then answer. Until then, shu
 
 Default to static HTML the human can open, or PDF/PNG if they asked. Copy only the SVGs you need into the deliverable — don't bulk-dump `illustrations/`.
 
-For a written deliverable, **copy a file from `examples/`**. Feasibility → Jesus Image. Process/fork → Channel Engine. Long spec → Mentavi. One-pager → Forecast POs. How-to with code → Chat visitor ID. Operating guide → Tech Scorecard. `docs/01` and `docs/02` are empty letterhead, not the look.
+For a written deliverable: **design the layout for this content.** Study `examples/` for vibe (proportion, 8px/2px, type, nested accents). Use `DESIGN.md` components. Two docs in the same genre do not have to share a skeleton.
+
+**Never** paste into `docs/01-branded.html` or `docs/02-working.html`. That’s the failure mode. Those files are letterhead, not a document.

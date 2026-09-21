@@ -59,7 +59,7 @@ assets/                          ← Logos. Favicon = RP-Mark-2026-Green.svg
 illustrations/                   ← SVG library (Backgrounds, Cubes, Drawings, …)
 slides/                          ← 16:9 specimens
 docs/                            ← Letterhead shells (01 branded, 02 working)
-examples/                        ← Finished HTML docs to copy (feasibility, spec, process, guides)
+examples/                        ← Vibe specimens (study, don’t clone)
 fonts/                           ← Montserrat, Inter, Material Symbols (local)
 preview/                         ← Token/component HTML specimens
 ui_kits/website/                 ← Website UI kit (reference, not HubSpot modules)
@@ -302,18 +302,9 @@ Empty · Signpost (section divider, giant faint number) · Basic Title · Title 
 
 ## GOOGLE DOCS
 
-**Copy a finished example** from `examples/` (see that folder’s README). Don’t invent letterhead.
+`examples/` is vibe, not a stencil. Study a couple, then compose for **this** content. See that folder’s README. Don’t dump prose into `docs/01-branded.html` or `docs/02-working.html` — those are empty letterhead.
 
-- `examples/feasibility-jesus-image-stripe-checkout.html` — scoping / “is this feasible”
-- `examples/process-channel-engine-dedupe.html` — workflow / decision tree
-- `examples/spec-mentavi-journey-event.html` — long technical spec
-- `examples/one-pager-forecast-purchase-orders.html` — compact implementation one-pager
-- `examples/guide-chat-visitor-identification.html` — step-by-step with code
-- `examples/guide-tech-scorecard-epic-metrics.html` — operating guide / scorecard
-
-`docs/01-branded.html` and `docs/02-working.html` are empty letterhead shells. Use them only if none of the examples fit.
-
-Chrome: green header + white 2026 mark, River Bed headings, Inter body, footer `RevPartners / …` + diagonal blue/yellow/red stripe. Colored Heading 2–5 styles exist in the live Google Doc as **optional** — default to dark headings.
+Chrome family: green header + white 2026 mark, River Bed headings, Inter body, footer `RevPartners / …` + diagonal blue/yellow/red stripe. Colored Heading 2–5 styles exist in the live Google Doc as **optional** — default to dark headings.
 
 ---
 

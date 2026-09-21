@@ -220,20 +220,22 @@ Cover is `01-cover` (dark / Ebony Clay, thick BYR stripe, quiet cropped illustra
 
 ## 9. Google Docs / written docs
 
-**Copy a finished example.** `examples/README.md` is the menu. Don’t invent letterhead, and don’t dress a brief as a SaaS landing.
+**Vibe, not a stencil.** `examples/` is a stack of finished client docs. Open a couple. Steal proportion, type, 8px boxes, 2px borders, button pad, green chrome, nested ask/stop/info. Then **compose for this content** using §4 components. Do not duplicate an example and swap the copy. Two scoping docs should not be clones.
 
-| File | Use when |
+**Failure mode:** dump prose into `docs/01-branded.html` or `docs/02-working.html`. Those are empty letterhead (green bar, dashed divider, footer stripe). Not a document.
+
+Don’t dress a brief as a SaaS landing. Don’t invent a fourth palette. Layout can be new; the parts have to look like us.
+
+| File | What to steal |
 |---|---|
-| `examples/feasibility-jesus-image-stripe-checkout.html` | Scoping / “is this feasible” |
-| `examples/process-channel-engine-dedupe.html` | Workflow / decision tree |
-| `examples/spec-mentavi-journey-event.html` | Long technical spec |
-| `examples/one-pager-forecast-purchase-orders.html` | Compact implementation one-pager |
-| `examples/guide-chat-visitor-identification.html` | Step-by-step with code |
-| `examples/guide-tech-scorecard-epic-metrics.html` | Operating guide / scorecard |
+| `examples/feasibility-jesus-image-stripe-checkout.html` | Short BLUF, one flow, tight table |
+| `examples/process-channel-engine-dedupe.html` | Decision tree; stems that touch cards |
+| `examples/spec-mentavi-journey-event.html` | Long spec: TOC, nested ask/stop/info |
+| `examples/one-pager-forecast-purchase-orders.html` | Compact “how the build works” |
+| `examples/guide-chat-visitor-identification.html` | Steps + code that still look like us |
+| `examples/guide-tech-scorecard-epic-metrics.html` | Operating guide / scorecard / RACI |
 
-`docs/01-branded.html` and `docs/02-working.html` are empty letterhead shells (green bar, dashed divider, footer stripe). Use them only if none of the examples fit. Real proportion, type, and 2px borders live in `examples/`.
-
-Shared chrome: green header bar with white mark, 1" margins, dashed green title divider (branded), footer `RevPartners / …` + the diagonal blue/yellow/red stripe.
+Shared chrome: green header bar with white mark, 1" margins, dashed green title divider (branded), footer `RevPartners / …` + the diagonal blue/yellow/red stripe. Keep that family. The middle is yours.
 
 **Headings default to River Bed** (same as web/slides). The live Google Doc still has optional green/blue/orange/red Heading 2–5 styles — use those only as a rare one-hue accent, never a rainbow of section titles. Callout boxes keep their accent (that's the box, not the heading ladder).
 
@@ -267,7 +269,7 @@ Every generated HTML file includes:
 - [ ] Buttons are pills; boxes are 8px (`--radius`). No 16px panel leftover.
 - [ ] Icons are Material Symbols **Outlined**, green (or list-item hue / semantic on neutrals).
 - [ ] Diagram stems actually touch cards. No floating “fork.”
-- [ ] Written docs copied from `examples/` (closest genre). Empty `docs/` shells only if nothing matches.
+- [ ] Written docs: layout serves this content. Didn’t dump into `docs/01` / `docs/02`. Vibe matches `examples/`.
 - [ ] No On/Off pills on static HTML.
 - [ ] No serif, no monospace, no gradients on surfaces, no emoji in UI.
 - [ ] Logo present, correct color, with clear space.
