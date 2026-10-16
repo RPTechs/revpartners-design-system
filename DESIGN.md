@@ -10,17 +10,21 @@ RevPartners is a **Go-to-Market (GTM) engineering consultancy** delivering **Rev
 
 ---
 
+
+
 ## 1. First principles (read before touching anything)
 
 1. **Neutral-dominant.** 80–90% neutral (off-white bg, dark text), 10–20% accent. Color is a scalpel, not a paint roller.
 2. **Green chrome. Nested accents are jobs, not mascots.** A section can contain orange ask / red stop / blue info, or a list that cycles. Sparingly. **Never purple as its own thing** — last in a 5-item set only. See **Accent restraint**.
 3. **No dark cards.** Dark (Ebony Clay) is for full-width bands/heroes only. Individual cards stay light.
-4. **Weight, not color, creates hierarchy.** Headings are River Bed (`#434761`), never green. Emphasize by mixing Montserrat Bold + Regular. A single accent *word* inside a heading is fine.
-5. **Buttons and strong = Inter Bold (700).** Body is 400. Don't reach for 600 as a "brand bold" — the site doesn't.
+4. **Weight, not color, creates hierarchy.** Headings are River Bed (`#434761`), never green. Emphasize by mixing Montserrat Bold + Regular. **700 is the ceiling.** No 800, 900, Black, ExtraBold. A single accent *word* inside a heading is fine.
+5. **Buttons and strong = Inter Bold (700).** Body is 400. Don't reach for 600 as a "brand bold" — the site doesn't. **Pills = buttons only.** Tags are 4px.
 6. **No serif, no monospace, no emoji** (emoji only in rare conversational micro-copy, never in UI chrome). No gradients on surfaces (the blue-yellow-red stripe on dark heroes/slide footers is the exception). No colored-left-border-only cards, no chips behind icons.
 7. **A "light" accent is 20% opacity of the hue, over whatever is behind it.** `--clr-blue-bg` on white looks sky. The same token on Ebony Clay looks like a dark wash. That is the point. Never paint `--clr-*-light` (`#CCE7FF` etc.) onto a dark band — those hexes are 20% over *off-white*, baked opaque. They are a hack for when a pattern would show through a transparent fill. Default fill is always `--clr-*-bg`. If you need opaque on dark, use `--clr-*-dark`, not the mint/sky chips.
 
 ---
+
+
 
 ## 2. Drop-in CSS (tokens)
 
@@ -91,7 +95,7 @@ Paste into a global stylesheet. All values match the HubSpot theme.
   --radius-pill: 120px; /* buttons */
 
   /* ---- Shadow ---- */
-  --shadow-card: 0 2px 4px rgba(0,0,0,0.25); /* optional lift; accent cards may use a tinted glow */
+  --shadow-card: 0 2px 4px rgba(0,0,0,0.25); /* optional gray lift. never a colored glow */
 }
 ```
 
@@ -106,6 +110,8 @@ Every generated HTML doc gets a favicon: copy `assets/RP-Mark-2026-Green.svg` in
 
 ---
 
+
+
 ## Accent restraint
 
 Chrome is green. Other colors may live **inside** a green section when they have a job. Purple is not a job.
@@ -113,64 +119,89 @@ Chrome is green. Other colors may live **inside** a green section when they have
 - **Chrome** (header, nav, eyebrows, dashed dividers, primary buttons, repeating meta cards): Rally Green. Sibling sections of a spec usually stay green too — they don’t each get a mascot.
 - **Nested accents, sparingly:** `--role-ask` orange, `--role-no` red, `--role-info` blue, `--role-yes` green. Callouts and table flags inside a green section are correct. Don’t restyle the section around them.
 - **Lists** (steps, sibling cards): cycle **green → blue → orange → red**. Then restart, or reach for purple only if you truly need a fifth. A 3-step flow stops at orange.
-- **Never purple as its own thing.** Not a section theme. Not a lone purple card. Not “this is Tech.” Last resort in a 5+ set only.
-- **Departments are not themes.** Don’t paint Sales red.
+- **Never purple as its own thing.** Not a section theme. Not a lone purple card. The only exception is when you use purple for everything on that page or slide with no other accent colors — and only do this when the subject is our technologist team or technical integrations/migrations. Last resort in a 5+ set only.
+- **Departments are not themes.** Don’t paint every little thing related to Sales red. If you do dedicate a slide to red, no other color should be used on that slide. Same for the rest.
 - Mixing is wrong when two accents compete as chrome (green header + purple card + red card as equals). Mixing is right when green owns the section and orange/red/blue show up as ask/stop/info or as items 2–4 in a list.
+- Don't invent colors. Hex lives in `:root` only. After that, `var(--clr-*)`. `#10B981` is not Rally Green. Yellow is the stripe, not a UI fill.
 
-Bad: a purple section. A purple card with nothing else in the set. Equal-weight green + purple + red chrome.
+Bad: A standalone purple card not part of a set. Equal-weight green + purple + red chrome. Orange background with green text. Red card with green text. Any color card with green text or other color inside.
 
-Good: green header, green chapters, orange “open question” callout, red “don’t” callout, blue “note,” a 1–2–3 flow in green/blue/orange. No purple.
+Good: green header, green chapters, orange “open question” callout, red “don’t” callout, blue “note,” a 1–2–3 flow in green/blue/orange. 20% green background → Green accents. 20% opacity blue background → blue accents. Etc. 
 
 ---
 
+
+
 ## 3. Typography
 
-| Role | Font | Weight | Size |
-|---|---|---|---|
-| Hero XL | Montserrat | 700 | 72–120px |
-| H1 | Montserrat | 700 | ~48px (web is fluid clamp) |
-| H2 | Montserrat | 700 | ~32px |
-| H3 | Montserrat | 700 | ~28px |
-| Eyebrow / category | Montserrat | 700 | ~15–18px · UPPERCASE · letter-spacing **0.5rem** · green (or list-item hue) |
-| Body | Inter | 400 | 16–18px · line-height **1.4** |
-| Buttons / strong | Inter | **700** | — |
-| Caption | Inter | 400/500 | 12–14px |
 
-- Headings River Bed (`--color-fg`), never green.
+| Role               | Font       | Weight  | Size                                                                        |
+| ------------------ | ---------- | ------- | --------------------------------------------------------------------------- |
+| Hero XL            | Montserrat | 700     | 72–120px                                                                    |
+| H1                 | Montserrat | 700     | ~48px (web is fluid clamp)                                                  |
+| H2                 | Montserrat | 700     | ~32px                                                                       |
+| H3                 | Montserrat | 700     | ~28px                                                                       |
+| Eyebrow / category | Montserrat | 700     | ~15–18px · UPPERCASE · letter-spacing **0.5rem** · green (or list-item hue) |
+| Body               | Inter      | 400     | 16–18px · line-height **1.4**                                               |
+| Buttons / strong   | Inter      | **700** | —                                                                           |
+| Caption            | Inter      | 400/500 | 12–14px                                                                     |
+
+
+- Headings River Bed (`--color-fg`), never green. **700 max.**
 - Mix Bold + Regular. **Swap test is not optional:** bold the word that would change on the sibling page. `<b>Company</b> Deduplication` / `<b>Contact</b> Deduplication`. Never bold the HubSpot workflow name (`Deduplication`) when the sibling is another object. Fine when the canvas title *is* the object (`<b>Target Account</b>` vs `<b>Contact</b>`).
 - Body text is River Bed; muted is Steel.
 
 ---
 
+
+
 ## 4. Components
 
+
+
 ### Buttons
+
 - Shape: full pill (`border-radius: 120px`). Font: Inter **700**.
 - **Primary:** green fill `#17B451`, white text, padding `15px 40px`.
 - **Outlined:** transparent fill, `2px solid` green, green text. Hover border goes **dashed**.
 - **Hover:** accent at 20% opacity as background. **Press:** `transform: scale(0.98)`.
 
+
+
 ### Fancy links
+
 - Inter 700, green, trailing **Material icon** `arrow_forward` (not an Inter `→` character).
 
+
+
 ### Cards
+
 - **8px** (`--radius`). Every boxed thing: cards, sections, callouts, step cards, “panels.” There is no inner/outer radius. `--radius-lg` is the same 8px — not a bigger corner.
 - If two sibling boxes have different radii, you already failed.
-- **`2px` border** — accent color OR `--clr-stroke` (10% ebony). Stronger: `--clr-stroke-2` (30%).
+- `2px` **border** — accent color OR `--clr-stroke` (10% ebony). Stronger: `--clr-stroke-2` (30%).
 - Background: `--clr-bg-2` **or** `--clr-<hue>-bg` (20% tint). Border and fill share the same hue. Use `--clr-<hue>-light` only on a light ground when a pattern would show through. On dark, `--clr-<hue>-bg` or `--clr-<hue>-dark` — never `*-light`.
-- Neutral cards: no shadow. Accent cards may use a soft tinted glow. **No** colored-left-border-only, **no** chip behind icons.
+- Neutral cards: no shadow. Optional `--shadow-card` is a gray lift, not a halo. **No glow** (outer, edge, border, inner). **No** colored-left-border-only, **no** chip behind icons. Not clickable → no hover lift.
+
+
 
 ### Icons
+
 - **Material Symbols Outlined** — not Rounded. Small icons: FILL 1, weight 300. No chip. Sit on the card.
 - Color = green by default, or the list-item hue. Nested ask/stop/info may be orange/red/blue. Never purple as the card’s own color.
 - Same repeating card type (Starts / Skips / Runs, etc.) uses the **same three icons** in every object chapter.
 
+
+
 ### Borders & lines
-- Structural: `1px solid rgba(36,39,58,0.1)`.
+
+- **Boxes (cards, callouts, sections, inputs): `2px`.** Accent or `--clr-stroke`. Stronger: `--clr-stroke-2`.
+- **The only 1px:** a horizontal hairline between stacked siblings — `border-top` or `border-bottom: 1px solid var(--clr-stroke)`. Not a box outline. Do not mix 1px and 2px on the same element.
 - Emphasis divider: `2–3px dashed` in the **chapter hue** (default Rally Green), often with a filled circle end cap.
 - Dark heroes / slides: thin **blue · yellow · red** stripe is allowed (that's `--clr-yellow`'s job).
 
 ---
+
+
 
 ## Diagrams
 
@@ -181,17 +212,21 @@ A diagram is a component. If a line doesn’t meet a card, it’s decoration —
 
 ---
 
+
+
 ## 5. Layout & motion
 
 - Backgrounds: Off-White primary, Mercury for alt sections, Ebony Clay for inverted bands. No textures. Line-grid illustrations on dark heroes are fine if they stay low-contrast.
 - Web content width: **1200px**. Slides: 1920×1080 (or 1280×720 specimens in `slides/`).
 - Generous white space. Flex/grid with `gap` tokens.
-- Corners: tags 4px · boxes 8px · buttons pill · avatars round. No 16px “panel.”
-- Motion: hover = 20% accent bg, press = 98% scale. No bounce/spring.
+- Corners: tags 4px · boxes 8px · buttons pill · avatars round. No 16px “panel.” Pills are buttons, not labels.
+- Motion: hover = 20% accent bg, press = 98% scale — **only on actual controls** (`a`, `button`, summary, inputs). Dead cards don’t lift, glow, or take `cursor: pointer`. No bounce/spring.
 - Imagery: technical line/schematic diagrams over photography. Natural-color photos only for team/testimonial headshots.
 - **Illustrations as background elements:** library in `illustrations/`. Use **sparingly** — at most one per surface, in an **empty area**, **oversized so they crop**, low-contrast. Full-bleed `Backgrounds/` grids are the exception. Never over text. Copy only the SVGs you need.
 
 ---
+
+
 
 ## 6. Voice & copy
 
@@ -202,6 +237,8 @@ A diagram is a component. If a line doesn’t meet a card, it’s decoration —
 
 ---
 
+
+
 ## 7. Logo
 
 - Primary: `assets/RevPartners-Logo-2026-Green.svg`. Mark: `assets/RP-Mark-2026-Green.svg` (favicon + tight spaces). White mark on green/dark bars. Need the word “RevPartners” without the lockup? Set it in Montserrat — don’t use a wordmark-only SVG.
@@ -209,6 +246,8 @@ A diagram is a component. If a line doesn’t meet a card, it’s decoration —
 - Keep clear space; never recolor to a non-brand hue, stretch, or add effects. Do not use `RevPartners-Logo-Green.svg`, `RevPartners-Logo-Horizontal-Green.svg`, or `RP-Mark-Green.svg` — they’re gone.
 
 ---
+
+
 
 ## 8. Slides
 
@@ -218,6 +257,8 @@ Cover is `01-cover` (dark / Ebony Clay, thick BYR stripe, quiet cropped illustra
 
 ---
 
+
+
 ## 9. Google Docs / written docs
 
 **Vibe, not a stencil.** `examples/` is a stack of finished client docs. Open a couple. Steal proportion, type, 8px boxes, 2px borders, button pad, green chrome, nested ask/stop/info. Then **compose for this content** using §4 components. Do not duplicate an example and swap the copy. Two scoping docs should not be clones.
@@ -226,14 +267,16 @@ Cover is `01-cover` (dark / Ebony Clay, thick BYR stripe, quiet cropped illustra
 
 Don’t dress a brief as a SaaS landing. Don’t invent a fourth palette. Layout can be new; the parts have to look like us.
 
-| File | What to steal |
-|---|---|
-| `examples/feasibility-jesus-image-stripe-checkout.html` | Short BLUF, one flow, tight table |
-| `examples/process-channel-engine-dedupe.html` | Decision tree; stems that touch cards |
-| `examples/spec-mentavi-journey-event.html` | Long spec: TOC, nested ask/stop/info |
-| `examples/one-pager-forecast-purchase-orders.html` | Compact “how the build works” |
-| `examples/guide-chat-visitor-identification.html` | Steps + code that still look like us |
-| `examples/guide-tech-scorecard-epic-metrics.html` | Operating guide / scorecard / RACI |
+
+| File                                                    | What to steal                         |
+| ------------------------------------------------------- | ------------------------------------- |
+| `examples/feasibility-jesus-image-stripe-checkout.html` | Short BLUF, one flow, tight table     |
+| `examples/process-channel-engine-dedupe.html`           | Decision tree; stems that touch cards |
+| `examples/spec-mentavi-journey-event.html`              | Long spec: TOC, nested ask/stop/info  |
+| `examples/one-pager-forecast-purchase-orders.html`      | Compact “how the build works”         |
+| `examples/guide-chat-visitor-identification.html`       | Steps + code that still look like us  |
+| `examples/guide-tech-scorecard-epic-metrics.html`       | Operating guide / scorecard / RACI    |
+
 
 Shared chrome: green header bar with white mark, 1" margins, dashed green title divider (branded), footer `RevPartners / …` + the diagonal blue/yellow/red stripe. Keep that family. The middle is yours.
 
@@ -244,6 +287,8 @@ Body is Inter. Footer names are just text — no highlighter once they’re fill
 Header mark: `assets/RP-Mark-2026-White.svg` on the green bar. Favicon: `assets/RP-Mark-2026-Green.svg`.
 
 ---
+
+
 
 ## Handoff / static HTML
 
@@ -257,6 +302,8 @@ Every generated HTML file includes:
 
 ---
 
+
+
 ## 10. Quick checklist
 
 - [ ] Background is off-white; page is neutral-dominant, accents sparse.
@@ -265,8 +312,10 @@ Every generated HTML file includes:
 - [ ] Favicon is `RP-Mark-2026-Green.svg`.
 - [ ] Every element uses a single accent hue (no mixing within one component).
 - [ ] Tinted fills are `--clr-*-bg` (20% over the actual background). No `*-light` chips on dark. Opaque on dark = `*-dark`.
-- [ ] Headings pass the swap test; no green headings; body is Inter 400; buttons are 700.
-- [ ] Buttons are pills; boxes are 8px (`--radius`). No 16px panel leftover.
+- [ ] Headings pass the swap test; no green headings; body is Inter 400; **nothing heavier than 700**.
+- [ ] Buttons are pills; boxes are 8px (`--radius`). No 16px panel leftover. Tags/labels are not pills.
+- [ ] Hex only from `:root`. No glow. Boxes 2px. 1px only as a horizontal hairline between siblings.
+- [ ] Hover/lift only on actual controls. Dead cards don’t float.
 - [ ] Icons are Material Symbols **Outlined**, green (or list-item hue / semantic on neutrals).
 - [ ] Diagram stems actually touch cards. No floating “fork.”
 - [ ] Written docs: layout serves this content. Didn’t dump into `docs/01` / `docs/02`. Vibe matches `examples/`.
@@ -275,11 +324,12 @@ Every generated HTML file includes:
 - [ ] Logo present, correct color, with clear space.
 
 
+
 ## ASSETS - SVG Logos
 
 ## Logomark
 <svg width="180" height="164" viewBox="0 0 180 164" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0 81.8218C0 127.005 36.6384 163.644 81.8218 163.644V0H0V81.8218Z" fill="var(--clr-primary)"></path><path d="M180 163.644C180 118.46 143.362 81.8218 98.1782 81.8218V163.644H180Z" fill="var(--clr-primary)"></path><path d="M139.099 81.8218C161.701 81.8218 180 63.5026 180 40.9208C180 18.339 161.681 0 139.099 0H98.198V81.8218H139.099Z" fill="var(--clr-primary)"></path></svg>
 
 ### Full logo
-<img src="https://revpartners.io/hubfs/RP%20+%20WS%20Logo%20Horizontal%20-%20Green.svg" alt="RevPartners, a Walker Sands company">
 
+![RevPartners, a Walker Sands company](https://revpartners.io/hubfs/RP%20+%20WS%20Logo%20Horizontal%20-%20Green.svg)

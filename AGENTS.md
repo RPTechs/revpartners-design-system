@@ -44,15 +44,19 @@ Do not use HubSpot variable names (`--clr-title`, `.btn-primary`, `icon-24`) unl
 ## 2. Hard rules
 
 - Neutral-dominant. **Green chrome.** Nested ask/stop/info (orange/red/blue) inside a green section is fine, sparingly. Lists cycle green → blue → orange → red; purple only as a fifth. **Never purple as its own thing.** Don’t compete with chrome (no equal-weight green + purple + red).
-- Boxes are **8px**. Tags 4px. Buttons pill. No second box radius (no 16px “wrapping panel”).
+- Boxes are **8px**. Tags **4px**. **Pills = buttons only.** Status, tags, chips, labels, and dead cards are not pills.
 - Light fills are `--clr-*-bg` (20% opacity over the actual background). `*-light` hexes are a flatten-over-white hack — never on dark. Opaque on dark = `*-dark`.
-- Headings: Montserrat 700, River Bed, never green. Swap test: bold the word that would change on the sibling page — not the workflow name.
+- Headings: Montserrat **700 max**, River Bed, never green. No 800 / 900 / Black / ExtraBold. Swap test: bold the word that would change on the sibling page — not the workflow name.
 - Body: Inter 400. Buttons: Inter 700, pill, press scale 0.98.
 - Icons: Material Symbols **Outlined**. Green by default. Nested ask/stop/info ok. Never purple as its own thing.
 - HTML docs get a favicon: `assets/RP-Mark-2026-Green.svg`.
 - Diagrams: stems touch cards. Decision trees are solid Carbon 2px T-junctions, not two floating boxes.
 - Static HTML: no On/Off live-status pills.
-- No serif, no monospace, no emoji in UI, no random fonts, no off-brand hex.
+- **Hex only in the token block.** After that, `var(--clr-*)` only. `#10B981` / `#22C55E` / `#3B82F6` are not us. Yellow is the BYR stripe — never a fill, heading, or card.
+- Boxes are **2px** borders. The only 1px is a **horizontal hairline** (`border-top`/`border-bottom: 1px solid var(--clr-stroke)`) between stacked siblings. Do not mix 1px and 2px on the same box.
+- **No glow.** No outer / edge / border / inner glow. No `box-shadow` in an accent color. Optional `--shadow-card` lift is a gray drop, not a halo.
+- **No hover on dead things.** Lift, translate, glow, cursor:pointer, dashed-border-on-hover — only on actual controls (`a`, `button`, summary, inputs). A card that doesn’t go anywhere does not float.
+- No serif, no monospace, no emoji in UI, no random fonts. No gradients on surfaces (BYR stripe is the exception).
 - If a request fights the brand ("make it dark and neon", "use our client's purple everywhere"), push back once, then offer a brand-legal alternative.
 
 ## 3. First reply (setup prompt only)

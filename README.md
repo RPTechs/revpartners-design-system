@@ -128,7 +128,7 @@ Each accent has three surface treatments. For a tinted fill, use ONE of:
 - Dark background: **Ebony Clay** `#24273A` for inverted sections
 
 ### Typography System
-- **Primary Display:** Montserrat — **Bold (700)** for ALL headings, slide titles, callout numbers, eyebrows, and step numerals. (Regular/Medium/SemiBold also available for supporting UI.)
+- **Primary Display:** Montserrat — **Bold (700)** for ALL headings, slide titles, callout numbers, eyebrows, and step numerals. **700 is the ceiling** — no Black / ExtraBold / 800 / 900. (Regular/Medium/SemiBold ok for supporting UI.)
   - Scale: 120px (hero XL), 64px (hero), 48px (h1), 32px (h2), 28px (h3), 24px (h4), 20px (h5)
   - All-caps variant: 20px + 0.4em letter-spacing (section category labels)
 - **Body / UI:** Inter — Regular (400), Medium (500), Bold (700)
@@ -155,20 +155,18 @@ Each accent has three surface treatments. For a tinted fill, use ONE of:
 ### Corner Radii
 - **Boxes (cards, sections, callouts, panels):** 8px (`--radius` / `--corner`). One radius. No inner/outer split.
 - **Tags:** 4px
-- **Buttons:** 120px (fully pill-shaped)
+- **Buttons:** 120px (fully pill-shaped). Pills = buttons only. Tags stay 4px.
 - **Circles / avatars:** 999px / 50%
 
 ### Shadows
-- Cards: `0px 2px 4px 0px rgba(0,0,0,0.25)` (subtle lift)
-- Elevated surfaces: `0px 4px 4px 0px rgba(0,0,0,0.25)`
-- No heavy drop shadows — keep them subtle
+- Cards: optional gray lift `0px 2px 4px 0px rgba(0,0,0,0.25)`
+- **No glow** — outer, edge, border, inner, tinted halo. Gray drop only.
 
 ### Borders & Lines
-- **Structural lines:** 1px solid, color `rgba(36,39,58,0.1)` (10% Ebony Clay)
+- **Boxes:** `2px solid` in accent color OR `--clr-stroke` (`rgba(36,39,58,0.1)`). Stronger: `--clr-stroke-2`.
+- **The only 1px:** a horizontal hairline between stacked siblings (`border-top` / `border-bottom: 1px solid var(--clr-stroke)`). Not a box outline. Don’t mix 1px and 2px on the same element.
 - **Dashed emphasis:** `2px dashed rgb(23,180,81)` (green dashed for callouts/annotations)
-- **Component borders:** `2px solid` in accent color OR `--clr-stroke`
 - **Fancy-link arrow / dashed step connectors:** neutral or accent, 2px
-- Thin, consistent — never heavy outlines
 
 ### Buttons
 - **Shape:** Fully pill/rounded — `border-radius: 120px`
@@ -177,7 +175,7 @@ Each accent has three surface treatments. For a tinted fill, use ONE of:
   - Default: padding `15px 40px`
   - Small: padding `8px 16px`
 - **Outlined:** transparent/white fill, `2px solid #17B451`, green text
-- **Hover state:** 20% background of button color (e.g. `rgba(23,180,81,0.2)`) + border
+- **Hover state:** 20% background of button color (e.g. `rgba(23,180,81,0.2)`) + border. Hover only on actual controls — not on static cards.
 - **Press/click state:** Scale to 98% (`transform: scale(0.98)`)
 - **Outlined hover:** border goes dashed.
 - **Fancy text link:** Inter Bold (700), green, trailing Material icon `arrow_forward` (not an Inter `→` character).
@@ -186,7 +184,7 @@ Each accent has three surface treatments. For a tinted fill, use ONE of:
 - `border-radius: 8px` (`--radius`). Same on every boxed sibling. There is no 16px wrapping-panel radius.
 - **`2px` border** — either an **accent color** or the neutral **`--clr-stroke`** (`rgba(36,39,58,0.10)`). Stronger: `--clr-stroke-2` (30%).
 - **Background** is **`--clr-bg-2`** (neutral) OR the opaque accent (`--clr-<hue>-light`) for accent cards. Border and fill share the same accent hue.
-- **No colored-left-border-only cards. Neutral cards: no shadow. Accent cards may use a soft tinted glow. No background chip behind icons.**
+- **No colored-left-border-only cards. Neutral cards: no shadow. No glow. No background chip behind icons. Dead cards don’t hover.**
 - Icons: Material Symbols **Outlined**.
 
 ### Step Sequences
