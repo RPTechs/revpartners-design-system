@@ -2,28 +2,28 @@
 @font-face {
   font-family: 'Montserrat';
   src: url('Montserrat/Montserrat-VariableFont_wght.ttf') format('truetype');
-  font-weight: 100 900;
+  font-weight: 400 700;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: 'Montserrat';
   src: url('Montserrat/Montserrat-Italic-VariableFont_wght.ttf') format('truetype');
-  font-weight: 100 900;
+  font-weight: 400 700;
   font-style: italic;
   font-display: swap;
 }
 @font-face {
   font-family: 'Inter';
   src: url('Inter/Inter-VariableFont_opsz,wght.ttf') format('truetype');
-  font-weight: 100 900;
+  font-weight: 400 700;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: 'Inter';
   src: url('Inter/Inter-Italic-VariableFont_opsz,wght.ttf') format('truetype');
-  font-weight: 100 900;
+  font-weight: 400 700;
   font-style: italic;
   font-display: swap;
 }

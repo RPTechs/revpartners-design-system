@@ -1,6 +1,6 @@
 # RevPartners — Brand Design Guide (for AI agents)
 
-Drop this file into any app repo. It is **self-contained**: tokens below are canonical for non-HubSpot work (slides, PDFs, decks, mocks, random apps). Copy the CSS block. Do not invent colors, fonts, or component recipes.
+Drop this file into any app repo. It is **self-contained**: tokens below are canonical for non-HubSpot work (slides, PDFs, decks, mocks, random apps). Copy the CSS block. Do not invent colors, fonts, variable names, or component recipes. No text above 700.
 
 This is **not** the HubSpot theme. HubSpot agents use the theme CSS in `Revpartners-2024/`. Values here are aligned to that theme as of VERSION in this repo.
 
@@ -17,7 +17,7 @@ RevPartners is a **Go-to-Market (GTM) engineering consultancy** delivering **Rev
 1. **Neutral-dominant.** 80–90% neutral (off-white bg, dark text), 10–20% accent. Color is a scalpel, not a paint roller.
 2. **Green chrome. Nested accents are jobs, not mascots.** A section can contain orange ask / red stop / blue info, or a list that cycles. Sparingly. **Never purple as its own thing** — last in a 5-item set only. See **Accent restraint**.
 3. **No dark cards.** Dark (Ebony Clay) is for full-width bands/heroes only. Individual cards stay light.
-4. **Weight, not color, creates hierarchy.** Headings are River Bed (`#434761`), never green. Emphasize by mixing Montserrat Bold + Regular. **700 is the ceiling.** No 800, 900, Black, ExtraBold. A single accent *word* inside a heading is fine.
+4. **Weight, not color, creates hierarchy.** Headings are River Bed (`#434761`), never green. Emphasize by mixing Montserrat Bold + Regular. **No text anywhere above 700** — not headings, not stats, not hero spans, not pins. No 800, 900, Black, ExtraBold. Do not load those weights. A single accent *word* inside a heading is fine.
 5. **Buttons and strong = Inter Bold (700).** Body is 400. Don't reach for 600 as a "brand bold" — the site doesn't. **Pills = buttons only.** Tags are 4px.
 6. **No serif, no monospace, no emoji** (emoji only in rare conversational micro-copy, never in UI chrome). No gradients on surfaces (the blue-yellow-red stripe on dark heroes/slide footers is the exception). No colored-left-border-only cards, no chips behind icons.
 7. **A "light" accent is 20% opacity of the hue, over whatever is behind it.** `--clr-blue-bg` on white looks sky. The same token on Ebony Clay looks like a dark wash. That is the point. Never paint `--clr-*-light` (`#CCE7FF` etc.) onto a dark band — those hexes are 20% over *off-white*, baked opaque. They are a hack for when a pattern would show through a transparent fill. Default fill is always `--clr-*-bg`. If you need opaque on dark, use `--clr-*-dark`, not the mint/sky chips.
@@ -99,12 +99,16 @@ Paste into a global stylesheet. All values match the HubSpot theme.
 }
 ```
 
+**Paste this `:root` as-is.** Do not rename tokens. `--ink` is `--clr-ebony-clay`. `--paper` is `--clr-off-white`. `--pri` is `--clr-green`. `--display` is `--font-display`. `--body` is `--font-body`. If a name isn’t in this block, you don’t invent `--pri-h` or `--blue-xt` — you pick an existing token.
+
 ```html
 <link rel="icon" href="../assets/RP-Mark-2026-Green.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
 ```
+
+Do not add `800` (or `900`) to that Google Fonts URL. Those weights are not in the brand.
 
 Every generated HTML doc gets a favicon: copy `assets/RP-Mark-2026-Green.svg` into the deliverable. Do not skip.
 
@@ -122,7 +126,7 @@ Chrome is green. Other colors may live **inside** a green section when they have
 - **Never purple as its own thing.** Not a section theme. Not a lone purple card. The only exception is when you use purple for everything on that page or slide with no other accent colors — and only do this when the subject is our technologist team or technical integrations/migrations. Last resort in a 5+ set only.
 - **Departments are not themes.** Don’t paint every little thing related to Sales red. If you do dedicate a slide to red, no other color should be used on that slide. Same for the rest.
 - Mixing is wrong when two accents compete as chrome (green header + purple card + red card as equals). Mixing is right when green owns the section and orange/red/blue show up as ask/stop/info or as items 2–4 in a list.
-- Don't invent colors. Hex lives in `:root` only. After that, `var(--clr-*)`. `#10B981` is not Rally Green. Yellow is the stripe, not a UI fill.
+- Don't invent colors **or variable names**. Hex lives in `:root` only. After that, `var(--clr-*)` / `var(--font-*)`. `#10B981` is not Rally Green. `--ink` is not a token. Yellow is the stripe, not a UI fill.
 
 Bad: A standalone purple card not part of a set. Equal-weight green + purple + red chrome. Orange background with green text. Red card with green text. Any color card with green text or other color inside.
 
@@ -147,7 +151,7 @@ Good: green header, green chapters, orange “open question” callout, red “d
 | Caption            | Inter      | 400/500 | 12–14px                                                                     |
 
 
-- Headings River Bed (`--color-fg`), never green. **700 max.**
+- Headings River Bed (`--color-fg`), never green. **No text anywhere above 700.**
 - Mix Bold + Regular. **Swap test is not optional:** bold the word that would change on the sibling page. `<b>Company</b> Deduplication` / `<b>Contact</b> Deduplication`. Never bold the HubSpot workflow name (`Deduplication`) when the sibling is another object. Fine when the canvas title *is* the object (`<b>Target Account</b>` vs `<b>Contact</b>`).
 - Body text is River Bed; muted is Steel.
 
@@ -312,7 +316,8 @@ Every generated HTML file includes:
 - [ ] Favicon is `RP-Mark-2026-Green.svg`.
 - [ ] Every element uses a single accent hue (no mixing within one component).
 - [ ] Tinted fills are `--clr-*-bg` (20% over the actual background). No `*-light` chips on dark. Opaque on dark = `*-dark`.
-- [ ] Headings pass the swap test; no green headings; body is Inter 400; **nothing heavier than 700**.
+- [ ] Headings pass the swap test; no green headings; body is Inter 400; **no `font-weight` above 700 anywhere** (stats, hero spans, pins included). Google Fonts URL has no 800/900.
+- [ ] Tokens pasted as-is. No `--ink` / `--paper` / `--pri` / `--display`. Uses `--clr-*` and `--font-*`.
 - [ ] Buttons are pills; boxes are 8px (`--radius`). No 16px panel leftover. Tags/labels are not pills.
 - [ ] Hex only from `:root`. No glow. Boxes 2px. 1px only as a horizontal hairline between siblings.
 - [ ] Hover/lift only on actual controls. Dead cards don’t float.

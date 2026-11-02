@@ -128,7 +128,7 @@ Each accent has three surface treatments. For a tinted fill, use ONE of:
 - Dark background: **Ebony Clay** `#24273A` for inverted sections
 
 ### Typography System
-- **Primary Display:** Montserrat — **Bold (700)** for ALL headings, slide titles, callout numbers, eyebrows, and step numerals. **700 is the ceiling** — no Black / ExtraBold / 800 / 900. (Regular/Medium/SemiBold ok for supporting UI.)
+- **Primary Display:** Montserrat — **Bold (700)** for ALL headings, slide titles, callout numbers, eyebrows, and step numerals. **No text anywhere above 700** — not stats, not hero spans, not pins. Do not load 800/900. (Regular 400 for contrast. Medium/SemiBold ok on Inter UI only.)
   - Scale: 120px (hero XL), 64px (hero), 48px (h1), 32px (h2), 28px (h3), 24px (h4), 20px (h5)
   - All-caps variant: 20px + 0.4em letter-spacing (section category labels)
 - **Body / UI:** Inter — Regular (400), Medium (500), Bold (700)
@@ -136,7 +136,8 @@ Each accent has three surface treatments. For a tinted fill, use ONE of:
   - Body text: 16–18px, line-height 1.4
   - Small/caption: 12px, 14px
 - **No serif, no monospace.** Playfair Display, Source Sans, and JetBrains Mono are all dropped — do not use them.
-- **Google Fonts:** Montserrat + Inter both load from Google Fonts (no local files bundled — see Caveats).
+- **Google Fonts:** `Montserrat:wght@400;700` and `Inter:wght@400;500;700`. Never add 800/900. Prefer local `fonts/fonts.css` when the kit is cloned.
+- **Tokens:** paste the `:root` in `DESIGN.md`. Do not invent `--ink`, `--paper`, `--pri`, `--display`, `--body`. Those names are not in the kit.
 
 ### Spacing Scale (rem-based, 1rem = 16px)
 - `--gap-xs`: 8px (0.5rem)
