@@ -1,0 +1,102 @@
+/* RevPartners Prism theme. Copy this file. Do not load Prism's own theme CSS. */
+
+:root {
+  --font-code: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+}
+
+code {
+  font-family: var(--font-code);
+  font-size: 0.875em;
+  color: var(--color-fg, #434761);
+  background: var(--clr-bg-2, #F3F3F4);
+  border: 1px solid var(--clr-stroke, rgba(36, 39, 58, 0.10));
+  border-radius: var(--radius-sm, 4px);
+  padding: 0.1em 0.35em;
+}
+
+pre,
+pre[class*="language-"] {
+  font-family: var(--font-code);
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: var(--color-fg, #434761);
+  background: var(--clr-bg-2, #F3F3F4);
+  border: 2px solid var(--clr-stroke, rgba(36, 39, 58, 0.10));
+  border-radius: var(--radius, 8px);
+  padding: var(--gap-s, 1rem);
+  margin: 0 0 var(--gap, 1.5rem);
+  overflow: auto;
+  tab-size: 2;
+}
+
+pre code,
+pre[class*="language-"] code,
+code[class*="language-"] {
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+  background: none;
+  border: 0;
+  border-radius: 0;
+  padding: 0;
+  white-space: pre;
+}
+
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+  color: var(--clr-steel, #A1A2A7);
+}
+
+.token.punctuation,
+.token.operator,
+.token.entity,
+.token.url {
+  color: var(--clr-carbon, #555970);
+}
+
+.token.property,
+.token.attr-name {
+  color: var(--clr-carbon, #555970);
+}
+
+.token.tag,
+.token.keyword,
+.token.atrule,
+.token.selector {
+  color: var(--clr-green, #17B451);
+}
+
+.token.string,
+.token.char,
+.token.attr-value,
+.token.inserted {
+  color: var(--clr-blue, #329DFF);
+}
+
+.token.number,
+.token.boolean,
+.token.constant,
+.token.symbol {
+  color: var(--clr-orange, #F7761E);
+}
+
+.token.function,
+.token.class-name {
+  color: var(--clr-ebony-clay, #24273A);
+  font-weight: 600;
+}
+
+.token.regex,
+.token.variable {
+  color: var(--clr-blue, #329DFF);
+}
+
+.token.important,
+.token.bold { font-weight: 700; }
+.token.italic { font-style: italic; }
+
+.token.deleted {
+  color: var(--clr-red, #FB3131);
+}
