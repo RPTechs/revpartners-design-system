@@ -6,7 +6,7 @@ disable-model-invocation: true
 
 # RevPartners brand
 
-Self-contained. Do not read local theme files, `DESIGN.md`, `slides/`, `docs/`, or `assets/`. Tokens below are canonical. Do not invent colors, fonts, variable names, or component recipes. No text above 700. Links and buttons match the surface they’re in — not green at all costs. Exception: if you are in the design-system repo, study `examples/` for vibe — then compose for this content. Do not clone a file and swap the copy.
+Self-contained. Do not read local theme files, `DESIGN.md`, `slides/`, `docs/`, or `assets/`. Tokens below are canonical. Do not invent colors, fonts, variable names, or component recipes. No text above 700. Links and buttons are green on white, gray, and dark — they match an accent only inside a blue, orange, or red card. Exception: if you are in the design-system repo, study `examples/` for vibe — then compose for this content. Do not clone a file and swap the copy.
 
 RevPartners is a **Go-to-Market (GTM) engineering consultancy** delivering **Revenue Operations through HubSpot**. The brand reads **bold, technical, and confident** — clean, lots of white space, one accent color at a time, never busy.
 
@@ -72,7 +72,7 @@ Paste into a global stylesheet.
   --color-primary: var(--clr-green);    --color-primary-bg: var(--clr-green-bg);
   --color-border: rgba(36,39,58,0.10);  --clr-stroke: rgba(36,39,58,0.10);
   --clr-stroke-2: rgba(36,39,58,0.30);  --clr-bg-2: var(--clr-mercury);
-  --color-link: var(--clr-green); /* neutral-page default. inside a colored card, use that hue */
+  --color-link: var(--clr-green); /* default on white, gray, and dark. only a blue/orange/red/purple card overrides */
 
   /* ---- Jobs. Default chrome is green. Do not spray department mascots. ---- */
   --role-chrome: var(--clr-green);
@@ -129,9 +129,9 @@ Chrome is green. Other colors may live **inside** a green section when they have
 - Mixing is wrong when two accents compete as chrome (green header + purple card + red card as equals). Mixing is right when green owns the section and orange/red/blue show up as ask/stop/info or as items 2–4 in a list.
 - Don't invent colors **or variable names**. Hex lives in `:root` only. After that, `var(--clr-*)` / `var(--font-*)`. `#10B981` is not Rally Green. `--ink` is not a token. Yellow is the stripe, not a UI fill.
 
-Bad: a purple section. A purple card with nothing else in the set. Equal-weight green + purple + red chrome. A green link or green button inside a blue, orange, or red card.
+Bad: a purple section. A green link inside a blue card. A black link because the section is dark or gray.
 
-Good: green header, green chapters, orange callout with an orange link, red callout with a red button, blue note, a 1–2–3 flow in green/blue/orange. No purple.
+Good: green links on white, gray, and ebony. Orange callout with an orange link. Dark hero, still a green button.
 
 ---
 
@@ -158,14 +158,14 @@ Good: green header, green chapters, orange callout with an orange link, red call
 
 ### Buttons
 - Shape: full pill (`border-radius: 120px`). Font: Inter **700**. Padding `15px 40px`.
-- **Hue follows the surface.** Neutral page → Rally Green. Inside a colored card, callout, or section → that hue. A green button in a blue/orange/red card is wrong.
+- **Green by default.** White, off-white, gray, mercury, ebony, black, dark bands stay Rally Green. Only an accent container changes it: blue card → blue, orange → orange, red → red. A black link on a dark section is wrong. A green button inside a blue card is also wrong.
 - **Primary:** fill = that hue, white text.
 - **Outlined:** transparent fill, `2px solid` that hue, text in that hue. Hover border goes **dashed**.
 - **Hover:** that hue at 20% opacity as background. **Press:** `transform: scale(0.98)`.
 
 ### Fancy links
 - Inter 700, trailing **Material icon** `arrow_forward` (not an Inter `→` character).
-- Same hue rule. `--color-link` (green) is only the default on a neutral page. Inside a blue card the link is blue.
+- Same rule. Green on white, gray, and dark. Blue only inside a blue card. Do not turn a link black because the background is black.
 
 ### Cards
 - **8px** (`--radius`). Every boxed thing: cards, sections, callouts, step cards, “panels.” There is no inner/outer radius. `--radius-lg` is the same 8px — not a bigger corner.
@@ -176,7 +176,7 @@ Good: green header, green chapters, orange callout with an orange link, red call
 
 ### Icons
 - **Material Symbols Outlined** — not Rounded. Small icons: FILL 1, weight 300. No chip. Sit on the card.
-- Color = the surface hue. Green on a neutral page. The card’s hue inside a colored card. List items use the list-item hue. Never a green icon inside a blue card. Never purple as the card’s own color.
+- Color = green on white, gray, and dark. The accent hue only inside a blue/orange/red/purple card. List items use the list-item hue. Never a green icon inside a blue card. Never a black icon just because the band is dark. Never purple as the card’s own color.
 - Same repeating card type (Starts / Skips / Runs, etc.) uses the **same three icons** in every object chapter.
 
 ### Borders & lines
@@ -274,7 +274,7 @@ Every generated HTML file includes:
 - [ ] Buttons are pills; boxes are 8px (`--radius`). No 16px panel leftover. Tags/labels are not pills.
 - [ ] Hex only from `:root`. No glow. Boxes 2px. 1px only as a horizontal hairline between siblings.
 - [ ] Hover/lift only on actual controls. Dead cards don’t float.
-- [ ] Links, buttons, and icons match the surface. Green only on a neutral page. No green CTA inside a blue/orange/red card.
+- [ ] Links, buttons, and icons are green on white, gray, and dark. They take blue/orange/red only inside a card of that accent. No black links. No green CTA inside a blue card.
 - [ ] Icons are Material Symbols **Outlined**.
 - [ ] Diagram stems actually touch cards. No floating “fork.”
 - [ ] Written docs: layout serves this content. Didn’t dump into letterhead. Vibe matches `examples/` if in the kit.

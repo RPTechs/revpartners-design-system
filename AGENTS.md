@@ -49,8 +49,8 @@ Do not use HubSpot variable names (`--clr-title`, `.btn-primary`, `icon-24`) unl
 - Headings: Montserrat **700**, River Bed, never green. Swap test: bold the word that would change on the sibling page — not the workflow name.
 - **No text anywhere above 700.** Headings, stats, hero spans, pins, buttons, labels — all of it. `font-weight: 800` / `900` / Black / ExtraBold is a fail. Do not add `800` to the Google Fonts URL.
 - Body: Inter 400. Buttons: Inter 700, pill, press scale 0.98.
-- Icons: Material Symbols **Outlined**. Match the surface. Green on a neutral page. The card’s hue inside a colored card. Never purple as its own thing.
-- **Links and buttons match the thing they’re in.** Green on a neutral page. Blue inside a blue card, orange inside orange, red inside red. A green link or green button inside a colored card is the failure. `--color-link` is the neutral-page default, not a law.
+- Icons: Material Symbols **Outlined**. Green on anything neutral (white, gray, black, dark). The accent’s hue only inside a blue/orange/red/purple card. Never purple as its own thing.
+- **Links and buttons are green unless the container is an accent.** White, off-white, gray, mercury, ebony, black, dark bands → Rally Green. Blue card → blue. Orange → orange. Red → red. A black link because the section is dark is the failure. A green link inside a blue card is also the failure.
 - HTML docs get a favicon: `assets/RP-Mark-2026-Green.svg`.
 - Diagrams: stems touch cards. Decision trees are solid Carbon 2px T-junctions, not two floating boxes.
 - Static HTML: no On/Off live-status pills.
