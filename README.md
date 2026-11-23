@@ -166,20 +166,21 @@ Each accent has three surface treatments. For a tinted fill, use ONE of:
 ### Borders & Lines
 - **Boxes:** `2px solid` in accent color OR `--clr-stroke` (`rgba(36,39,58,0.1)`). Stronger: `--clr-stroke-2`.
 - **The only 1px:** a horizontal hairline between stacked siblings (`border-top` / `border-bottom: 1px solid var(--clr-stroke)`). Not a box outline. Don’t mix 1px and 2px on the same element.
-- **Dashed emphasis:** `2px dashed rgb(23,180,81)` (green dashed for callouts/annotations)
+- **Dashed emphasis:** `2px dashed` in the surface hue (Rally Green on a neutral page, the card’s hue inside a colored callout)
 - **Fancy-link arrow / dashed step connectors:** neutral or accent, 2px
 
 ### Buttons
 - **Shape:** Fully pill/rounded — `border-radius: 120px`
 - **Font:** Inter Bold (700)
-- **Primary (filled):** Green fill `#17B451`, white text
+- **Hue follows the surface.** Neutral page → Rally Green `#17B451`. Inside a colored card → that card’s hue. A green button in a blue/orange/red card is wrong.
+- **Primary (filled):** fill = that hue, white text
   - Default: padding `15px 40px`
   - Small: padding `8px 16px`
-- **Outlined:** transparent/white fill, `2px solid #17B451`, green text
-- **Hover state:** 20% background of button color (e.g. `rgba(23,180,81,0.2)`) + border. Hover only on actual controls — not on static cards.
+- **Outlined:** transparent/white fill, `2px solid` that hue, text in that hue
+- **Hover state:** 20% background of that hue. Hover only on actual controls — not on static cards.
 - **Press/click state:** Scale to 98% (`transform: scale(0.98)`)
 - **Outlined hover:** border goes dashed.
-- **Fancy text link:** Inter Bold (700), green, trailing Material icon `arrow_forward` (not an Inter `→` character).
+- **Fancy text link:** Inter Bold (700), same hue rule, trailing Material icon `arrow_forward` (not an Inter `→` character). Green only on a neutral page.
 
 ### Cards
 - `border-radius: 8px` (`--radius`). Same on every boxed sibling. There is no 16px wrapping-panel radius.

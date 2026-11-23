@@ -108,7 +108,7 @@
   --color-border:     var(--clr-border);
   --color-border-accent: var(--clr-green);
 
-  --color-link:       var(--clr-green);
+  --color-link:       var(--clr-green); /* neutral page only. colored card → that hue */
   --color-link-hover: var(--clr-green-dark);
 
   /* Accents exist for lists (green→blue→orange→red→purple). Not department mascots. Purple last. */

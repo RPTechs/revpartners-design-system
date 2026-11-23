@@ -69,7 +69,7 @@ Paste into a global stylesheet. All values match the HubSpot theme.
   --color-primary: var(--clr-green);    --color-primary-bg: var(--clr-green-bg);
   --color-border: rgba(36,39,58,0.10);  --clr-stroke: rgba(36,39,58,0.10);
   --clr-stroke-2: rgba(36,39,58,0.30);  --clr-bg-2: var(--clr-mercury);
-  --color-link: var(--clr-green);
+  --color-link: var(--clr-green); /* neutral-page default. inside a colored card, use that hue */
 
   /* ---- Jobs. Default chrome is green. Do not spray department mascots. ---- */
   --role-chrome: var(--clr-green);
@@ -128,9 +128,9 @@ Chrome is green. Other colors may live **inside** a green section when they have
 - Mixing is wrong when two accents compete as chrome (green header + purple card + red card as equals). Mixing is right when green owns the section and orange/red/blue show up as ask/stop/info or as items 2–4 in a list.
 - Don't invent colors **or variable names**. Hex lives in `:root` only. After that, `var(--clr-*)` / `var(--font-*)`. `#10B981` is not Rally Green. `--ink` is not a token. Yellow is the stripe, not a UI fill.
 
-Bad: A standalone purple card not part of a set. Equal-weight green + purple + red chrome. Orange background with green text. Red card with green text. Any color card with green text or other color inside.
+Bad: A standalone purple card not part of a set. Equal-weight green + purple + red chrome. Orange background with green text. Red card with a green link or a green button. Any color card with a different accent inside.
 
-Good: green header, green chapters, orange “open question” callout, red “don’t” callout, blue “note,” a 1–2–3 flow in green/blue/orange. 20% green background → Green accents. 20% opacity blue background → blue accents. Etc. 
+Good: green header, green chapters, orange “open question” callout with an orange link, red “don’t” callout with a red button, blue “note,” a 1–2–3 flow in green/blue/orange. 20% blue background → blue link, blue button, blue icon. 
 
 ---
 
@@ -165,16 +165,18 @@ Good: green header, green chapters, orange “open question” callout, red “d
 
 ### Buttons
 
-- Shape: full pill (`border-radius: 120px`). Font: Inter **700**.
-- **Primary:** green fill `#17B451`, white text, padding `15px 40px`.
-- **Outlined:** transparent fill, `2px solid` green, green text. Hover border goes **dashed**.
-- **Hover:** accent at 20% opacity as background. **Press:** `transform: scale(0.98)`.
+- Shape: full pill (`border-radius: 120px`). Font: Inter **700**. Padding `15px 40px`.
+- **Hue follows the surface.** Neutral page → Rally Green. Inside a colored card, callout, or section → that hue. A green button in a blue/orange/red card is wrong.
+- **Primary:** fill = that hue, white text.
+- **Outlined:** transparent fill, `2px solid` that hue, text in that hue. Hover border goes **dashed**.
+- **Hover:** that hue at 20% opacity as background. **Press:** `transform: scale(0.98)`.
 
 
 
 ### Fancy links
 
-- Inter 700, green, trailing **Material icon** `arrow_forward` (not an Inter `→` character).
+- Inter 700, trailing **Material icon** `arrow_forward` (not an Inter `→` character).
+- Same hue rule as buttons. `--color-link` (green) is only the default on a neutral page. Inside a blue card the link is blue. Orange card, orange. Red card, red.
 
 
 
@@ -191,7 +193,7 @@ Good: green header, green chapters, orange “open question” callout, red “d
 ### Icons
 
 - **Material Symbols Outlined** — not Rounded. Small icons: FILL 1, weight 300. No chip. Sit on the card.
-- Color = green by default, or the list-item hue. Nested ask/stop/info may be orange/red/blue. Never purple as the card’s own color.
+- Color = the surface hue. Green on a neutral page. The card’s hue inside a colored card. List items use the list-item hue. Never a green icon inside a blue card. Never purple as the card’s own color.
 - Same repeating card type (Starts / Skips / Runs, etc.) uses the **same three icons** in every object chapter.
 
 
@@ -321,7 +323,8 @@ Every generated HTML file includes:
 - [ ] Buttons are pills; boxes are 8px (`--radius`). No 16px panel leftover. Tags/labels are not pills.
 - [ ] Hex only from `:root`. No glow. Boxes 2px. 1px only as a horizontal hairline between siblings.
 - [ ] Hover/lift only on actual controls. Dead cards don’t float.
-- [ ] Icons are Material Symbols **Outlined**, green (or list-item hue / semantic on neutrals).
+- [ ] Links, buttons, and icons match the surface. Green only on a neutral page. No green CTA inside a blue/orange/red card.
+- [ ] Icons are Material Symbols **Outlined**.
 - [ ] Diagram stems actually touch cards. No floating “fork.”
 - [ ] Written docs: layout serves this content. Didn’t dump into `docs/01` / `docs/02`. Vibe matches `examples/`.
 - [ ] No On/Off pills on static HTML.

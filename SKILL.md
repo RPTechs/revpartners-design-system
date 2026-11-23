@@ -10,5 +10,5 @@ If the user invokes this skill without saying what to build, do not recap the br
 
 Talk only about the thing being made (copy, layout, argument). Never narrate tokens, variables, hex, VERSION, or kit files unless they asked how the kit works. See AGENTS.md §4.
 Written docs: study `examples/` for vibe, then compose for this content. Do not dump into `docs/01` / `docs/02`. Do not clone an example and swap the copy.
-Green chrome. Nested ask/stop/info ok. Never purple as its own thing. Favicon = `RP-Mark-2026-Green.svg`. No On/Off pills on a static download.
+Green chrome. Nested ask/stop/info ok. Never purple as its own thing. Links and buttons match the surface — green on a neutral page, the card’s hue inside a colored card. Favicon = `RP-Mark-2026-Green.svg`. No On/Off pills on a static download.
 Paste the `:root` block — do not invent `--ink` / `--pri` / `--display`. Hex only from that block. **No text anywhere above 700** (not even stats). Do not load Montserrat 800. Pills = buttons. No glow. Boxes 2px (1px hairline between siblings only). No hover on dead cards.
